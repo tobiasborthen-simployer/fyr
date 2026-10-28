@@ -1,0 +1,128 @@
+{
+  "source": {
+    "title": "Messaging Framework · Simployer One",
+    "url": "https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o",
+    "retrieved": "2026-10-28",
+    "version": "2026-10-28",
+    "notes": [
+      "The source document has no version number; Fyr versions its snapshot by retrieval date.",
+      "Norwegian is marked 'venter på språkvask' (awaiting language review) in the source.",
+      "Category row and trust line exist only in English in the source; Fyr's NO/SV versions are in fyrTranslations and need PMM approval."
+    ]
+  },
+  "langs": {
+    "EN": {
+      "line": "Simployer does the HR you shouldn’t have to.",
+      "reason": "So you can do the work you aspire to do.",
+      "how": "Sia does the work. HR experts stand behind you.",
+      "howLong": "Sia, your AI HR employee, does the work. HR experts have seen cases like yours.",
+      "category": "Not a faster HR system. The one that does it for you.",
+      "trust": "Nordic law built in. Real experts behind it.",
+      "opener": "The role grew. The work never left.",
+      "sia": { "name": "Sia, your AI HR employee", "line": "Your AI HR employee. Does the work and answers questions on the rules, with the source, where you already work." },
+      "experts": { "name": "HR experts", "line": "An HR expert by your side. Someone who’s seen cases like yours." },
+      "automation": "Your routines run on their own, so you don’t carry the process alone.",
+      "pillars": [
+        { "key": "admin", "name": "Leave the admin", "head": "The admin gets done, where you already work.", "proof": "Onboarding that starts when the contract is signed, leave approved in Teams, a contract sent for e-sign from an expert’s template." },
+        { "key": "worry", "name": "Skip the worry", "head": "Get it right before you decide.", "proof": "A question on employment law answered with the source, an HR expert to talk a case through and share best practice, an offboarding workflow that reminds the right people." },
+        { "key": "signal", "name": "Get the signal", "head": "Spot what’s changing, while there’s time to act.", "proof": "A reminder before a probation ends, the sick-leave trend when you ask Sia, a pay gap report and a legal update before the rules change." }
+      ],
+      "foundation": [
+        ["One people record", "Enter data once. Your routines run on it."],
+        ["An agent with hands", "Does the task."],
+        ["Works where you do", "Teams, Slack, phone."],
+        ["Nordic expertise", "Law checked first, HR experts behind it."]
+      ]
+    },
+    "SV": {
+      "line": "Simployer gör HR-jobbet du helst lämnar över.",
+      "reason": "Så att du kan fokusera där du gör skillnad.",
+      "how": "Sia löser uppgiften. HR-experter stöttar dig.",
+      "sia": { "name": "Sia, din AI-medarbetare för HR", "line": "Din AI-medarbetare för HR. Gör jobbet och svarar på frågor om reglerna, med källan, där du redan jobbar." },
+      "experts": { "name": "HR-experterna", "line": "En HR-expert vid din sida. Någon som har sett fall som ditt." },
+      "automation": "Dina rutiner flyter på av sig själva, så att du inte bär processen ensam.",
+      "pillars": [
+        { "key": "admin", "name": "Slipp det manuella.", "head": "Avtal, ledighet och onboarding blir klara, där du redan jobbar.", "proof": "Onboarding som startar när avtalet är signerat, ledighet som godkänns i Teams, ett avtal som skickas för e-signering från en experts mall." },
+        { "key": "worry", "name": "Lita på att det stämmer.", "head": "Få svaret, med källan, innan du bestämmer dig.", "proof": "En fråga om arbetsrätt som besvaras med källan, en HR-expert att gå igenom ett ärende med och som delar beprövade arbetssätt, ett offboardingflöde som påminner rätt personer." },
+        { "key": "signal", "name": "Ligg steget före.", "head": "Ha koll på vad som förändras, medan du kan påverka det.", "proof": "En påminnelse innan en provanställning löper ut, sjukfrånvarotrenden när du frågar Sia, en lönekartläggning och en juridisk uppdatering innan reglerna ändras." }
+      ],
+      "foundation": [
+        ["Ett personalregister", "Registrera en gång. Dina rutiner bygger på det."],
+        ["En agent som gör jobbet", "Löser uppgiften."],
+        ["Finns där du jobbar", "Teams, Slack, mobilen."],
+        ["Nordisk expertis", "Lagen kontrollerad först, HR-experter bakom."]
+      ]
+    },
+    "NO": {
+      "status": "venter på språkvask",
+      "line": "Simployer gjør HR-jobben du helst gir fra deg.",
+      "reason": "Så du kan fokusere der du utgjør en forskjell.",
+      "how": "Sia løser oppgaven. HR-eksperter støtter deg.",
+      "sia": { "name": "Sia, din AI-medarbeider for HR", "line": "Din AI-medarbeider for HR. Gjør jobben og svarer på spørsmål om reglene, med kilden, der du allerede jobber." },
+      "experts": { "name": "HR-ekspertene", "line": "En HR-ekspert ved din side. Noen som har sett saker som din." },
+      "automation": "Rutinene dine går av seg selv, så du ikke står alene med prosessen.",
+      "pillars": [
+        { "key": "admin", "name": "Slipp det manuelle.", "head": "Avtaler, ferie og onboarding blir tatt hånd om, der du allerede jobber.", "proof": "Onboarding som starter når kontrakten er signert, ferie som godkjennes i Teams, en kontrakt sendt til e-signering fra en eksperts mal." },
+        { "key": "worry", "name": "Stol på at det stemmer.", "head": "Få svaret, med kilden, før du bestemmer deg.", "proof": "Et spørsmål om arbeidsrett besvart med kilden, en HR-ekspert å gå gjennom en sak med som deler beste praksis, en offboardingflyt som minner de riktige personene på." },
+        { "key": "signal", "name": "Vær i forkant.", "head": "Få oversikt over hva som endrer seg, mens du kan påvirke det.", "proof": "En påminnelse før prøvetiden går ut, sykefraværstrenden når du spør Sia, en lønnskartlegging og en juridisk oppdatering før reglene endres." }
+      ],
+      "foundation": [
+        ["Ett personalregister", "Registrer én gang. Rutinene dine bygger på det."],
+        ["En agent som gjør jobben", "Løser oppgaven."],
+        ["Finnes der du jobber", "Teams, Slack, mobilen."],
+        ["Nordisk ekspertise", "Loven sjekket først, HR-eksperter bak."]
+      ]
+    }
+  },
+  "fyrTranslations": {
+    "_note": "Lines the source has only in English. Fyr's own NO/SV versions, shown with a 'needs approval' flag until PMM confirms them.",
+    "NO": {
+      "category": "Ikke et raskere HR-system. Det som gjør det for deg.",
+      "trust": "Nordisk lov innebygd. Ekte eksperter bak.",
+      "opener": "Rollen vokste. Arbeidet ble aldri borte."
+    },
+    "SV": {
+      "category": "Inte ett snabbare HR-system. Det som gör det åt dig.",
+      "trust": "Nordisk lag inbyggd. Riktiga experter bakom.",
+      "opener": "Rollen växte. Arbetet försvann aldrig."
+    }
+  },
+  "rules": [
+    "Lead with what gets done, not with who knows the most. Expertise is the trust line, never the headline.",
+    "Simployer is the actor in the line. Never “AI” on its own, never “a replacement”.",
+    "HR always decides.",
+    "Sia and HR experts are the how: named as a pair wherever the whole offer is told, never the main line.",
+    "Introduce Sia once as “Sia, your AI HR employee”, then “Sia”. Always labelled as AI, never a face.",
+    "Call them “HR experts”. Never “real people”, “human experts” or “hard calls”.",
+    "Automation Studio is built in: use it as proof, never in the hero and never as a “workflow builder”.",
+    "“HR system” stays out of the hero. No named competitors.",
+    "Name the task, not the capability.",
+    "Present tense only for what has shipped. No figure finance hasn’t approved."
+  ],
+  "avoid": [
+    { "id": "replaces", "pattern": "\\breplac(es|ing|ement)\\b|\\berstatt(er|ning)\\b|\\bersätt(er|ning)\\b", "why": "Never “replaces” or “a replacement”" },
+    { "id": "instead-of-hr", "pattern": "instead of your HR team|i stedet for HR-teamet|istället för HR-teamet", "why": "Never “instead of your HR team”" },
+    { "id": "real-people", "pattern": "\\breal people\\b|\\bhuman experts?\\b|ekte mennesker|riktiga människor|menneskelige eksperter|mänskliga experter", "why": "Call them “HR experts”, never “real people” or “human experts”" },
+    { "id": "hard-calls", "pattern": "\\bhard calls?\\b|vanskelige sakene|svåra frågorna", "why": "Never “hard calls”: HR experts are for everyday and big questions alike" },
+    { "id": "ai-powered", "pattern": "\\bAI-powered\\b|\\bAI-(drevet|driven)\\b|\\bKI-drevet\\b", "why": "Name the task, not “AI-powered”" },
+    { "id": "ai-actor", "pattern": "\\b(AI|KI) (will|does|helps|answers|writes|hjelper|hjälper|gjør|gör|svarer|svarar)\\b", "why": "Simployer or Sia is the actor, never “AI” on its own" },
+    { "id": "broad-claim", "pattern": "handles all your HR|AI-powered automation", "why": "Name the task, not a broad claim" },
+    { "id": "workflow-builder", "pattern": "workflow builder|arbeidsflytbygger|arbetsflödesbyggare", "why": "Automation Studio is never a “workflow builder”" },
+    { "id": "competitors", "pattern": "\\b(personio|hibob|sympa|workday|huma|4human|hailey ?hr|catalystone|dottie|visma)\\b", "why": "Never name competitors in customer copy" },
+    { "id": "expertise-headline", "level": "warn", "pattern": "\\b40 (years|års?|år)\\b", "why": "Expertise is the trust line, never the headline" }
+  ],
+  "proofs": [
+    { "t": "12,000+ customers and 1.2 million users across the Nordics", "ok": true },
+    { "t": "Built for HR data: GDPR-ready, stored in the EU, covered by a data processing agreement", "ok": true },
+    { "t": "40 years of Nordic HR and employment law expertise", "ok": true, "note": "Trust only, never the headline" },
+    { "t": "“With Simployer, I spend less time putting out fires and more time with my people.” Julia Amin, HR, Betao", "ok": true },
+    { "t": "“We use Simployer as a go-to partner when things get tricky.” Customer, Kaffebrenneriet", "ok": true },
+    { "t": "About 1,600 hours freed per year for a 115-person organisation, 4 to 8 month payback", "ok": false, "note": "CFO only, once finance approves" }
+  ],
+  "quote": { "text": "With Simployer, I spend less time putting out fires and more time with my people.", "who": "Julia Amin, HR, Betao" },
+  "surfaces": {
+    "salesDeck": { "headline": "line", "under": "opener", "dont": "Don’t open with features." },
+    "campaignAd": { "headline": "line or a pillar name", "under": "One pillar message, with one proof from a real task.", "dont": "Never the how as the headline." },
+    "releaseNote": { "headline": "New: Sia now [does X] / Automation Studio now runs [X].", "under": "One more thing off your desk.", "dont": "Present tense only for what has shipped." }
+  }
+}

@@ -43,6 +43,7 @@
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [ ] Remove the CSS of the cut modules (dead code, but harmless).
+- [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
 - [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it with Thea and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** request the Entra app registration from IT, a Linear API key/webhook, a Claude API key and budget, and a Vercel project.
 
@@ -58,6 +59,7 @@
 
 ## M3 — PMM core (12 – 18 Nov)
 - [ ] Truth editor: messaging framework and feature wording per language, the draft → approve flow, version history, and a live message check.
+- [ ] Framework table seeded from `docs/messaging-framework.json`, plus the A6 framework change check on each new version. The copy check runs in CI.
 - [ ] Product Truth (org view), showing approved content only.
 - [ ] Brand rules store, used by the message check.
 - [ ] Tier playbooks: editor, publish and versioning.

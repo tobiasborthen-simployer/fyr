@@ -48,6 +48,16 @@ node tools/serve.mjs prototype/v0.3 8765
 
 Then open http://localhost:8765. Use `reference/v0.2 8766` to compare with v0.2.
 
+## Messaging Framework
+
+All copy follows the [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o). See [docs/MESSAGING-FRAMEWORK.md](docs/MESSAGING-FRAMEWORK.md).
+
+```bash
+node tools/sync-framework.mjs
+```
+
+This syncs `docs/messaging-framework.json` into the prototype and checks every customer-facing line. Add `--check` to check without syncing.
+
 ## How the project log works
 
 - **Decided something?** Add a `D-NNN` entry to DECISIONS. Never edit an accepted entry; supersede it with a new one.

@@ -29,6 +29,20 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 
 **Added**
 - `tools/serve.mjs` and `.claude/launch.json`, for previewing the prototypes locally.
+- Messaging Framework sync (D-016):
+  - `docs/messaging-framework.json` (snapshot from 2026-10-28)
+  - `tools/sync-framework.mjs` (sync and copy check)
+  - `docs/MESSAGING-FRAMEWORK.md`
+
+**Changed (Messaging Framework, synced 2026-10-28)**
+- Slides, ads and the Product truth panel now use the current framework in EN/NO/SV:
+  - NO line: "Simployer gjør HR-jobben du helst gir fra deg."
+  - SV line: "Simployer gör HR-jobbet du helst lämnar över."
+  - New pillar names and headlines
+  - Category row: "The one that does it for you."
+- The "Why Simployer" slide shows the category row, the how (Sia and HR experts), the three pillars and the Betao quote. The "40 years" stat is gone.
+- The message check uses the framework's avoid list: replaces, hard calls, real/human experts, AI-powered, AI as the actor, workflow builder, competitor names.
+- Sia, Sick-leave follow-up and Equal Pay copy, a talk track and two objection answers are rewritten to the framework.
 
 ### Added
 - Project setup:

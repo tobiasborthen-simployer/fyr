@@ -31,4 +31,13 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
 ## Content rules
 - Content languages are EN, NO and SV. Every approvable item has a status per language.
 - AI drafts are always labelled as drafts and never shown in org-facing areas before approval.
-- Copy follows the Simployer 2026 tone of voice and the Brand rules in Marketing Remix.
+- **All communication follows the [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o)** (D-016). See [docs/MESSAGING-FRAMEWORK.md](docs/MESSAGING-FRAMEWORK.md).
+  - Never type a framework line by hand: no brand line, how, category row, trust line, pillar or proof. Read it from `MF`, which comes from `docs/messaging-framework.json`.
+  - After editing customer-facing copy, run `node tools/sync-framework.mjs --check`. It must show 0 errors before you commit.
+  - If the framework document changes, update the JSON and run `node tools/sync-framework.mjs`. Fix what it flags, and send rewritten wording back to *waiting for Thea*.
+  - Rules to remember:
+    - Lead with what gets done.
+    - Simployer or Sia is the actor.
+    - Name Sia and HR experts as a pair.
+    - Never "replaces", "hard calls", "real people" or competitor names.
+    - Present tense only for shipped features.

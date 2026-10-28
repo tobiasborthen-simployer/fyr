@@ -276,3 +276,27 @@ Details are in PARKED.md.
 **Consequences:** No extra work in M2 beyond wiring the button to Entra.
 
 **Revisit if:** IT requires the standard Microsoft sign-in only.
+
+## D-016 — The Messaging Framework is the single source for all communication
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:**
+- Slide lines, ads and truth copy in v0.2 had drifted from the current Messaging Framework.
+- Examples:
+  - Old NO/SV brand lines and pillar names
+  - "hard calls"
+  - "40 years" used as a stat on the "Why Simployer" slide
+- Tobias asked that slides and copy follow the framework and always stay up to date with it.
+
+**Decision:**
+- The [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o) is the source. Fyr keeps a structured snapshot in `docs/messaging-framework.json`.
+- Every framework line in Fyr is derived from that snapshot, never typed by hand. This covers slides, ads, the Product truth panel and the message check.
+- `tools/sync-framework.mjs` syncs the snapshot and checks all customer-facing copy against the framework's avoid list. It must pass before committing copy changes.
+- Wording rewritten to fit the framework goes back to Thea for approval.
+- In the app, a framework publish runs automation **A6, the framework change check**, which flags affected truth entries, pack items, Remix drafts and presentation rules.
+
+**Consequences:**
+- A framework change becomes: update the JSON, run the sync, fix what is flagged, re-approve.
+- Lines the source only has in English (category row, trust line, opener in NO/SV) use Fyr translations, flagged until approved.
+
+**Revisit if:** the framework moves to a format Fyr can read directly. Then replace the manual JSON update with an import.

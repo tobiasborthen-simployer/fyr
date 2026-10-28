@@ -164,6 +164,10 @@ Each module below is laid out as: **purpose**, **reuse from v0.2**, **changes in
 
 **Changes**
 - The separate "Languages" tab (`vL10n`) folds into the editor as a per-language status column.
+- **The framework comes from the Messaging Framework document** ([D-016](DECISIONS.md), [MESSAGING-FRAMEWORK.md](MESSAGING-FRAMEWORK.md)).
+  - Fyr holds a synced, versioned snapshot. Every slide line, ad line and message-check rule is derived from it.
+  - Publishing a new framework version runs A6 (see 4.6).
+  - Local edits in Fyr stay local until the source document is updated.
 
 **Product Truth** (org-facing, read-only)
 - The framework panel, a product-area filter, and one row per feature showing approved wording only, with an "Approved by … · date" stamp
@@ -230,7 +234,7 @@ Each module below is laid out as: **purpose**, **reuse from v0.2**, **changes in
 - `vAuto` (l.4350), `AUTOS` (l.2267)
 - `RUNS` (l.4056), which already carries minutes per run
 
-**The five v0.3 automations**
+**The six v0.3 automations**
 
 | # | Automation | Trigger | Output |
 |---|---|---|---|
@@ -239,6 +243,7 @@ Each module below is laid out as: **purpose**, **reuse from v0.2**, **changes in
 | A3 | Language drafts | Pack item EN drafted | NO/SV drafts |
 | A4 | Remix drafts | Truth item or framework approved | Remix drafts per channel type |
 | A5 | Library outdated flag | Linear release shipped for a feature | Feature's assets marked *outdated* |
+| A6 | Framework change check | New Messaging Framework version synced | Every truth entry, pack item, Remix draft and presentation rule re-checked; anything that breaks the framework goes back to *waiting for Thea* |
 
 **Stats**
 - Per automation: runs, last run, success rate, approval rate (approved / approved after edits / rejected), and **estimated time saved**.
