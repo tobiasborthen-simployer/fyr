@@ -5,7 +5,7 @@
 | # | Milestone | Target | Status | Done | Owner |
 |---|---|---|---|---|---|
 | M0 | Project setup | 28 Oct | ✅ Done | 100% | Tobias |
-| M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 75% | Tobias |
+| M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 90% | Tobias |
 | M2 | App foundation (SSO, DB, Linear, Releases) | 11 Nov | ⬜ Not started | 0% | — |
 | M3 | PMM core (Truth, Packs, Battlecards, Library) | 18 Nov | ⬜ Not started | 0% | — |
 | M4 | Create + Remix + Automations | 25 Nov | ⬜ Not started | 0% | — |
@@ -31,6 +31,21 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-28 — M1: Brand rules, draft sources, CSS cleanup
+- **Done:**
+  - **Brand rules tab** in Marketing Remix, read from the Messaging Framework. It shows the rules, the "never write" list (with what each flags and whether it blocks or warns), words to use, per-channel guidance and approved proof points. A "Check a text" box runs any text against the same rules. The snapshot JSON gained `avoid[].terms` and `use`.
+  - **Every Remix draft** shows:
+    - a "Built from" line: truth entry (flagged if waiting for Thea), Linear release, pillar, framework version, Brand rules
+    - a live brand-rules check
+    - where it gets approved: *Approve in launch pack*, *Create launch pack* (release without a pack) or *Evergreen · approved here*
+  - Launch packs now list their Remix drafts, and Thea approves them there. Approving in the pack shows the draft as approved in Remix.
+  - Removed the last HubSpot leftover ("Approve and send to HubSpot").
+  - **CSS cleanup:**
+    - Removed 362 rules (about 28 KB) that only styled cut modules, such as the connections map, Slack, training, calls and adoption.
+    - Verified with a computed-style fingerprint of 36 screens taken before and after: identical. The two ad tabs differed only by when the handwriting font loaded; they are identical once it has.
+- **Next:** publish the prototype as the "Fyr v0.3" artifact and walk through it with Thea for M1 sign-off.
+- **Note:** the approved Sia LinkedIn post (NO) is built on Sia truth that is now waiting for Thea after the framework rewrite. The A6 framework change check is meant to catch exactly this.
 
 ### 2026-10-28 — M1: Presentation rules
 - **Done:**

@@ -25,9 +25,12 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Removed**
+- 362 CSS rules (about 28 KB) that only styled cut modules. No visible change.
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Brand rules** tab in Marketing Remix, read from the Messaging Framework, with a "Check a text" box.
+- On every Remix draft: a "Built from" line, a brand-rules check, and a link to its launch pack (or *Evergreen*). Launch packs list their Remix drafts for approval.
 - **Presentation rules** (PMM workspace): a recipe per role and need, five seeded rules, and an editor with live preview, framework check and versioned publishing. Create uses the chosen rule's slide order, feature range and CTA.
 - `tools/serve.mjs` and `.claude/launch.json`, for previewing the prototypes locally.
 - Messaging Framework sync (D-016):

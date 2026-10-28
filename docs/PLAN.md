@@ -37,7 +37,10 @@
 - [x] **Launch packs.** Remove the slack/training/video kinds and cut the runway to Brief → Ready → Live.
 - [x] **Truth editor.** Drop the Languages tab and replace the `LOG` history with per-entry history (EN/NO/SV status).
 - [x] **Battlecards.** Remove the Slack import/publish copy and the Sia/tl;dv autofill toast.
-- [ ] **Marketing Remix (new).** *Done:* renamed from Channels, with videos, the HubSpot send and the launch-day check removed. *Left:* a Brand rules tab, a "built from" line on each draft, and an approval link back to the pack.
+- [x] **Marketing Remix (new).** Renamed from Channels, with videos, the HubSpot send and the launch-day check removed.
+  - Brand rules tab read from the Messaging Framework, with a "Check a text" box.
+  - Every draft has a "Built from" line, a brand-rules check, and its launch pack link (*Approve in launch pack* / *Create launch pack* / *Evergreen*).
+  - Launch packs list their Remix drafts for Thea to approve.
 - [x] **Presentation rules (new).** Rule list and editor in the PMM workspace covering slide recipe (reorder, remove, add), feature range, max coming soon, must include/avoid, tone, CTA in EN/NO/SV, and speaker-note guidance.
   - Live preview with an example customer, plus a framework check.
   - Publish with a version, New and Duplicate.
@@ -45,7 +48,7 @@
 - [x] **Create.** The meeting picker is replaced by company name and typed pains (optional, with "Fill with example"). The rep picks a rule on the Create home and in the brief. `buildDeck` follows the rule's recipe, the feature range is enforced, and the rule's CTA and guidance show in the deck.
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
-- [ ] Remove the CSS of the cut modules (dead code, but harmless).
+- [x] Remove the CSS of the cut modules. 362 rules removed, about 28 KB. A style fingerprint of 36 screens is unchanged.
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
 - [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it with Thea and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** request the Entra app registration from IT, a Linear API key/webhook, a Claude API key and budget, and a Vercel project.

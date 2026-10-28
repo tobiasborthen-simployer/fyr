@@ -213,7 +213,28 @@ Each module below is laid out as: **purpose**, **reuse from v0.2**, **changes in
 - Release note
 - Web copy block
 
-**Brand rules.** This is a new sub-tab. It holds an editable list of rules (voice, terminology, banned claims, proof requirements), seeded from v0.2 `FRAME` and the Simployer 2026 tone of voice. Every draft and every message check reads from it.
+**Brand rules.** A sub-tab that **reads the Messaging Framework** ([D-016](DECISIONS.md)) and is never edited in Fyr. It shows:
+- the framework's rules
+- the "never write" list (each with what it flags, and whether it blocks or warns)
+- words to use
+- per-channel guidance (campaign ad, release note, sales deck)
+- approved proof points
+- a "Check a text" box that runs any text against the same rules
+
+Every draft and every message check uses these rules. To change a rule, change the framework and re-sync.
+
+**On every draft**
+- **Built from:**
+  - the Product truth entry, flagged if it is waiting for Thea
+  - the Linear release
+  - the pillar(s)
+  - the Messaging Framework version
+  - Brand rules
+- **A live brand-rules check.**
+- **Where it is approved:**
+  - Drafts tied to a release link to their launch pack: *Approve in launch pack*, or *Create launch pack* if there is none yet.
+  - The launch pack lists its Remix drafts and Thea approves them there.
+  - Evergreen drafts (no release) are marked *Evergreen · approved here*.
 
 **Dropped from Outputs**
 - Product videos (ElevenLabs)

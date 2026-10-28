@@ -45,7 +45,8 @@ The copy check must pass (0 errors) before any commit that touches customer-faci
 | Trust line | Footer on every slide, Product truth |
 | Pillars (name and headline) | Feature slide eyebrow, "Why Simployer" slide, ad pillar labels, Truth editor pillar field |
 | Pillar proof, approved proofs, quote | Feature proof wording, "Why Simployer" quote, the framework's approved proof points |
-| Rules and avoid list | Product truth rules, message check, `sync-framework.mjs --check` |
+| Rules and avoid list | Product truth rules, message check, Marketing Remix → Brand rules (and the brand-rules check on every draft), Presentation rules check, `sync-framework.mjs --check` |
+| Words to use, surface guide, proofs | Marketing Remix → Brand rules |
 | Sales deck surface guide | Deck opens with the line, never with features |
 
 ## Gaps and open questions (need PMM / Thea)
