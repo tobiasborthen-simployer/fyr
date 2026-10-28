@@ -32,6 +32,10 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-28 — Weekly Messaging Framework drift check
+- **Done:** Scheduled the task "Fyr: weekly Messaging Framework check" (`fyr-framework-drift-check`), Mondays at about 08:30. It re-reads the framework, compares it with `docs/messaging-framework.json`, and reports what changed so we can re-sync. It is read-only. See [MESSAGING-FRAMEWORK.md](MESSAGING-FRAMEWORK.md#weekly-drift-check).
+- **Not verified yet:** the test run was blocked from this session. First automatic run is Mon 2 Nov, or use "Run now" in the Scheduled sidebar.
+
 ### 2026-10-28 — M1: aligned with the Messaging Framework (D-016)
 - **Done:**
   - Audited all customer-facing copy against the [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o).

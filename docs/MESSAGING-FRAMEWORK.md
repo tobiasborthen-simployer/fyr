@@ -13,6 +13,15 @@ Fyr never writes its own positioning. Every line a customer, prospect or colleag
 | Message check (Truth editor) | Uses the same avoid list, so the editor and the sync tool always agree. |
 | App, from M3 | The snapshot seeds the `Framework` table. Publishing a new framework version runs **A6, the framework change check** (see [SPEC](SPEC.md#46-automations-pmm--downscaled-overview)). |
 
+## Weekly drift check
+
+A scheduled task, **"Fyr: weekly Messaging Framework check"** (`fyr-framework-drift-check`), runs every **Monday at about 08:30**.
+- It re-reads the framework document and compares it field by field with `docs/messaging-framework.json`, in EN, SV and NO.
+- It reports either "No changes" or a list in the form `field — snapshot: "…" → framework now: "…"`, with the impact in Fyr and the re-sync steps.
+- It is read-only: it never edits, commits or publishes anything.
+
+It runs in the Claude desktop app. If the app is closed on Monday morning, it runs the next time the app opens. You can manage it in the Scheduled section of the sidebar; the task file is `~/.claude/scheduled-tasks/fyr-framework-drift-check/SKILL.md`.
+
 ## When the framework changes
 
 1. Re-read the [framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o).
