@@ -25,6 +25,9 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Fixed**
+- Saved decks, including the example decks, kept the old Discovery flow and had no contact slide in Demo. Example decks now refresh, and the rep's own decks offer *Rebuild with vN* (D-021).
+- The contact slide now starts with the signed-in rep's photo and details.
+- Story step 2 on the insight slide is optional, as the flow says.
 - My presentations: Open, Copy and Delete stay on one line.
 - Marketing Remix cards no longer overflow into the next card when a draft links to a launch pack with a long name.
 

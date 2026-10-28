@@ -375,3 +375,20 @@ Details are in PARKED.md.
 - Example people and photos in the prototype; the app uses Microsoft profiles.
 
 **Revisit if:** the pilot shows reps routinely un-hiding the backup slide. If so, it belongs in the main flow.
+
+## D-021 — Saved decks keep their rule version; reps choose when to rebuild
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:** After the Discovery flow changed (D-020), decks saved earlier still showed the old flow. That included the example decks, and Demo decks without the new contact slide. Nothing told the rep that a newer version existed.
+
+**Decision:**
+- Every deck stores the version of the rule it was built with (`ruleV`).
+- Example decks always follow the current rules and are refreshed on load.
+- The rep's own decks are never changed silently. When the rule is newer, the studio shows *Rebuild with vN*.
+- Rebuilding keeps the rep's text on slides that still exist, keeps their quote choice and optional-line choice, and keeps their own slides in the main flow, before the contact slide.
+
+**Consequences:**
+- PMM can change a rule without breaking decks a rep is about to present.
+- Reps get the update with one click.
+
+**Revisit if:** PMM needs to force an update, e.g. a legal correction. That would need a "required" flag on a rule version.

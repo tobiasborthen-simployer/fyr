@@ -327,7 +327,13 @@ Seed rules (prototype `PRULES`):
 
 **Hidden slides.** Any slide can be hidden with the eye on its thumbnail. Hidden slides stay in the deck but are skipped by Present, Open in new tab and PDF. Backup and appendix slides are grouped under their own labels. Rules set which slides start hidden.
 
-**Picture bar.** On the title and contact slides, the inspector shows a row of photos with names. Clicking yours puts your photo, name, title, email and phone on the contact slide and your name on the title slide. Fyr remembers your choice for your next decks. In the app, the people and their details come from Microsoft profiles.
+**Picture bar.** On the title and contact slides, the inspector shows a row of photos with names. Clicking yours puts your photo, name, title, email and phone on the contact slide and your name on the title slide. **A new deck starts with the signed-in rep already on it**; the picture bar is for switching. Fyr remembers your choice for your next decks. In the app, the people and their details come from Microsoft profiles.
+
+**Story step 2** on the insight slide is optional: the rep can switch it off in the inspector.
+
+**Rule versions and saved decks ([D-021](DECISIONS.md)).** Every deck records the version of the rule it was built with.
+- Example decks follow the current rules automatically.
+- When a rule has a newer version, the rep's own decks show *Rebuild with vN*. Rebuilding keeps the rep's text on slides that still exist and keeps their own slides in the main flow, before the contact slide.
 
 v0.2 had none of these. Every deck followed one fixed order.
 

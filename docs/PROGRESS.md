@@ -34,6 +34,19 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-28 — Discovery flow: audit against the ask, four gaps fixed (D-021)
+- **Audit:** went through Tobias's flow line by line against the generated deck, slide text and speaker notes. All seven main slides, the proof picker, B1, the appendix, the contact slide in Demo and the picture bar matched. Four gaps found:
+  1. **The contact slide didn't know the rep.** The title showed the signed-in rep's name, but the contact slide asked them to pick a picture. New decks now start with the signed-in rep's photo and details; the picture bar switches.
+  2. **Decks saved before the change kept the old flow.** That included the example decks "Strand Helse · Discovery" (old 5-slide flow) and "Fjellheim · Demo" (no contact slide), which is likely what Tobias saw. Example decks now refresh to the current rules on load.
+  3. **No way to update your own deck.** Decks now record their rule version, and older ones show *Rebuild with vN*. That keeps the rep's text on slides that still exist, their quote choice, and their own slides (placed before the contact slide).
+  4. **Story step 2 was always on.** It's now optional per deck, with a toggle on the insight slide that keeps text edits in place.
+- **Verified in the browser:**
+  - With the old saved state planted (two example decks plus one of the rep's own with an edit and an own slide), the examples refreshed and kept "presented".
+  - The rep's own deck showed the banner. Rebuild kept the edited headline and the own slide (before contact) and stored v2.
+  - A new deck's contact slide showed Ida Lund's details.
+  - The story-line toggle hides the line and keeps the edited question.
+- **Decisions:** D-021.
+
 ### 2026-10-28 — Discovery meeting rebuilt to PMM's flow, picture bar (D-020)
 - **Done:**
   - **Discovery meeting** follows Tobias's flow:

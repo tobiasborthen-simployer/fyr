@@ -1589,6 +1589,7 @@ const REPS = [
 ];
 let ME = (() => { try { return localStorage.getItem('fyr-v03-me'); } catch (_) { return null; } })();
 const deckRep = d => REPS.find(p => p.id === d.rep);
+const signedInRep = () => ME || (REPS.find(p => p.name === ROLES[S.role].name) || {}).id || null;
 const repFace = (p, cls = 'face') => `<span class="${cls}"><img src="ph/${p.ph}.jpg" alt="" style="object-position:${p.pos};transform-origin:${p.pos};transform:scale(${p.zoom || 2.2})"></span>`;
 // One proof slide per quote; the rep keeps the one that matches the pillar they cared most about
 const DISC_QUOTES = [
@@ -1743,7 +1744,7 @@ function recipeSlides(r, b, m) {
 }
 function buildDeck() {
   const b = S.brief, m = S.meeting, r = ruleById(b.rule);
-  S.deck = { company: m.company, rule: r.id, occasion: r.occasion, lang: b.lang, date: b.date || todayISO(), rep: ME, slides: recipeSlides(r, b, m), presented: false };
+  S.deck = { company: m.company, rule: r.id, occasion: r.occasion, lang: b.lang, date: b.date || todayISO(), rep: signedInRep(), ruleV: r.v, slides: recipeSlides(r, b, m), presented: false };
   S.sel = 0;
 }
 
@@ -1763,7 +1764,7 @@ function slideHTML(s, i, n) {
   if (s.kind === 'questions') { const r = ruleById(d.rule), qs = (r.questions || {})[lg] || (r.questions || {}).EN || [], qh = (r.qHead || {})[lg] || (r.qHead || {}).EN || T.qH; return `<div class="slide">${wm}<div class="in"><span class="ey">${T.qEy}</span><h3>${qh}</h3><div class="rows">${qs.map((q, k) => { const [a, b] = q.includes(' | ') ? q.split(' | ') : ['', q]; return `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`; }).join('')}</div></div>${ft}</div>`; }
   if (s.kind === 'titleline') return `<div class="slide dark linecover">${wm}<div class="in"><h3>${T.tag}</h3><p>${esc(d.company)} · ${when} · ${(rp || ROLES[S.role]).name}</p></div>${ft}</div>`;
   if (s.kind === 'about') return `<div class="slide">${wm}<div class="in"><span class="ey">${occ}</span><h3>${T.aboutH}</h3><div class="cols3">${T.about.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><p class="out">${T.aboutOut}</p></div>${ft}</div>`;
-  if (s.kind === 'insight') return `<div class="slide">${wm}<div class="in" style="align-content:center"><h3 style="font-size:5cqw;max-width:18ch">${mm3.story[0][0]}</h3><p style="font-size:2cqw;max-width:52ch">${mm3.story[0][1]}</p><p class="sub2">${mm3.story[1][0]} ${mm3.story[1][1].split(/(?<=\.) /).pop()}</p><p class="bridge">${T.insightAsk}</p></div>${ft}</div>`;
+  if (s.kind === 'insight') return `<div class="slide">${wm}<div class="in" style="align-content:center"><h3 style="font-size:5cqw;max-width:18ch">${mm3.story[0][0]}</h3><p style="font-size:2cqw;max-width:52ch">${mm3.story[0][1]}</p><p class="sub2"${s.noStory2 ? ' style="display:none"' : ''}>${mm3.story[1][0]} ${mm3.story[1][1].split(/(?<=\.) /).pop()}</p><p class="bridge">${T.insightAsk}</p></div>${ft}</div>`;
   if (s.kind === 'proof') { const q = DISC_QUOTES.find(x => x.id === s.q) || DISC_QUOTES[0]; return `<div class="slide dark">${q.ok ? '' : `<span class="flag">● ${q.flag}</span>`}${wm}<div class="in" style="align-content:center"><div class="quote" style="font-size:3.4cqw;max-width:28ch">${q.text ? `“${q.text}”` : `[${q.who}: approved quote goes here]`}<small>${q.who}</small></div></div>${ft}</div>`; }
   if (s.kind === 'nextstep') { const hs = m.heads.filter(Boolean); return `<div class="slide">${wm}<div class="in"><span class="ey">${occ}</span><h3 style="max-width:22ch">${T.nsH}</h3><div class="cols3">${T.nsF.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${k === 0 && hs.length ? hs.join(', ') : b}</p></div>`).join('')}</div></div>${ft}</div>`; }
   if (s.kind === 'contact') return `<div class="slide dark contact">${wm}<div class="in" style="align-content:center"><span class="ey">${occ} · ${when}</span><h3>${T.thanks}</h3><div class="ct">${rp ? repFace(rp) : '<span class="face ph0"></span>'}<div><b>${rp ? rp.name : T.pickName}</b><p>${rp ? (rp.title[lg] || rp.title.EN) : T.pickHint}</p>${rp ? `<p>${rp.email}</p><p>${rp.phone}</p>` : ''}</div></div></div>${ft}</div>`;
@@ -1789,7 +1790,7 @@ function vDeck() {
   <section class="studio">
     <div class="studio-bar">
       <div><h2>${occLabel(ruleById(d.rule))} for ${d.company}</h2><div class="meta"><span class="pill live"><span class="d"></span>Ready</span><span>${ruleById(d.rule).name} · ${n} slides · ${d.lang}</span><span id="save-state">${d.updated ? `Saved ${d.updated.split(' ').pop()}` : 'Saving…'}</span></div></div>
-      <div class="acts"><button class="btn btn-ghost-n" id="add-slide" title="Add a slide with your own text after this one">${ico('i-plus')}Add slide</button><button class="btn btn-ghost-n" id="newtab" title="Open the deck in a new browser tab">${ico('i-ext')}Open in new tab</button><button class="btn btn-ghost-n" id="pdf">${ico('i-download')}PDF</button><button class="btn btn-primary" id="present">${ico('i-play')}Present</button></div>
+      ${(d.ruleV || 0) < ruleById(d.rule).v ? `<div style="flex-basis:100%;display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#E9E4F4;font-size:13px;background:rgba(151,115,255,.12);border:1px solid rgba(151,115,255,.35);border-radius:12px;padding:8px 12px">${ico('i-refresh')}<span>Made with an earlier version of ${ruleById(d.rule).name}. The current one is v${ruleById(d.rule).v}.</span><button class="btn btn-primary btn-sm" id="rebuild">Rebuild with v${ruleById(d.rule).v}</button></div>` : ''}<div class="acts"><button class="btn btn-ghost-n" id="add-slide" title="Add a slide with your own text after this one">${ico('i-plus')}Add slide</button><button class="btn btn-ghost-n" id="newtab" title="Open the deck in a new browser tab">${ico('i-ext')}Open in new tab</button><button class="btn btn-ghost-n" id="pdf">${ico('i-download')}PDF</button><button class="btn btn-primary" id="present">${ico('i-play')}Present</button></div>
     </div>
     <div class="studio-body">
       <ol class="thumbs" aria-label="Slides, drag to reorder">${d.slides.map((x, i) => `${SECTION[x.kind] && SECTION[x.kind] !== SECTION[(d.slides[i - 1] || {}).kind] ? `<li class="tsec">${SECTION[x.kind]} · shown only if asked</li>` : ''}<li class="thumb ${i === S.sel ? 'sel' : ''} ${x.hidden ? 'hid' : ''}" draggable="true" data-i="${i}"><span class="n">${i + 1}</span><div><div class="tc" data-pick="${i}" tabindex="0" role="button" aria-label="Slide ${i + 1}, ${slideName(x)}">${slideHTML(x, i, n)}</div>
@@ -1798,6 +1799,7 @@ function vDeck() {
       <aside class="insp">
         <div><span class="lbl">Slide ${S.sel + 1}</span><b class="name">${slideName(s)}</b></div>
         ${s.hidden ? `<div class="checks"><div class="wa">${ico('i-eye')}<span>${s.kind === 'cfo' && cfoLocked() ? 'Hidden until finance approves the figures.' : 'Hidden: not shown in Present or PDF. Use the eye on the thumbnail to show it.'}</span></div></div>` : ''}
+        ${s.kind === 'insight' ? `<div><span class="lbl">Optional line</span><label style="display:flex;gap:8px;align-items:start;color:#E9E4F4;font-size:13px;line-height:1.4"><input type="checkbox" id="story2" ${s.noStory2 ? '' : 'checked'} style="margin-top:2px"> Story step 2: “Elsewhere, software does the work. HR still stores, reminds and answers.”</label></div>` : ''}
         ${s.kind === 'proof' ? `<div><span class="lbl">Customer quote</span><div class="pq">${DISC_QUOTES.map(q => `<button type="button" data-proofpick="${q.id}" aria-pressed="${d.slides.some(x => x.kind === 'proof' && x.q === q.id && !x.hidden)}"><b>${q.who}</b><small>${q.label}${q.ok ? '' : ' · ' + q.flag}</small></button>`).join('')}</div></div>` : ''}
         ${['contact', 'titleline'].includes(s.kind) ? `<div><span class="lbl">You</span><div class="pbar" role="group" aria-label="Pick your picture">${REPS.map(p => `<button type="button" data-rep="${p.id}" aria-pressed="${d.rep === p.id}">${repFace(p)}<span>${p.name}</span></button>`).join('')}</div><small class="muted" style="display:block;margin-top:8px;color:#B7AECF">Example people. In Fyr, your photo and details come from your Microsoft profile.</small></div>` : ''}
         ${s.kind === 'feature' ? `<div><span class="lbl">Visual</span><div class="seg n" role="group" aria-label="Visual type">${['screenshot', 'animation'].map(t => `<button type="button" data-vis="${t}" aria-pressed="${s.visual === t}">${t === 'screenshot' ? 'Screenshot' : 'Animation'}</button>`).join('')}</div></div>
@@ -1829,11 +1831,13 @@ function bindDeck() {
   const st = $('.stage .slide'); applyEdits(st, d.slides[S.sel]);
   const at = S.sel; // the slide these fields belong to, even if the view moves on before blur fires
   edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); }); });
+  if ($('#rebuild')) $('#rebuild').addEventListener('click', rebuildDeck);
   $('#add-slide').addEventListener('click', () => { d.slides.splice(S.sel + 1, 0, { kind: 'custom' }); S.sel++; render(); toast('Added your own slide. Click the text to write it.'); });
   $$('[data-pick]').forEach(x => { x.addEventListener('click', () => { S.sel = +x.dataset.pick; render(); }); x.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); S.sel = +x.dataset.pick; render(); } }); });
   $$('[data-mv]').forEach(x => x.addEventListener('click', () => move(+x.dataset.mv, +x.dataset.mv + +x.dataset.dir)));
   $$('[data-del]').forEach(x => x.addEventListener('click', () => { if (d.slides.length <= 1) return; const i = +x.dataset.del, g = slideName(d.slides[i]); d.slides.splice(i, 1); S.sel = Math.min(S.sel, d.slides.length - 1); render(); toast(`Removed “${g}”.`); }));
   $$('[data-vis]').forEach(x => x.addEventListener('click', () => { d.slides[S.sel].visual = x.dataset.vis; render(); }));
+  if ($('#story2')) $('#story2').addEventListener('change', e => { d.slides[S.sel].noStory2 = !e.target.checked; render(); });
   $$('[data-hide]').forEach(x => x.addEventListener('click', () => { const sl = d.slides[+x.dataset.hide]; sl.hidden = !sl.hidden; render(); }));
   $$('[data-proofpick]').forEach(x => x.addEventListener('click', () => { const id = x.dataset.proofpick; d.slides.forEach(sl => { if (sl.kind === 'proof') sl.hidden = sl.q !== id; }); S.sel = d.slides.findIndex(sl => sl.kind === 'proof' && sl.q === id); render(); }));
   $$('[data-rep]').forEach(x => x.addEventListener('click', () => { d.rep = ME = x.dataset.rep; try { localStorage.setItem('fyr-v03-me', ME); } catch (_) {} d.slides.forEach(sl => { if (sl.kind === 'contact') delete sl.edits; }); render(); toast(`Added ${deckRep(d).name} to the slides.`); }));
@@ -1949,6 +1953,16 @@ function saveDeck() {
   decksStore();
   const el = $('#save-state'); if (el) el.textContent = `Saved ${d.updated.split(' ').pop()}`;
 }
+// Rebuild a saved deck with the current version of its rule, keeping the rep's text where the slide still exists
+function rebuildDeck() {
+  const d = S.deck, r = ruleById(d.rule), old = d.slides, used = new Set();
+  const same = (a, b) => a.kind === b.kind && a.f === b.f && a.q === b.q && a.ref === b.ref;
+  const slides = recipeSlides(r, S.brief, S.meeting).map(ns => { const i = old.findIndex((os, k) => !used.has(k) && same(os, ns)); if (i < 0) return ns; used.add(i); const os = old[i]; return { ...ns, ...(os.edits ? { edits: os.edits } : {}), ...(ns.kind === 'proof' ? { hidden: os.hidden } : {}), ...(os.noStory2 ? { noStory2: true } : {}) }; });
+  const own = old.filter((os, k) => os.kind === 'custom' && !used.has(k)), at = slides.findIndex(s => s.kind === 'contact' || SECTION[s.kind]);
+  slides.splice(at < 0 ? slides.length : at, 0, ...own); // the rep's own slides stay in the main flow, before thank you / backup
+  Object.assign(d, { slides, ruleV: r.v, occasion: r.occasion }); S.sel = 0; render();
+  toast(`Rebuilt with ${r.name} v${r.v}. Your text and own slides are kept.`);
+}
 function openDeck(id) {
   const x = DECKS.find(d => d.id === id); if (!x) return;
   S.deck = deckClone(x); S.meeting = deckClone(x.meeting || newCustomer(x.company)); S.brief = deckClone(x.brief || { rule: x.rule, occasion: x.occasion, features: [], lang: x.lang, note: '', ref: null });
@@ -1958,7 +1972,7 @@ function seedDecks() {
   const mk = (company, rule, features, lang, when, presented, pains = ['', '', ''], heads = ['', '', ''], rep = 'ida') => {
     const r = ruleById(rule), meeting = { ...newCustomer(company), pains, heads, lang }, brief = { rule, occasion: r.occasion, features, lang, note: '', ref: 'betao' };
     const date = `2026-10-${when.split(' ')[0].padStart(2, '0')}`; brief.date = date;
-    return { id: 'seed-' + company.split(' ')[0].toLowerCase(), company, rule, occasion: r.occasion, lang, date, rep, slides: recipeSlides(r, brief, meeting), presented, created: when, updated: when, meeting, brief };
+    return { id: 'seed-' + company.split(' ')[0].toLowerCase(), company, rule, ruleV: r.v, occasion: r.occasion, lang, date, rep, slides: recipeSlides(r, brief, meeting), presented, created: when, updated: when, meeting, brief };
   };
   return [
     mk('Fjellheim Transport', 'sales-demo', ['sickleave', 'automation'], 'NO', '15 Oct 16:20', true, ['Time off is approved by email', 'No overview of who is away', 'Managers lack HR support'], ['Email approvals', 'No overview', 'Managers alone']),
@@ -3588,6 +3602,11 @@ function render() {
   i18nPass();
 }
 DECKS = decksLoad() || seedDecks();
+{ // example decks follow the current rules; the rep's own decks keep theirs until they choose to rebuild
+  const fresh = seedDecks(); let changed = false;
+  DECKS = DECKS.map(d => { const f = fresh.find(x => x.id === d.id); if (f && (d.ruleV || 0) < f.ruleV) { changed = true; return { ...f, presented: d.presented }; } return d; });
+  if (changed) decksStore();
+}
 render();
 renderLogin();
 </script>
