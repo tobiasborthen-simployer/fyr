@@ -25,13 +25,16 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Removed**
+- Feature-count limits and the coming-soon cap from Presentation rules (D-018).
 - 362 CSS rules (about 28 KB) that only styled cut modules. No visible change.
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Editable presentations (D-017):** every slide text block can be edited, except the trust-line footer. Reps can add their own slides for case details. Edits are checked against the brand rules (a warning, never a block), can be reset per slide, and carry into Present and PDF.
+- **Sales · Discovery meeting** rule, with two new slide types: "Simployer in short" and "Questions for them".
 - **Brand rules** tab in Marketing Remix, read from the Messaging Framework, with a "Check a text" box.
 - On every Remix draft: a "Built from" line, a brand-rules check, and a link to its launch pack (or *Evergreen*). Launch packs list their Remix drafts for approval.
-- **Presentation rules** (PMM workspace): a recipe per role and need, five seeded rules, and an editor with live preview, framework check and versioned publishing. Create uses the chosen rule's slide order, feature range and CTA.
+- **Presentation rules** (PMM workspace): a recipe per role and need, six seeded rules, and an editor with live preview, framework check and versioned publishing. No feature-count limits. Create uses the chosen rule's slide order and CTA.
 - `tools/serve.mjs` and `.claude/launch.json`, for previewing the prototypes locally.
 - Messaging Framework sync (D-016):
   - `docs/messaging-framework.json` (snapshot from 2026-10-28)

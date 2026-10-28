@@ -292,8 +292,8 @@ Each rule is a recipe:
 | Field | Example (Sales · Demo) |
 |---|---|
 | Name / audience / occasion | Sales · Demo |
-| Slide recipe (ordered kinds) | cover → heard → feature × n → soon × 0–1 → reference → why → next |
-| Feature count | 2–4 |
+| Slide recipe (ordered kinds) | cover → heard → features → coming soon → story → why → next |
+| Questions (if the recipe has a questions slide) | per language, set by PMM |
 | Must include | trust line, one customer reference |
 | Must avoid | competitor names, unshipped features as "live" |
 | Tone | confident, short, present tense |
@@ -302,24 +302,28 @@ Each rule is a recipe:
 
 Seed rules (prototype `PRULES`):
 
-| Rule | Recipe | Features | Coming soon | CTA |
-|---|---|---|---|---|
-| Sales · Demo | cover → heard → features → soon → story → why → next | 2–4 | ≤1 | Book a test week with two managers |
-| Sales · Follow-up | cover → heard → features → why → next | 1–3 | none | Agree a start date |
-| CSM · QBR | cover → heard → features → soon → next | 2–5 | ≤2 | Pick one routine to switch on before the next QBR |
-| PS · Kickoff | cover → heard → features → next | 2–4 | none | Agree the go-live date |
-| Management · Leadership meeting | cover → heard → why → features → next | 1–2 | none | Agree a decision date |
+| Rule | Goal | Recipe | CTA |
+|---|---|---|---|
+| Sales · Discovery meeting | Learn about the prospect; show Simployer in short | cover → Simployer in short → questions → (features) → (coming soon) → story → next | Book a demo built on what you told us |
+| Sales · Demo | Show how Simployer does their work | cover → heard → features → coming soon → story → why → next | Book a test week with two managers |
+| Sales · Follow-up | Close the open questions | cover → heard → features → coming soon → why → next | Agree a start date |
+| CSM · QBR | What's new that fits them | cover → heard → features → coming soon → next | Pick one routine to switch on before the next QBR |
+| PS · Kickoff | Get managers ready | cover → heard → features → coming soon → next | Agree the go-live date |
+| Management · Leadership meeting | Capacity without another hire | cover → heard → why → features → coming soon → next | Agree a decision date |
+
+**New slide types for Discovery**
+- **Simployer in short:** the line, the reason, the how, the three pillars and the scale proof, all from the Messaging Framework.
+- **Questions for them:** set per rule and per language by PMM.
 
 v0.2 had none of these. Every deck followed one fixed order.
 
 **Rule behaviour**
 - "What we heard" appears only when the rep gives pains, and "Customer story" only when they pick one.
-- Feature slides are one per live feature. Coming-soon slides are one per coming-soon feature, capped by the rule.
-- A brief outside the rule's feature range is blocked, with a plain message (e.g. "Sales · Follow-up leaves out coming-soon features. Remove 1.").
+- Feature slides are one per live feature, and coming-soon slides one per coming-soon feature. **No limit on how many:** the rep decides ([D-018](DECISIONS.md)). A deck with no feature slides is fine, e.g. for a discovery meeting.
 - The CTA on the last slide is the rule's, in the deck language.
 - The rule's guidance shows in the brief and in the studio's speaker notes.
 - **Publishing a rule** versions it. New presentations follow the new version; existing decks keep theirs.
-- **Publishing is blocked** if the rule's wording breaks the Messaging Framework, if it doesn't open with the cover, if it has no next step, or if a CTA language is missing.
+- **Publishing is blocked** if the rule's wording (including its questions) breaks the Messaging Framework, if it doesn't open with the cover, if it has no next step, or if a CTA or questions language is missing.
 
 **Rep flow** (same look and feel as v0.2)
 1. **Create home.** A free-text ask plus the rule picker, and "Shipped and sellable" (from Releases).
@@ -332,8 +336,14 @@ v0.2 had none of these. Every deck followed one fixed order.
    6. **Note + output language** (EN/NO/SV).
 3. **Generate.** `buildDeck` follows the rule's recipe and uses approved truth and current library assets.
 4. **Studio**
-   - Thumbnail rail (reorder, delete), 16:9 stage with inline edit, inspector
+   - Thumbnail rail (reorder, delete), 16:9 stage, inspector
    - Screenshot/animation toggle, message check, speaker notes
+   - **Editing ([D-017](DECISIONS.md)).**
+     - Every text block on a slide can be changed: headline, eyebrow, body, pains, proof, quote and CTA. Only the footer's trust line stays fixed.
+     - **Add slide** inserts the rep's own slide (headline and text) for case-specific information.
+     - Edits are marked on the thumbnail and checked against the brand rules. A breach is a warning, never a block.
+     - **Reset text on this slide** restores the original wording.
+     - Edits carry into Present, Open in new tab and PDF.
 5. **Present** (full screen) · **Open in new tab** · **Export PDF** (real, server-rendered)
 6. **My presentations.** Your saved decks, which you can reopen and duplicate.
 
@@ -342,6 +352,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 **Acceptance criteria**
 - [ ] A rep goes from the empty Create page to a presentable deck in under 3 minutes.
 - [ ] The deck follows the chosen rule's recipe and passes the message check.
+- [ ] The rep can change any slide text and add their own slides; edits survive reorder, Present and PDF.
 - [ ] Coming-soon features appear only as "Coming soon" slides. Blocked features never appear.
 - [ ] The PDF matches the on-screen 16:9 slides (fonts, images, page per slide).
 

@@ -41,11 +41,11 @@
   - Brand rules tab read from the Messaging Framework, with a "Check a text" box.
   - Every draft has a "Built from" line, a brand-rules check, and its launch pack link (*Approve in launch pack* / *Create launch pack* / *Evergreen*).
   - Launch packs list their Remix drafts for Thea to approve.
-- [x] **Presentation rules (new).** Rule list and editor in the PMM workspace covering slide recipe (reorder, remove, add), feature range, max coming soon, must include/avoid, tone, CTA in EN/NO/SV, and speaker-note guidance.
+- [x] **Presentation rules (new).** Rule list and editor in the PMM workspace covering slide recipe (reorder, remove, add), must include/avoid, questions per language, tone, CTA in EN/NO/SV, and speaker-note guidance.
   - Live preview with an example customer, plus a framework check.
   - Publish with a version, New and Duplicate.
-  - 5 seeded rules.
-- [x] **Create.** The meeting picker is replaced by company name and typed pains (optional, with "Fill with example"). The rep picks a rule on the Create home and in the brief. `buildDeck` follows the rule's recipe, the feature range is enforced, and the rule's CTA and guidance show in the deck.
+  - 6 seeded rules, including Sales · Discovery meeting. No feature-count limits (D-018).
+- [x] **Create.** The meeting picker is replaced by company name and typed pains (optional, with "Fill with example"). The rep picks a rule on the Create home and in the brief. `buildDeck` follows the rule's recipe, and the rule's CTA and guidance show in the deck. Reps can edit all slide text and add their own slides (D-017).
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [x] Remove the CSS of the cut modules. 362 rules removed, about 28 KB. A style fingerprint of 36 screens is unchanged.
@@ -74,7 +74,8 @@
 - [ ] Library: upload, the proposed → current flow, and the outdated flag (A5).
 
 ## M4 — Create + Remix + Automations (19 – 25 Nov)
-- [ ] Presentation rules: CRUD and the 5 seeded rules.
+- [ ] Presentation rules: CRUD and the 6 seeded rules.
+- [ ] Deck edits (per-slide text and own slides) stored on the `Deck` record and rendered into the PDF.
 - [ ] Create: home, brief, generate (recipe-driven), studio (edit, reorder, notes, message check), present, open in a tab, and My presentations.
 - [ ] Real PDF export (server-side headless Chromium, one page per 16:9 slide).
 - [ ] Marketing Remix: auto drafts on approval (A4), channel templates, the Remix library with copy/export, and approval inside packs.

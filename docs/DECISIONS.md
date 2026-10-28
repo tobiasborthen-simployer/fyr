@@ -300,3 +300,37 @@ Details are in PARKED.md.
 - Lines the source only has in English (category row, trust line, opener in NO/SV) use Fyr translations, flagged until approved.
 
 **Revisit if:** the framework moves to a format Fyr can read directly. Then replace the manual JSON update with an import.
+
+## D-017 — Reps can edit all slide text and add their own slides
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:** Sales reps need to add case-specific information to a deck. In v0.2, editing covered only part of each slide and was easy to miss, and the arrow keys jumped to another slide while you were typing.
+
+**Decision:**
+- Every text block on a slide is editable, except the footer's trust line.
+- Reps can add their own slides (headline and text).
+- Edits are checked against the brand rules (Messaging Framework). A breach shows as a warning; it never blocks.
+- Edits are marked, can be reset per slide, and carry into Present, the new-tab view and PDF.
+
+**Consequences:**
+- A deck is no longer 100% approved wording. The studio shows what the rep changed, and the brand-rules check keeps it honest.
+- In the app, edits are stored per slide on the `Deck` record.
+
+**Revisit if:** the pilot shows reps changing approved claims in ways that hurt the message. In that case, consider locking specific blocks.
+
+## D-018 — Presentation rules set order and guidance, not the number of features
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the feature range and coming-soon cap in the first version of Presentation rules (M1).
+
+**Context:** Rules had a min/max number of features and a coming-soon cap that blocked the brief. Tobias's call: limits add nothing but unhappy sales reps.
+
+**Decision:**
+- Rules define the slide order, include/avoid, tone, CTA, questions and speaker-note guidance. They don't define counts.
+- The rep picks as many features as they want, including none.
+- Coming-soon features always get a "Coming soon" slide. They are never shown as live.
+
+**Consequences:**
+- Nothing in the brief blocks generating a deck, except a missing company name.
+- Sales get two separate rules: **Discovery meeting** (learn about the prospect, Simployer in short) and **Demo**.
+
+**Revisit if:** decks in the pilot regularly run far too long. If so, add a soft hint, not a block.

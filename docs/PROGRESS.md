@@ -32,6 +32,27 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-28 — M1: Editable slides, Discovery meeting, no feature limits
+- **Done:**
+  - **Editing (D-017):**
+    - Every text block on a slide is editable (headline, eyebrow, body, pains, proof, quote, CTA). The footer's trust line stays fixed.
+    - **Add slide** inserts the rep's own slide for case details.
+    - The inspector shows "Your text": the number of edits, a brand-rules check (a warning, never a block) and "Reset text on this slide". Thumbnails are marked "edited".
+    - Edits carry into Present and the new-tab/PDF view.
+    - Fixed: ← / → no longer jump to another slide while you type.
+    - Fixed: an edit could be saved onto the wrong slide if the view changed before blur. Each field now keeps its own slide.
+  - **Sales · Discovery meeting.** A new rule: cover → Simployer in short → questions for them → (features) → (coming soon) → story → next. Its CTA is "Book a demo built on what you told us".
+    - Two new slide types: "Simployer in short" (line, reason, how, pillars and scale proof, from the framework) and "Questions for them" (set per rule and language in the rules editor).
+    - Demo stays as is.
+  - **No feature limits (D-018).** Min/max features and the coming-soon cap are gone from rules, the brief, the studio and the editor. Follow-up, Kickoff and Leadership now include coming-soon slides.
+- **Verified in the browser:**
+  - A Discovery deck with no features and no pains generates, and fits in EN/NO/SV, including 5 questions.
+  - A Demo deck with 6 features generates.
+  - Editing, the brand warning, persistence, export, own slide, reset, the locked footer and the late-blur case all behave.
+  - The rules editor shows question fields for Discovery and no count fields; publishing v2 works.
+  - Every view renders in all languages and roles with no errors. Copy check: 0 errors.
+- **Next:** publish the "Fyr v0.3" artifact and walk through it with Thea.
+
 ### 2026-10-28 — M1: Brand rules, draft sources, CSS cleanup
 - **Done:**
   - **Brand rules tab** in Marketing Remix, read from the Messaging Framework. It shows the rules, the "never write" list (with what each flags and whether it blocks or warns), words to use, per-channel guidance and approved proof points. A "Check a text" box runs any text against the same rules. The snapshot JSON gained `avoid[].terms` and `use`.

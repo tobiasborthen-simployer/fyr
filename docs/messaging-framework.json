@@ -178,12 +178,14 @@
     "NO": {
       "category": "Ikke et raskere HR-system. Det som gjør det for deg.",
       "trust": "Nordisk lov innebygd. Ekte eksperter bak.",
-      "opener": "Rollen vokste. Arbeidet ble aldri borte."
+      "opener": "Rollen vokste. Arbeidet ble aldri borte.",
+      "scale": "12 000+ kunder og 1,2 millioner brukere i Norden"
     },
     "SV": {
       "category": "Inte ett snabbare HR-system. Det som gör det åt dig.",
       "trust": "Nordisk lag inbyggd. Riktiga experter bakom.",
-      "opener": "Rollen växte. Arbetet försvann aldrig."
+      "opener": "Rollen växte. Arbetet försvann aldrig.",
+      "scale": "12 000+ kunder och 1,2 miljoner användare i Norden"
     }
   },
   "rules": [
