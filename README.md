@@ -40,6 +40,14 @@ Fyr is Simployer's **PMM planning and creation tool**. Product marketing uses it
 | `prototype/v0.3/` | The slim v0.3 prototype (M1) |
 | `app/` | The real app (M2 onward) |
 
+## Run the prototypes locally
+
+```bash
+node tools/serve.mjs prototype/v0.3 8765
+```
+
+Then open http://localhost:8765. Use `reference/v0.2 8766` to compare with v0.2.
+
 ## How the project log works
 
 - **Decided something?** Add a `D-NNN` entry to DECISIONS. Never edit an accepted entry; supersede it with a new one.

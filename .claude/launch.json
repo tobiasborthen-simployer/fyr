@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "prototype-v0.3",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs", "prototype/v0.3", "8765"],
+      "port": 8765
+    },
+    {
+      "name": "reference-v0.2",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs", "reference/v0.2", "8766"],
+      "port": 8766
+    }
+  ]
+}

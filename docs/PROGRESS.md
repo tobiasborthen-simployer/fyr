@@ -5,7 +5,7 @@
 | # | Milestone | Target | Status | Done | Owner |
 |---|---|---|---|---|---|
 | M0 | Project setup | 28 Oct | ✅ Done | 100% | Tobias |
-| M1 | Slim v0.3 prototype + sign-off | 4 Nov | ⏳ Next | 0% | Tobias |
+| M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 55% | Tobias |
 | M2 | App foundation (SSO, DB, Linear, Releases) | 11 Nov | ⬜ Not started | 0% | — |
 | M3 | PMM core (Truth, Packs, Battlecards, Library) | 18 Nov | ⬜ Not started | 0% | — |
 | M4 | Create + Remix + Automations | 25 Nov | ⬜ Not started | 0% | — |
@@ -23,10 +23,39 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Linear API key + webhook access; confirm tier/visibility fields | Admin | Tobias | 30 Oct | Open |
 | Claude API key + budget + data-policy OK | Admin | Tobias | 30 Oct | Open |
 | Vercel project (personal or Simployer team) | Admin | Tobias | 4 Nov | Open |
+| Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-28 — M1: v0.2 stripped down to the v0.3 scope (branch `m1-prototype`)
+- **Done:**
+  - Copied v0.2 to `prototype/v0.3/` and removed the cut modules: about 1,000 of 4,481 lines.
+    - Removed: Signals, Activity log, Adoption, Insights, Training, Calls/coach, Pipeline, Plays, Readiness, Requests, Team/Rituals, Slack, Localisation tab, Connections, Run log, persona switch, the non-deck Create types, and the CRM/tl;dv/Slack/HubSpot/ElevenLabs strings.
+  - New navigation:
+    - Org area (Presentations, My presentations, Product truth, Battlecards, Library)
+    - PMM workspace (Home, Releases, Launch packs, Truth editor, Battlecards, Marketing Remix, Automations)
+    - "View as" toggle for demos
+  - Create no longer uses calendar, CRM or tl;dv. The rep types the company and optionally three pains (with "Fill with example"). Decks build with or without a "What we heard" slide.
+  - Packs no longer include Slack, training or video items. The runway is Brief → Ready → Live.
+  - The Truth editor shows version history per entry.
+  - Battlecards say "manual" (no Slack).
+  - Automations is a new overview of 5 automations with runs, approval rate and time saved, plus 2 runnable examples.
+  - The release map shows Brief/Ready/Live only.
+  - Added `tools/serve.mjs` and `.claude/launch.json` to preview the prototypes locally.
+- **Verified in the browser:**
+  - Every kept view renders as PMM and as org viewer, with no errors.
+  - Org viewers are redirected away from PMM pages.
+  - Rep flow, both with and without pains: brief → generate → studio → present → saved to My presentations. All slides render in EN/NO/SV.
+- **Next (rest of M1):**
+  - Presentation rules (list, editor, 5 seeded rules) and a rule-driven `buildDeck`
+  - Brand rules tab in Marketing Remix
+  - CSS cleanup
+  - Publish as the "Fyr v0.3" artifact
+  - Walk-through with Thea
+- **Blockers:** none.
+- **Decisions:** proposed D-015 (keep the lighthouse login as the design for the SSO sign-in page).
 
 ### 2026-10-28 — M0: project setup
 - **Done:**

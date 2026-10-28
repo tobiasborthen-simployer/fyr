@@ -4,6 +4,32 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 
 ## [Unreleased] — v0.3
 
+### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
+
+**Changed**
+- Navigation is split into an org area (Presentations, My presentations, Product truth, Battlecards, Library) and a PMM workspace (Home, Releases, Launch packs, Truth editor, Battlecards, Marketing Remix, Automations).
+- The six-role switcher is replaced by "View as: PMM workspace / Org viewer".
+- **Create:**
+  - Reps type the company name and, optionally, three customer pains.
+  - The "What we heard" slide appears only when pains are given.
+  - Decks are saved to My presentations, with no CRM attach.
+- **Launch packs:**
+  - Slack, training and video items are gone.
+  - The runway is Brief → Ready → Live.
+- **Truth editor:**
+  - Version history is shown per entry.
+  - The Languages tab is removed.
+- **Battlecards:** manual updates only. The Slack import/publish and the autofill are gone.
+- **Channels → Marketing Remix:** LinkedIn, Ads, Verticals and Monthly round-up. Product videos, the HubSpot send and the launch-day check are gone.
+- **Automations:** an overview of the five v0.3 automations, with runs, approval rate and estimated time saved.
+- **Release calendar → Release map:** Brief / Ready / Live only.
+
+**Removed**
+- Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
+
+**Added**
+- `tools/serve.mjs` and `.claude/launch.json`, for previewing the prototypes locally.
+
 ### Added
 - Project setup:
   - v0.3 spec, build plan, decision log, progress log and parked list in `docs/`

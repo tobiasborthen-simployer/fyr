@@ -260,3 +260,19 @@ Details are in PARKED.md.
 **Consequences:** M1–M5 are dated as in PLAN.md.
 
 **Revisit if:** the M1 sign-off or the M2 admin dependencies (Entra, Linear, Claude) slip.
+
+## D-015 — Keep the Fyr lighthouse login as the sign-in page design
+`2026-10-28` · **Status:** Proposed · **Owner:** Tobias
+
+**Context:**
+- v0.2 had a branded demo login: a lighthouse, the "Fyr" wordmark, and an EN/NO/SV switch.
+- PARKED listed it as dropped because real SSO replaces the demo login.
+- The app will still need a sign-in page.
+
+**Decision (proposed):**
+- Keep the splash in the v0.3 prototype.
+- In the app, use it as the page behind "Sign in with Microsoft".
+
+**Consequences:** No extra work in M2 beyond wiring the button to Entra.
+
+**Revisit if:** IT requires the standard Microsoft sign-in only.

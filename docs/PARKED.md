@@ -38,4 +38,4 @@ Everything in v0.2 that is **not** built in v0.3. Each row says what the item di
 | **Connections map** | Integration map (`CONN`, `vConnMap`, l.4094–4254) | Only Linear and Claude are left |
 | **Localisation tab** | Separate NO/SV queue (`L10N`, `vL10n`, l.4008) | Folded into the Truth editor |
 | **Prototype Lab rendering** | Rendered fresh visuals while generating a deck | External; replaced by upload. The plain link is kept |
-| **Login splash** | Branded demo login (`renderLogin` l.4394) | Replaced by real SSO in the app |
+| ~~Login splash~~ | Branded demo login (`renderLogin` l.4394) | Not parked after all: kept as the sign-in page design (D-015, proposed) |

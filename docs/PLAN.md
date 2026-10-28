@@ -30,18 +30,19 @@
 ## M1 — Slim v0.3 prototype (29 Oct – 4 Nov)
 **Goal.** Lock the UX of the downsized product before writing app code. We work subtractively, starting from v0.2's code.
 
-- [ ] Copy `reference/v0.2/` to `prototype/v0.3/`. Never edit the reference.
-- [ ] **Strip the cut modules.** Remove their views, data and binds, following [SPEC Appendix A](SPEC.md#appendix-a--v02-coupling-to-break) and [PARKED.md](PARKED.md).
-- [ ] **Strip external strings.** Remove the CRM labels, tl;dv pills, the Slack bell and drawer, the calendar/`MEETINGS` feed, the role switcher and the persona switch.
-- [ ] **New navigation.** The org area gets Create, Product Truth, Battlecards and Library. The PMM workspace gets Home, Releases, Launch packs, Truth editor, Battlecards, Marketing Remix, Presentation rules and Automations. Add a simple "View as: PMM / Org viewer" toggle, for demo only.
-- [ ] **Launch packs.** Remove the slack/training/video kinds and cut the runway to Brief → Ready → Live.
-- [ ] **Truth editor.** Fold the Languages tab into the editor as a per-language status column, and replace the `LOG` history with per-entry history.
-- [ ] **Battlecards.** Remove the Slack import/publish copy and the Sia/tl;dv autofill toast.
-- [ ] **Marketing Remix (new).** Build it from `vChannels`: tabs for Drafts by release and channel, plus Brand rules. Mock the auto-generated drafts and an approval link back to the pack.
+- [x] Copy `reference/v0.2/` to `prototype/v0.3/`. Never edit the reference.
+- [x] **Strip the cut modules.** Remove their views, data and binds, following [SPEC Appendix A](SPEC.md#appendix-a--v02-coupling-to-break) and [PARKED.md](PARKED.md).
+- [x] **Strip external strings.** Remove the CRM labels, tl;dv pills, the Slack bell and drawer, the calendar/`MEETINGS` feed, the role switcher and the persona switch.
+- [x] **New navigation.** Org area: Presentations, My presentations, Product truth, Battlecards, Library. PMM workspace: Home, Releases, Launch packs, Truth editor, Battlecards, Marketing Remix, Automations. "View as: PMM / Org viewer" toggle for demos. *Presentation rules is still to add.*
+- [x] **Launch packs.** Remove the slack/training/video kinds and cut the runway to Brief → Ready → Live.
+- [x] **Truth editor.** Drop the Languages tab and replace the `LOG` history with per-entry history (EN/NO/SV status).
+- [x] **Battlecards.** Remove the Slack import/publish copy and the Sia/tl;dv autofill toast.
+- [ ] **Marketing Remix (new).** *Done:* renamed from Channels, with videos, the HubSpot send and the launch-day check removed. *Left:* a Brand rules tab, a "built from" line on each draft, and an approval link back to the pack.
 - [ ] **Presentation rules (new).** Add a rule list and a rule editor (recipe, feature count, must include/avoid, tone, CTA, notes). Seed 5 rules.
-- [ ] **Create.** Replace the meeting picker with a company name field, a pains input and a rule picker. Make `buildDeck` follow the rule recipe.
-- [ ] **Automations.** Show the five automations with stats and time saved, keep only the `label` and `launch` sims, and cut Connections and the Run log.
-- [ ] **PMM Home.** Keep only the "Needs you" queue.
+- [ ] **Create.** *Done:* the meeting picker is replaced by company name, typed pains (optional, with "Fill with example") and an occasion picker. *Left:* swap the occasion for the presentation rule, and make `buildDeck` follow the rule recipe.
+- [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
+- [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
+- [ ] Remove the CSS of the cut modules (dead code, but harmless).
 - [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it with Thea and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** request the Entra app registration from IT, a Linear API key/webhook, a Claude API key and budget, and a Vercel project.
 
