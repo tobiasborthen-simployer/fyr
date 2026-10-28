@@ -11,7 +11,7 @@ const BEGIN = '/* MF:BEGIN generated from docs/messaging-framework.json by tools
 const END = '/* MF:END */';
 
 // Top-level blocks in the prototype that hold customer-facing copy (slides, truth, packs, ads, talk tracks).
-const COPY_BLOCKS = ['L', 'FEATURES', 'FL', 'NEWF', 'ADS', 'VADS', 'SOCIAL', 'RELEASES', 'TPL', 'LOC', 'REFS', 'EXAMPLE', 'BATTLE',
+const COPY_BLOCKS = ['L', 'PRULES', 'FEATURES', 'FL', 'NEWF', 'ADS', 'VADS', 'SOCIAL', 'RELEASES', 'TPL', 'LOC', 'REFS', 'EXAMPLE', 'BATTLE',
   'slideHTML', 'vDeck', 'genFields', 'itemBody', 'adFromRelease', 'autoFill', 'autoItem'];
 
 const fw = JSON.parse(await readFile(FW, 'utf8'));

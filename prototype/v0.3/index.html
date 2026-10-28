@@ -1763,7 +1763,7 @@ function renderNav() {
   const r = ROLES[S.role];
   $('#me').innerHTML = `<span class="av">${r.init}</span><div><b>${r.name}</b><small>${r.title}</small></div>`;
   const sub = S.view === 'deck' && S.deck ? S.deck.company : S.view === 'brief' && S.meeting ? S.meeting.company : '';
-  const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks' };
+  const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks', prules: 'Presentation rules' };
   { const g = BOG.find(g => g.tabs.length > 1 && g.tabs.some(x => x[0] === S.view)); if (g && S.view !== 'office') { $('#crumbs').innerHTML = `<span>PMM workspace</span>${ico('i-arrow')}<span>${g.t}</span>${ico('i-arrow')}<b>${g.tabs.find(x => x[0] === S.view)[1]}</b>`; return; } }
   if (nm[S.view]) { $('#crumbs').innerHTML = S.view === 'office' ? '<b>PMM workspace</b>' : `<span>PMM workspace</span>${ico('i-arrow')}<b>${nm[S.view]}${(S.view === 'pack' && S.pack) ? ' · ' + relById(S.pack).short : S.view === 'packnew' && NEW.rid ? ' · ' + relById(NEW.rid).short : ''}</b>`; return; }
   $('#crumbs').innerHTML = sub ? `<span>Create</span>${ico('i-arrow')}<b>${sub}</b>` : `<b>${VIEW_NAMES[S.view]}</b>`;
@@ -1775,7 +1775,57 @@ document.addEventListener('click', e => {
 $('#role').addEventListener('change', e => { S.role = e.target.value; S.view = S.role === 'pmm' ? 'office' : 'create'; render(); window.scrollTo({ top: 0 }); });
 
 /* ---------- Create ---------- */
-const OCCASIONS = ['Demo', 'Follow-up', 'QBR', 'Onboarding'];
+/* ---------- Presentation rules: PMM sets the recipe per role and need; reps pick one in Create ---------- */
+const SLIDE_KINDS = [['title', 'Cover'], ['heard', 'What we heard'], ['feature', 'Feature slides'], ['soon', 'Coming soon'], ['ref', 'Customer story'], ['why', 'Why Simployer'], ['next', 'Next steps']];
+const OCCASIONS = ['Demo', 'Follow-up', 'QBR', 'Onboarding', 'Leadership'];
+let PRULES = [
+  { id: 'sales-demo', name: 'Sales · Demo', audience: 'Prospect: HR manager, often with the CEO', occasion: 'Demo', keys: ['demo'],
+    recipe: ['title', 'heard', 'feature', 'soon', 'ref', 'why', 'next'], fmin: 2, fmax: 4, soonMax: 1,
+    include: ['The line on the cover', 'What they told you, in their words', 'One customer story on the same pain'],
+    avoid: ['Opening with features', 'Coming-soon features shown as live', 'Figures finance has not approved'],
+    tone: 'Lead with what gets done. Name the task, present tense for what has shipped.',
+    cta: { EN: 'Book a test week with two managers', NO: 'Avtal en prøveuke med to ledere', SV: 'Boka en testvecka med två chefer' },
+    notes: 'Open with the line, then check what you heard. One feature per slide: show the task being done, then tie it to their pain. Close on the next step, not on price.', v: 1, by: 'Tobias', date: '28 Oct' },
+  { id: 'sales-followup', name: 'Sales · Follow-up', audience: 'Prospect after the demo', occasion: 'Follow-up', keys: ['follow-up', 'followup', 'oppfølging', 'uppföljning'],
+    recipe: ['title', 'heard', 'feature', 'why', 'next'], fmin: 1, fmax: 3, soonMax: 0,
+    include: ['Their pains, as they said them', 'Answers to the questions they asked'],
+    avoid: ['Running the whole demo again', 'Features they did not ask about'],
+    tone: 'Short and specific. Their words first, then what Simployer does about it.',
+    cta: { EN: 'Agree a start date', NO: 'Bli enige om en startdato', SV: 'Bestäm ett startdatum' },
+    notes: 'Recap in two minutes. Spend the time on what is still open, and agree the next step before the meeting ends.', v: 1, by: 'Tobias', date: '28 Oct' },
+  { id: 'csm-qbr', name: 'CSM · QBR', audience: 'Existing customer: HR manager and the contract owner', occasion: 'QBR', keys: ['qbr'],
+    recipe: ['title', 'heard', 'feature', 'soon', 'next'], fmin: 2, fmax: 5, soonMax: 2,
+    include: ['What shipped since the last QBR that fits them', 'What is coming, clearly marked as coming soon'],
+    avoid: ['Selling what they already have', 'Dates beyond the Linear target'],
+    tone: 'Their routines first. One more thing off their desk per release.',
+    cta: { EN: 'Pick one routine to switch on before the next QBR', NO: 'Velg én rutine å slå på før neste kvartalsgjennomgang', SV: 'Välj en rutin att slå på före nästa kvartalsgenomgång' },
+    notes: 'Start from what they told you last time. For each feature, ask if they use it today. Coming soon: say it is planned, never promise a date.', v: 1, by: 'Tobias', date: '28 Oct' },
+  { id: 'ps-kickoff', name: 'PS · Kickoff', audience: 'New customer: project group and managers', occasion: 'Onboarding', keys: ['kickoff', 'onboarding', 'oppstart', 'uppstart'],
+    recipe: ['title', 'heard', 'feature', 'next'], fmin: 2, fmax: 4, soonMax: 0,
+    include: ['Their routines, in the order they go live', 'Who does what in the first weeks'],
+    avoid: ['Sales claims and comparisons', 'Coming-soon features'],
+    tone: 'Practical and calm. The managers should understand it in ten minutes.',
+    cta: { EN: 'Agree the go-live date', NO: 'Bli enige om dato for oppstart', SV: 'Bestäm datum för driftstart' },
+    notes: 'Show each routine as the manager will see it. End with names and dates, not features.', v: 1, by: 'Tobias', date: '28 Oct' },
+  { id: 'mgmt-leadership', name: 'Management · Leadership meeting', audience: 'CEO or CFO at a prospect', occasion: 'Leadership', keys: ['leadership', 'ceo', 'cfo', 'management'],
+    recipe: ['title', 'heard', 'why', 'feature', 'next'], fmin: 1, fmax: 2, soonMax: 0,
+    include: ['Capacity without another hire', 'One wrong termination costs more than the system'],
+    avoid: ['Saying Simployer takes over the HR team', 'Any figure finance has not approved'],
+    tone: 'Business outcome first. Compared with another hire, not with another licence.',
+    cta: { EN: 'Agree a decision date', NO: 'Bli enige om en beslutningsdato', SV: 'Bestäm ett beslutsdatum' },
+    notes: 'Use the investment frame: Sia takes the work you would give a new hire, HR experts take the cases a new hire could not. Only approved figures.', v: 1, by: 'Tobias', date: '28 Oct' },
+];
+const ruleById = id => PRULES.find(r => r.id === id) || PRULES[0];
+const occLabel = r => (L.EN.occ[r.occasion] || r.occasion);
+const ruleRange = r => `${r.fmin === r.fmax ? r.fmin : `${r.fmin}–${r.fmax}`} feature${r.fmax > 1 ? 's' : ''}${r.soonMax ? ` · up to ${r.soonMax} coming soon` : ' · no coming soon'}`;
+// Which rule a selection breaks, as a sentence for the rep (null = fine)
+function ruleIssue(r, feats) {
+  const soon = feats.filter(k => FEATURES[k].state === 'soon').length;
+  if (feats.length < r.fmin) return `${r.name} needs at least ${r.fmin} feature${r.fmin > 1 ? 's' : ''}.`;
+  if (feats.length > r.fmax) return `${r.name} allows up to ${r.fmax} features. Remove ${feats.length - r.fmax}.`;
+  if (soon > r.soonMax) return r.soonMax ? `${r.name} allows up to ${r.soonMax} coming-soon feature${r.soonMax > 1 ? 's' : ''}.` : `${r.name} leaves out coming-soon features. Remove ${soon}.`;
+  return null;
+}
 function vCreate() {
   const r = ROLES[S.role], first = r.name.split(' ')[0];
   const shipped = RELEASES.filter(p => p.gate === 'live' && p.doneISO >= '2026-10-01' && ['T1', 'T2', 'T3'].includes(p.tier)).sort((a, b) => b.doneISO.localeCompare(a.doneISO)).slice(0, 5);
@@ -1785,7 +1835,7 @@ function vCreate() {
     <span class="hi">${ai()} Good morning, ${first} · Tuesday 20 October</span>
     <h1>${(GREETL[S.clang] && GREETL[S.clang][S.role]) || GREET[S.role] || GREET.org}</h1>
     <form class="ask" id="ask-form">${ai()}<label for="ask" class="sr">Who is the presentation for?</label><input id="ask" autocomplete="off" placeholder="Company name, e.g. ${EXAMPLE.company}"><button class="btn btn-primary" type="submit">Start ${ico('i-arrow')}</button></form>
-    <div class="types" role="group" aria-label="Occasion">${OCCASIONS.map(o => `<button class="type" data-occpick="${o}" aria-pressed="${(S.occ || 'Demo') === o}">${ico('i-deck')}${o}</button>`).join('')}</div>
+    <div class="types" role="group" aria-label="Presentation rule">${PRULES.map(r => `<button class="type" data-rulepick="${r.id}" aria-pressed="${(S.rule || PRULES[0].id) === r.id}" title="${r.audience}">${ico('i-deck')}${r.name}</button>`).join('')}</div>
     <div class="try"><span>Try</span>${sug.map(x => `<button data-sug="${x}">${x}</button>`).join('')}</div>
   </section>
   <div class="create-grid">
@@ -1806,38 +1856,39 @@ function vCreate() {
 }
 function bindCreate() {
   $('#ask-form').addEventListener('submit', e => { e.preventDefault(); startFromText($('#ask').value.trim()); });
-  $$('[data-occpick]').forEach(b => b.addEventListener('click', () => { S.occ = b.dataset.occpick; render(); }));
+  $$('[data-rulepick]').forEach(b => b.addEventListener('click', () => { S.rule = b.dataset.rulepick; render(); }));
   $$('[data-sug]').forEach(b => b.addEventListener('click', () => startFromText(b.dataset.sug)));
   $$('[data-recent]').forEach(b => b.addEventListener('click', () => openBrief(b.dataset.recent)));
 }
 function startFromText(text) {
-  const m = text.match(/^([\w-]+) for (.+)$/i), occ = m && OCCASIONS.find(o => o.toLowerCase() === m[1].toLowerCase());
-  if (occ) S.occ = occ;
-  openBrief(occ ? m[2] : text);
+  const m = text.match(/^([\w-]+) for (.+)$/i), r = m && PRULES.find(x => x.keys.includes(m[1].toLowerCase()));
+  if (r) S.rule = r.id;
+  openBrief(r ? m[2] : text);
 }
 function openBrief(company) {
   const m = newCustomer(company);
   if (company && company.toLowerCase() === EXAMPLE.company.toLowerCase()) Object.assign(m, { pains: [...EXAMPLE.pains], heads: [...EXAMPLE.heads], lang: EXAMPLE.lang, features: [...EXAMPLE.features] });
-  S.meeting = m; S.brief = { occasion: S.occ || 'Demo', features: [...m.features], lang: m.lang, note: '', ref: 'betao' };
+  S.meeting = m; const r = ruleById(S.rule); S.brief = { rule: r.id, occasion: r.occasion, features: [...m.features], lang: m.lang, note: '', ref: 'betao' };
   S.view = 'brief'; render(); window.scrollTo({ top: 0 });
 }
 
 /* ---------- Brief ---------- */
 function vBrief() {
-  const m = S.meeting, b = S.brief;
-  const n = b.features.length + 3 + (m.pains.some(Boolean) ? 1 : 0) + (b.ref ? 1 : 0);
+  const m = S.meeting, b = S.brief, rule = ruleById(b.rule), issue = ruleIssue(rule, b.features);
+  const n = recipeSlides(rule, b, m).length;
   return `
   <button class="back" data-view="create">${ico('i-left')} Back</button>
-  <div class="page-title"><div><h1>${b.occasion} for ${m.company || 'a new customer'}</h1><p>Tell Fyr who it is for and what you heard. It writes from approved Product truth only.</p></div></div>
+  <div class="page-title"><div><h1>${occLabel(rule)} for ${m.company || 'a new customer'}</h1><p>Tell Fyr who it is for and what you heard. It writes from approved Product truth only.</p></div></div>
   <div class="brief">
     <section class="card steps-card">
       <div class="step"><div class="step-h"><span class="n">1</span><b>Who is it for?</b><span>Typed in, stays in this deck</span></div>
         <label class="sr" for="b-co">Company</label><input id="b-co" class="field-text" style="min-height:0" value="${esc(m.company)}" placeholder="Company name">
         <div class="step-h" style="margin-top:14px"><b>What did they tell you?</b><span>Optional · becomes the “What we heard” slide</span>${m.pains.some(Boolean) ? '' : '<button type="button" class="btn btn-line btn-sm" id="b-ex" style="margin-left:auto">Fill with example</button>'}</div>
         ${[0, 1, 2].map(k => `<div style="display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:8px"><input class="field-text" style="min-height:0" data-head="${k}" value="${esc(m.heads[k])}" placeholder="Short title" aria-label="Pain ${k + 1} title"><input class="field-text" style="min-height:0" data-pain="${k}" value="${esc(m.pains[k])}" placeholder="What they said" aria-label="Pain ${k + 1}"></div>`).join('')}</div>
-      <div class="step"><div class="step-h"><span class="n">2</span><b>What is the occasion?</b></div>
-        <div class="seg" role="group" aria-label="Occasion">${OCCASIONS.map(o => `<button type="button" data-occ="${o}" aria-pressed="${b.occasion === o}">${o}</button>`).join('')}</div></div>
-      <div class="step"><div class="step-h"><span class="n">3</span><b>What should it highlight?</b><span>${b.features.length} selected</span></div>
+      <div class="step"><div class="step-h"><span class="n">2</span><b>Which presentation?</b><span>Rules set by PMM</span></div>
+        <div class="seg" role="group" aria-label="Presentation rule" style="flex-wrap:wrap">${PRULES.map(r => `<button type="button" data-rule="${r.id}" aria-pressed="${b.rule === r.id}">${r.name}</button>`).join('')}</div>
+        <p class="muted" style="margin:8px 0 0;font-size:13px">${rule.audience} · ${ruleRange(rule)} · ${rule.recipe.map(k => SLIDE_KINDS.find(x => x[0] === k)[1]).join(' → ')}</p></div>
+      <div class="step"><div class="step-h"><span class="n">3</span><b>What should it highlight?</b><span${issue ? ' style="color:var(--coral-ink)"' : ''}>${b.features.length} selected · ${ruleRange(rule)}</span></div>
         ${featFilter(b, m)}
         <div class="feats">${featList(b, m).map(([k, f]) => `<button type="button" class="feat" data-feat="${k}" aria-pressed="${b.features.includes(k)}">
           <span class="chk">${ico('i-check')}</span>
@@ -1855,6 +1906,7 @@ function vBrief() {
       <h3>${m.company || 'Your customer'}</h3>
       <ul>${m.pains.filter(Boolean).map(p => `<li><span>${p}</span></li>`).join('') || '<li><span>Add what you heard to get a “What we heard” slide.</span></li>'}</ul>
       <div class="rule"></div>
+      <div><span class="lbl">${rule.name}</span><p style="margin-top:6px">${rule.tone}</p><p style="margin-top:6px"><b>Include:</b> ${rule.include.join(' · ')}</p><p style="margin-top:4px"><b>Avoid:</b> ${rule.avoid.join(' · ')}</p></div>
       <div><span class="lbl">Wording</span><p style="margin-top:6px">Approved Product truth only, in the language you pick. Coming-soon features get their own slide.</p></div>
       <div><span class="lbl">Visuals</span><p style="margin-top:6px">Current assets from the Library. Need a new one? Ask PMM, or open <a href="${PLAB}" target="_blank" rel="noopener" style="color:#D6C9FF">Prototype Lab</a>.</p></div>
       <div class="sum"><span class="pill n">${n} slides</span><span class="pill n">${b.lang}</span><span class="pill n">On-message</span></div>
@@ -1867,11 +1919,11 @@ function bindBrief() {
   const m = S.meeting;
   const keep = () => { b.note = $('#note').value; m.company = $('#b-co').value.trim(); $$('[data-pain]').forEach(x => { m.pains[+x.dataset.pain] = x.value.trim(); }); $$('[data-head]').forEach(x => { m.heads[+x.dataset.head] = x.value.trim(); }); };
   if ($('#b-ex')) $('#b-ex').addEventListener('click', () => { keep(); Object.assign(m, { pains: [...EXAMPLE.pains], heads: [...EXAMPLE.heads] }); if (!m.company) m.company = EXAMPLE.company; render(); });
-  $$('[data-occ]').forEach(x => x.addEventListener('click', () => { keep(); b.occasion = x.dataset.occ; render(); }));
+  $$('[data-rule]').forEach(x => x.addEventListener('click', () => { keep(); const r = ruleById(x.dataset.rule); b.rule = S.rule = r.id; b.occasion = r.occasion; render(); }));
   $$('[data-lang]').forEach(x => x.addEventListener('click', () => { keep(); b.lang = x.dataset.lang; render(); toast(b.lang === 'EN' ? 'The deck will be written in English.' : `The deck will be written natively in ${b.lang === 'NO' ? 'Norwegian' : 'Swedish'}.`); }));
   $$('[data-feat]').forEach(x => x.addEventListener('click', () => { keep(); const k = x.dataset.feat, i = b.features.indexOf(k); i >= 0 ? b.features.splice(i, 1) : b.features.push(k); render(); }));
   $$('[data-ref]').forEach(x => x.addEventListener('click', () => { keep(); b.ref = x.dataset.ref; render(); }));
-  $('#gen').addEventListener('click', () => { keep(); if (!m.company) { toast('Add the company name first.'); $('#b-co').focus(); return; } if (!b.features.length) { toast('Pick at least one feature to highlight.'); return; } generate(); });
+  $('#gen').addEventListener('click', () => { keep(); if (!m.company) { toast('Add the company name first.'); $('#b-co').focus(); return; } const iss = ruleIssue(ruleById(b.rule), b.features); if (iss) { toast(iss); return; } generate(); });
 }
 
 /* ---------- Generate ---------- */
@@ -1898,14 +1950,20 @@ function generate() {
   };
   tick();
 }
+// The slides a rule produces for this brief, in the rule's order
+function recipeSlides(r, b, m) {
+  const live = b.features.filter(k => FEATURES[k].state === 'live'), soon = b.features.filter(k => FEATURES[k].state === 'soon').slice(0, r.soonMax);
+  return r.recipe.flatMap(kind => {
+    if (kind === 'heard') return m.pains.some(Boolean) ? [{ kind }] : [];
+    if (kind === 'feature') return live.map(k => { const a = ASSETS.find(x => x.f === k && x.status === 'current'); return { kind, f: k, visual: a ? a.type : 'screenshot' }; });
+    if (kind === 'soon') return soon.map(k => ({ kind, f: k }));
+    if (kind === 'ref') return b.ref ? [{ kind, ref: b.ref }] : [];
+    return [{ kind }];
+  });
+}
 function buildDeck() {
-  const b = S.brief, m = S.meeting;
-  const slides = [{ kind: 'title' }]; if (m.pains.some(Boolean)) slides.push({ kind: 'heard' });
-  b.features.filter(k => FEATURES[k].state === 'live').forEach(k => { const a = ASSETS.find(x => x.f === k && x.status === 'current'); slides.push({ kind: 'feature', f: k, visual: a ? a.type : 'screenshot' }); });
-  b.features.filter(k => FEATURES[k].state === 'soon').forEach(k => slides.push({ kind: 'soon', f: k }));
-  if (b.ref) slides.push({ kind: 'ref', ref: b.ref });
-  slides.push({ kind: 'why' }, { kind: 'next' });
-  S.deck = { company: m.company, occasion: b.occasion, lang: b.lang, slides, presented: false };
+  const b = S.brief, m = S.meeting, r = ruleById(b.rule);
+  S.deck = { company: m.company, rule: r.id, occasion: r.occasion, lang: b.lang, slides: recipeSlides(r, b, m), presented: false };
   S.sel = 0;
 }
 
@@ -1922,7 +1980,7 @@ function slideHTML(s, i, n) {
   if (s.kind === 'soon') { const f = fT(s.f, lg); const fl = FEATURES[s.f].approved.startsWith('Approved') ? '' : '<span class="flag">\u25CF Auto-written · awaiting approval</span>'; return `<div class="slide soon">${fl}${wm}<div class="in" style="padding-top:8cqw"><div class="fx"><div class="l"><span class="ey">${T.soonEy} · ${f.area}</span><h3 style="font-size:3.5cqw">${f.name}</h3><p>${f.what} ${T.soonTxt}</p><span class="linear">Linear: ${FEATURES[s.f].linear}</span></div><div class="soonart"><svg viewBox="0 0 24 24"><use href="#i-sparkle"/></svg><span>${T.soonArt}</span></div></div></div>${ft}</div>`; }
   if (s.kind === 'ref') { const r = REFS.find(x => x.id === s.ref); return `<div class="slide dark">${wm}<div class="in" style="align-content:center"><span class="ey">${lg === 'NO' ? 'Kundehistorie' : lg === 'SV' ? 'Kundberättelse' : 'Customer story'}</span><h3 style="max-width:20ch">${r.quote ? r.name : r.name}</h3>${r.quote ? `<div class="quote" style="font-size:3cqw">${r.quote}<small>${r.who}</small></div>` : `<p>${r.why}. ${lg === 'NO' ? 'Referansesamtale kan avtales.' : lg === 'SV' ? 'Referenssamtal kan bokas.' : 'A reference call can be arranged.'}</p>`}</div>${ft}</div>`; }
   if (s.kind === 'why') return `<div class="slide">${wm}<div class="in"><span class="ey">${T.whyEy}</span><h3 style="max-width:24ch">${T.whyH}</h3><p>${T.how}</p><div class="cols3">${T.pillarHeads.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="quote">\u201c${MF.quote.text}\u201d<small>${MF.quote.who}</small></div></div>${ft}</div>`;
-  return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3>${T.nextH}</h3><div class="cols3">${T.next.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="cta"><b>${lg === 'NO' ? 'Neste møte' : lg === 'SV' ? 'Nästa möte' : 'Next meeting'}: ${ROLES[S.role].name}</b><span>${lg === 'NO' ? 'Avtal en prøveuke' : lg === 'SV' ? 'Boka en testvecka' : 'Book a test week'}</span></div></div>${ft}</div>`;
+  return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3>${T.nextH}</h3><div class="cols3">${T.next.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="cta"><b>${lg === 'NO' ? 'Neste møte' : lg === 'SV' ? 'Nästa möte' : 'Next meeting'}: ${ROLES[S.role].name}</b><span>${(d.rule && ruleById(d.rule).cta[lg]) || ruleById(d.rule).cta.EN}</span></div></div>${ft}</div>`;
 }
 const slideName = s => s.kind === 'ref' ? 'Customer story' : s.kind === 'title' ? 'Cover' : s.kind === 'heard' ? 'What we heard' : s.kind === 'why' ? 'Why Simployer' : s.kind === 'next' ? 'Next steps' : FEATURES[s.f].name;
 
@@ -1936,7 +1994,7 @@ function vDeck() {
   return `
   <section class="studio">
     <div class="studio-bar">
-      <div><h2>${d.occasion} for ${d.company}</h2><div class="meta"><span class="pill live"><span class="d"></span>Ready</span><span>${n} slides · ${d.lang} · saved to My presentations</span></div></div>
+      <div><h2>${occLabel(ruleById(d.rule))} for ${d.company}</h2><div class="meta"><span class="pill live"><span class="d"></span>Ready</span><span>${ruleById(d.rule).name} · ${n} slides · ${d.lang} · saved to My presentations</span></div></div>
       <div class="acts"><button class="btn btn-ghost-n" id="newtab" title="Open the deck in a new browser tab">${ico('i-ext')}Open in new tab</button><button class="btn btn-ghost-n" id="pdf">${ico('i-download')}PDF</button><button class="btn btn-primary" id="present">${ico('i-play')}Present</button></div>
     </div>
     <div class="studio-body">
@@ -1948,9 +2006,11 @@ function vDeck() {
         ${s.kind === 'feature' ? `<div><span class="lbl">Visual</span><div class="seg n" role="group" aria-label="Visual type">${['screenshot', 'animation'].map(t => `<button type="button" data-vis="${t}" aria-pressed="${s.visual === t}">${t === 'screenshot' ? 'Screenshot' : 'Animation'}</button>`).join('')}</div></div>
         <div><span class="lbl">Source</span><div class="src"><span class="mini"><img src="${IMG[f.img]}" alt=""></span><div><b>${asset ? 'Library · Current' : 'Rendered now'}</b><small>Prototype Lab · ${asset ? asset.date : '20 Oct'}</small></div></div></div>` : ''}
         <div><span class="lbl">Message check</span><div class="checks">
+          ${(() => { const r = ruleById(d.rule), fs = d.slides.filter(x => x.f).map(x => x.f), iss = ruleIssue(r, fs); return `<div class="${iss ? 'wa' : 'ok'}">${ico(iss ? 'i-alert' : 'i-check-c')}<span>${iss || `Follows ${r.name}: ${fs.length} feature${fs.length === 1 ? '' : 's'}`}</span></div>`; })()}
           ${s.kind === 'soon' ? `<div class="wa">${ico('i-alert')}<span>Auto-written from Linear. Waiting for approval from Thea</span></div><div class="ok">${ico('i-check-c')}<span>Linear: Planned · External</span></div>` : `<div class="ok">${ico('i-check-c')}<span>${f && f.approved.startsWith('Draft') ? 'Copy is a draft, waiting for the PM' : 'Approved copy from Product truth'}</span></div><div class="ok">${ico('i-check-c')}<span>Present tense, only what has shipped</span></div><div class="ok">${ico('i-check-c')}<span>No competitors, no unapproved figures</span></div>`}
         </div></div>
         <div><span class="lbl">Speaker notes</span><div class="notes">${note}</div></div>
+        <div><span class="lbl">${ruleById(d.rule).name}</span><div class="notes">${ruleById(d.rule).notes}</div></div>
       </aside>
     </div>
   </section>`;
@@ -2465,6 +2525,7 @@ const L = {
   SV: { occ: { Demo: 'Demo', 'Follow-up': 'Uppföljning', QBR: 'Kvartalsgenomgång', Onboarding: 'Uppstart' }, heardEy: d => `Från mötet ${d}`, heardH: 'Tre saker som är viktiga för er', chall: 'Utmaningen', soonEy: 'Kommer snart', soonTxt: 'Den är planerad och finns inte än.', soonArt: 'Skärmbilder kommer vid lansering', whyEy: 'Varför Simployer', nextEy: 'Nästa steg', nextH: 'Så kommer ni igång', next: [['Testa med två chefer', 'En testvecka med era egna rutiner.'], ['Planera flytten', 'Vi tar med era kalkylark.'], ['Bestäm ett startdatum', 'Igång före nästa anställning.']], month: 'oktober', dow: { Mon: 'måndag', Tue: 'tisdag', Wed: 'onsdag', Thu: 'torsdag', Fri: 'fredag' } },
 };
 /* Slide lines come from the Messaging Framework, never typed here. */
+Object.assign(L.EN.occ, { Leadership: 'Leadership meeting' }); Object.assign(L.NO.occ, { Leadership: 'Ledermøte' }); Object.assign(L.SV.occ, { Leadership: 'Ledningsmöte' });
 ['EN', 'NO', 'SV'].forEach(lg => { const m = mfL(lg); Object.assign(L[lg], { tag: m.line, trust: m.trust, whyH: m.category, how: m.how, opener: m.opener,
   pillars: Object.fromEntries(MF.langs.EN.pillars.map((p, i) => [p.name, m.pillars[i].name.replace(/\.$/, '')])),
   pillarHeads: m.pillars.map(p => [p.name.replace(/\.$/, ''), p.head]) }); });
@@ -3316,6 +3377,87 @@ function runRun(a, tr, o, s, m) { RUNS.unshift({ t: '21 Oct ' + new Date().toTim
 
 /* ---------- Persona: Thea, Linda or Tobias ---------- */
 
+/* ---------- Presentation rules editor (PMM) ---------- */
+let PRD = null; // the rule being edited, published on save
+const prClone = r => JSON.parse(JSON.stringify(r));
+function prPreview(r) {
+  // Build the deck an example customer would get from this rule, without touching the rep's deck
+  const live = EXAMPLE.features.filter(k => FEATURES[k].state === 'live'), soon = ['empnum'];
+  const b = { rule: r.id, features: [...live.slice(0, r.fmax - Math.min(r.soonMax, soon.length)), ...soon.slice(0, r.soonMax)], ref: 'betao', lang: 'EN' };
+  const m = { ...newCustomer(EXAMPLE.company), pains: [...EXAMPLE.pains], heads: [...EXAMPLE.heads] };
+  const keep = [S.deck, S.meeting, PRULES], slides = recipeSlides(r, b, m);
+  if (!PRULES.some(x => x.id === r.id)) PRULES = [...PRULES, r]; else PRULES = PRULES.map(x => x.id === r.id ? r : x);
+  S.deck = { company: m.company, rule: r.id, occasion: r.occasion, lang: 'EN', slides }; S.meeting = m;
+  const html = slides.map((x, i) => `<figure style="margin:0;pointer-events:none"><div>${slideHTML(x, i, slides.length)}</div><figcaption class="muted" style="font-size:11.5px;margin-top:4px">${i + 1} · ${slideName(x)}</figcaption></figure>`).join('');
+  [S.deck, S.meeting, PRULES] = keep;
+  return html;
+}
+function prChecks(r) {
+  const txt = [r.tone, r.notes, ...Object.values(r.cta), ...r.include, ...r.avoid].join(' ');
+  const hit = MF.avoid.find(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(txt));
+  return [
+    [!hit, hit ? hit.why : 'Wording follows the Messaging Framework'],
+    [r.recipe[0] === 'title', 'Opens with the cover and the line, not with features'],
+    [r.recipe.includes('feature'), 'Has feature slides'],
+    [r.recipe.includes('next'), 'Ends on a next step'],
+    [r.fmin >= 1 && r.fmin <= r.fmax, 'Feature range makes sense'],
+    [Object.values(r.cta).every(Boolean), 'Call to action in EN, NO and SV'],
+  ];
+}
+function vPRules() {
+  if (!PRD || !PRULES.some(x => x.id === PRD.id) && PRD.v) PRD = prClone(PRULES[0]);
+  const r = PRD, kn = k => SLIDE_KINDS.find(x => x[0] === k)[1];
+  const fld = (id, label, val, hint = '', rows = 0) => `<div class="fld"><label for="pf-${id}">${label}${hint ? ` <span>${hint}</span>` : ''}</label>${rows ? `<textarea id="pf-${id}" data-pf="${id}" rows="${rows}">${esc(val)}</textarea>` : `<input id="pf-${id}" data-pf="${id}" value="${esc(val)}">`}</div>`;
+  const num = (id, label) => `<label style="display:grid;gap:4px;font-size:12.5px" class="muted">${label}<input type="number" min="0" max="8" data-pf="${id}" value="${r[id]}" style="width:72px"></label>`;
+  return `<div class="page-title"><div><h1>Presentation rules</h1><p>One rule per role and need. Reps pick a rule in Create and Fyr builds the deck in this order, from approved Product truth only. Changes apply to new presentations; existing decks keep theirs.</p></div><div style="display:flex;gap:8px"><button class="btn btn-line" id="pr-new">${ico('i-plus')}New rule</button></div></div>
+  <div class="seg" role="group" aria-label="Rules" style="flex-wrap:wrap;margin-bottom:16px">${PRULES.map(x => `<button data-pr="${x.id}" aria-pressed="${x.id === r.id}">${x.name}</button>`).join('')}${PRULES.some(x => x.id === r.id) ? '' : `<button aria-pressed="true">${esc(r.name)} · new</button>`}</div>
+  <div class="fw">
+    <section class="card ed-form">
+      ${fld('name', 'Name', r.name, 'Role · need, as reps see it')}
+      ${fld('audience', 'Who it is for', r.audience)}
+      <div class="fld"><label for="pf-occasion">Occasion <span>Shown on the cover</span></label><select id="pf-occasion" data-pf="occasion">${OCCASIONS.map(o => `<option value="${o}" ${o === r.occasion ? 'selected' : ''}>${L.EN.occ[o] || o}</option>`).join('')}</select></div>
+      <span class="eyebrow">Slide recipe</span>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;gap:6px">${r.recipe.map((k, i) => `<li style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)"><span class="muted" style="width:18px">${i + 1}</span><b style="flex:1;font-weight:600">${kn(k)}</b><small class="muted">${k === 'feature' ? 'one per live feature' : k === 'soon' ? 'one per coming-soon feature' : k === 'heard' ? 'only if pains are given' : k === 'ref' ? 'only if a story is picked' : ''}</small><button class="icon-btn" data-rmv="${i}:-1" aria-label="Move up" ${i ? '' : 'disabled'}>${ico('i-up')}</button><button class="icon-btn" data-rmv="${i}:1" aria-label="Move down" ${i < r.recipe.length - 1 ? '' : 'disabled'}>${ico('i-down')}</button><button class="icon-btn" data-rdel="${i}" aria-label="Remove">${ico('i-x')}</button></li>`).join('')}</ol>
+      ${SLIDE_KINDS.some(([k]) => !r.recipe.includes(k)) ? `<label class="sr" for="r-add">Add a slide</label><select id="r-add"><option value="">+ Add a slide…</option>${SLIDE_KINDS.filter(([k]) => !r.recipe.includes(k)).map(([k, t]) => `<option value="${k}">${t}</option>`).join('')}</select>` : ''}
+      <div style="display:flex;gap:16px;flex-wrap:wrap">${num('fmin', 'Min features')}${num('fmax', 'Max features')}${num('soonMax', 'Max coming soon')}</div>
+      ${fld('include', 'Must include', r.include.join('\n'), 'One per line', 3)}
+      ${fld('avoid', 'Must avoid', r.avoid.join('\n'), 'One per line', 3)}
+      ${fld('tone', 'Tone', r.tone, '', 2)}
+      <span class="eyebrow">Call to action on the last slide</span>
+      ${LANGS.map(([lg]) => `<div class="fld"><label for="pc-${lg}">${lg}</label><input id="pc-${lg}" data-pcta="${lg}" value="${esc(r.cta[lg] || '')}"></div>`).join('')}
+      ${fld('notes', 'Speaker-note guidance', r.notes, 'Shown in the studio for every deck built from this rule', 3)}
+      <div class="actions" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" id="pr-save">${ico('i-check')}Publish ${r.v ? 'v' + (r.v + 1) : 'rule'}</button><button class="btn btn-line" id="pr-dup">Duplicate</button><button class="btn btn-line" id="pr-reset">Discard changes</button></div>
+      <p class="muted" style="font-size:12.5px;margin:0">${r.v ? `v${r.v} · published by ${r.by} · ${r.date}` : 'Not published yet'}</p>
+    </section>
+    <aside class="ctx"><span class="lbl">Check</span><div class="checks">${prChecks(r).map(([ok, t]) => `<div class="${ok ? 'ok' : 'wa'}">${ico(ok ? 'i-check-c' : 'i-alert')}<span>${t}</span></div>`).join('')}</div>
+      <div class="rule"></div><span class="lbl">Preview · ${EXAMPLE.company}, EN</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${prPreview(r)}</div></aside>
+  </div>`;
+}
+function bindPRules() {
+  const r = PRD;
+  const read = () => {
+    $$('[data-pf]').forEach(x => { const k = x.dataset.pf, v = x.value; r[k] = ['fmin', 'fmax', 'soonMax'].includes(k) ? Math.max(0, parseInt(v, 10) || 0) : ['include', 'avoid'].includes(k) ? v.split('\n').map(t => t.trim()).filter(Boolean) : v.trim(); });
+    $$('[data-pcta]').forEach(x => { r.cta[x.dataset.pcta] = x.value.trim(); });
+  };
+  $$('[data-pf], [data-pcta]').forEach(x => x.addEventListener('change', () => { read(); render(); }));
+  $$('[data-pr]').forEach(b => b.addEventListener('click', () => { PRD = prClone(ruleById(b.dataset.pr)); render(); }));
+  $$('[data-rmv]').forEach(b => b.addEventListener('click', () => { read(); const [i, d] = b.dataset.rmv.split(':').map(Number); [r.recipe[i], r.recipe[i + d]] = [r.recipe[i + d], r.recipe[i]]; render(); }));
+  $$('[data-rdel]').forEach(b => b.addEventListener('click', () => { read(); r.recipe.splice(+b.dataset.rdel, 1); render(); }));
+  if ($('#r-add')) $('#r-add').addEventListener('change', e => { if (!e.target.value) return; read(); r.recipe.push(e.target.value); render(); });
+  $('#pr-reset').addEventListener('click', () => { PRD = PRULES.some(x => x.id === r.id) ? prClone(ruleById(r.id)) : prClone(PRULES[0]); render(); });
+  const fresh = (base, name) => ({ ...prClone(base), id: 'rule-' + Date.now(), name, keys: [], v: 0, by: '', date: '' });
+  $('#pr-new').addEventListener('click', () => { PRD = fresh(PRULES[0], 'New rule'); render(); });
+  $('#pr-dup').addEventListener('click', () => { read(); PRD = fresh(r, r.name + ' (copy)'); render(); });
+  $('#pr-save').addEventListener('click', () => {
+    read();
+    const bad = prChecks(r).find(([ok]) => !ok); if (bad) { toast(`Fix this first: ${bad[1].toLowerCase()}.`); return; }
+    Object.assign(r, { v: (r.v || 0) + 1, by: 'Tobias', date: '28 Oct' });
+    const i = PRULES.findIndex(x => x.id === r.id); PRULES = i < 0 ? [...PRULES, prClone(r)] : PRULES.map(x => x.id === r.id ? prClone(r) : x);
+    render(); toast(`Published ${r.name} v${r.v}. New presentations follow it; existing decks keep theirs.`);
+  });
+}
+
 /* ---------- Automations: the five that exist in v0.3, with time saved ---------- */
 // [name, trigger, output, baseline minutes a person would spend per run]
 const AUTO_META = [
@@ -3464,6 +3606,7 @@ const BOG = [
   { sec: 'bo', t: 'Truth editor', ic: 'i-edit', tabs: [['editor', 'Feature wording'], ['framework', 'Messaging framework']], badge: () => 0 },
   { sec: 'bo', t: 'Battlecards', ic: 'i-shield', tabs: [['bcedit', 'Battlecards']], badge: () => 0 },
   { sec: 'bo', t: 'Marketing Remix', ic: 'i-mega', tabs: [['channels', 'Drafts']], badge: () => 0 },
+  { sec: 'bo', t: 'Presentation rules', ic: 'i-deck', tabs: [['prules', 'Rules']], badge: () => 0 },
   { sec: 'bo', t: 'Automations', ic: 'i-play', tabs: [['auto', 'Overview']], badge: () => 0 },
 ];
 function boTabs() {
@@ -3479,9 +3622,9 @@ function render() {
   if (S.view === 'brief' && !S.brief) S.view = 'create';
   if (S.role !== 'pmm' && !['create', 'brief', 'gen', 'deck', 'work', 'truth', 'battle', 'library'].includes(S.view)) S.view = 'create';
   renderNav();
-  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto };
+  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules };
   $('#view').innerHTML = boTabs() + (map[S.view] || vCreate)();
-  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto }[S.view] || (() => {}))();
+  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules }[S.view] || (() => {}))();
   if ($('#reopen')) $('#reopen').addEventListener('click', () => { S.view = 'deck'; render(); });
   $$('[data-edit]').forEach(b => b.addEventListener('click', () => toast('Editing opens a draft that Thea or the PM approves.')));
   i18nPass();

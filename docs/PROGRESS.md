@@ -5,7 +5,7 @@
 | # | Milestone | Target | Status | Done | Owner |
 |---|---|---|---|---|---|
 | M0 | Project setup | 28 Oct | ✅ Done | 100% | Tobias |
-| M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 55% | Tobias |
+| M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 75% | Tobias |
 | M2 | App foundation (SSO, DB, Linear, Releases) | 11 Nov | ⬜ Not started | 0% | — |
 | M3 | PMM core (Truth, Packs, Battlecards, Library) | 18 Nov | ⬜ Not started | 0% | — |
 | M4 | Create + Remix + Automations | 25 Nov | ⬜ Not started | 0% | — |
@@ -31,6 +31,26 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-28 — M1: Presentation rules
+- **Done:**
+  - **Presentation rules** in the PMM workspace. A rule list and editor cover the slide recipe (reorder, remove, add), feature range, max coming soon, include/avoid, tone, CTA in EN/NO/SV and speaker-note guidance. The editor shows a live preview with an example customer and a check against the Messaging Framework. Rules can be published with a version, created new or duplicated.
+  - Five seeded rules: Sales · Demo, Sales · Follow-up, CSM · QBR, PS · Kickoff, Management · Leadership meeting.
+  - **Create:**
+    - The rep picks a rule instead of the occasion, on the home page and in the brief. "QBR for …" or "Kickoff for …" in the ask box picks the rule.
+    - The brief shows the rule's guidance and enforces its feature range.
+    - `buildDeck` follows the recipe.
+    - The last slide uses the rule's CTA in the deck language.
+    - The studio shows the rule, a rule check and the rule's speaker-note guidance.
+  - The copy check now covers rule text too: 0 errors.
+- **Verified in the browser:**
+  - All 5 rules preview and pass their checks.
+  - The rep flow for each rule gives the right slides in the right order and the right CTA in NO.
+  - A follow-up with a coming-soon feature is blocked with a clear message.
+  - Editor: reorder, remove and add work. A "replaces" tone line blocks publishing. Publishing v2 with max 2 features changes what Create allows.
+  - Org viewers can't open the editor.
+  - No horizontal overflow at narrow width.
+- **Next:** Brand rules tab in Marketing Remix, CSS cleanup, publish as the "Fyr v0.3" artifact, walk-through with Thea.
 
 ### 2026-10-28 — Weekly Messaging Framework drift check
 - **Done:** Scheduled the task "Fyr: weekly Messaging Framework check" (`fyr-framework-drift-check`), Mondays at about 08:30. It re-reads the framework, compares it with `docs/messaging-framework.json`, and reports what changed so we can re-sync. It is read-only. See [MESSAGING-FRAMEWORK.md](MESSAGING-FRAMEWORK.md#weekly-drift-check).

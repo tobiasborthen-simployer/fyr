@@ -28,6 +28,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Presentation rules** (PMM workspace): a recipe per role and need, five seeded rules, and an editor with live preview, framework check and versioned publishing. Create uses the chosen rule's slide order, feature range and CTA.
 - `tools/serve.mjs` and `.claude/launch.json`, for previewing the prototypes locally.
 - Messaging Framework sync (D-016):
   - `docs/messaging-framework.json` (snapshot from 2026-10-28)

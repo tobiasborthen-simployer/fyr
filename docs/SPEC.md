@@ -279,14 +279,26 @@ Each rule is a recipe:
 | CTA | book a follow-up with an HR expert |
 | Speaker-note guidance | per slide kind |
 
-Seed rules:
-- Sales · Demo
-- Sales · Follow-up
-- CSM · QBR / what's new
-- PS · Kickoff
-- Management · brief
+Seed rules (prototype `PRULES`):
+
+| Rule | Recipe | Features | Coming soon | CTA |
+|---|---|---|---|---|
+| Sales · Demo | cover → heard → features → soon → story → why → next | 2–4 | ≤1 | Book a test week with two managers |
+| Sales · Follow-up | cover → heard → features → why → next | 1–3 | none | Agree a start date |
+| CSM · QBR | cover → heard → features → soon → next | 2–5 | ≤2 | Pick one routine to switch on before the next QBR |
+| PS · Kickoff | cover → heard → features → next | 2–4 | none | Agree the go-live date |
+| Management · Leadership meeting | cover → heard → why → features → next | 1–2 | none | Agree a decision date |
 
 v0.2 had none of these. Every deck followed one fixed order.
+
+**Rule behaviour**
+- "What we heard" appears only when the rep gives pains, and "Customer story" only when they pick one.
+- Feature slides are one per live feature. Coming-soon slides are one per coming-soon feature, capped by the rule.
+- A brief outside the rule's feature range is blocked, with a plain message (e.g. "Sales · Follow-up leaves out coming-soon features. Remove 1.").
+- The CTA on the last slide is the rule's, in the deck language.
+- The rule's guidance shows in the brief and in the studio's speaker notes.
+- **Publishing a rule** versions it. New presentations follow the new version; existing decks keep theirs.
+- **Publishing is blocked** if the rule's wording breaks the Messaging Framework, if it doesn't open with the cover, if it has no next step, or if a CTA language is missing.
 
 **Rep flow** (same look and feel as v0.2)
 1. **Create home.** A free-text ask plus the rule picker, and "Shipped and sellable" (from Releases).

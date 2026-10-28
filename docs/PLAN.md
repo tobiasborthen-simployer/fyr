@@ -38,8 +38,11 @@
 - [x] **Truth editor.** Drop the Languages tab and replace the `LOG` history with per-entry history (EN/NO/SV status).
 - [x] **Battlecards.** Remove the Slack import/publish copy and the Sia/tl;dv autofill toast.
 - [ ] **Marketing Remix (new).** *Done:* renamed from Channels, with videos, the HubSpot send and the launch-day check removed. *Left:* a Brand rules tab, a "built from" line on each draft, and an approval link back to the pack.
-- [ ] **Presentation rules (new).** Add a rule list and a rule editor (recipe, feature count, must include/avoid, tone, CTA, notes). Seed 5 rules.
-- [ ] **Create.** *Done:* the meeting picker is replaced by company name, typed pains (optional, with "Fill with example") and an occasion picker. *Left:* swap the occasion for the presentation rule, and make `buildDeck` follow the rule recipe.
+- [x] **Presentation rules (new).** Rule list and editor in the PMM workspace covering slide recipe (reorder, remove, add), feature range, max coming soon, must include/avoid, tone, CTA in EN/NO/SV, and speaker-note guidance.
+  - Live preview with an example customer, plus a framework check.
+  - Publish with a version, New and Duplicate.
+  - 5 seeded rules.
+- [x] **Create.** The meeting picker is replaced by company name and typed pains (optional, with "Fill with example"). The rep picks a rule on the Create home and in the brief. `buildDeck` follows the rule's recipe, the feature range is enforced, and the rule's CTA and guidance show in the deck.
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [ ] Remove the CSS of the cut modules (dead code, but harmless).
