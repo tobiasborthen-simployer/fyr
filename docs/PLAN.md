@@ -75,7 +75,7 @@
 
 ## M4 — Create + Remix + Automations (19 – 25 Nov)
 - [ ] Presentation rules: CRUD and the 6 seeded rules.
-- [ ] Deck edits (per-slide text and own slides) stored on the `Deck` record and rendered into the PDF.
+- [ ] Decks saved to the `Deck` table as the rep works (slides, edits, own slides, brief), listed in My presentations with open / copy / delete, and rendered into the PDF.
 - [ ] Create: home, brief, generate (recipe-driven), studio (edit, reorder, notes, message check), present, open in a tab, and My presentations.
 - [ ] Real PDF export (server-side headless Chromium, one page per 16:9 slide).
 - [ ] Marketing Remix: auto drafts on approval (A4), channel templates, the Remix library with copy/export, and approval inside packs.

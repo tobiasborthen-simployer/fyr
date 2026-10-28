@@ -345,7 +345,12 @@ v0.2 had none of these. Every deck followed one fixed order.
      - **Reset text on this slide** restores the original wording.
      - Edits carry into Present, Open in new tab and PDF.
 5. **Present** (full screen) · **Open in new tab** · **Export PDF** (real, server-rendered)
-6. **My presentations.** Your saved decks, which you can reopen and duplicate.
+6. **My presentations ([D-019](DECISIONS.md)).** Every deck is **saved automatically as you work**: on generate, on every text edit, own slide, reorder, delete or visual change, and when presented. The studio shows "Saved hh:mm".
+   - The list shows customer, presentation rule, language, slides (and how many carry your text), last edited and presented.
+   - **Open** continues exactly where you left off: slides, edits, own slides, pains and rule.
+   - **Copy** makes a new deck for the next meeting.
+   - **Delete** asks for a second click.
+   - The newest decks also show on the Create home under "Your recent presentations".
 
 **Cut:** CRM attach, calendar/meeting feed, tl;dv context, Prototype Lab live rendering, outcome tracking (won/lost), and all non-deck Create types.
 
@@ -353,6 +358,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 - [ ] A rep goes from the empty Create page to a presentable deck in under 3 minutes.
 - [ ] The deck follows the chosen rule's recipe and passes the message check.
 - [ ] The rep can change any slide text and add their own slides; edits survive reorder, Present and PDF.
+- [ ] A deck closed mid-work reopens later, from My presentations, with every slide and edit intact.
 - [ ] Coming-soon features appear only as "Coming soon" slides. Blocked features never appear.
 - [ ] The PDF matches the on-screen 16:9 slides (fonts, images, page per slide).
 

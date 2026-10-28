@@ -32,6 +32,20 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-28 — Saved presentations (D-019)
+- **Done:**
+  - Presentations save automatically as you work: on generate, text edits, own slides, reorder, delete, visual change and Present. The studio shows "Saved hh:mm".
+  - **My presentations** now lists every saved deck: customer, rule, language, slides (and how many carry your text), last edited and presented. Each row has **Open**, **Copy** and **Delete** (two clicks).
+  - The Create home's "Your recent presentations" opens the saved deck. Before, it started a new brief.
+  - Three example decks (Fjellheim · Demo, Lindqvist · Follow-up, Strand Helse · Discovery) are real decks that open.
+  - Prototype storage is this browser (`localStorage`). The app stores decks on the `Deck` record (M4).
+- **Verified in the browser:**
+  - Generate, edit, add own slide, **reload the page**, reopen: slides, edits, own slide, pains and rule are all intact.
+  - Present marks the deck presented and saves it.
+  - Copy opens a new deck that keeps the edits and is not marked presented.
+  - Delete needs two clicks and removes the deck from the list and from storage.
+  - Opening a deck without changing it doesn't touch "last edited".
+
 ### 2026-10-28 — Fix: Marketing Remix cards overflowing
 - **Bug (reported by Tobias):** on the LinkedIn tab, the Automation Studio card spilled into the next card. Its screenshot and text ran past the edge.
 - **Cause:** the "Approve in launch pack · <full release name>" button can't wrap. Each card's single column grew to fit it, wider than the card.

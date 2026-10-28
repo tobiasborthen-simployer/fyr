@@ -33,6 +33,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Saved presentations (D-019):** decks save automatically as you work. My presentations lists them with Open (continue where you left off), Copy and Delete.
 - **Editable presentations (D-017):** every slide text block can be edited, except the trust-line footer. Reps can add their own slides for case details. Edits are checked against the brand rules (a warning, never a block), can be reset per slide, and carry into Present and PDF.
 - **Sales · Discovery meeting** rule, with two new slide types: "Simployer in short" and "Questions for them".
 - **Brand rules** tab in Marketing Remix, read from the Messaging Framework, with a "Check a text" box.

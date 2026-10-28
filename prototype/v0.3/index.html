@@ -1441,12 +1441,7 @@ let ASSETS = [
 ];
 
 /* ---------- State ---------- */
-const S = { role: 'pmm', view: 'office', type: 'deck', meeting: null, brief: null, deck: null, sel: 0, lib: 'all',
-  decks: [
-    { company: 'Fjellheim Transport', occasion: 'Demo', date: '15 Oct', presented: true },
-    { company: 'Lindqvist Revision AB', occasion: 'Follow-up', date: '8 Oct', presented: true },
-    { company: 'Strand Helse', occasion: 'Demo', date: '1 Oct', presented: false },
-  ] };
+const S = { role: 'pmm', view: 'office', type: 'deck', meeting: null, brief: null, deck: null, sel: 0, lib: 'all' };
 
 function toast(msg) { const t = $('#toast'); t.innerHTML = ai() + `<span>${msg}</span>`; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 3600); }
 
@@ -1467,7 +1462,7 @@ function renderNav() {
   const gi = g => { const bd = g.badge(); return it(g.tabs[0][0], g.ic, g.t, bd || null, g.hot, g.tabs.some(x => x[0] === cur) || (g.also || []).includes(cur)); };
   const it = (v, i, t, badge, hot, on) => `<button data-view="${v}" ${(on !== undefined ? on : cur === v) ? 'aria-current="page"' : ''}>${ico(i)}<span>${t}</span>${badge ? `<span class="badge ${hot ? 'hot' : ''}">${badge}</span>` : ''}</button>`;
   $('#nav').innerHTML = `
-    <div class="nav-group"><span class="nav-label">Create</span>${it('create', 'i-deck', 'Presentations')}${it('work', 'i-brief', 'My presentations', S.decks.length)}</div>
+    <div class="nav-group"><span class="nav-label">Create</span>${it('create', 'i-deck', 'Presentations')}${it('work', 'i-brief', 'My presentations', DECKS.length)}</div>
     <div class="nav-group"><span class="nav-label">Knowledge</span>${it('truth', 'i-book', 'Product truth')}${it('battle', 'i-shield', 'Battlecards')}${it('library', 'i-grid', 'Library', pm && attn ? attn : null, true)}</div>
     ${pm ? `<div class="nav-group"><span class="nav-label">PMM workspace</span>${BOG.map(g => gi(g)).join('')}</div>` : ''}`;
   const r = ROLES[S.role];
@@ -1553,10 +1548,10 @@ function vCreate() {
   </section>
   <div class="create-grid">
     <section class="card list">
-      <div class="list-head"><div><h2>Your recent presentations</h2><p>Start a new version for the same customer.</p></div></div>
-      ${S.decks.slice(0, 4).map(d => `<button class="mtg" data-recent="${d.company}"><span class="date"><small>${d.date.split(' ')[1]}</small><b>${d.date.split(' ')[0]}</b></span>
-        <span class="t"><b>${d.company}</b><p>${d.occasion}${d.presented ? ' · presented' : ' · not presented yet'}</p></span>
-        <span class="go">New version ${ico('i-arrow')}</span></button>`).join('')}
+      <div class="list-head"><div><h2>Your recent presentations</h2><p>Saved as you work. Pick up where you left off.</p></div></div>
+      ${DECKS.slice(0, 4).map(d => `<button class="mtg" data-dopen="${d.id}"><span class="date"><small>${d.updated.split(' ')[1]}</small><b>${d.updated.split(' ')[0]}</b></span>
+        <span class="t"><b>${esc(d.company)}</b><p>${ruleById(d.rule).name} · ${d.lang} · ${d.slides.length} slides${d.presented ? ' · presented' : ''}</p></span>
+        <span class="go">Open ${ico('i-arrow')}</span></button>`).join('')}
     </section>
     <aside class="side">
       <section class="card panel"><h3>Shipped and sellable <span class="pill live"><span class="d"></span>Live</span></h3>
@@ -1571,7 +1566,6 @@ function bindCreate() {
   $('#ask-form').addEventListener('submit', e => { e.preventDefault(); startFromText($('#ask').value.trim()); });
   $$('[data-rulepick]').forEach(b => b.addEventListener('click', () => { S.rule = b.dataset.rulepick; render(); }));
   $$('[data-sug]').forEach(b => b.addEventListener('click', () => startFromText(b.dataset.sug)));
-  $$('[data-recent]').forEach(b => b.addEventListener('click', () => openBrief(b.dataset.recent)));
 }
 function startFromText(text) {
   const m = text.match(/^([\w-]+) for (.+)$/i), r = m && PRULES.find(x => x.keys.includes(m[1].toLowerCase()));
@@ -1710,7 +1704,7 @@ function vDeck() {
   return `
   <section class="studio">
     <div class="studio-bar">
-      <div><h2>${occLabel(ruleById(d.rule))} for ${d.company}</h2><div class="meta"><span class="pill live"><span class="d"></span>Ready</span><span>${ruleById(d.rule).name} · ${n} slides · ${d.lang} · saved to My presentations</span></div></div>
+      <div><h2>${occLabel(ruleById(d.rule))} for ${d.company}</h2><div class="meta"><span class="pill live"><span class="d"></span>Ready</span><span>${ruleById(d.rule).name} · ${n} slides · ${d.lang}</span><span id="save-state">${d.updated ? `Saved ${d.updated.split(' ').pop()}` : 'Saving…'}</span></div></div>
       <div class="acts"><button class="btn btn-ghost-n" id="add-slide" title="Add a slide with your own text after this one">${ico('i-plus')}Add slide</button><button class="btn btn-ghost-n" id="newtab" title="Open the deck in a new browser tab">${ico('i-ext')}Open in new tab</button><button class="btn btn-ghost-n" id="pdf">${ico('i-download')}PDF</button><button class="btn btn-primary" id="present">${ico('i-play')}Present</button></div>
     </div>
     <div class="studio-body">
@@ -1747,7 +1741,7 @@ function bindDeck() {
   $$('.thumb').forEach((li, i) => applyEdits(li, d.slides[i]));
   const st = $('.stage .slide'); applyEdits(st, d.slides[S.sel]);
   const at = S.sel; // the slide these fields belong to, even if the view moves on before blur fires
-  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); }); });
+  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); }); });
   $('#add-slide').addEventListener('click', () => { d.slides.splice(S.sel + 1, 0, { kind: 'custom' }); S.sel++; render(); toast('Added your own slide. Click the text to write it.'); });
   $$('[data-pick]').forEach(x => { x.addEventListener('click', () => { S.sel = +x.dataset.pick; render(); }); x.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); S.sel = +x.dataset.pick; render(); } }); });
   $$('[data-mv]').forEach(x => x.addEventListener('click', () => move(+x.dataset.mv, +x.dataset.mv + +x.dataset.dir)));
@@ -1779,7 +1773,7 @@ document.addEventListener('keydown', e => {
 });
 function present() {
   const d = S.deck; let i = S.sel;
-  if (!d.presented) { d.presented = true; S.decks.unshift({ company: d.company, occasion: d.occasion, date: '20 Oct', presented: true, outcome: 'Open' }); }
+  if (!d.presented) { d.presented = true; saveDeck(); }
   const root = $('#present-root');
   const draw = () => {
     root.innerHTML = `<div class="present" role="dialog" aria-label="Presenting"><div class="fr">${slideHTML(d.slides[i], i, d.slides.length)}</div><div class="ctl"><button id="pv" aria-label="Previous slide">${ico('i-left')}</button><span>${i + 1} / ${d.slides.length}</span><button id="nx" aria-label="Next slide">${ico('i-arrow')}</button><button id="ex">Exit</button></div></div>`;
@@ -1787,7 +1781,7 @@ function present() {
     $('#pv').onclick = () => { if (i > 0) { i--; draw(); } }; $('#nx').onclick = () => { if (i < d.slides.length - 1) { i++; draw(); } }; $('#ex').onclick = close;
   };
   const key = e => { if ((e.key === 'f' || e.key === 'F') && !e.metaKey && !e.ctrlKey) { e.preventDefault(); try { document.fullscreenElement ? document.exitFullscreen() : root.requestFullscreen(); } catch (_) {} return; } if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); if (i < d.slides.length - 1) { i++; draw(); } } else if (e.key === 'ArrowLeft') { if (i > 0) { i--; draw(); } } else if (e.key === 'Escape') close(); };
-  const close = () => { try { if (document.fullscreenElement) document.exitFullscreen(); } catch (_) {} root.innerHTML = ''; document.removeEventListener('keydown', key, true); render(); toast('Marked as presented in My presentations.'); };
+  const close = () => { try { if (document.fullscreenElement) document.exitFullscreen(); } catch (_) {} root.innerHTML = ''; document.removeEventListener('keydown', key, true); render(); toast('Saved and marked as presented in My presentations.'); };
   document.addEventListener('keydown', key, true); draw();
 }
 
@@ -1842,12 +1836,58 @@ async function openDeckTab(d) {
 document.addEventListener('click', e => { if (e.target.closest('[data-newtab]') && S.deck) openDeckTab(S.deck); });
 
 /* ---------- My work ---------- */
+/* ---------- Saved presentations: saved as you work, reopened later from My presentations ---------- */
+// Prototype: kept in this browser. In the app each deck is a Deck record on the rep's account (SPEC §5).
+const DECK_KEY = 'fyr-v03-decks';
+let DECKS = [];
+const deckClone = d => JSON.parse(JSON.stringify(d));
+const deckStamp = () => { const t = new Date(); return `${t.getDate()} ${MON3[t.getMonth()]} ${t.toTimeString().slice(0, 5)}`; };
+function decksStore() { try { localStorage.setItem(DECK_KEY, JSON.stringify(DECKS)); } catch (_) {} }
+function decksLoad() { try { const v = JSON.parse(localStorage.getItem(DECK_KEY) || 'null'); return Array.isArray(v) && v.every(d => d.id && d.slides) ? v : null; } catch (_) { return null; } }
+// Saves the open deck if anything in it changed since the last save
+function saveDeck() {
+  const d = S.deck; if (!d) return;
+  if (!d.id) Object.assign(d, { id: 'd' + Date.now().toString(36), created: deckStamp() });
+  Object.assign(d, { meeting: deckClone(S.meeting), brief: deckClone(S.brief) });
+  const i = DECKS.findIndex(x => x.id === d.id), body = x => JSON.stringify({ ...x, updated: '' });
+  if (i >= 0 && body(DECKS[i]) === body(d)) return;
+  d.updated = deckStamp();
+  if (i < 0) DECKS.unshift(deckClone(d)); else { DECKS.splice(i, 1); DECKS.unshift(deckClone(d)); }
+  decksStore();
+  const el = $('#save-state'); if (el) el.textContent = `Saved ${d.updated.split(' ').pop()}`;
+}
+function openDeck(id) {
+  const x = DECKS.find(d => d.id === id); if (!x) return;
+  S.deck = deckClone(x); S.meeting = deckClone(x.meeting || newCustomer(x.company)); S.brief = deckClone(x.brief || { rule: x.rule, occasion: x.occasion, features: [], lang: x.lang, note: '', ref: null });
+  S.sel = 0; S.view = 'deck'; render(); window.scrollTo({ top: 0 });
+}
+function seedDecks() {
+  const mk = (company, rule, features, lang, when, presented, pains = ['', '', ''], heads = ['', '', '']) => {
+    const r = ruleById(rule), meeting = { ...newCustomer(company), pains, heads, lang }, brief = { rule, occasion: r.occasion, features, lang, note: '', ref: 'betao' };
+    return { id: 'seed-' + company.split(' ')[0].toLowerCase(), company, rule, occasion: r.occasion, lang, slides: recipeSlides(r, brief, meeting), presented, created: when, updated: when, meeting, brief };
+  };
+  return [
+    mk('Fjellheim Transport', 'sales-demo', ['sickleave', 'automation'], 'NO', '15 Oct 16:20', true, ['Time off is approved by email', 'No overview of who is away', 'Managers lack HR support'], ['Email approvals', 'No overview', 'Managers alone']),
+    mk('Lindqvist Revision AB', 'sales-followup', ['onboarding', 'sia'], 'SV', '8 Oct 10:05', true),
+    mk('Strand Helse', 'sales-discovery', [], 'NO', '1 Oct 13:40', false),
+  ];
+}
+document.addEventListener('click', e => {
+  const o = e.target.closest('[data-dopen]'); if (o) { openDeck(o.dataset.dopen); return; }
+  const c = e.target.closest('[data-ddup]'); if (c) { const x = DECKS.find(d => d.id === c.dataset.ddup); if (!x) return; const y = { ...deckClone(x), id: 'd' + Date.now().toString(36), created: deckStamp(), updated: deckStamp(), presented: false }; DECKS.unshift(y); decksStore(); openDeck(y.id); toast(`Copy of ${x.company} saved. Tailor it for the next meeting.`); return; }
+  const del = e.target.closest('[data-ddel]'); if (del) {
+    if (del.dataset.armed !== '1') { del.dataset.armed = '1'; del.innerHTML = 'Delete?'; del.classList.add('btn', 'btn-sm'); setTimeout(() => { if (del.isConnected && del.dataset.armed === '1') { del.dataset.armed = ''; render(); } }, 3000); return; }
+    const x = DECKS.find(d => d.id === del.dataset.ddel); DECKS = DECKS.filter(d => d.id !== del.dataset.ddel); decksStore();
+    if (S.deck && x && S.deck.id === x.id) S.deck = null; render(); toast(`Deleted ${x ? x.company : 'the presentation'}.`);
+  }
+});
 function vWork() {
-  return `<div class="page-title"><div><h1>My presentations</h1><p>Every presentation you made, and whether you presented it.</p></div>${S.deck ? `<div class="acts" style="display:flex;gap:8px"><button class="btn btn-line" data-newtab="1">${ico('i-ext')}Open in new tab</button><button class="btn btn-dark" id="reopen">Open ${S.deck.company} ${ico('i-arrow')}</button></div>` : ''}</div>
-  <section class="card tbl"><table><thead><tr><th>Account</th><th>Occasion</th><th>Created</th><th>Presented</th></tr></thead><tbody>
-  ${S.decks.map(d => `<tr><td><b>${d.company}</b></td><td>${d.occasion}</td><td style="font-variant-numeric:tabular-nums">${d.date}</td><td>${d.presented ? '<span class="pill soon"><span class="d"></span>Presented</span>' : '<span class="pill">Not yet</span>'}</td></tr>`).join('')}
-  </tbody></table></section>
-  <p class="demo">Marked as presented when you use Present. <i>Example data</i></p>`;
+  const edits = d => d.slides.filter(x => x.kind === 'custom' || (x.edits && Object.keys(x.edits).length)).length;
+  return `<div class="page-title"><div><h1>My presentations</h1><p>Every presentation is saved as you work. Open one to keep editing, present it again, or make a copy for the next meeting.</p></div><button class="btn btn-primary" data-view="create">${ico('i-plus')}New presentation</button></div>
+  ${DECKS.length ? `<section class="card tbl"><table><thead><tr><th>Customer</th><th>Presentation</th><th>Language</th><th>Slides</th><th>Last edited</th><th>Presented</th><th></th></tr></thead><tbody>
+  ${DECKS.map(d => `<tr><td><b>${esc(d.company)}</b></td><td>${ruleById(d.rule).name}</td><td>${d.lang}</td><td style="font-variant-numeric:tabular-nums">${d.slides.length}${edits(d) ? ` <small class="muted">· ${edits(d)} with your text</small>` : ''}</td><td style="font-variant-numeric:tabular-nums">${d.updated}</td><td>${d.presented ? '<span class="pill soon"><span class="d"></span>Presented</span>' : '<span class="pill">Not yet</span>'}</td><td style="white-space:nowrap;text-align:right"><button class="btn btn-primary btn-sm" data-dopen="${d.id}">Open</button> <button class="btn btn-line btn-sm" data-ddup="${d.id}">Copy</button> <button class="icon-btn" data-ddel="${d.id}" aria-label="Delete ${esc(d.company)}" title="Delete">${ico('i-x')}</button></td></tr>`).join('')}
+  </tbody></table></section>` : `<section class="card panel"><h3>No presentations yet</h3><p class="muted">Start one from Presentations. It is saved here as you work.</p></section>`}
+  <p class="demo">Prototype: saved in this browser. In Fyr itself, presentations are saved to your account. <i>Example data</i></p>`;
 }
 
 /* ---------- Library ---------- */
@@ -3418,10 +3458,11 @@ function render() {
   const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules };
   $('#view').innerHTML = boTabs() + (map[S.view] || vCreate)();
   ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules }[S.view] || (() => {}))();
-  if ($('#reopen')) $('#reopen').addEventListener('click', () => { S.view = 'deck'; render(); });
+  if (S.view === 'deck') saveDeck(); // every change in the studio re-renders, so this saves it
   $$('[data-edit]').forEach(b => b.addEventListener('click', () => toast('Editing opens a draft that Thea or the PM approves.')));
   i18nPass();
 }
+DECKS = decksLoad() || seedDecks();
 render();
 renderLogin();
 </script>

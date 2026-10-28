@@ -334,3 +334,19 @@ Details are in PARKED.md.
 - Sales get two separate rules: **Discovery meeting** (learn about the prospect, Simployer in short) and **Demo**.
 
 **Revisit if:** decks in the pilot regularly run far too long. If so, add a soft hint, not a block.
+
+## D-019 — Presentations save automatically and reopen from My presentations
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:** Reps need to save a presentation and open it again later, e.g. prepare it on Monday and present it on Thursday. Before this, My presentations listed only names; just the deck you were working on could be reopened, and nothing survived a reload.
+
+**Decision:**
+- Every deck is saved as the rep works. There is no save button to forget; the studio shows "Saved hh:mm".
+- My presentations lists all saved decks, with **Open** (continue where you left off), **Copy** (reuse for the next meeting) and **Delete** (two clicks).
+- A saved deck holds the slides, the rep's text and own slides, the brief (company, pains, rule, features, language) and whether it was presented.
+
+**Consequences:**
+- Prototype: saved in the browser (`localStorage`), so decks are per browser and per device.
+- App (M4): each deck is a `Deck` record on the rep's account (SPEC §5), available on any device.
+
+**Revisit if:** reps want to share a deck with a colleague. That needs sharing and permissions on `Deck`.
