@@ -34,6 +34,14 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-28 — One cover for Discovery and Demo (D-022)
+- **Done:**
+  - Discovery now opens with the same original gradient cover as Demo: "Simployer × *Customer*", the line, and occasion · meeting date · rep in the chip. The rep's name is on the Demo cover too.
+  - The dark purple "line" title is removed, along with its CSS. Old decks with it render with the shared cover.
+  - Discovery rule bumped to v3, so example decks refresh and reps' own decks offer a rebuild.
+  - The picture bar now also shows on the cover.
+- **Verified:** both covers use the same class and gradient, with no overflow in EN/NO/SV. Contact slides were already identical in both decks. Copy check: 0 errors.
+
 ### 2026-10-28 — Discovery flow: audit against the ask, four gaps fixed (D-021)
 - **Audit:** went through Tobias's flow line by line against the generated deck, slide text and speaker notes. All seven main slides, the proof picker, B1, the appendix, the contact slide in Demo and the picture bar matched. Four gaps found:
   1. **The contact slide didn't know the rep.** The title showed the signed-in rep's name, but the contact slide asked them to pick a picture. New decks now start with the signed-in rep's photo and details; the picture bar switches.

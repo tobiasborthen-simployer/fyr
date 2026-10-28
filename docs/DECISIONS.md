@@ -392,3 +392,20 @@ Details are in PARKED.md.
 - Reps get the update with one click.
 
 **Revisit if:** PMM needs to force an update, e.g. a legal correction. That would need a "required" flag on a rule version.
+
+## D-022 — Discovery and Demo share the original gradient cover
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the Discovery title spec in D-020 ("purple background, no imagery, the line as headline").
+
+**Context:** The Discovery deck had its own dark purple title slide, so it looked different from Demo. Tobias wants one layout for both: the original cover with gradients.
+
+**Decision:**
+- Both decks open with the original v0.2 cover: the peach-to-lavender gradient, "Simployer × *Customer*", and the line underneath.
+- The chip shows occasion · meeting date · rep, so the Discovery requirement of customer, date and rep on the title is still met.
+- The picture bar is available on the cover too.
+
+**Consequences:**
+- The Discovery rule is now v3. Example decks refresh automatically, and the rep's own decks show *Rebuild with v3*.
+- Old decks with the dark title already render with the shared cover.
+
+**Revisit if:** the pilot wants a stronger visual difference between a discovery meeting and a demo.

@@ -304,7 +304,7 @@ Seed rules (prototype `PRULES`):
 
 | Rule | Goal | Recipe | CTA |
 |---|---|---|---|
-| Sales · Discovery meeting | Learn about the prospect; earn the demo | title (the line) → today is about you → the insight → five discovery questions → one proof quote → next step: the demo → thank you/contact · *backup:* the how · *appendix:* who we are, CFO proof, product overview | Book the demo before the call ends |
+| Sales · Discovery meeting | Learn about the prospect; earn the demo | cover → today is about you → the insight → five discovery questions → one proof quote → next step: the demo → thank you/contact · *backup:* the how · *appendix:* who we are, CFO proof, product overview | Book the demo before the call ends |
 | Sales · Demo | Show how Simployer does their work | cover → heard → features → coming soon → story → why → next → thank you/contact | Book a test week with two managers |
 | Sales · Follow-up | Close the open questions | cover → heard → features → coming soon → why → next | Agree a start date |
 | CSM · QBR | What's new that fits them | cover → heard → features → coming soon → next | Pick one routine to switch on before the next QBR |
@@ -315,7 +315,7 @@ Seed rules (prototype `PRULES`):
 
 | # | Slide | Content |
 |---|---|---|
-| 1 | Title | The line on a purple background. Under it: customer, meeting date (from the brief), rep name (from the picture bar). |
+| 1 | Title | The same original gradient cover as Demo ([D-022](DECISIONS.md)): "Simployer × *Customer*", the line underneath, and occasion · meeting date · rep in the chip. |
 | 2 | Today is about you | Your reality · what it costs · whether there's a fit. Outcome: a demo built on your setup, or an honest "not a fit". |
 | 3 | The insight | Story step 1 ("The role grew. The work never left.") plus story step 2 as one line, ending with "Does that match your week?" |
 | 4 | Discovery | "Five things we want to understand." Five rows (where the work happens, the admin, the worry, the signal, if it just worked). The full question bank and the MEDDICC "how you decide" questions live in the speaker notes only. |

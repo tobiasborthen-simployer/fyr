@@ -7,6 +7,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Changed**
+- Discovery and Demo share one cover: the original gradient cover ("Simployer × Customer", the line, and occasion · date · rep). The dark "line" title is gone (D-022).
 - Navigation is split into an org area (Presentations, My presentations, Product truth, Battlecards, Library) and a PMM workspace (Home, Releases, Launch packs, Truth editor, Battlecards, Marketing Remix, Automations).
 - The six-role switcher is replaced by "View as: PMM workspace / Org viewer".
 - **Create:**
