@@ -304,16 +304,30 @@ Seed rules (prototype `PRULES`):
 
 | Rule | Goal | Recipe | CTA |
 |---|---|---|---|
-| Sales · Discovery meeting | Learn about the prospect; show Simployer in short | cover → Simployer in short → questions → (features) → (coming soon) → story → next | Book a demo built on what you told us |
-| Sales · Demo | Show how Simployer does their work | cover → heard → features → coming soon → story → why → next | Book a test week with two managers |
+| Sales · Discovery meeting | Learn about the prospect; earn the demo | title (the line) → today is about you → the insight → five discovery questions → one proof quote → next step: the demo → thank you/contact · *backup:* the how · *appendix:* who we are, CFO proof, product overview | Book the demo before the call ends |
+| Sales · Demo | Show how Simployer does their work | cover → heard → features → coming soon → story → why → next → thank you/contact | Book a test week with two managers |
 | Sales · Follow-up | Close the open questions | cover → heard → features → coming soon → why → next | Agree a start date |
 | CSM · QBR | What's new that fits them | cover → heard → features → coming soon → next | Pick one routine to switch on before the next QBR |
 | PS · Kickoff | Get managers ready | cover → heard → features → coming soon → next | Agree the go-live date |
 | Management · Leadership meeting | Capacity without another hire | cover → heard → why → features → coming soon → next | Agree a decision date |
 
-**New slide types for Discovery**
-- **Simployer in short:** the line, the reason, the how, the three pillars and the scale proof, all from the Messaging Framework.
-- **Questions for them:** set per rule and per language by PMM.
+**Discovery meeting (D-020).** Seven slides in the main flow, one message each, with the rep's prompts in the speaker notes. Per PMM's flow from 28 Oct:
+
+| # | Slide | Content |
+|---|---|---|
+| 1 | Title | The line on a purple background. Under it: customer, meeting date (from the brief), rep name (from the picture bar). |
+| 2 | Today is about you | Your reality · what it costs · whether there's a fit. Outcome: a demo built on your setup, or an honest "not a fit". |
+| 3 | The insight | Story step 1 ("The role grew. The work never left.") plus story step 2 as one line, ending with "Does that match your week?" |
+| 4 | Discovery | "Five things we want to understand." Five rows (where the work happens, the admin, the worry, the signal, if it just worked). The full question bank and the MEDDICC "how you decide" questions live in the speaker notes only. |
+| 5 | Proof | One customer quote with no headline. All three are built in (Betao · admin, Kaffebrenneriet · worry, Cflow · whole offer); the rep picks one and the other two are hidden. |
+| 6 | Next step | "A demo built on what you just told us": what we'll show (prefilled from their pains), who should be there, when. |
+| 7 | Thank you / contact | Meeting date and the rep's photo and contact details. |
+| B1 | Backup: the how | Sia and HR experts, one real task each, plus the Automation Studio proof line. Hidden. |
+| A | Appendix | Who we are (12,000+, 1.2 million, 40 years, EU) · CFO proof (**locked hidden until finance approves**) · product overview ("HR system" belongs here). Hidden. |
+
+**Hidden slides.** Any slide can be hidden with the eye on its thumbnail. Hidden slides stay in the deck but are skipped by Present, Open in new tab and PDF. Backup and appendix slides are grouped under their own labels. Rules set which slides start hidden.
+
+**Picture bar.** On the title and contact slides, the inspector shows a row of photos with names. Clicking yours puts your photo, name, title, email and phone on the contact slide and your name on the title slide. Fyr remembers your choice for your next decks. In the app, the people and their details come from Microsoft profiles.
 
 v0.2 had none of these. Every deck followed one fixed order.
 

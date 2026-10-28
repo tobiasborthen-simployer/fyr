@@ -26,11 +26,39 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
 | Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Thea | 4 Nov | Open |
 | Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Thea | 4 Nov | Open |
+| Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow | Content | Tobias | 4 Nov | Open |
+| Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Thea / Linda | 4 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias / Thea | 4 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-28 — Discovery meeting rebuilt to PMM's flow, picture bar (D-020)
+- **Done:**
+  - **Discovery meeting** follows Tobias's flow:
+    - Main flow: title (the line, customer, meeting date, rep), today is about you, the insight (story steps 1–2 plus "Does that match your week?"), five discovery questions, one proof quote, next step (a demo built on what you told us), thank you/contact.
+    - Hidden by default: backup "the how" and the appendix (who we are, CFO proof, product overview).
+    - Speaker notes per slide; the discovery slide's notes hold the full question bank and the MEDDICC questions.
+  - **Hidden slides:**
+    - An eye toggle on every thumbnail. Backup and appendix are grouped under their own labels.
+    - Present, Open in new tab and PDF skip hidden slides.
+    - The CFO slide is locked hidden while the 1,600-hours figure isn't approved in the framework.
+  - **Proof quote picker:** the rep picks Betao (admin), Kaffebrenneriet (worry) or Cflow (whole offer); the other two hide. Kaffebrenneriet and Cflow are flagged until their content is in place.
+  - **Picture bar** on the title and contact slides: click your photo and your name, title, email, phone and photo go on the slides. Fyr remembers you for the next deck. The four example people use the ad photos, cropped to the face.
+  - **Demo** now ends with the thank-you/contact slide.
+  - **Meeting date** in the brief, shown on the title and contact slides (no more fixed "20 October").
+  - **Rules editor:** discovery headline and "Label | question" rows per language, an eye per recipe slide for "hidden by default", and speaker notes per slide.
+  - The framework snapshot gained the story lines (EN from the framework; NO/SV as Fyr translations).
+  - **Fixed along the way:**
+    - My presentations row actions wrapped onto two lines.
+    - Two class-name clashes made the insight slide's question render as a white search box.
+- **Verified in the browser:**
+  - All 13 Discovery slides render in EN/NO/SV with no overflow.
+  - Picture bar, the remembered rep, quote picker and hide/show work, and the CFO slide stays locked.
+  - Present and PDF include only the 8 visible slides.
+  - Demo ends with contact.
+  - All rules pass their checks and publish, and every view renders with no errors. Copy check: 0 errors (warnings are "40 years" on the appendix slide, which is allowed there).
 
 ### 2026-10-28 — Saved presentations (D-019)
 - **Done:**

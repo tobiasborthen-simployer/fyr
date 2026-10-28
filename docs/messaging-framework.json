@@ -65,6 +65,28 @@
           "Nordic expertise",
           "Law checked first, HR experts behind it."
         ]
+      ],
+      "story": [
+        [
+          "The role grew. The work never left.",
+          "HR now carries culture, change and the hard conversations. The contracts, reminders and questions are all still there."
+        ],
+        [
+          "Elsewhere, software does the work.",
+          "Finance, sales and support confirm. HR still stores, reminds and answers."
+        ],
+        [
+          "The work you aspire to do.",
+          "Culture, change, the hard conversations."
+        ],
+        [
+          "Everything that still leaves the work with you.",
+          "Systems store it. Assistants answer. You still do it."
+        ],
+        [
+          "Simployer does it.",
+          "Show one real task done, one law question answered with the source, an HR expert who’s seen cases like yours, and one customer who lives it."
+        ]
       ]
     },
     "SV": {
@@ -179,13 +201,33 @@
       "category": "Ikke et raskere HR-system. Det som gjør det for deg.",
       "trust": "Nordisk lov innebygd. Ekte eksperter bak.",
       "opener": "Rollen vokste. Arbeidet ble aldri borte.",
-      "scale": "12 000+ kunder og 1,2 millioner brukere i Norden"
+      "scale": "12 000+ kunder og 1,2 millioner brukere i Norden",
+      "story": [
+        [
+          "Rollen vokste. Arbeidet ble aldri borte.",
+          "HR bærer nå kultur, endring og de vanskelige samtalene. Kontraktene, påminnelsene og spørsmålene er der fortsatt."
+        ],
+        [
+          "Andre steder gjør programvaren jobben.",
+          "HR lagrer, minner på og svarer fortsatt."
+        ]
+      ]
     },
     "SV": {
       "category": "Inte ett snabbare HR-system. Det som gör det åt dig.",
       "trust": "Nordisk lag inbyggd. Riktiga experter bakom.",
       "opener": "Rollen växte. Arbetet försvann aldrig.",
-      "scale": "12 000+ kunder och 1,2 miljoner användare i Norden"
+      "scale": "12 000+ kunder och 1,2 miljoner användare i Norden",
+      "story": [
+        [
+          "Rollen växte. Arbetet försvann aldrig.",
+          "HR bär nu kultur, förändring och de svåra samtalen. Avtalen, påminnelserna och frågorna finns kvar."
+        ],
+        [
+          "På andra håll gör mjukvaran jobbet.",
+          "HR lagrar, påminner och svarar fortfarande."
+        ]
+      ]
     }
   },
   "rules": [

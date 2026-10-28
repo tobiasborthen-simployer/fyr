@@ -25,6 +25,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Fixed**
+- My presentations: Open, Copy and Delete stay on one line.
 - Marketing Remix cards no longer overflow into the next card when a draft links to a launch pack with a long name.
 
 **Removed**
@@ -33,6 +34,13 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Discovery meeting, rebuilt (D-020):**
+  - A seven-slide flow (title, today is about you, the insight, five discovery questions, one proof quote, next step, thank you/contact), plus a hidden backup slide and appendix.
+  - Hidden slides, skipped by Present and PDF.
+  - A proof-quote picker.
+  - A picture bar for the rep's photo and contact details.
+  - The meeting date on the slides.
+  - The contact slide is also added to Demo.
 - **Saved presentations (D-019):** decks save automatically as you work. My presentations lists them with Open (continue where you left off), Copy and Delete.
 - **Editable presentations (D-017):** every slide text block can be edited, except the trust-line footer. Reps can add their own slides for case details. Edits are checked against the brand rules (a warning, never a block), can be reset per slide, and carry into Present and PDF.
 - **Sales · Discovery meeting** rule, with two new slide types: "Simployer in short" and "Questions for them".

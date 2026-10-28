@@ -44,7 +44,8 @@
 - [x] **Presentation rules (new).** Rule list and editor in the PMM workspace covering slide recipe (reorder, remove, add), must include/avoid, questions per language, tone, CTA in EN/NO/SV, and speaker-note guidance.
   - Live preview with an example customer, plus a framework check.
   - Publish with a version, New and Duplicate.
-  - 6 seeded rules, including Sales · Discovery meeting. No feature-count limits (D-018).
+  - 6 seeded rules, including Sales · Discovery meeting (new 7-slide flow with backup and appendix, D-020). No feature-count limits (D-018).
+  - Hidden slides, a proof-quote picker, a picture bar for the rep's photo and contact details, and the meeting date on the slides.
 - [x] **Create.** The meeting picker is replaced by company name and typed pains (optional, with "Fill with example"). The rep picks a rule on the Create home and in the brief. `buildDeck` follows the rule's recipe, and the rule's CTA and guidance show in the deck. Reps can edit all slide text and add their own slides (D-017).
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
@@ -75,6 +76,7 @@
 
 ## M4 — Create + Remix + Automations (19 – 25 Nov)
 - [ ] Presentation rules: CRUD and the 6 seeded rules.
+- [ ] Rep photo and contact details from the Microsoft (Entra) profile for the picture bar.
 - [ ] Decks saved to the `Deck` table as the rep works (slides, edits, own slides, brief), listed in My presentations with open / copy / delete, and rendered into the PDF.
 - [ ] Create: home, brief, generate (recipe-driven), studio (edit, reorder, notes, message check), present, open in a tab, and My presentations.
 - [ ] Real PDF export (server-side headless Chromium, one page per 16:9 slide).

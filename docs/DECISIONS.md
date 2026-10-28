@@ -350,3 +350,28 @@ Details are in PARKED.md.
 - App (M4): each deck is a `Deck` record on the rep's account (SPEC §5), available on any device.
 
 **Revisit if:** reps want to share a deck with a colleague. That needs sharing and permissions on `Deck`.
+
+## D-020 — Discovery meeting follows PMM's seven-slide flow; contact slide in Demo
+`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the first Discovery recipe (cover → Simployer in short → questions → features…) from D-018.
+
+**Context:** Tobias gave the discovery-call flow: seven slides with one message each, the rep's prompts in the notes, one backup slide and an appendix.
+
+**Decision:**
+- **Main flow:** title (the line), today is about you, the insight, five discovery questions (MEDDICC questions in the notes only), one proof quote, next step, thank you/contact.
+- **Hidden by default:** backup "the how" and the appendix (who we are, CFO proof, product overview).
+- **Proof:** all three quotes are built in; the rep keeps one and the other two are hidden.
+- **The CFO slide is locked hidden** until finance approves the figures in the framework.
+- **Demo** also ends with the thank-you/contact slide.
+- **Picture bar:** reps add their own photo and contact details by clicking their picture.
+- **Hidden slides** are a general feature: skipped in Present, the new-tab view and PDF.
+
+**Consequences:**
+- The "Simployer in short" slide stays available but is no longer used by Discovery.
+- Content still needs sign-off:
+  - Kaffebrenneriet quote needs a named person
+  - Cflow quote text is missing
+  - NO/SV discovery copy is Fyr's translation
+- Example people and photos in the prototype; the app uses Microsoft profiles.
+
+**Revisit if:** the pilot shows reps routinely un-hiding the backup slide. If so, it belongs in the main flow.
