@@ -1,0 +1,34 @@
+# CLAUDE.md — working rules for Fyr
+
+Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3**, a downsized rebuild of the v0.2 prototype. The source of truth for scope is [docs/SPEC.md](docs/SPEC.md); for sequencing, [docs/PLAN.md](docs/PLAN.md).
+
+## Before starting work
+1. Read the top of [docs/PROGRESS.md](docs/PROGRESS.md): the status board, open items and latest log entry.
+2. Check [docs/DECISIONS.md](docs/DECISIONS.md) for anything relevant to the task.
+3. Work on the current milestone branch (`m1-prototype`, `m2-foundation`, …), not on `main`.
+
+## Scope guard
+- v0.3 builds only what is in SPEC.md.
+- Do **not** re-add anything listed in [docs/PARKED.md](docs/PARKED.md):
+  - Market Signals, Activity Log, Adoption, Insights
+  - tl;dv, Freshdesk, Synapse / Sales Insights, Salesforce, Planhat, HubSpot, In-app, ElevenLabs, Slack
+  - Training, Team / Rituals, Requests, role switcher, non-deck Create types
+- If a request would bring one of these back, say so. Bringing it back needs a new DECISIONS entry first.
+- The only external dependencies are **Linear** and the **Claude API**.
+- Org-facing areas are only Create (Presentations), Product Truth, Battlecards and Library.
+
+## Ending every working session (log discipline)
+1. **PROGRESS.md:** add a dated entry at the top of the Log (done / next / blockers / decisions), and update the status board and open items.
+2. **DECISIONS.md:** add a `D-NNN` entry for every decision made. Entries are append-only; to change a past decision, add a new entry and mark the old one `Superseded by D-xxx`.
+3. **CHANGELOG.md:** add the user-visible changes under `[Unreleased]` (Added / Changed / Removed).
+4. Commit with a clear message, and push to the milestone branch.
+
+## Files and folders
+- `reference/v0.2/`: the v0.2 prototype, **read-only**. Never edit it; copy from it. SPEC.md cites line numbers into its `index.html`.
+- `prototype/v0.3/`: the M1 slim prototype, a single HTML file plus media, published as a claude.ai artifact.
+- `app/`: the real app from M2. Next.js (App Router, TS) on Vercel, Postgres (Neon) via Drizzle, Auth.js + Microsoft Entra ID, Linear API, Claude API, Vercel Blob.
+
+## Content rules
+- Content languages are EN, NO and SV. Every approvable item has a status per language.
+- AI drafts are always labelled as drafts and never shown in org-facing areas before approval.
+- Copy follows the Simployer 2026 tone of voice and the Brand rules in Marketing Remix.
