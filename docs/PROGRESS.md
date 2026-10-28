@@ -32,6 +32,15 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-28 — Fix: Marketing Remix cards overflowing
+- **Bug (reported by Tobias):** on the LinkedIn tab, the Automation Studio card spilled into the next card. Its screenshot and text ran past the edge.
+- **Cause:** the "Approve in launch pack · <full release name>" button can't wrap. Each card's single column grew to fit it, wider than the card.
+- **Fix:**
+  - The columns in Remix cards (LinkedIn, ad sets, vertical ads) can no longer grow wider than the card.
+  - The pack button is now short: *Approve in launch pack* / *Open launch pack* / *Create launch pack*. The release name is in the tooltip and in the "Built from" line.
+  - "Built from" wraps long names.
+- **Verified:** no element extends past its card on any Remix tab or in the launch pack at 1440, 1000 and 375 px wide, and there is no sideways page scroll. The vertical-ad screenshot bleed is clipped inside its banner by design.
+
 ### 2026-10-28 — M1: Editable slides, Discovery meeting, no feature limits
 - **Done:**
   - **Editing (D-017):**

@@ -170,7 +170,7 @@ a:hover { text-decoration: underline; }
 .li .acts span { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; color: rgba(0,0,0,.6); }
 .li .acts svg { width: 18px; height: 18px; stroke: rgba(0,0,0,.6); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .lip-f { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12.5px; color: var(--sub); }
-.vset { padding: 18px; display: grid; gap: 14px; }
+.vset { padding: 18px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
 /* ---------- Vertical banners, LinkedIn 1200 × 628 ---------- */
 .vb { position: relative; aspect-ratio: 1.91 / 1; width: 100%; container-type: inline-size; overflow: hidden; border-radius: 10px; font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #1F1B2E; background: var(--vbg, linear-gradient(150deg, #FFE5D6, #F7D5E4 50%, #E3D5F3)); }
 .vb * { box-sizing: border-box; }
@@ -802,7 +802,7 @@ td b { font-weight: 600; color: var(--ink); }
 .ctx .checks div { color: #E9E4F4; }
 /* ---------- Channels ---------- */
 .soc { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.soc-i { padding: 14px; display: grid; gap: 10px; align-content: start; justify-items: start; }
+.soc-i { padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; align-content: start; justify-items: start; }
 .soc-i .shot { width: 100%; box-sizing: border-box; }
 .soc-h { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; width: 100%; }
 .soc-h b { font-weight: 600; color: var(--ink); }
@@ -810,7 +810,7 @@ td b { font-weight: 600; color: var(--ink); }
 .soc-i p { font-size: 14px; }
 .ads { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 .adsets { display: grid; gap: 18px; }
-.adset { padding: 18px; display: grid; gap: 14px; }
+.adset { padding: 18px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
 .ad { overflow: hidden; display: grid; align-content: start; }
 .banner { position: relative; aspect-ratio: 1.91 / 1; overflow: hidden; background: #2D0C69; }
 .banner img { position: absolute; right: -18%; top: 16%; width: 78%; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
@@ -2397,8 +2397,8 @@ function rxSources(x, type) {
 function rxCheck(text) { const hit = MF.avoid.find(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(text)); return hit ? `<span class="pill warn">${ico('i-alert')}${hit.why}</span>` : `<span class="pill live">${ico('i-check')}Brand rules</span>`; }
 function rxFoot(x, type) {
   const rel = x.rid && relById(x.rid);
-  const pack = rel ? (PACKS[x.rid] ? `<button class="btn btn-line btn-sm" data-openpack="${x.rid}">${ico('i-rocket')}${x.st === 'draft' ? 'Approve in launch pack' : 'Launch pack'} · ${rel.short}</button>` : `<button class="btn btn-line btn-sm" data-newpack="${x.rid}">${ico('i-rocket')}Create launch pack · ${rel.short}</button>`) : '<span class="pill line">Evergreen · approved here</span>';
-  return `<div style="display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px"><small class="muted"><b>Built from</b> ${rxSources(x, type).join(' · ')}</small><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${rxCheck(rxText(x, type))}${pack}</div></div>`;
+  const pack = rel ? (PACKS[x.rid] ? `<button class="btn btn-line btn-sm" data-openpack="${x.rid}" title="Launch pack: ${esc(rel.short)}">${ico('i-rocket')}${x.st === 'draft' ? 'Approve in launch pack' : 'Open launch pack'}</button>` : `<button class="btn btn-line btn-sm" data-newpack="${x.rid}" title="Create the launch pack for ${esc(rel.short)}">${ico('i-rocket')}Create launch pack</button>`) : '<span class="pill line">Evergreen · approved here</span>';
+  return `<div style="display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px;width:100%;min-width:0"><small class="muted" style="overflow-wrap:anywhere"><b>Built from</b> ${rxSources(x, type).join(' · ')}</small><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${rxCheck(rxText(x, type))}${pack}</div></div>`;
 }
 // Remix drafts for one release, shown inside its launch pack
 function rxPackSection(rid) {

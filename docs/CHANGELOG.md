@@ -24,6 +24,9 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Automations:** an overview of the five v0.3 automations, with runs, approval rate and estimated time saved.
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
+**Fixed**
+- Marketing Remix cards no longer overflow into the next card when a draft links to a launch pack with a long name.
+
 **Removed**
 - Feature-count limits and the coming-soon cap from Presentation rules (D-018).
 - 362 CSS rules (about 28 KB) that only styled cut modules. No visible change.
