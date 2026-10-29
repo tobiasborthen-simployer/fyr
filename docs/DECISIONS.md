@@ -53,7 +53,7 @@ Append-only. Newest entries go at the bottom.
 **Revisit if:** stakeholders outside PMM need to follow along. In that case, mirror the files to a shared doc or artifact.
 
 ## D-003 — Access: PMM editors + approver + org viewers; no per-role views
-`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-28` · **Status:** Superseded by D-023 (access levels) and D-024 (approver) · **Owner:** Tobias
 
 **Context:** v0.2 had six role views (sales, CSM, PS, CC, management, PMM), each with different navigation.
 
@@ -82,7 +82,7 @@ Viewers see only Create (Presentations), Product Truth, Battlecards and Library.
 **Revisit if:** we expand into new markets (DK, FI).
 
 ## D-005 — Stack: Next.js + Vercel + Postgres + Entra SSO + Linear + Claude API
-`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-28` · **Status:** Accepted, auth part superseded by D-023 · **Owner:** Tobias
 
 **Context:** The app needs to be live in about 3 weeks of build time, with real auth, data and a Linear sync.
 
@@ -187,7 +187,7 @@ Details are in PARKED.md.
 **Revisit if:** Tobias wants any one of these back. That needs its own decision.
 
 ## D-010 — Who approves SV wording
-`2026-10-28` · **Status:** Proposed · **Owner:** Thea
+`2026-10-28` · **Status:** Superseded by D-024 · **Owner:** Tobias
 
 **Context:** In v0.2, Thea approved NO and Linda approved SV (`FLM`).
 
@@ -409,3 +409,55 @@ Details are in PARKED.md.
 - Old decks with the dark title already render with the shared cover.
 
 **Revisit if:** the pilot wants a stronger visual difference between a discovery meeting and a demo.
+
+## D-023 — Own portal with email sign-in replaces Entra SSO
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the auth part of D-005 (Auth.js + Microsoft Entra ID) and the access levels of D-003.
+
+**Context:**
+- Entra SSO needed an app registration from IT and was an M2 risk.
+- Tobias wants Fyr to keep its own users in a portal.
+
+**Decision:**
+- **Registration.** People register themselves with full name, a **@simployer.com** email (exact domain only) and a role: PM, PMM, Sales or Management.
+- **Sign-in by email.** Each email holds a 6-digit code and a link.
+  - The link opens a confirmation page, so Outlook Safe Links can't use it up.
+  - Codes and tokens expire after 15 minutes, work once, and are stored only as hashes.
+  - Sessions last 30 days.
+- **Access by role:**
+  - Sales and Management: viewer, straight away.
+  - **PM:** viewer + Release plan (Releases list and map, read-only), after admin approval.
+  - **PMM:** editor, after admin approval.
+  - Until approval, PM and PMM have viewer access.
+- **Approver and admin** are flags set in the portal. Nobody can pick them at registration.
+- **The portal lives inside Fyr.** People & access is in the PMM workspace for admins, and a profile holds name, title, phone and photo (feeding the picture bar).
+- **Data:** one Neon Postgres via Drizzle, with a `portal` schema (users, login_tokens, sessions) and a `fyr` schema (content).
+- **Email:** sent through Resend from a Simployer sending subdomain.
+
+**Consequences:**
+- The IT request changes from an Entra app registration to DNS records (SPF/DKIM) for the sending subdomain.
+- Auth is a small custom implementation instead of Auth.js.
+- The prototype mocks the full flow with a simulated email.
+
+**Revisit if:** IT later requires Microsoft sign-in. Entra can then be added as a second way in, on the same users table.
+
+## D-024 — Tobias is the manager and approver; Thea is out of scope
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the approver row of D-003, and D-010.
+
+**Context:** The spec and the prototype named Thea as approver, as sign-off for M1, and as owner of approvals and pack items. Tobias is the manager.
+
+**Decision:**
+- Tobias is the approver and the admin.
+- Thea is removed from the spec, the plan, the working rules and the prototype.
+  - Approval stamps read "Approved by Tobias".
+  - Queues read "waiting for approval".
+  - The battlecards are owned by "PMM".
+  - Pack items Thea owned move to Tobias.
+- Linda reviewing SV wording stays a proposal for Tobias to confirm.
+
+**Consequences:**
+- One approver, so approval bandwidth is a risk for content migration (see PLAN risks).
+- Older log entries and decision texts still mention Thea, because the logs are append-only. This entry records the change.
+
+**Revisit if:** more approvers are needed. An admin can set the approver flag on anyone in the portal.

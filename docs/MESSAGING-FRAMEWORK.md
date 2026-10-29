@@ -27,7 +27,7 @@ It runs in the Claude desktop app. If the app is closed on Monday morning, it ru
 1. Re-read the [framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o).
 2. Update `docs/messaging-framework.json`, and set `source.retrieved` and `source.version` to today.
 3. Run `node tools/sync-framework.mjs`. It syncs the prototype and lists every line that now breaks a rule.
-4. Fix what it flags. Wording you rewrite goes back to *waiting for Thea*, so nothing reaches the org unapproved.
+4. Fix what it flags. Wording you rewrite goes back to *waiting for approval*, so nothing reaches the org unapproved.
 5. Log it:
    - CHANGELOG: "Synced Messaging Framework <date>"
    - PROGRESS: what changed
@@ -49,11 +49,11 @@ The copy check must pass (0 errors) before any commit that touches customer-faci
 | Words to use, surface guide, proofs | Marketing Remix → Brand rules |
 | Sales deck surface guide | Deck opens with the line, never with features |
 
-## Gaps and open questions (need PMM / Thea)
+## Gaps and open questions (need PMM)
 
 - **NO/SV category row and trust line.** The framework has these only in English. Fyr uses its own translations (`fyrTranslations`). They are marked *Fyr translation · needs approval* in Product truth.
 - **Norwegian is "venter på språkvask"** (awaiting language review) in the source. Re-sync when the review is done.
 - **Customer quote** (Julia Amin, Betao) exists only in English, so NO/SV decks show it in English.
 - **Ad banner tag "HR-systemet for [bransje]".** The framework says "HR system" stays out of the hero. Is the tag OK as a small label, or should it go?
 - **"AI coach for surveys"** (coming soon) has "AI" in a feature name. Keep the Linear name, or rename it?
-- **Sia and Sick-leave follow-up wording** was rewritten to the framework. Both are now *waiting for Thea* in all three languages.
+- **Sia and Sick-leave follow-up wording** was rewritten to the framework. Both are now *waiting for approval* in all three languages.

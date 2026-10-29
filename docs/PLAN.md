@@ -12,7 +12,7 @@
 | # | Milestone | Dates | Exit criteria |
 |---|---|---|---|
 | **M0** | Project setup | 28 Oct | Repo, spec, plan and logs seeded; v0.2 baseline in `reference/v0.2/` |
-| **M1** | Slim v0.3 prototype | 29 Oct – 4 Nov | v0.3 prototype published as an artifact; **UX sign-off by Tobias + Thea**, logged as a decision |
+| **M1** | Slim v0.3 prototype | 29 Oct – 4 Nov | v0.3 prototype published as an artifact; **UX sign-off by Tobias**, logged as a decision |
 | **M2** | App foundation | 5 – 11 Nov | App deployed on Vercel with SSO and roles; schema and seed in place; Linear sync live; Releases list and map working on real data |
 | **M3** | PMM core | 12 – 18 Nov | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with Claude drafts; Battlecards; Library |
 | **M4** | Create + Remix + Automations | 19 – 25 Nov | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats |
@@ -40,7 +40,7 @@
 - [x] **Marketing Remix (new).** Renamed from Channels, with videos, the HubSpot send and the launch-day check removed.
   - Brand rules tab read from the Messaging Framework, with a "Check a text" box.
   - Every draft has a "Built from" line, a brand-rules check, and its launch pack link (*Approve in launch pack* / *Create launch pack* / *Evergreen*).
-  - Launch packs list their Remix drafts for Thea to approve.
+  - Launch packs list their Remix drafts for the approver (Tobias).
 - [x] **Presentation rules (new).** Rule list and editor in the PMM workspace covering slide recipe (reorder, remove, add), must include/avoid, questions per language, tone, CTA in EN/NO/SV, and speaker-note guidance.
   - Live preview with an example customer, plus a framework check.
   - Publish with a version, New and Duplicate.
@@ -51,7 +51,7 @@
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [x] Remove the CSS of the cut modules. 362 rules removed, about 28 KB. A style fingerprint of 36 screens is unchanged.
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
-- [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it with Thea and log sign-off and changes in DECISIONS.
+- [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it, and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** request the Entra app registration from IT, a Linear API key/webhook, a Claude API key and budget, and a Vercel project.
 
 ## M2 — App foundation (5 – 11 Nov)
@@ -85,7 +85,7 @@
 - [ ] PMM Home queue.
 
 ## M5 — Pilot + go-live (25 – 27 Nov)
-- [ ] Content migration: Thea approves the framework and feature truth in EN/NO/SV, plus battlecards and presentation rules.
+- [ ] Content migration: Tobias approves the framework and feature truth in EN/NO/SV, plus battlecards and presentation rules.
 - [ ] Pilot with 3–5 users (sales, CSM, PS), using a feedback list in PROGRESS.
 - [ ] Fix blockers only. Anything else goes to the v0.4 backlog.
 - [ ] Go-live, tag `v0.3.0`, update CHANGELOG, and write a short announcement.
@@ -99,6 +99,6 @@
 | Linear API access and field mapping (tier and visibility are labels/custom fields) | Blocks M2 | Confirm the fields against `LINEAR_RAW` in M1 and get the API key in week 1 | Tobias |
 | Entra app registration needs IT | Blocks M2 auth | Request it on day 1; fall back to email magic links behind an allowlist | Tobias |
 | Claude API key, budget and data-policy approval | Blocks M3 drafting | Request it in week 1; stub drafts until approved | Tobias |
-| Thea's approval bandwidth for migrating content | Delays M5 | Start content review during M3; approve in batches | Thea |
+| Approval bandwidth for migrating content (one approver) | Delays M5 | Start content review during M3; approve in batches | Tobias |
 | PDF fidelity of 16:9 slides | Rep trust | Spike PDF rendering early in M4; keep "Open in new tab → print" as a fallback | Dev |
 | Scope creep (cut modules coming back) | Misses the month | Scope guard in CLAUDE.md: re-adding a cut item needs a DECISIONS entry | Tobias |

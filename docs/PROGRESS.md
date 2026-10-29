@@ -18,17 +18,17 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Item | Type | Owner | Due | Status |
 |---|---|---|---|---|
 | Confirm D-009 (consequential drops) | Decision | Tobias | 30 Oct | Open |
-| Confirm D-010 (SV approver), D-012 (Remix channels), D-013 (PMM Home), D-014 (go-live date) | Decision | Tobias / Thea | 4 Nov | Open |
+| Confirm D-010 (SV approver), D-012 (Remix channels), D-013 (PMM Home), D-014 (go-live date) | Decision | Tobias | 4 Nov | Open |
 | Request Entra ID app registration from IT | Admin | Tobias | 30 Oct | Open |
 | Linear API key + webhook access; confirm tier/visibility fields | Admin | Tobias | 30 Oct | Open |
 | Claude API key + budget + data-policy OK | Admin | Tobias | 30 Oct | Open |
 | Vercel project (personal or Simployer team) | Admin | Tobias | 4 Nov | Open |
 | Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
-| Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Thea | 4 Nov | Open |
-| Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Thea | 4 Nov | Open |
+| Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Tobias | 4 Nov | Open |
+| Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Tobias | 4 Nov | Open |
 | Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow | Content | Tobias | 4 Nov | Open |
-| Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Thea / Linda | 4 Nov | Open |
-| Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias / Thea | 4 Nov | Open |
+| Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Tobias (Linda for SV) | 4 Nov | Open |
+| Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
 
 ## Log
 
