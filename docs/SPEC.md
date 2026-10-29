@@ -310,7 +310,7 @@ Seed rules (prototype `PRULES`):
 | Rule | Goal | Recipe | CTA |
 |---|---|---|---|
 | Sales · Discovery meeting | Learn about the prospect; earn the demo | cover → today is about you → the insight → five discovery questions → one proof quote → **timeline** (Demo … Go-live) → thank you/contact · *backup:* the how · *appendix:* who we are, CFO proof, product overview | Agree on a date for the demo |
-| Sales · Demo | Show how Simployer does their work | cover → heard → features → coming soon → story → why → **timeline** (Test week … Go-live) → thank you/contact | Book a test week with two managers |
+| Sales · Demo | Show how Simployer does their work | cover → heard → features → coming soon → story → why → **timeline** (Demo ✓ … Go-live) → thank you/contact | Agree on a date for the proposal |
 | Sales · Follow-up | Close the open questions | cover → heard → features → coming soon → why → next | Agree a start date |
 | CSM · QBR | What's new that fits them | cover → heard → features → coming soon → next | Pick one routine to switch on before the next QBR |
 | PS · Kickoff | Get managers ready | cover → heard → features → coming soon → next | Agree the go-live date |
@@ -325,18 +325,19 @@ Seed rules (prototype `PRULES`):
 | 3 | The insight | Story step 1 ("The role grew. The work never left.") plus story step 2 as one line, ending with "Does that match your week?" |
 | 4 | Discovery | "Five things we want to understand." Five rows (where the work happens, the admin, the worry, the signal, if it just worked). The full question bank and the MEDDICC "how you decide" questions live in the speaker notes only. |
 | 5 | Proof | One customer quote with no headline. All three are built in (Betao · admin, Kaffebrenneriet · worry, Cflow · whole offer); the rep picks one and the other two are hidden. |
-| 6 | Next steps: timeline | "A demo built on what you just told us" over a timeline that starts at Demo and ends at Go-live by default ([D-026](DECISIONS.md)). |
+| 6 | Next steps: timeline | "A demo built on what you just told us" over a timeline that always starts at Demo and ends at Go-live ([D-026](DECISIONS.md), [D-028](DECISIONS.md)). |
 | 7 | Thank you / contact | Meeting date and the rep's photo and contact details. |
 | B1 | Backup: the how | Sia and HR experts, one real task each, plus the Automation Studio proof line. Hidden. |
 | A | Appendix | Who we are (12,000+, 1.2 million, 40 years, EU) · CFO proof (**locked hidden until finance approves**) · product overview ("HR system" belongs here). Hidden. |
 
 **Next-steps timeline ([D-026](DECISIONS.md)).** It replaces the old next-step slides in Discovery and Demo.
 - A clean horizontal timeline. Each step has a name, a date and an optional one-line description ([D-027](DECISIONS.md)). Dates are free text ("12 Nov", "Week 47" or empty).
-- The first step is highlighted as the next one; the last ends in the go-live colour. The rule's call to action sits underneath.
+- **Fixed ends ([D-028](DECISIONS.md)):** every timeline starts with **Demo** and ends with **Go-live** (NO/SV: I drift). The two ends can't be renamed, moved or removed; their dates and lines can be edited. PMM's default steps must follow this too (a rule check).
+- **Done steps:** a step that has happened is marked, not removed: a filled dot with a ✓. The first open step is highlighted as the next one. The last ends in the go-live colour. The rule's call to action sits underneath.
 - **Defaults:** PMM sets the headline and default steps (`Name | one line`) per rule and language in Presentation rules.
-  - Discovery: Demo → Test week → Proposal → Agreement → Go-live.
-  - Demo: Test week → Proposal → Agreement → Implementation → Go-live.
-- **Per deck:** reps rename steps, set dates and descriptions, add (up to 8; new steps go in before the last), remove (down to 1) and reorder in the side panel. The slide updates as they type. Demo-first and Go-live-last are only defaults.
+  - Discovery: Demo → Proposal → Agreement → Go-live.
+  - Demo: Demo ✓ (dated with the meeting date) → Proposal → Agreement → Implementation → Go-live.
+- **Per deck:** reps set dates and descriptions, mark steps done (click the dot), and rename, add (up to 8; new steps go in before Go-live), remove and reorder the steps between Demo and Go-live. They do this in the side panel or by typing on the slide. The slide updates as they type.
 - Text scales down as steps are added, so 8 steps fit without breaking words.
 
 **Hidden slides.** Any slide can be hidden with the eye on its thumbnail. Hidden slides stay in the deck but are skipped by Present, Open in new tab and PDF. Backup and appendix slides are grouped under their own labels. Rules set which slides start hidden.

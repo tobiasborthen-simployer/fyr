@@ -37,6 +37,25 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — Timeline runs from Demo to Go-live, done steps marked; no test week (D-028, D-029)
+- **Done:**
+  - **Fixed ends:**
+    - Every timeline starts with Demo and ends with Go-live (NO/SV: I drift).
+    - The two ends can't be renamed, moved or removed. Their dates and lines can be edited.
+    - Saved decks get the fixed ends added when they open.
+    - A new rule check makes PMM's defaults follow the same pattern.
+  - **Done steps:**
+    - Click a dot to mark a step done. On the slide it gets a filled dot with a ✓, and the next open step is highlighted.
+    - The Demo deck starts with Demo already done, dated with the meeting date.
+  - **Test week removed everywhere:**
+    - Timelines (EN/NO/SV), the Demo call to action (now "Agree on a date for the proposal"), and the older next-step slide used by Follow-up and QBR ("Get a proposal").
+    - SPEC is updated.
+  - Rule versions: Discovery v6, Demo v4.
+- **Verified:**
+  - Tested in the browser: Discovery and Demo in EN, NO and SV; the fixed ends can't be moved or removed; moves stay between the ends; marking done and undoing works; older decks are fixed up.
+  - "Test week" no longer appears anywhere. Copy check: 0 errors.
+- **Decisions:** D-028 (fixed ends, done marks) and D-029 (no test week).
+
 ### 2026-10-29 — Lighter timeline editor; slide list keeps its place
 - **Done:**
   - **Slide list:** it no longer jumps back to slide 1 when you click, type or hide a slide. It keeps its scroll position and only moves if the selected slide is out of view.

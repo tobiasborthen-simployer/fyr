@@ -7,6 +7,8 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Changed**
+- The next-steps timeline always starts with Demo and ends with Go-live. Steps that have happened are marked with a ✓, and the Demo deck starts with Demo ticked off (D-028).
+- "Test week" is gone. The Demo call to action is now "Agree on a date for the proposal" (D-029).
 - Tobias is the approver; Thea is removed from the scope (D-024).
 - The "View as (demo)" switch is replaced by real signed-in users.
 - Discovery and Demo share one cover: the original gradient cover ("Simployer × Customer", the line, and occasion · date · rep). The dark "line" title is gone (D-022).

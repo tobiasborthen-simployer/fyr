@@ -492,7 +492,7 @@ Details are in PARKED.md.
 **Revisit if:** managers ask for per-person reports. That needs its own decision and a new round with employee representatives.
 
 ## D-026 — Next steps as an editable timeline in Discovery and Demo
-`2026-10-29` · **Status:** Accepted; step fields superseded by D-027 · **Owner:** Tobias
+`2026-10-29` · **Status:** Accepted; step fields superseded by D-027, open ends superseded by D-028 · **Owner:** Tobias
 **Supersedes:** the Discovery next-step slide in D-020 (what we'll show / who should be there / when) and Demo's fixed three-step "next" slide.
 
 **Context:** Sales processes differ in steps and length. The next-step slides were fixed.
@@ -512,7 +512,7 @@ Details are in PARKED.md.
 **Revisit if:** reps want an owner per step (Simployer or the customer). The step model can take it.
 
 ## D-027 — Timeline steps get a one-line description
-`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-29` · **Status:** Accepted; the "Test week" example superseded by D-029 · **Owner:** Tobias
 **Supersedes:** "name and date only" in D-026.
 
 **Decision:**
@@ -528,3 +528,40 @@ Details are in PARKED.md.
   - "Go-live: Your routines run in Simployer"
 - Example decks refresh, and own decks offer *Rebuild*.
 
+## D-028 — Timeline always runs from Demo to Go-live; finished steps are marked
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** "Demo-first and Go-live-last are defaults, not locked" and "remove (down to 1)" in D-026.
+
+**Decision:**
+- **Fixed ends.** Every timeline starts with **Demo** and ends with **Go-live** (NO/SV: *I drift*).
+  - The two ends can't be renamed, moved or removed.
+  - Their date and line can be edited.
+  - Reps freely edit the steps in between (up to 8 steps in all).
+- **Done steps are marked, not removed.**
+  - A finished step gets a filled dot with a ✓. The rep clicks the dot to mark a step done, or to undo it.
+  - The first open step is highlighted as the next one. Go-live can't be marked done.
+- **The Demo rule starts with "Demo" already done,** dated with the meeting date. The rule says how many steps start as done (`tlDone`).
+
+**Consequences:**
+- The Demo rule's default is: Demo ✓ → Proposal → Agreement → Implementation → Go-live. Demo is v4 and Discovery is v6.
+- A new rule check, "Timeline starts with Demo and ends with Go-live", applies in EN, NO and SV.
+- Saved decks get the fixed ends added when they open.
+- Timeline text can also be edited directly on the slide, except the names of the two ends.
+
+**Revisit if:** a sales motion doesn't go through a demo (for example a renewal or upsell). Such a rule could set its own fixed ends.
+
+## D-029 — No "test week"
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the "Test week" step in D-026/D-027 and the Demo call to action "Book a test week with two managers".
+
+**Context:** Simployer doesn't offer a test week.
+
+**Decision:**
+- "Test week" (NO *Prøveuke*, SV *Testvecka*) and "two managers try it" are removed from every rule, slide and default.
+- Timelines:
+  - Discovery: Demo → Proposal → Agreement → Go-live.
+  - Demo: Demo ✓ → Proposal → Agreement → Implementation → Go-live.
+- The Demo call to action becomes "Agree on a date for the proposal" (NO *Bli enige om en dato for tilbudet*, SV *Bestäm ett datum för offerten*).
+- In the older next-step slide still used by Follow-up and QBR, the first point "Try it with two managers" becomes "Get a proposal: scope and price for your setup".
+
+**Consequences:** Example decks refresh, and own decks offer *Rebuild with v4/v6*. The D-027 example text that quotes the old step stays as written, because the log is append-only.
