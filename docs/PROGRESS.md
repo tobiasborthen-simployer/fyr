@@ -37,6 +37,23 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — Lighter timeline editor; slide list keeps its place
+- **Done:**
+  - **Slide list:** it no longer jumps back to slide 1 when you click, type or hide a slide. It keeps its scroll position and only moves if the selected slide is out of view.
+  - **Timeline editor:**
+    - The side panel is now a small vertical timeline.
+    - Each step shows a date line, the name and an optional line. The fields look like text until you hover over them or click into them.
+    - Long names and lines wrap instead of being cut off.
+    - Drag a dot to reorder, or use Alt + ↑ / ↓.
+    - × appears on hover.
+    - "Add step before Go-live" adds a step and puts the cursor in it.
+  - **On the slide:** step dates, names and lines can be edited directly. The panel and the thumbnail follow.
+- **Verified:**
+  - Tested in the browser: list position kept, drag, Alt + arrows, add, remove, and editing on the slide. The model, panel, thumbnail and saved deck all update.
+  - No overflow at 1280 px. Copy check: 0 errors.
+- **Next:** feedback from Tobias. Still open: whether the other four rules should use the timeline too.
+- **Decisions:** none (UX polish within D-026/D-027).
+
 ### 2026-10-29 — Timeline steps get a description (D-027)
 - **Done:**
   - Each step now has an optional one-line description under the name, as well as the name and date.

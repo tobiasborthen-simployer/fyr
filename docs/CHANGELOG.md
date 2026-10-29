@@ -28,6 +28,8 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Fixed**
+- The slide list in the deck editor no longer jumps back to slide 1 when you click or edit. It keeps its scroll position.
+- The timeline editor is lighter: a small vertical timeline with quiet fields that wrap, drag dots (or Alt + ↑ / ↓) to reorder, and × on hover. Timeline text can also be edited directly on the slide.
 - People & access: the access dropdowns (and the rules editor's "Add a slide") use the app's dropdown style instead of the browser default; checkboxes use the app's purple.
 - Saved decks, including the example decks, kept the old Discovery flow and had no contact slide in Demo. Example decks now refresh, and the rep's own decks offer *Rebuild with vN* (D-021).
 - The contact slide now starts with the signed-in rep's photo and details.

@@ -1370,6 +1370,39 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .slide .tl .tl-d { font-size: clamp(1cqw, calc(8.4cqw / var(--n)), 1.3cqw); color: #6A6377; line-height: 1.35; overflow-wrap: break-word; hyphens: manual; margin-top: -.3cqw; }
 .slide .tl strong { font-size: clamp(1.15cqw, calc(10cqw / var(--n)), 1.65cqw); font-weight: 600; color: #1F1B2E; line-height: 1.25; overflow-wrap: break-word; hyphens: auto; }
 .slide p.tl-cta { justify-self: start; margin-top: 3cqw; font-size: 1.45cqw; font-weight: 600; color: #2D0C69; background: #E9E4F4; border-radius: 99px; padding: .8cqw 1.8cqw; }
+.stage .tl time:empty::before { content: "Date"; opacity: .35; }
+.stage .tl [data-tlf] { border-radius: .4cqw; cursor: text; }
+.stage .tl [data-tlf]:hover { box-shadow: 0 0 0 2px rgba(151,115,255,.25); }
+.stage .tl [data-tlf]:focus { outline: none; box-shadow: 0 0 0 2px #6B45C9; background: rgba(151,115,255,.06); }
+.tlx { display: grid; gap: 2px; }
+.tlx-s { position: relative; display: grid; grid-template-columns: 16px minmax(0, 1fr) 22px; gap: 8px; align-items: start; padding: 6px 4px 6px 2px; border-radius: 10px; transition: background .15s; }
+.tlx-s:hover, .tlx-s:focus-within { background: rgba(255,255,255,.05); }
+.tlx-s:not(:last-child)::after { content: ""; position: absolute; left: 9px; top: 42px; bottom: -32px; width: 2px; border-radius: 2px; background: rgba(151,115,255,.4); }
+.tlx-s.last::after { display: none; }
+.tlx-dot { position: relative; z-index: 1; width: 12px; height: 12px; margin: 30px 0 0 2px; box-sizing: border-box; border-radius: 99px; background: #221646; border: 2px solid #9773FF; cursor: grab; }
+.tlx-dot:active { cursor: grabbing; }
+.tlx-s.first .tlx-dot { background: #9773FF; }
+.tlx-s.last .tlx-dot { background: #FF9573; border-color: #FF9573; }
+.tlx-s.drag { opacity: .4; }
+.tlx-s.over { box-shadow: inset 0 2px 0 #9773FF; }
+.tlx-b { display: grid; gap: 0; min-width: 0; }
+.tlx input, .tlx textarea { min-width: 0; width: 100%; box-sizing: border-box; resize: none; overflow: hidden; field-sizing: content; line-height: 1.35; border: 1px solid transparent; background: transparent; color: #fff; border-radius: 6px; padding: 4px 6px; font: inherit; transition: border-color .15s, background .15s; }
+.tlx input:hover, .tlx textarea:hover { border-color: var(--night-line); }
+.tlx input:focus, .tlx textarea:focus { outline: none; border-color: #9773FF; background: rgba(255,255,255,.06); }
+.tlx-n { font-size: 13.5px; font-weight: 600; }
+.tlx-n::placeholder { color: rgba(255,255,255,.4); font-weight: 500; }
+.tlx-d { justify-self: start; width: auto !important; max-width: 100%; field-sizing: content; min-width: 4.5em !important; font-size: 11.5px; font-weight: 600; letter-spacing: .02em; color: #CDC0EA; padding: 2px 6px !important; }
+.tlx-d::placeholder { color: rgba(205,192,234,.4); }
+.tlx-desc { font-size: 12.5px; color: #B7AECF; }
+.tlx-desc::placeholder { color: rgba(183,174,207,.45); }
+.tlx-x { width: 22px; height: 22px; margin-top: 25px; border-radius: 6px; display: grid; place-items: center; color: #B7AECF; opacity: .35; transition: opacity .15s; }
+.tlx-s:hover .tlx-x, .tlx-s:focus-within .tlx-x { opacity: 1; }
+.tlx-x:hover { background: rgba(255,255,255,.08); color: #fff; }
+.tlx-x .ico { width: 13px; height: 13px; }
+.tlx-add { display: inline-flex; align-items: center; gap: 6px; margin: 6px 0 0 22px; padding: 5px 8px; border-radius: 8px; color: #CDC0EA; font-size: 12.5px; font-weight: 500; }
+.tlx-add:hover { background: rgba(255,255,255,.06); color: #fff; }
+.tlx-add .ico { width: 13px; height: 13px; }
+.tlx-hint { display: block; margin-top: 8px; color: #9E98C4; font-size: 11.5px; line-height: 1.4; }
 .tle { display: grid; gap: 10px; }
 .tle-s { display: grid; gap: 4px; }
 .tle-desc { height: 28px; width: 100%; box-sizing: border-box; border-radius: 8px; border: 1px solid var(--night-line); background: rgba(255,255,255,.03); color: #E9E4F4; padding: 0 8px; font-size: 12px; }
@@ -1954,7 +1987,7 @@ function slideHTML(s, i, n) {
   if (s.kind === 'insight') return `<div class="slide">${wm}<div class="in" style="align-content:center"><h3 style="font-size:5cqw;max-width:18ch">${mm3.story[0][0]}</h3><p style="font-size:2cqw;max-width:52ch">${mm3.story[0][1]}</p><p class="sub2"${s.noStory2 ? ' style="display:none"' : ''}>${mm3.story[1][0]} ${mm3.story[1][1].split(/(?<=\.) /).pop()}</p><p class="bridge">${T.insightAsk}</p></div>${ft}</div>`;
   if (s.kind === 'proof') { const q = DISC_QUOTES.find(x => x.id === s.q) || DISC_QUOTES[0]; return `<div class="slide dark">${q.ok ? '' : `<span class="flag">● ${q.flag}</span>`}${wm}<div class="in" style="align-content:center"><div class="quote" style="font-size:3.4cqw;max-width:28ch">${q.text ? `“${q.text}”` : `[${q.who}: approved quote goes here]`}<small>${q.who}</small></div></div>${ft}</div>`; }
   if (s.kind === 'timeline') { const r = ruleById(d.rule), st = s.steps && s.steps.length ? s.steps : [{ name: '', date: '' }], head = (r.tlHead || {})[lg] || (r.tlHead || {}).EN || T.nextH, cta = (r.cta || {})[lg] || (r.cta || {}).EN;
-    return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3 style="max-width:24ch">${head}</h3><div class="tl" style="--n:${st.length}" lang="${{ NO: 'nb', SV: 'sv' }[lg] || 'en'}">${st.map((x, k) => `<div class="${k === 0 ? 'first' : ''} ${k === st.length - 1 && st.length > 1 ? 'last' : ''}"><time>${esc(x.date || '')}</time><i></i><strong>${esc(x.name || '')}</strong>${x.desc ? `<span class="tl-d">${esc(x.desc)}</span>` : ''}</div>`).join('')}</div>${cta ? `<p class="tl-cta">${cta}</p>` : ''}</div>${ft}</div>`; }
+    return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3 style="max-width:24ch">${head}</h3><div class="tl" style="--n:${st.length}" lang="${{ NO: 'nb', SV: 'sv' }[lg] || 'en'}">${st.map((x, k) => `<div class="${k === 0 ? 'first' : ''} ${k === st.length - 1 && st.length > 1 ? 'last' : ''}"><time data-tlf="date:${k}">${esc(x.date || '')}</time><i></i><strong data-tlf="name:${k}">${esc(x.name || '')}</strong>${x.desc ? `<span class="tl-d" data-tlf="desc:${k}">${esc(x.desc)}</span>` : ''}</div>`).join('')}</div>${cta ? `<p class="tl-cta">${cta}</p>` : ''}</div>${ft}</div>`; }
   if (s.kind === 'nextstep') { const hs = m.heads.filter(Boolean); return `<div class="slide">${wm}<div class="in"><span class="ey">${occ}</span><h3 style="max-width:22ch">${T.nsH}</h3><div class="cols3">${T.nsF.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${k === 0 && hs.length ? hs.join(', ') : b}</p></div>`).join('')}</div></div>${ft}</div>`; }
   if (s.kind === 'contact') return `<div class="slide dark contact">${wm}<div class="in" style="align-content:center"><span class="ey">${occ} · ${when}</span><h3>${T.thanks}</h3><div class="ct">${rp ? repFace(rp) : '<span class="face ph0"></span>'}<div><b>${rp ? rp.name : T.pickName}</b><p>${rp ? (rp.title[lg] || rp.title.EN) : T.pickHint}</p>${rp ? `<p>${rp.email}</p>${rp.phone ? `<p>${rp.phone}</p>` : ''}` : ''}</div></div></div>${ft}</div>`;
   if (s.kind === 'how') return `<div class="slide">${wm}<div class="in"><span class="ey">${T.backupEy}</span><h3 style="max-width:24ch">${T.how}</h3><div class="cols3 c2">${T.howCols.map(([a, b], k) => `<div><span class="k">${k ? 'HR' : 'Sia'}</span><b>${k ? mm3.experts.name : mm3.sia.name}</b><p>${a}</p><p class="sub2">${b}</p></div>`).join('')}</div><div class="proof"><i>✓</i><span>${T.howAuto}</span></div></div>${ft}</div>`;
@@ -1988,7 +2021,7 @@ function vDeck() {
       <aside class="insp">
         <div><span class="lbl">Slide ${S.sel + 1}</span><b class="name">${slideName(s)}</b></div>
         ${s.hidden ? `<div class="checks"><div class="wa">${ico('i-eye')}<span>${s.kind === 'cfo' && cfoLocked() ? 'Hidden until finance approves the figures.' : 'Hidden: not shown in Present or PDF. Use the eye on the thumbnail to show it.'}</span></div></div>` : ''}
-        ${s.kind === 'timeline' ? `<div><span class="lbl">Timeline · ${s.steps.length} step${s.steps.length === 1 ? '' : 's'}</span><div class="tle">${s.steps.map((x, i) => `<div class="tle-s"><div class="tle-r"><input data-tln="${i}" value="${esc(x.name)}" placeholder="Step" aria-label="Step ${i + 1} name"><input data-tld="${i}" value="${esc(x.date)}" placeholder="Date" aria-label="Step ${i + 1} date"><button type="button" data-tlmv="${i}:-1" aria-label="Move step ${i + 1} left" ${i ? '' : 'disabled'}>${ico('i-up')}</button><button type="button" data-tlmv="${i}:1" aria-label="Move step ${i + 1} right" ${i < s.steps.length - 1 ? '' : 'disabled'}>${ico('i-down')}</button><button type="button" data-tldel="${i}" aria-label="Remove step ${i + 1}" ${s.steps.length > 1 ? '' : 'disabled'}>${ico('i-x')}</button></div><input class="tle-desc" data-tldesc="${i}" value="${esc(x.desc || '')}" placeholder="One line about this step (optional)" aria-label="Step ${i + 1} description"></div>`).join('')}</div>${s.steps.length < 8 ? `<button type="button" class="btn btn-ghost-n btn-sm" id="tl-add" style="margin-top:8px">${ico('i-plus')}Add step</button>` : ''}<small style="display:block;margin-top:6px;color:#B7AECF">Dates are free text: “12 Nov”, “Week 47”, or empty. Keep the line short. Up to 8 steps.</small></div>` : ''}
+        ${s.kind === 'timeline' ? (() => { const n = s.steps.length, last = n > 1 ? s.steps[n - 1].name : ''; return `<div><span class="lbl">Timeline · ${n} step${n === 1 ? '' : 's'}</span><div class="tlx" role="list" aria-label="Timeline steps">${s.steps.map((x, i) => `<div class="tlx-s ${i === 0 ? 'first' : ''} ${i === n - 1 && n > 1 ? 'last' : ''}" role="listitem" data-tlrow="${i}"><span class="tlx-dot" draggable="true" data-tldrag="${i}" title="Drag to reorder" aria-hidden="true"></span><div class="tlx-b"><input class="tlx-d" data-tld="${i}" value="${esc(x.date)}" placeholder="Add date" aria-label="Step ${i + 1} date"><textarea class="tlx-n" rows="1" data-tln="${i}" placeholder="Step name" aria-label="Step ${i + 1} name">${esc(x.name)}</textarea><textarea class="tlx-desc" rows="1" data-tldesc="${i}" placeholder="Add a line (optional)" aria-label="Step ${i + 1} description">${esc(x.desc || '')}</textarea></div>${n > 1 ? `<button type="button" class="tlx-x" data-tldel="${i}" aria-label="Remove step ${i + 1}" title="Remove step">${ico('i-x')}</button>` : '<span></span>'}</div>`).join('')}</div>${n < 8 ? `<button type="button" class="tlx-add" id="tl-add">${ico('i-plus')}Add step${last ? ` before ${esc(last)}` : ''}</button>` : ''}<small class="tlx-hint">Drag a dot to reorder, or Alt + ↑ / ↓. You can also click the text on the slide.</small></div>`; })() : ''}
         ${s.kind === 'insight' ? `<div><span class="lbl">Optional line</span><label style="display:flex;gap:8px;align-items:start;color:#E9E4F4;font-size:13px;line-height:1.4"><input type="checkbox" id="story2" ${s.noStory2 ? '' : 'checked'} style="margin-top:2px"> Story step 2: “Elsewhere, software does the work. HR still stores, reminds and answers.”</label></div>` : ''}
         ${s.kind === 'proof' ? `<div><span class="lbl">Customer quote</span><div class="pq">${DISC_QUOTES.map(q => `<button type="button" data-proofpick="${q.id}" aria-pressed="${d.slides.some(x => x.kind === 'proof' && x.q === q.id && !x.hidden)}"><b>${q.who}</b><small>${q.label}${q.ok ? '' : ' · ' + q.flag}</small></button>`).join('')}</div></div>` : ''}
         ${['contact', 'title', 'titleline'].includes(s.kind) ? `<div><span class="lbl">You</span><div class="pbar" role="group" aria-label="Pick your picture">${REPS_ALL().map(p => `<button type="button" data-rep="${p.id}" aria-pressed="${d.rep === p.id}">${repFace(p)}<span>${p.name}</span></button>`).join('')}</div><small class="muted" style="display:block;margin-top:8px;color:#B7AECF">Everyone registered in Fyr. Add your photo, title and phone in Profile.</small></div>` : ''}
@@ -2020,17 +2053,29 @@ function bindDeck() {
   $$('.thumb').forEach((li, i) => applyEdits(li, d.slides[i]));
   const at = S.sel; // the slide these fields belong to, even if the view moves on before blur fires
   const bindStage = () => { const st = $('.stage .slide'); applyEdits(st, d.slides[at]);
-  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); track('deck_edited', { deck: d.id }); }); }); };
+  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); track('deck_edited', { deck: d.id }); }); });
+    st.querySelectorAll('[data-tlf]').forEach(el => { const [f, i] = el.dataset.tlf.split(':'), sl = d.slides[at];
+      try { el.contentEditable = 'plaintext-only'; } catch (_) { el.contentEditable = 'true'; } if (el.contentEditable !== 'plaintext-only') el.contentEditable = 'true';
+      el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+      el.addEventListener('input', () => { sl.steps[+i][f] = el.innerText.replace(/\s+/g, ' ').trim(); const inp = $(`[data-tl${f === 'name' ? 'n' : f === 'date' ? 'd' : 'desc'}="${i}"]`); if (inp) inp.value = sl.steps[+i][f];
+        const th = $$('.thumb .tc')[at]; if (th) { const t = document.createElement('div'); t.innerHTML = slideHTML(sl, at, d.slides.length); th.querySelector('.slide').replaceWith(t.firstElementChild); } });
+      el.addEventListener('blur', () => saveDeck()); }); };
   bindStage();
   // Timeline: typing updates the slide and its thumbnail live; adding, moving or removing steps re-renders
   const tlRefresh = () => { const sl = d.slides[at], n = d.slides.length, put = el => { const t = document.createElement('div'); t.innerHTML = slideHTML(sl, at, n); const ns = t.firstElementChild; applyEdits(ns, sl); el.replaceWith(ns); };
     put($('.stage .slide')); const th = $$('.thumb .tc')[at]; if (th) put(th.querySelector('.slide')); bindStage(); saveDeck(); };
+  const tlGrow = x => { if (x.tagName === 'TEXTAREA' && !CSS.supports('field-sizing', 'content')) { x.style.height = 'auto'; x.style.height = x.scrollHeight + 'px'; } };
+  $$('.tlx textarea').forEach(x => { tlGrow(x); x.addEventListener('input', () => tlGrow(x)); x.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); x.blur(); } }); });
   $$('[data-tln]').forEach(x => x.addEventListener('input', () => { d.slides[at].steps[+x.dataset.tln].name = x.value; tlRefresh(); }));
   $$('[data-tld]').forEach(x => x.addEventListener('input', () => { d.slides[at].steps[+x.dataset.tld].date = x.value; tlRefresh(); }));
   $$('[data-tldesc]').forEach(x => x.addEventListener('input', () => { d.slides[at].steps[+x.dataset.tldesc].desc = x.value; tlRefresh(); }));
-  $$('[data-tlmv]').forEach(x => x.addEventListener('click', () => { const st = d.slides[at].steps, [i, dir] = x.dataset.tlmv.split(':').map(Number); [st[i], st[i + dir]] = [st[i + dir], st[i]]; render(); }));
+  const tlMove = (from, to, field) => { const st = d.slides[at].steps; if (to < 0 || to >= st.length || from === to) return; const [x] = st.splice(from, 1); st.splice(to, 0, x); render(); if (field) { const f = $(`[data-${field}="${to}"]`); if (f) f.focus(); } };
+  let tlFrom = null;
+  $$('[data-tldrag]').forEach(h => { h.addEventListener('dragstart', e => { tlFrom = +h.dataset.tldrag; h.closest('.tlx-s').classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(tlFrom)); } catch (_) {} }); h.addEventListener('dragend', () => h.closest('.tlx-s').classList.remove('drag')); });
+  $$('[data-tlrow]').forEach(row => { row.addEventListener('dragover', e => { if (tlFrom === null) return; e.preventDefault(); row.classList.add('over'); }); row.addEventListener('dragleave', () => row.classList.remove('over')); row.addEventListener('drop', e => { e.preventDefault(); row.classList.remove('over'); const to = +row.dataset.tlrow; const f = tlFrom; tlFrom = null; tlMove(f, to); }); });
+  $$('[data-tln], [data-tld], [data-tldesc]').forEach(x => x.addEventListener('keydown', e => { if (!e.altKey || !['ArrowUp', 'ArrowDown'].includes(e.key)) return; e.preventDefault(); const field = x.dataset.tln != null ? 'tln' : x.dataset.tld != null ? 'tld' : 'tldesc', i = +x.dataset[field]; tlMove(i, i + (e.key === 'ArrowUp' ? -1 : 1), field); }));
   $$('[data-tldel]').forEach(x => x.addEventListener('click', () => { d.slides[at].steps.splice(+x.dataset.tldel, 1); render(); }));
-  if ($('#tl-add')) $('#tl-add').addEventListener('click', () => { const st = d.slides[at].steps; st.splice(st.length > 1 ? st.length - 1 : st.length, 0, { name: '', date: '', desc: '' }); render(); const f = $$('[data-tln]')[st.length > 2 ? st.length - 2 : st.length - 1]; if (f) f.focus(); });
+  if ($('#tl-add')) $('#tl-add').addEventListener('click', () => { const st = d.slides[at].steps; st.splice(st.length > 1 ? st.length - 1 : st.length, 0, { name: '', date: '', desc: '' }); render(); const f = $(`[data-tln="${st.length > 1 ? st.length - 2 : 0}"]`); if (f) f.focus(); });
   if ($('#rebuild')) $('#rebuild').addEventListener('click', rebuildDeck);
   $('#add-slide').addEventListener('click', () => { track('own_slide', { deck: d.id }); d.slides.splice(S.sel + 1, 0, { kind: 'custom' }); S.sel++; render(); toast('Added your own slide. Click the text to write it.'); });
   $$('[data-pick]').forEach(x => { x.addEventListener('click', () => { S.sel = +x.dataset.pick; render(); }); x.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); S.sel = +x.dataset.pick; render(); } }); });
@@ -3977,9 +4022,15 @@ function render() {
   LAST_VIEW = S.view;
   renderNav();
   const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
+  const thumbsEl = $('.thumbs'), thumbsTop = thumbsEl && S.deck && S.__deckId === S.deck.id ? thumbsEl.scrollTop : 0;
   $('#view').innerHTML = (CUR && CUR.status === 'pending' ? `<div class="ro" style="margin-bottom:16px">${ico('i-clock')}<span><b>Your ${ROLE_LABEL[CUR.role]} access is waiting for approval.</b> You can use Presentations, Product truth, Battlecards and Library meanwhile.</span></div>` : '') + boTabs() + (map[S.view] || vCreate)();
   ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, people: bindPeople, usage: bindUsage }[S.view] || (() => {}))();
   if (S.view === 'deck') saveDeck(); // every change in the studio re-renders, so this saves it
+  { // keep the slide list where the user scrolled it; only nudge it when the selected slide would be out of view
+    const th = $('.thumbs');
+    if (th && S.deck) { th.scrollTop = thumbsTop; const cur = th.querySelectorAll('.thumb')[S.sel];
+      if (cur && S.__sel !== S.sel) { const a = cur.getBoundingClientRect(), b = th.getBoundingClientRect(); if (a.top < b.top || a.bottom > b.bottom) cur.scrollIntoView({ block: 'nearest' }); }
+      S.__deckId = S.deck.id; S.__sel = S.sel; } }
   $$('[data-edit]').forEach(b => b.addEventListener('click', () => toast('Editing opens a draft that Tobias or the PM approves.')));
   i18nPass();
 }
