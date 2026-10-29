@@ -41,7 +41,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
-- **Next-steps timeline (D-026)** in Discovery and Demo: a clean timeline with a name and a date per step. Reps edit, add (up to 8), remove and reorder steps per deck; PMM sets the default steps per rule and language.
+- **Next-steps timeline (D-026, D-027)** in Discovery and Demo: a clean timeline with a name, a date and a one-line description per step. Reps edit, add (up to 8), remove and reorder steps per deck; PMM sets the default steps per rule and language.
 - **Usage tab (D-025):** admins see how Fyr is used, counted by role: active people, presentations, features and quotes used, views, and battlecard searches with no answer. No per-person activity; groups under 3 hidden; 12-month retention.
 - **Login (D-023), mocked in the prototype:**
   - Register with name, a @simployer.com email and a role.

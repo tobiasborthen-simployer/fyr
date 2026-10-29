@@ -492,7 +492,7 @@ Details are in PARKED.md.
 **Revisit if:** managers ask for per-person reports. That needs its own decision and a new round with employee representatives.
 
 ## D-026 — Next steps as an editable timeline in Discovery and Demo
-`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-29` · **Status:** Accepted; step fields superseded by D-027 · **Owner:** Tobias
 **Supersedes:** the Discovery next-step slide in D-020 (what we'll show / who should be there / when) and Demo's fixed three-step "next" slide.
 
 **Context:** Sales processes differ in steps and length. The next-step slides were fixed.
@@ -510,4 +510,21 @@ Details are in PARKED.md.
 - Follow-up, QBR, Kickoff and Leadership keep their old next-step slide. PMM can switch them to the timeline in the rules editor.
 
 **Revisit if:** reps want an owner per step (Simployer or the customer). The step model can take it.
+
+## D-027 — Timeline steps get a one-line description
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** "name and date only" in D-026.
+
+**Decision:**
+- Each step has a name, a date (free text) and an optional one-line description, shown in grey under the name.
+- PMM writes default steps per rule and language as `Name | one line`.
+- Reps edit the description per deck in the side panel, under the name and date. The slide updates as they type.
+- Descriptions wrap between words; they never hyphenate.
+
+**Consequences:**
+- Discovery is v5 and Demo is v3, with default descriptions in EN/NO/SV.
+  - "Demo: Built on what you told us today"
+  - "Test week: Two managers try it on your routines"
+  - "Go-live: Your routines run in Simployer"
+- Example decks refresh, and own decks offer *Rebuild*.
 

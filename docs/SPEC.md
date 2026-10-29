@@ -331,12 +331,12 @@ Seed rules (prototype `PRULES`):
 | A | Appendix | Who we are (12,000+, 1.2 million, 40 years, EU) · CFO proof (**locked hidden until finance approves**) · product overview ("HR system" belongs here). Hidden. |
 
 **Next-steps timeline ([D-026](DECISIONS.md)).** It replaces the old next-step slides in Discovery and Demo.
-- A clean horizontal timeline, with a name and a date per step. Dates are free text ("12 Nov", "Week 47" or empty).
+- A clean horizontal timeline. Each step has a name, a date and an optional one-line description ([D-027](DECISIONS.md)). Dates are free text ("12 Nov", "Week 47" or empty).
 - The first step is highlighted as the next one; the last ends in the go-live colour. The rule's call to action sits underneath.
-- **Defaults:** PMM sets the headline and default steps per rule and language in Presentation rules.
+- **Defaults:** PMM sets the headline and default steps (`Name | one line`) per rule and language in Presentation rules.
   - Discovery: Demo → Test week → Proposal → Agreement → Go-live.
   - Demo: Test week → Proposal → Agreement → Implementation → Go-live.
-- **Per deck:** reps rename steps, set dates, add (up to 8; new steps go in before the last), remove (down to 1) and reorder in the side panel. The slide updates as they type. Demo-first and Go-live-last are only defaults.
+- **Per deck:** reps rename steps, set dates and descriptions, add (up to 8; new steps go in before the last), remove (down to 1) and reorder in the side panel. The slide updates as they type. Demo-first and Go-live-last are only defaults.
 - Text scales down as steps are added, so 8 steps fit without breaking words.
 
 **Hidden slides.** Any slide can be hidden with the eye on its thumbnail. Hidden slides stay in the deck but are skipped by Present, Open in new tab and PDF. Backup and appendix slides are grouped under their own labels. Rules set which slides start hidden.

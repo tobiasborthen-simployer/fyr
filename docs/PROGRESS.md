@@ -37,6 +37,15 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — Timeline steps get a description (D-027)
+- **Done:**
+  - Each step now has an optional one-line description under the name, as well as the name and date.
+  - Reps edit it in the side panel under each step; the slide updates as they type.
+  - PMM defaults use `Name | one line`, with descriptions written for Discovery and Demo in EN/NO/SV.
+  - Discovery is v5 and Demo is v3.
+  - Descriptions wrap between words only.
+- **Verified:** the defaults come through per language and live editing works. 8 steps with long descriptions fit in EN/NO/SV. Copy check: 0 errors.
+
 ### 2026-10-29 — Next-steps timeline in Discovery and Demo (D-026)
 - **Decided with Tobias:**
   - The timeline replaces the next-step slide in both decks.
