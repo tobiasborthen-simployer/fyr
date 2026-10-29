@@ -31,14 +31,19 @@ None of that can go live within a month.
 
 ## 2. Users and access
 
-| Role | Who | Sees | Can do |
-|---|---|---|---|
-| **PMM editor** | Tobias (+ PMM team) | Everything | Edit truth and framework, packs, playbooks, battlecards, Remix, presentation rules, library |
-| **Approver** | Tobias ([D-024](DECISIONS.md)); Linda for SV wording is proposed ([D-010](DECISIONS.md)) | Everything | All of the above, plus approve |
-| **Org viewer** | Sales, CSM, PS, Customer Care, management, everyone else | Create, Product Truth, Battlecards, Library | Build and present decks; read truth, battlecards and the library |
+People register themselves in Fyr's own portal ([D-023](DECISIONS.md)): full name, a **@simployer.com** email and a role. They sign in with an emailed code or link (see 4.10).
 
-- There are **no per-role views** ([D-003](DECISIONS.md)). Everyone outside PMM gets the same four areas.
-- "Role" for presentations is a choice the user makes inside Create (which rule to build from). It is not their login role.
+| Role picked at registration | Access | Sees | Approval |
+|---|---|---|---|
+| Sales | **Viewer** | Presentations, My presentations, Product truth, Battlecards, Library | None |
+| Management | **Viewer** | Same as Sales | None |
+| PM | **Viewer + Release plan** | Same as Sales, plus Releases (list and map), read-only, with no pack actions | Admin approves; viewer until then |
+| PMM | **Editor** | Everything, including the PMM workspace | Admin approves; viewer until then |
+
+- **Approver:** a flag an admin sets; nobody can pick it. At launch: Tobias ([D-024](DECISIONS.md)). Linda for SV wording is proposed ([D-010](DECISIONS.md)).
+- **Admin:** manages users in People & access. At launch: Tobias, set in config (`ADMIN_EMAILS`).
+- **Pending PM/PMM users** sign in with viewer access and see a banner saying their access is waiting for approval.
+- "Role" for presentations is a choice the user makes inside Create (which presentation rule to build from). It is not their access level.
 
 ## 3. Information architecture
 
@@ -327,7 +332,7 @@ Seed rules (prototype `PRULES`):
 
 **Hidden slides.** Any slide can be hidden with the eye on its thumbnail. Hidden slides stay in the deck but are skipped by Present, Open in new tab and PDF. Backup and appendix slides are grouped under their own labels. Rules set which slides start hidden.
 
-**Picture bar.** On the title and contact slides, the inspector shows a row of photos with names. Clicking yours puts your photo, name, title, email and phone on the contact slide and your name on the title slide. **A new deck starts with the signed-in rep already on it**; the picture bar is for switching. Fyr remembers your choice for your next decks. In the app, the people and their details come from Microsoft profiles.
+**Picture bar.** On the title and contact slides, the inspector shows a row of photos with names. Clicking yours puts your photo, name, title, email and phone on the contact slide and your name on the title slide. **A new deck starts with the signed-in rep already on it**; the picture bar is for switching. The bar lists everyone registered in Fyr, with the photo, title and phone from their profile; people without a photo show their initials.
 
 **Story step 2** on the insight slide is optional: the rep can switch it off in the inspector.
 
@@ -411,11 +416,57 @@ v0.2 had none of these. Every deck followed one fixed order.
 
 ---
 
+### 4.10 Portal: registration, sign-in and People & access ([D-023](DECISIONS.md))
+
+**Purpose.** Fyr keeps its own users. There is no Microsoft sign-in.
+
+**Register (first time)**
+- Full name, work email and role (PM, PMM, Sales or Management).
+- Only an exact `@simployer.com` address is accepted, checked after trimming and lowercasing. Subdomains and look-alikes are rejected.
+- An email arrives with a 6-digit code and a link. The user is created only once the email is verified.
+
+**Sign in (later)**
+- Email only, then the same code-and-link email.
+
+**The email**
+- The code and the link work once, expire after 15 minutes, and are stored only as hashes. A code allows 5 attempts.
+- The link opens a confirmation page with a "Sign in to Fyr" button. Only that button signs in, so Outlook Safe Links can't use the link up.
+
+**No account lookup**
+- The screen always says "if that's a Simployer address, we've sent an email".
+- An unknown address gets an email asking them to register.
+- Registering an address that already exists sends a sign-in code instead.
+- A turned-off user gets a "your access is turned off" email.
+
+**Limits and sessions**
+- 5 emails per 15 minutes per address (and per IP in the app).
+- Sessions last 30 days, extended while in use. Sign out is in the rail.
+- Turning a user off ends their sessions.
+
+**People & access** (admins, PMM workspace)
+- Pending PM/PMM requests at the top, with Approve and Decline. Decline keeps viewer access.
+- All users: role, access, approver flag, status and last sign-in, with Turn off / Turn on.
+- PMM Home shows "N access requests".
+
+**Profile** (rail)
+- Name, title, phone and photo. These feed the picture bar and the contact slide.
+- Role change: moving to PM or PMM needs approval again. Moving down takes effect straight away.
+
+**Look.** Registration and sign-in are built on the lighthouse splash (D-015), in EN/NO/SV.
+
+**Acceptance criteria**
+- [ ] Only @simployer.com addresses can register or sign in.
+- [ ] Sales and Management land in the viewer areas on first sign-in. PM and PMM wait for approval with viewer access.
+- [ ] Codes and links expire, work once and lock after 5 wrong attempts.
+- [ ] A turned-off user is signed out and can't sign in.
+
 ## 5. Data model (app)
 
 | Entity | Key fields |
 |---|---|
-| `User` | id, name, email, role (`editor` / `approver` / `viewer`) |
+| `portal.users` | id, email (unique, lowercased), name, role (`pm`/`pmm`/`sales`/`management`), access (`viewer`/`pm`/`editor`), requested_access, approver, admin, status (`active`/`pending`/`disabled`), title, phone, photo_url, verified_at, last_sign_in_at, approved_by/at, created_at |
+| `portal.login_tokens` | email, purpose (`register`/`sign_in`), code_hash, link_hash, payload (name, role), expires_at, used_at, attempts, ip, created_at |
+| `portal.sessions` | token_hash, user_id, created_at, expires_at, last_seen_at |
 | `Release` | linearId, name, team, lead, status, visibility, tier, targetDate, gate, featureId, summary, gtm, override (PMM brief layer) |
 | `Feature` | id, key, pillar, module, state (`live`/`soon`), linearRefs |
 | `Framework` | lang, version, tagline, category, pillars[], trust, publishedBy/At |
@@ -441,7 +492,8 @@ Everything cut is listed in [PARKED.md](PARKED.md), with what it did in v0.2 and
 
 ## 7. Non-functional requirements
 
-- **Auth.** Microsoft Entra ID SSO only. Roles are assigned in Fyr.
+- **Auth.** Fyr's own portal: self-registration with a @simployer.com address, and sign-in by emailed code or link (Resend, from a Simployer sending subdomain). A small custom implementation, no Auth.js ([D-023](DECISIONS.md)).
+- **Data.** One Neon Postgres via Drizzle, with a `portal` schema (users, tokens, sessions) and a `fyr` schema (content). Every other table above lives in `fyr`.
 - **Stack.** Next.js (App Router, TypeScript) on Vercel; Postgres (Neon) via Drizzle; Vercel Blob for media; Linear API and webhooks; Claude API ([D-005](DECISIONS.md)).
 - **AI drafts.** Always labelled as drafts. Never shown in the org area before approval. The prompt includes Brand Rules plus approved truth only.
 - **Privacy.** No customer personal data. The only customer data in decks is the company name and pains a rep types in.

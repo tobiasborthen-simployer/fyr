@@ -13,7 +13,7 @@
 |---|---|---|---|
 | **M0** | Project setup | 28 Oct | Repo, spec, plan and logs seeded; v0.2 baseline in `reference/v0.2/` |
 | **M1** | Slim v0.3 prototype | 29 Oct – 4 Nov | v0.3 prototype published as an artifact; **UX sign-off by Tobias**, logged as a decision |
-| **M2** | App foundation | 5 – 11 Nov | App deployed on Vercel with SSO and roles; schema and seed in place; Linear sync live; Releases list and map working on real data |
+| **M2** | App foundation | 5 – 11 Nov | App deployed on Vercel with the portal (registration, email sign-in, access levels); schema and seed in place; Linear sync live; Releases list and map working on real data |
 | **M3** | PMM core | 12 – 18 Nov | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with Claude drafts; Battlecards; Library |
 | **M4** | Create + Remix + Automations | 19 – 25 Nov | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats |
 | **M5** | Pilot + go-live | 25 – 27 Nov | Content migrated and approved; pilot with 3–5 users; go-live; CHANGELOG `v0.3.0` |
@@ -50,13 +50,22 @@
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [x] Remove the CSS of the cut modules. 362 rules removed, about 28 KB. A style fingerprint of 36 screens is unchanged.
+- [x] **Login mock (D-023).**
+  - Register, sign in, check your email (simulated email with code and link) and confirm, on the lighthouse splash.
+  - Users and sessions in the browser, with access levels for viewer, PM (+ Release plan) and PMM.
+  - People & access for admins, and a profile panel.
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
 - [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it, and log sign-off and changes in DECISIONS.
-- [ ] **Parallel admin, started in week 1:** request the Entra app registration from IT, a Linear API key/webhook, a Claude API key and budget, and a Vercel project.
+- [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, a Claude API key and budget, and a Vercel project.
 
 ## M2 — App foundation (5 – 11 Nov)
 - [ ] Scaffold Next.js (App Router, TS) in `app/`, deploy to Vercel, and set up preview deploys per PR.
-- [ ] Set up Auth.js with Microsoft Entra ID, plus roles (`editor`, `approver`, `viewer`) and route guards (org area vs PMM workspace).
+- [ ] **Portal (D-023):**
+  - Pages: register, sign-in, code entry and link confirmation.
+  - `lib/auth` (hashed code/link tokens, sessions, exact-domain check, rate limits) and middleware route guards by access (`viewer` / `pm` / `editor`).
+  - People & access and the profile page.
+  - Resend email templates in EN/NO/SV.
+  - Unit tests for the domain check, token lifecycle and rate limits, plus an end-to-end test against Resend test mode.
 - [ ] Create the Postgres (Neon) and Drizzle schema per [SPEC §5](SPEC.md#5-data-model-app), with migrations.
 - [ ] Write a seed script that extracts v0.2 data: `FEATURES` + `NEWF`, `FL`/`FLM`, `FRAME`, `PLAYBOOK`, `BC`/`BCMETA`/`BATTLE`, `ASSETS`, `REFS`, `L` slide strings, `LINEAR_RAW`. Upload the media to Vercel Blob.
 - [ ] Port the design tokens and app shell (rail, topbar, language toggle, toast) from v0.2.
@@ -76,7 +85,7 @@
 
 ## M4 — Create + Remix + Automations (19 – 25 Nov)
 - [ ] Presentation rules: CRUD and the 6 seeded rules.
-- [ ] Rep photo and contact details from the Microsoft (Entra) profile for the picture bar.
+- [ ] Rep photo, title and phone from the Fyr profile for the picture bar; photo upload to Vercel Blob.
 - [ ] Decks saved to the `Deck` table as the rep works (slides, edits, own slides, brief), listed in My presentations with open / copy / delete, and rendered into the PDF.
 - [ ] Create: home, brief, generate (recipe-driven), studio (edit, reorder, notes, message check), present, open in a tab, and My presentations.
 - [ ] Real PDF export (server-side headless Chromium, one page per 16:9 slide).
@@ -97,7 +106,7 @@
 | Risk | Impact | Mitigation | Owner |
 |---|---|---|---|
 | Linear API access and field mapping (tier and visibility are labels/custom fields) | Blocks M2 | Confirm the fields against `LINEAR_RAW` in M1 and get the API key in week 1 | Tobias |
-| Entra app registration needs IT | Blocks M2 auth | Request it on day 1; fall back to email magic links behind an allowlist | Tobias |
+| DNS records for the email sending subdomain need IT | Blocks real sign-in emails in M2 | Ask on day 1; until then send from Resend's test domain to a whitelist | Tobias |
 | Claude API key, budget and data-policy approval | Blocks M3 drafting | Request it in week 1; stub drafts until approved | Tobias |
 | Approval bandwidth for migrating content (one approver) | Delays M5 | Start content review during M3; approve in batches | Tobias |
 | PDF fidelity of 16:9 slides | Rep trust | Spike PDF rendering early in M4; keep "Open in new tab → print" as a fallback | Dev |

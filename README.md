@@ -48,6 +48,8 @@ node tools/serve.mjs prototype/v0.3 8765
 
 Then open http://localhost:8765. Use `reference/v0.2 8766` to compare with v0.2.
 
+Sign in with **Register** (any `@simployer.com` address; the email is simulated on screen), or open **Example accounts (prototype)** on the start screen. Tobias Borthen is the admin. Users and sessions are kept in your browser.
+
 ## Messaging Framework
 
 All copy follows the [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o). See [docs/MESSAGING-FRAMEWORK.md](docs/MESSAGING-FRAMEWORK.md).

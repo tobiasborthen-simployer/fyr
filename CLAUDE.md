@@ -26,7 +26,7 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
 ## Files and folders
 - `reference/v0.2/`: the v0.2 prototype, **read-only**. Never edit it; copy from it. SPEC.md cites line numbers into its `index.html`.
 - `prototype/v0.3/`: the M1 slim prototype, a single HTML file plus media, published as a claude.ai artifact.
-- `app/`: the real app from M2. Next.js (App Router, TS) on Vercel, Postgres (Neon) via Drizzle, Auth.js + Microsoft Entra ID, Linear API, Claude API, Vercel Blob.
+- `app/`: the real app from M2. Next.js (App Router, TS) on Vercel, Postgres (Neon) via Drizzle with `portal` and `fyr` schemas, own email sign-in (Resend), Linear API, Claude API, Vercel Blob (D-023).
 
 ## Content rules
 - Content languages are EN, NO and SV. Every approvable item has a status per language.

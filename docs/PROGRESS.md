@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|
 | M0 | Project setup | 28 Oct | ✅ Done | 100% | Tobias |
 | M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 90% | Tobias |
-| M2 | App foundation (SSO, DB, Linear, Releases) | 11 Nov | ⬜ Not started | 0% | — |
+| M2 | App foundation (portal sign-in, DB, Linear, Releases) | 11 Nov | ⬜ Not started | 0% | — |
 | M3 | PMM core (Truth, Packs, Battlecards, Library) | 18 Nov | ⬜ Not started | 0% | — |
 | M4 | Create + Remix + Automations | 25 Nov | ⬜ Not started | 0% | — |
 | M5 | Pilot + go-live | 27 Nov | ⬜ Not started | 0% | — |
@@ -19,7 +19,9 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 |---|---|---|---|---|
 | Confirm D-009 (consequential drops) | Decision | Tobias | 30 Oct | Open |
 | Confirm D-010 (SV approver), D-012 (Remix channels), D-013 (PMM Home), D-014 (go-live date) | Decision | Tobias | 4 Nov | Open |
-| Request Entra ID app registration from IT | Admin | Tobias | 30 Oct | Open |
+| ~~Request Entra ID app registration from IT~~ (not needed, D-023) | Admin | Tobias | 30 Oct | Closed |
+| Ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain, e.g. `mail.simployer.com`; set up Resend | Admin | Tobias | 4 Nov | Open |
+| Roles not on the list: do CSM, PS and Customer Care pick Sales, or do we add a role? | Decision | Tobias | 4 Nov | Open |
 | Linear API key + webhook access; confirm tier/visibility fields | Admin | Tobias | 30 Oct | Open |
 | Claude API key + budget + data-policy OK | Admin | Tobias | 30 Oct | Open |
 | Vercel project (personal or Simployer team) | Admin | Tobias | 4 Nov | Open |
@@ -33,6 +35,39 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-29 — Login: own portal with email sign-in; Thea out of scope (D-023, D-024)
+- **Done:**
+  - **Thea removed from the scope (D-024).** Tobias is the manager, approver and admin.
+    - Prototype: 0 references left. Stamps read "Approved by Tobias", queues read "waiting for approval", battlecards are owned by PMM, and Thea's pack items moved to Tobias.
+    - Spec, plan, working rules, the framework guide and open items are updated.
+  - **Portal decided (D-023).** It replaces Entra SSO:
+    - Self-registration with name, a @simployer.com email and a role (PM/PMM/Sales/Management).
+    - Sign-in by an emailed 6-digit code or link.
+    - Sales and Management get viewer access straight away. PM (viewer + Release plan) and PMM (editor) wait for admin approval.
+    - The portal lives inside Fyr, with a `portal` schema in the same Postgres.
+  - **Prototype mock:**
+    - Splash: Sign in / Register, then Check your email (a simulated email with code and link), then Confirm.
+    - Exact-domain check, 15-minute expiry, one-time codes and links, a 5-attempt lockout, and a rate limit of 5 emails per 15 minutes.
+    - No account lookup: unknown and existing addresses get the same screen, and the email tells them what to do.
+    - Sessions last 30 days, with sign out in the rail. Turned-off users are signed out on the next load.
+    - Access levels: viewer, PM (+ Release plan, read-only, no pack actions) and PMM. Pending users get viewer access plus a banner.
+    - People & access (admins): approve or decline, change access, set approver, turn off or on. PMM Home shows "N access requests".
+    - Profile: name, title, phone, photo and role change (moving up needs approval). It feeds the picture bar and the contact slide; people without a photo show initials.
+    - The "View as (demo)" switch is replaced by real users. The splash keeps "Example accounts (prototype)" for walkthroughs.
+- **Verified in the browser:**
+  - Register as Sales: lands with viewer navigation.
+  - Register as PMM: pending, banner, PMM pages redirect. Tobias approves; after the next sign-in the user has the PMM workspace.
+  - PM approved: Releases and Release map, read-only, with 0 pack buttons, and every PMM page redirects.
+  - Five look-alike addresses are rejected. The wrong-code countdown, lockout, expiry, one-time link and 6th-email rate limit all work.
+  - Unknown and existing addresses get the same screen. Reload keeps the session, sign out shows the splash, and a turned-off user is signed out.
+  - Profile changes show on the contact slide.
+  - Every view renders for each access level in EN/NO/SV with no errors. Copy check: 0 errors.
+- **Next:**
+  - M2 builds the portal for real: Resend, hashed tokens, sessions and route guards.
+  - Ask IT for the sending-subdomain DNS records.
+  - Decide where CSM, PS and Customer Care fit in the role list.
+- **Decisions:** D-023 and D-024 accepted. D-003, D-005 (auth part) and D-010 superseded.
 
 ### 2026-10-28 — One cover for Discovery and Demo (D-022)
 - **Done:**

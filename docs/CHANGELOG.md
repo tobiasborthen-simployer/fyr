@@ -7,6 +7,8 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Changed**
+- Tobias is the approver; Thea is removed from the scope (D-024).
+- The "View as (demo)" switch is replaced by real signed-in users.
 - Discovery and Demo share one cover: the original gradient cover ("Simployer × Customer", the line, and occasion · date · rep). The dark "line" title is gone (D-022).
 - Navigation is split into an org area (Presentations, My presentations, Product truth, Battlecards, Library) and a PMM workspace (Home, Releases, Launch packs, Truth editor, Battlecards, Marketing Remix, Automations).
 - The six-role switcher is replaced by "View as: PMM workspace / Org viewer".
@@ -38,6 +40,11 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Login (D-023), mocked in the prototype:**
+  - Register with name, a @simployer.com email and a role.
+  - Sign in with an emailed code or link: one-time, 15-minute expiry, lockout after 5 tries.
+  - PM and PMM access needs admin approval. PMs get the Release plan, read-only.
+  - People & access for admins, and a profile with photo, title and phone for the picture bar.
 - **Discovery meeting, rebuilt (D-020):**
   - A seven-slide flow (title, today is about you, the insight, five discovery questions, one proof quote, next step, thank you/contact), plus a hidden backup slide and appendix.
   - Hidden slides, skipped by Present and PDF.
