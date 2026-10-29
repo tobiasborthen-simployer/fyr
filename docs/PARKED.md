@@ -37,7 +37,7 @@ Everything in v0.2 that is **not** built in v0.3. Each row says what the item di
 | **Pack kinds: Slack announcement, Ready training, Product video** | Items in launch packs (`KINDS`, l.3953) | Depend on Slack, Training and ElevenLabs |
 | **Pack runway: "Sold", "Used 30/90d"** | Post-launch tracking via tl;dv, Salesforce and adoption | Depends on cut data |
 | **Launch-day channel check** | Intercom / Freshdesk / HubSpot / web check (`vCheck` l.3386) | External dependencies |
-| **Connections map** | Integration map (`CONN`, `vConnMap`, l.4094–4254) | Only Linear and Claude are left |
+| **Connections map** | Integration map (`CONN`, `vConnMap`, l.4094–4254) | Only Linear and OpenAI are left (D-031) |
 | **Localisation tab** | Separate NO/SV queue (`L10N`, `vL10n`, l.4008) | Folded into the Truth editor |
 | **Prototype Lab rendering** | Rendered fresh visuals while generating a deck | External; replaced by upload. The plain link is kept |
 | ~~Login splash~~ | Branded demo login (`renderLogin` l.4394) | Not parked after all: kept as the sign-in page design (D-015, proposed) |

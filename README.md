@@ -22,7 +22,7 @@ Fyr is Simployer's **PMM planning and creation tool**. Product marketing uses it
 - Presentation rules
 - Automations
 
-**External dependencies:** Linear and the Claude API only.
+**External dependencies:** Linear and OpenAI only (D-031).
 
 **Cut:** Market Signals, Activity Log, Adoption, Insights, tl;dv, Freshdesk, Synapse, Salesforce, Planhat, HubSpot, In-app and ElevenLabs. See [docs/PARKED.md](docs/PARKED.md).
 

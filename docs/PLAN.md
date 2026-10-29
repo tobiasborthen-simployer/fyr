@@ -14,7 +14,7 @@
 | **M0** | Project setup | 28 Oct | Repo, spec, plan and logs seeded; v0.2 baseline in `reference/v0.2/` |
 | **M1** | Slim v0.3 prototype | 29 Oct – 4 Nov | v0.3 prototype published as an artifact; **UX sign-off by Tobias**, logged as a decision |
 | **M2** | App foundation | 5 – 11 Nov | App deployed on Vercel with the portal (registration, email sign-in, access levels); schema and seed in place; Linear sync live; Releases list and map working on real data |
-| **M3** | PMM core | 12 – 18 Nov | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with Claude drafts; Battlecards; Library |
+| **M3** | PMM core | 12 – 18 Nov | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with AI drafts (OpenAI); Battlecards; Library |
 | **M4** | Create + Remix + Automations | 19 – 25 Nov | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats |
 | **M5** | Pilot + go-live | 25 – 27 Nov | Content migrated and approved; pilot with 3–5 users; go-live; CHANGELOG `v0.3.0` |
 
@@ -58,7 +58,7 @@
   - People & access for admins, and a profile panel.
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
 - [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it, and log sign-off and changes in DECISIONS.
-- [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, a Claude API key and budget, and a Vercel project.
+- [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, access to the company's OpenAI setup (Azure OpenAI or the OpenAI API, model, budget; D-031), and a Vercel project.
 
 ## M2 — App foundation (5 – 11 Nov)
 - [ ] Scaffold Next.js (App Router, TS) in `app/`, deploy to Vercel, and set up preview deploys per PR.
@@ -85,7 +85,8 @@
 - [ ] Product Truth (org view), showing approved content only.
 - [ ] Brand rules store, used by the message check.
 - [ ] Tier playbooks: editor, publish and versioning.
-- [ ] Launch packs: auto-create (A2), manual create, brief override, items per kind and language, Claude drafting (A3), approve/reopen/approve all, and publish.
+- [ ] Launch packs: auto-create (A2), manual create, brief override, items per kind and language, AI drafting (A3) through the one drafting module (OpenAI, D-031), approve/reopen/approve all, and publish.
+- [ ] Drafting test set: a few features in EN/NO/SV run through the framework copy check, to confirm NO/SV quality.
 - [ ] Battlecards: viewer and manual editor with publish and versioning.
 - [ ] Library: upload, the proposed → current flow, and the outdated flag (A5).
 
@@ -113,7 +114,8 @@
 |---|---|---|---|
 | Linear API access and field mapping (tier and visibility are labels/custom fields) | Blocks M2 | Confirm the fields against `LINEAR_RAW` in M1 and get the API key in week 1 | Tobias |
 | DNS records for the email sending subdomain need IT | Blocks real sign-in emails in M2 | Ask on day 1; until then send from Resend's test domain to a whitelist | Tobias |
-| Claude API key, budget and data-policy approval | Blocks M3 drafting | Request it in week 1; stub drafts until approved | Tobias |
+| OpenAI access: route (Azure OpenAI or the OpenAI API), model and budget | Blocks M3 drafting | Ask IT in week 1; stub drafts behind the drafting module until access arrives | Tobias |
+| NO/SV draft quality on the chosen model | More editing before approval | Test set through the copy check in M3; tune the prompts | Dev |
 | Approval bandwidth for migrating content (one approver) | Delays M5 | Start content review during M3; approve in batches | Tobias |
 | PDF fidelity of 16:9 slides | Rep trust | Spike PDF rendering early in M4; keep "Open in new tab → print" as a fallback | Dev |
 | Scope creep (cut modules coming back) | Misses the month | Scope guard in CLAUDE.md: re-adding a cut item needs a DECISIONS entry | Tobias |

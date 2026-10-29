@@ -7,6 +7,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Changed**
+- Planned AI drafting runs on OpenAI instead of the Claude API (D-031). There is no change in the prototype.
 - No more picture bar: the signed-in user is the rep. Their name, photo, title, email and phone come from Profile, and the deck panel shows them, with *Edit profile* (D-030).
 - The next-steps timeline always starts with Demo and ends with Go-live. Steps that have happened are marked with a ✓, and the Demo deck starts with Demo ticked off (D-028).
 - "Test week" is gone. The Demo call to action is now "Agree on a date for the proposal" (D-029).

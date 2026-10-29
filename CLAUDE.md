@@ -14,7 +14,7 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
   - tl;dv, Freshdesk, Synapse / Sales Insights, Salesforce, Planhat, HubSpot, In-app, ElevenLabs, Slack
   - Training, Team / Rituals, Requests, role switcher, non-deck Create types
 - If a request would bring one of these back, say so. Bringing it back needs a new DECISIONS entry first.
-- The only external dependencies are **Linear** and the **Claude API**.
+- The only external dependencies are **Linear** and **OpenAI** (D-031). Don't add the Claude API or any other AI provider to the app.
 - Org-facing areas are only Create (Presentations), Product Truth, Battlecards and Library.
 
 ## Ending every working session (log discipline)
@@ -26,7 +26,7 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
 ## Files and folders
 - `reference/v0.2/`: the v0.2 prototype, **read-only**. Never edit it; copy from it. SPEC.md cites line numbers into its `index.html`.
 - `prototype/v0.3/`: the M1 slim prototype, a single HTML file plus media, published as a claude.ai artifact.
-- `app/`: the real app from M2. Next.js (App Router, TS) on Vercel, Postgres (Neon) via Drizzle with `portal` and `fyr` schemas, own email sign-in (Resend), Linear API, Claude API, Vercel Blob (D-023).
+- `app/`: the real app from M2. Next.js (App Router, TS) on Vercel, Postgres (Neon) via Drizzle with `portal` and `fyr` schemas, own email sign-in (Resend), Linear API, OpenAI for drafting, Vercel Blob (D-023, D-031).
 
 ## Content rules
 - Content languages are EN, NO and SV. Every approvable item has a status per language.

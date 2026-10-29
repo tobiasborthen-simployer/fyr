@@ -82,7 +82,7 @@ Viewers see only Create (Presentations), Product Truth, Battlecards and Library.
 **Revisit if:** we expand into new markets (DK, FI).
 
 ## D-005 — Stack: Next.js + Vercel + Postgres + Entra SSO + Linear + Claude API
-`2026-10-28` · **Status:** Accepted, auth part superseded by D-023 · **Owner:** Tobias
+`2026-10-28` · **Status:** Accepted; auth part superseded by D-023, Claude API superseded by D-031 · **Owner:** Tobias
 
 **Context:** The app needs to be live in about 3 weeks of build time, with real auth, data and a Linear sync.
 
@@ -582,3 +582,31 @@ Details are in PARKED.md.
 - The profile (photo, title, phone) matters more, so M2 needs photo upload in Profile.
 
 **Revisit if:** two reps often present together and want both on the contact slide.
+
+## D-031 — OpenAI replaces the Claude API for drafting
+`2026-10-29` · **Status:** Accepted; route to be confirmed with IT · **Owner:** Tobias
+**Supersedes:** "Claude API for drafts" in D-005, and "Linear and the Claude API" as the only external dependencies (D-007, SPEC §1).
+
+**Context:** Simployer uses OpenAI in its own solutions. Claude can't be the AI model inside Fyr.
+
+**Decision:**
+- Fyr's AI drafting runs on **OpenAI**. This covers launch pack items (A3), NO/SV Product Truth drafts and Marketing Remix drafts.
+- The only external dependencies are **Linear** and **OpenAI**.
+- **One drafting module** (`app/lib/ai/`) holds all AI calls:
+  - In: approved truth, Brand Rules and the target language.
+  - Out: structured output (a JSON schema).
+  - Nothing outside this module knows which provider or model is used, so a later change is configuration only.
+- **The route is still open; confirm it with IT:**
+  - **Azure OpenAI** in Simployer's Microsoft tenant (EU data residency), or the OpenAI API directly
+  - which model is used
+  - the budget and rate limits for Fyr
+- **What doesn't change:**
+  - Every draft is labelled as a draft.
+  - Drafts are built from approved truth plus Brand Rules.
+  - Drafts are checked against the Messaging Framework, and nothing reaches the org area before approval.
+
+**Consequences:**
+- The prototype doesn't change: drafts there are mocked and no model is named.
+- Week-1 admin: get access to the company's OpenAI setup instead of a Claude API key. If OpenAI is already approved for company solutions, the data-policy approval may already be covered.
+- M3 adds a small test set (a few features in EN/NO/SV) that runs through the framework copy check, to confirm NO/SV draft quality before M3 is done.
+- Not affected: building with Claude Code, sharing the prototype and the Messaging Framework as claude.ai links, and the weekly framework drift check. These are internal working tools, not part of the product. To confirm with IT.

@@ -24,7 +24,9 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Roles not on the list: do CSM, PS and Customer Care pick Sales, or do we add a role? | Decision | Tobias | 4 Nov | Open |
 | Raise usage tracking with the employee representatives (drøfting, AML §9-2) and inform staff before go-live (D-025) | Admin | Tobias | 20 Nov | Open |
 | Linear API key + webhook access; confirm tier/visibility fields | Admin | Tobias | 30 Oct | Open |
-| Claude API key + budget + data-policy OK | Admin | Tobias | 30 Oct | Open |
+| ~~Claude API key + budget + data-policy OK~~ (replaced by OpenAI, D-031) | Admin | Tobias | 30 Oct | Closed |
+| Ask IT about OpenAI for Fyr: Azure OpenAI or the OpenAI API, which model, budget and rate limits, and whether the data policy is already covered (D-031) | Admin | Tobias | 4 Nov | Open |
+| Confirm with IT that the build tools are fine: Claude Code, claude.ai links for the prototype and framework, and the weekly drift check (D-031) | Admin | Tobias | 4 Nov | Open |
 | Vercel project (personal or Simployer team) | Admin | Tobias | 4 Nov | Open |
 | Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
 | Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Tobias | 4 Nov | Open |
@@ -36,6 +38,18 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-29 — OpenAI replaces the Claude API for drafting (D-031)
+- **Done:**
+  - Simployer uses OpenAI in its solutions, so Fyr's AI drafting moves to OpenAI.
+  - The only external dependencies are now Linear and OpenAI. This is updated in the CLAUDE.md scope guard, SPEC §1 and §7, the M3 acceptance criteria, PLAN (M3, week-1 admin, risks), README and PARKED.
+  - D-005's Claude part is marked as superseded.
+  - Planned for M3:
+    - one drafting module, so the provider is a configuration choice
+    - a NO/SV test set run through the framework copy check
+- **Not affected:** the prototype (drafts are mocked, no model named), features, scope and the 27 Nov date.
+- **Next:** ask IT for the route (Azure OpenAI or the OpenAI API), the model, budget and rate limits. Also confirm the build tools are fine.
+- **Decisions:** D-031.
 
 ### 2026-10-29 — Picture bar removed: the signed-in user is the rep (D-030)
 - **Done:**
