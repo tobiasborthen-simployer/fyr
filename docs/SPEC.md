@@ -452,6 +452,22 @@ v0.2 had none of these. Every deck followed one fixed order.
 - Name, title, phone and photo. These feed the picture bar and the contact slide.
 - Role change: moving to PM or PMM needs approval again. Moving down takes effect straight away.
 
+**Usage** (admins, next to People; [D-025](DECISIONS.md))
+- **What is recorded:** sign-ins, registrations, presentations created and presented, edits and own slides, proof quote chosen, views of Product truth, Battlecards and Library, and battlecard searches with no answer.
+- **What admins see, counted by role and by content:**
+  - active people this week and month, and per week
+  - active people by role
+  - presentations by rule and language, % presented and % with the rep's own text
+  - the features and quotes used most
+  - views
+  - searches with no answer (candidates for new objection handlers)
+  - hours saved by automations
+- **Privacy:**
+  - No per-person activity is shown, and role groups under 3 people are hidden.
+  - Raw events are deleted after 12 months.
+  - The register screen says Fyr counts usage by role.
+  - Before go-live, it is raised with the employee representatives (Norway: drøfting, AML §9-2).
+
 **Look.** Registration and sign-in are built on the lighthouse splash (D-015), in EN/NO/SV.
 
 **Acceptance criteria**
@@ -467,6 +483,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `portal.users` | id, email (unique, lowercased), name, role (`pm`/`pmm`/`sales`/`management`), access (`viewer`/`pm`/`editor`), requested_access, approver, admin, status (`active`/`pending`/`disabled`), title, phone, photo_url, verified_at, last_sign_in_at, approved_by/at, created_at |
 | `portal.login_tokens` | email, purpose (`register`/`sign_in`), code_hash, link_hash, payload (name, role), expires_at, used_at, attempts, ip, created_at |
 | `portal.sessions` | token_hash, user_id, created_at, expires_at, last_seen_at |
+| `portal.events` | user_id, role, type (`sign_in`/`register`/`deck_created`/`deck_presented`/`deck_edited`/`own_slide`/`quote`/`view`/`search_empty`), meta (JSON), at. Deleted after 12 months; the Usage tab reads aggregate views only ([D-025](DECISIONS.md)). |
 | `Release` | linearId, name, team, lead, status, visibility, tier, targetDate, gate, featureId, summary, gtm, override (PMM brief layer) |
 | `Feature` | id, key, pillar, module, state (`live`/`soon`), linearRefs |
 | `Framework` | lang, version, tagline, category, pillars[], trust, publishedBy/At |

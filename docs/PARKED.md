@@ -6,6 +6,8 @@ Everything in v0.2 that is **not** built in v0.3. Each row says what the item di
 
 ## Explicitly cut (D-007)
 
+> Usage of Fyr itself by employees, counted by role, is in scope since D-025. It is not the Adoption, Insights or Activity log items below: customer adoption, management dashboards and a global change log stay parked.
+
 | Item | What it did in v0.2 | Why parked | Revisit if |
 |---|---|---|---|
 | **Market Signals** | Spotted patterns in calls, tickets and usage, turned them into questions and actions (`PATTERNS`, `vSignals`, l.3260–3308) | Depends on tl;dv, Freshdesk and Synapse; not core to PMM creation | Those data sources are connected for another reason |

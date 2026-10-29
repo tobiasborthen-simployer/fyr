@@ -50,6 +50,7 @@
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [x] Remove the CSS of the cut modules. 362 rules removed, about 28 KB. A style fingerprint of 36 screens is unchanged.
+- [x] **Usage tab (D-025).** Admins only, counts by role, groups under 3 hidden, with example data plus what the prototype records. The register screen says Fyr counts usage.
 - [x] **Login mock (D-023).**
   - Register, sign in, check your email (simulated email with code and link) and confirm, on the lighthouse splash.
   - Users and sessions in the browser, with access levels for viewer, PM (+ Release plan) and PMM.
@@ -66,6 +67,10 @@
   - People & access and the profile page.
   - Resend email templates in EN/NO/SV.
   - Unit tests for the domain check, token lifecycle and rate limits, plus an end-to-end test against Resend test mode.
+- [ ] **Usage (D-025):**
+  - The `portal.events` table, written server-side from the same actions as the prototype.
+  - Aggregate views for the Usage tab, with the under-3 rule applied in the query.
+  - A nightly job that deletes events older than 12 months.
 - [ ] Create the Postgres (Neon) and Drizzle schema per [SPEC §5](SPEC.md#5-data-model-app), with migrations.
 - [ ] Write a seed script that extracts v0.2 data: `FEATURES` + `NEWF`, `FL`/`FLM`, `FRAME`, `PLAYBOOK`, `BC`/`BCMETA`/`BATTLE`, `ASSETS`, `REFS`, `L` slide strings, `LINEAR_RAW`. Upload the media to Vercel Blob.
 - [ ] Port the design tokens and app shell (rail, topbar, language toggle, toast) from v0.2.

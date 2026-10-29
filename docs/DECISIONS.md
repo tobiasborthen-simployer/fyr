@@ -461,3 +461,33 @@ Details are in PARKED.md.
 - Older log entries and decision texts still mention Thea, because the logs are append-only. This entry records the change.
 
 **Revisit if:** more approvers are needed. An admin can set the approver flag on anyone in the portal.
+
+## D-025 — Track how Fyr is used, by role, for admins only
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:**
+- PMM needs to know whether reps actually use what PMM builds: presentations, Product truth, Battlecards and the Library.
+- Adoption, Insights and the Activity log were cut in D-007, but those covered customer adoption (Planhat), management dashboards and a global change log.
+- This is narrower: usage of Fyr itself by Simployer employees.
+- Monitoring employees counts as a *kontrolltiltak* under Arbeidsmiljøloven chapter 9 in Norway, and Sweden has similar expectations.
+
+**Decision:**
+- Fyr records usage events: sign-ins, registrations, presentations created and presented, edits and own slides, proof quote chosen, views of Product truth, Battlecards and Library, and battlecard searches with no answer.
+- A **Usage** tab in People & access, for admins only, shows them **aggregated by role**:
+  - weekly and monthly active people, and active people per week
+  - presentations by rule and language, how many carry the rep's own text, and the most-used features and quotes
+  - content views
+  - searches with no answer
+  - time saved by automations
+- **No per-person activity is shown.** Per person, admins see only the last sign-in (already in People & access).
+- Raw events are kept for **12 months**, then deleted.
+- The register screen tells people that Fyr counts usage by role to improve the content.
+- Before go-live, Tobias raises the tracking with the employee representatives (Norway: *drøfting* under AML §9-2) and informs staff.
+
+**Consequences:**
+- The `portal` schema gets an `events` table (user_id, role, type, meta, at), plus summary views.
+- The prototype shows the Usage tab with example data plus the events it records in the browser.
+- This does not bring back Adoption or Insights. Customer adoption, management dashboards and a global activity log stay parked.
+
+**Revisit if:** managers ask for per-person reports. That needs its own decision and a new round with employee representatives.
+

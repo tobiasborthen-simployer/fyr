@@ -1132,6 +1132,27 @@ select.fl-in option { background: #221646; color: #fff; }
 .fl-ex summary { cursor: pointer; }
 .fl-ex div { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
 .fl-ex button { border: 1px solid rgba(201,189,255,.3); background: rgba(255,255,255,.05); color: #fff; border-radius: 99px; padding: 6px 12px; font-size: 12.5px; cursor: pointer; }
+.ugrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-top: 18px; align-items: start; }
+.ugrid .panel h3 { margin: 0 0 6px; }
+.usm { margin: 0 0 12px; font-size: 13px; }
+.usub { margin: 16px 0 6px; font-size: 13px; font-weight: 600; color: var(--sub); }
+.ustat { display: flex; gap: 22px; flex-wrap: wrap; margin: 6px 0 4px; }
+.ustat b { display: block; font-size: 22px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.ustat small { color: var(--muted); font-size: 12px; }
+.ubars { display: grid; gap: 2px; }
+.ubar { position: relative; display: grid; grid-template-columns: minmax(90px, 38%) 1fr auto; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 8px; font-size: 13px; }
+.ubar:hover, .ubar:focus-visible { background: var(--lav-50); outline: none; }
+.ubar .ul { color: var(--sub); overflow-wrap: anywhere; }
+.ubar .ut { height: 12px; }
+.ubar .ut i { display: block; height: 100%; background: var(--lav); border-radius: 0 4px 4px 0; }
+.ubar b { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ucols { display: flex; align-items: flex-end; gap: 8px; height: 150px; border-bottom: 1px solid var(--line); margin-bottom: 26px; padding-top: 20px; }
+.ucol { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; border-radius: 6px; }
+.ucol:hover, .ucol:focus-visible { background: var(--lav-50); outline: none; }
+.ucol i { width: 100%; max-width: 24px; background: var(--lav); border-radius: 4px 4px 0 0; }
+.ucol .uv { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.ucol small { position: absolute; bottom: -22px; font-size: 11px; color: var(--muted); white-space: nowrap; }
+.ubar[data-tip]:hover::after, .ubar[data-tip]:focus-visible::after, .ucol[data-tip]:hover::after, .ucol[data-tip]:focus-visible::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); background: var(--ink); color: #fff; font-size: 12px; font-weight: 500; padding: 5px 9px; border-radius: 6px; white-space: nowrap; z-index: 5; pointer-events: none; }
 .me-acts { display: flex; gap: 8px; }
 .me-acts button { flex: 1; height: 32px; border-radius: 8px; border: 1px solid var(--night-line); color: #E9E4F4; font-size: 12.5px; background: transparent; cursor: pointer; }
 .me-acts button:hover { background: rgba(255,255,255,.06); }
@@ -1497,13 +1518,67 @@ function portalStore() { try { localStorage.setItem(USERS_KEY, JSON.stringify(US
 function sessionRead() { try { const v = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); return v && v.exp > Date.now() ? v : null; } catch (_) { return null; } }
 function sessionWrite(uid) { try { localStorage.setItem(SESSION_KEY, JSON.stringify({ uid, exp: Date.now() + 30 * 864e5 })); } catch (_) {} }
 function sessionClear() { try { localStorage.removeItem(SESSION_KEY); } catch (_) {} }
+const EVENTS_KEY = 'fyr-v03-events', YEAR = 365 * 864e5;
+let EVENTS = [], LAST_VIEW = null, BC_LAST = { q: '', n: 1 };
+function eventsLoad() { try { const v = JSON.parse(localStorage.getItem(EVENTS_KEY) || 'null'); EVENTS = Array.isArray(v) ? v : usageSeed(); } catch (_) { EVENTS = usageSeed(); } EVENTS = EVENTS.filter(e => e.at > Date.now() - YEAR); }
+function eventsStore() { try { localStorage.setItem(EVENTS_KEY, JSON.stringify(EVENTS.slice(-6000))); } catch (_) {} }
+function track(t, m = {}) { if (!CUR) return; EVENTS.push({ t, uid: CUR.id, role: CUR.role, at: Date.now(), m }); eventsStore(); }
+// Example activity so the Usage tab has something to show: 45 people over 8 weeks, deterministic
+function usageSeed() {
+  let sd = 42; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647, pick = a => a[Math.floor(rnd() * a.length)];
+  const wpick = pairs => { let x = rnd() * pairs.reduce((a, p) => a + p[1], 0); for (const [v, w] of pairs) { x -= w; if (x <= 0) return v; } return pairs[0][0]; };
+  const now = Date.now(), DAY = 864e5, ev = [], feats = ['onboarding', 'sickleave', 'sia', 'automation', 'surveys', 'empnum'].filter(k => FEATURES[k]);
+  const terms = ['setup time', 'price per user', 'payroll export', 'data migration', 'offline mobile app', 'union agreements', 'API limits'];
+  const people = [...USERS.filter(u => u.status === 'active').map(u => [u.id, u.role]), ...Array.from({ length: 38 }, (_, i) => ['x' + i, i < 26 ? 'sales' : i < 31 ? 'management' : i < 36 ? 'pm' : 'pmm'])];
+  people.forEach(([uid, role]) => {
+    const keen = rnd(), rate = { sales: .32, management: .14, pm: .2, pmm: .7 }[role] * (.35 + keen);
+    for (let d = 0; d < 56; d++) {
+      if (rnd() > rate) continue;
+      const at = now - d * DAY - Math.floor(rnd() * 8) * 36e5, e = (t, m = {}) => ev.push({ t, uid, role, at, m, ex: true });
+      e('sign_in');
+      if (role === 'sales' && rnd() < .45) {
+        const rule = wpick([['sales-discovery', 4], ['sales-demo', 3.5], ['sales-followup', 1.5]]), deck = 'x' + ev.length;
+        e('deck_created', { rule, lang: wpick([['NO', 5.5], ['SV', 3.5], ['EN', 1]]), features: rule === 'sales-discovery' ? [] : [...new Set([pick(feats), pick(feats)])], deck });
+        if (rnd() < .72) e('deck_presented', { rule, deck });
+        if (rnd() < .45) e('deck_edited', { deck });
+        if (rnd() < .22) e('own_slide', { deck });
+        if (rule === 'sales-discovery') e('quote', { q: wpick([['betao', 7], ['kaffe', 2], ['cflow', 1]]) });
+      }
+      if (role === 'management' && rnd() < .2) { const deck = 'x' + ev.length; e('deck_created', { rule: 'mgmt-leadership', lang: 'NO', features: [pick(feats)], deck }); if (rnd() < .6) e('deck_presented', { rule: 'mgmt-leadership', deck }); }
+      if (rnd() < .5) e('view', { area: wpick([['truth', 3], ['battle', role === 'sales' ? 4 : 1], ['library', 2]]) });
+      if (role === 'sales' && rnd() < .08) e('search_empty', { q: wpick(terms.map((t, i) => [t, 8 - i])) });
+    }
+  });
+  people.slice(-12).forEach(([uid, role]) => ev.push({ t: 'register', uid, role, at: now - Math.floor(rnd() * 56) * DAY, m: {}, ex: true }));
+  return ev.sort((a, b) => a.at - b.at);
+}
+// Everything on the Usage tab is a count by role or by content; no person is shown
+function usageData(P) {
+  const now = Date.now(), DAY = 864e5, E = EVENTS.filter(e => e.at > now - P * DAY), who = a => new Set(a.map(e => e.uid)).size, of = t => E.filter(e => e.t === t);
+  const count = (arr, key) => arr.reduce((m, e) => { const k = key(e); if (k != null) m[k] = (m[k] || 0) + 1; return m; }, {});
+  const top = (obj, n, name = k => k) => Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => [name(k), v]);
+  const weeks = Array.from({ length: 8 }, (_, i) => { const to = now - (7 - i) * 7 * DAY, from = to - 7 * DAY, d = new Date(from + DAY); const n = who(EVENTS.filter(e => e.at > from && e.at <= to)); return [`${d.getDate()} ${MON3[d.getMonth()]}`, n, `Week from ${d.getDate()} ${MON3[d.getMonth()]}: ${n} active people`]; });
+  const created = of('deck_created'), presented = of('deck_presented').length, own = new Set([...of('deck_edited'), ...of('own_slide')].map(e => e.m.deck)).size;
+  const byRole = ROLE_OPTS.map(([k, t]) => { const n = who(E.filter(e => e.role === k)); return n < 3 ? [t, 0, `${t}: fewer than 3 people (hidden to protect privacy)`, 'fewer than 3'] : [t, n, `${t}: ${n} active people`]; });
+  return {
+    wau: who(EVENTS.filter(e => e.at > now - 7 * DAY)), mau: who(EVENTS.filter(e => e.at > now - 30 * DAY)), reg: of('register').length,
+    hours: (AUTO_META.reduce((s, [n]) => s + autoStats(n).saved, 0) / 60).toFixed(1), weeks, byRole,
+    created: created.length, presented, own,
+    byRule: top(count(created, e => e.m.rule), 8, k => ruleById(k).name),
+    byLang: ['NO', 'SV', 'EN'].map(l => [l, created.filter(e => e.m.lang === l).length]),
+    features: top(count(created.flatMap(e => (e.m.features || []).map(f => ({ m: { f } }))), e => e.m.f), 8, k => FEATURES[k] ? FEATURES[k].name : k),
+    quotes: DISC_QUOTES.map(q => [q.who.split(',').pop().trim(), of('quote').filter(e => e.m.q === q.id).length]),
+    views: [['Product truth', 'truth'], ['Battlecards', 'battle'], ['Library', 'library']].map(([t, k]) => [t, of('view').filter(e => e.m.area === k).length]),
+    searches: top(count(of('search_empty'), e => e.m.q), 6),
+  };
+}
 // Access decides the view: editor → PMM workspace, pm → viewer + Release plan, viewer → the org area. Pending requests keep the current access.
 function applyUser(u) {
   CUR = u; S.role = u.access === 'editor' ? 'pmm' : u.access === 'pm' ? 'pm' : 'org';
   ROLES[S.role] = { label: ACCESS_LABEL[u.access], name: u.name, title: `${ROLE_LABEL[u.role]} · ${ACCESS_LABEL[u.access].toLowerCase()}`, init: u.name.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase() };
 }
 function signIn(u) {
-  u.lastIn = deckStamp(); portalStore(); sessionWrite(u.id); applyUser(u); FYR_IN = true; AUTH = { step: 'start' };
+  u.lastIn = deckStamp(); portalStore(); sessionWrite(u.id); applyUser(u); FYR_IN = true; AUTH = { step: 'start' }; track('sign_in');
   S.view = S.role === 'pmm' ? 'office' : 'create'; S.deck = null;
   const el = document.getElementById('fyr-login'); if (el) { el.classList.add('gone'); setTimeout(() => el.remove(), matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 250); }
   render(); window.scrollTo({ top: 0 });
@@ -1584,7 +1659,7 @@ function renderNav() {
   const r = ROLES[S.role];
   $('#me').innerHTML = `<span class="av">${r.init}</span><div><b>${r.name}</b><small>${r.title}</small></div>`;
   const sub = S.view === 'deck' && S.deck ? S.deck.company : S.view === 'brief' && S.meeting ? S.meeting.company : '';
-  const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks', prules: 'Presentation rules', people: 'People & access' };
+  const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks', prules: 'Presentation rules', people: 'People & access', usage: 'Usage' };
   { const g = BOG.find(g => g.tabs.length > 1 && g.tabs.some(x => x[0] === S.view)); if (g && S.view !== 'office') { $('#crumbs').innerHTML = `<span>${S.role === 'pm' ? 'Release plan' : 'PMM workspace'}</span>${ico('i-arrow')}<span>${g.t}</span>${ico('i-arrow')}<b>${g.tabs.find(x => x[0] === S.view)[1]}</b>`; return; } }
   if (nm[S.view]) { $('#crumbs').innerHTML = S.view === 'office' ? '<b>PMM workspace</b>' : `<span>PMM workspace</span>${ico('i-arrow')}<b>${nm[S.view]}${(S.view === 'pack' && S.pack) ? ' · ' + relById(S.pack).short : S.view === 'packnew' && NEW.rid ? ' · ' + relById(NEW.rid).short : ''}</b>`; return; }
   $('#crumbs').innerHTML = sub ? `<span>Create</span>${ico('i-arrow')}<b>${sub}</b>` : `<b>${VIEW_NAMES[S.view]}</b>`;
@@ -1819,6 +1894,7 @@ function buildDeck() {
   const b = S.brief, m = S.meeting, r = ruleById(b.rule);
   S.deck = { company: m.company, rule: r.id, occasion: r.occasion, lang: b.lang, date: b.date || todayISO(), rep: signedInRep(), ruleV: r.v, slides: recipeSlides(r, b, m), presented: false };
   S.sel = 0;
+  track('deck_created', { rule: r.id, lang: b.lang, features: [...b.features] });
 }
 
 /* ---------- Slides ---------- */
@@ -1902,16 +1978,16 @@ function bindDeck() {
   $$('.thumb').forEach((li, i) => applyEdits(li, d.slides[i]));
   const st = $('.stage .slide'); applyEdits(st, d.slides[S.sel]);
   const at = S.sel; // the slide these fields belong to, even if the view moves on before blur fires
-  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); }); });
+  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); track('deck_edited', { deck: d.id }); }); });
   if ($('#rebuild')) $('#rebuild').addEventListener('click', rebuildDeck);
-  $('#add-slide').addEventListener('click', () => { d.slides.splice(S.sel + 1, 0, { kind: 'custom' }); S.sel++; render(); toast('Added your own slide. Click the text to write it.'); });
+  $('#add-slide').addEventListener('click', () => { track('own_slide', { deck: d.id }); d.slides.splice(S.sel + 1, 0, { kind: 'custom' }); S.sel++; render(); toast('Added your own slide. Click the text to write it.'); });
   $$('[data-pick]').forEach(x => { x.addEventListener('click', () => { S.sel = +x.dataset.pick; render(); }); x.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); S.sel = +x.dataset.pick; render(); } }); });
   $$('[data-mv]').forEach(x => x.addEventListener('click', () => move(+x.dataset.mv, +x.dataset.mv + +x.dataset.dir)));
   $$('[data-del]').forEach(x => x.addEventListener('click', () => { if (d.slides.length <= 1) return; const i = +x.dataset.del, g = slideName(d.slides[i]); d.slides.splice(i, 1); S.sel = Math.min(S.sel, d.slides.length - 1); render(); toast(`Removed “${g}”.`); }));
   $$('[data-vis]').forEach(x => x.addEventListener('click', () => { d.slides[S.sel].visual = x.dataset.vis; render(); }));
   if ($('#story2')) $('#story2').addEventListener('change', e => { d.slides[S.sel].noStory2 = !e.target.checked; render(); });
   $$('[data-hide]').forEach(x => x.addEventListener('click', () => { const sl = d.slides[+x.dataset.hide]; sl.hidden = !sl.hidden; render(); }));
-  $$('[data-proofpick]').forEach(x => x.addEventListener('click', () => { const id = x.dataset.proofpick; d.slides.forEach(sl => { if (sl.kind === 'proof') sl.hidden = sl.q !== id; }); S.sel = d.slides.findIndex(sl => sl.kind === 'proof' && sl.q === id); render(); }));
+  $$('[data-proofpick]').forEach(x => x.addEventListener('click', () => { const id = x.dataset.proofpick; track('quote', { q: id }); d.slides.forEach(sl => { if (sl.kind === 'proof') sl.hidden = sl.q !== id; }); S.sel = d.slides.findIndex(sl => sl.kind === 'proof' && sl.q === id); render(); }));
   $$('[data-rep]').forEach(x => x.addEventListener('click', () => { d.rep = x.dataset.rep; d.slides.forEach(sl => { if (sl.kind === 'contact') delete sl.edits; }); render(); toast(`Added ${deckRep(d).name} to the slides.`); }));
   let from = null;
   $$('.thumb').forEach(li => {
@@ -1941,7 +2017,7 @@ function present() {
   const d = S.deck, vis = d.slides.map((_, k) => k).filter(k => !d.slides[k].hidden);
   if (!vis.length) { toast('Every slide is hidden. Show at least one.'); return; }
   let i = Math.max(0, vis.indexOf(S.sel));
-  if (!d.presented) { d.presented = true; saveDeck(); }
+  if (!d.presented) { d.presented = true; saveDeck(); track('deck_presented', { rule: d.rule, deck: d.id }); }
   const root = $('#present-root');
   const draw = () => {
     root.innerHTML = `<div class="present" role="dialog" aria-label="Presenting"><div class="fr">${slideHTML(d.slides[vis[i]], i, vis.length)}</div><div class="ctl"><button id="pv" aria-label="Previous slide">${ico('i-left')}</button><span>${i + 1} / ${vis.length}</span><button id="nx" aria-label="Next slide">${ico('i-arrow')}</button><button id="ex">Exit</button></div></div>`;
@@ -2798,6 +2874,7 @@ function vBattle() {
   const q = BCS.q.trim().toLowerCase();
   const hits = q ? D.cards.flatMap(c => c.obj.filter(o => (o.q + ' ' + o.a).toLowerCase().includes(q)).map(o => ({ c, o }))).concat(BATTLE.filter(b => (b.o + ' ' + b.a).toLowerCase().includes(q)).map(b => ({ c: null, o: { q: b.o, a: b.a } }))) : [];
   const c = BCS.c === 'general' ? null : bcCard(m, BCS.c);
+  BC_LAST = { q, n: hits.length };
   return `<div class="page-title"><div><h1>Battlecards</h1><p>How to win against each competitor in Norway and Sweden. Owned by Product Marketing and updated in the back office. Internal only: never on a slide, in an email or in front of a customer.</p></div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="seg" role="group" aria-label="Market">${['NO', 'SE'].map(k => `<button data-bcm="${k}" aria-pressed="${m === k}">${BCMETA[k].label}</button>`).join('')}</div><span class="pill warn">${ico('i-lock')} Internal only</span></div></div>
   <div class="bc-meta"><span>${ai()} v${M.v} · updated ${M.date} by ${M.by}</span><span class="muted">Source: ${esc(D.source)}</span>${pm ? `<button class="btn btn-line btn-sm" data-view="bcedit">${ico('i-edit')}Edit in back office</button>` : ''}</div>
@@ -2838,7 +2915,7 @@ function bindBattle() {
   $$('[data-bcc]').forEach(b => b.addEventListener('click', () => { BCS.c = b.dataset.bcc; render(); }));
   $$('[data-bsel]').forEach(b => b.addEventListener('click', () => { BSEL = b.dataset.bsel; render(); }));
   $$('[data-copy]').forEach(b => b.addEventListener('click', () => { try { navigator.clipboard.writeText(b.dataset.copy); } catch (e) {} toast('Question copied. Ask it before the demo, not after.'); }));
-  const q = $('#bc-q'); if (q) q.addEventListener('input', () => { BCS.q = q.value; const pos = q.selectionStart; render(); const n = $('#bc-q'); n.focus(); n.setSelectionRange(pos, pos); });
+  const q = $('#bc-q'); if (q) q.addEventListener('input', () => { BCS.q = q.value; clearTimeout(window.__bcT); window.__bcT = setTimeout(() => { if (BC_LAST.q.length >= 3 && !BC_LAST.n) track('search_empty', { q: BC_LAST.q }); }, 1500); const pos = q.selectionStart; render(); const n = $('#bc-q'); n.focus(); n.setSelectionRange(pos, pos); });
 }
 
 /* ---------- Back office: battlecard editor ---------- */
@@ -3440,6 +3517,34 @@ function bindPeople() {
   $$('[data-uoff]').forEach(b => b.addEventListener('click', () => { const u = U(b.dataset.uoff); u.status = 'disabled'; done(`${u.name} is turned off and signed out everywhere.`); }));
   $$('[data-uon]').forEach(b => b.addEventListener('click', () => { const u = U(b.dataset.uon); u.status = 'active'; done(`${u.name} is turned on again.`); }));
 }
+/* ---------- Usage (admins): counts by role, never per person (D-025) ---------- */
+let USAGE_P = 30;
+// One series per chart, so no legend: label, bar, value at the tip; the tooltip repeats it in words
+function uBars(rows) {
+  const max = Math.max(1, ...rows.map(r => r[1]));
+  return `<div class="ubars" role="list">${rows.map(([label, n, tip, shown]) => `<div class="ubar" role="listitem" tabindex="0" data-tip="${esc(tip || `${label}: ${n}`)}"><span class="ul">${esc(label)}</span><span class="ut"><i style="width:${n / max * 100}%"></i></span><b>${shown || n}</b></div>`).join('')}</div>`;
+}
+function uCols(rows) {
+  const max = Math.max(1, ...rows.map(r => r[1]));
+  return `<div class="ucols" role="list">${rows.map(([label, n, tip], i) => `<div class="ucol" role="listitem" tabindex="0" data-tip="${esc(tip)}"><span class="uv">${i === rows.length - 1 ? n : ''}</span><i style="height:${Math.max(1, n / max * 100)}%"></i><small>${label}</small></div>`).join('')}</div>`;
+}
+function vUsage() {
+  const u = usageData(USAGE_P), pct = (a, b) => b ? Math.round(a / b * 100) : 0, per = { 7: 'last 7 days', 30: 'last 30 days', 90: 'last 90 days' }[USAGE_P];
+  return `<div class="page-title"><div><h1>Usage</h1><p>How Fyr is used, counted by role and by content. Nobody’s individual activity is shown here.</p></div><span class="pill soon">Admins only</span></div>
+  <div class="seg" role="group" aria-label="Period" style="margin-bottom:16px">${[[7, 'Last 7 days'], [30, 'Last 30 days'], [90, 'Last 90 days']].map(([k, t]) => `<button data-up="${k}" aria-pressed="${USAGE_P === k}">${t}</button>`).join('')}</div>
+  <section class="ink"><span class="hi">${ai()} Fyr right now</span><div class="ktiles"><div><b>${u.wau}</b><small>active people this week</small></div><div><b>${u.mau}</b><small>active people this month</small></div><div><b>${u.reg}</b><small>registered, ${per}</small></div><div><b>${u.hours} h</b><small>saved by automations in October</small></div></div></section>
+  <div class="ugrid">
+    <section class="card panel"><h3>Active people per week</h3><p class="muted usm">Anyone who signed in or used Fyr that week.</p>${uCols(u.weeks)}</section>
+    <section class="card panel"><h3>Active people by role</h3><p class="muted usm">${per[0].toUpperCase() + per.slice(1)}. Groups under 3 people are hidden.</p>${uBars(u.byRole)}</section>
+    <section class="card panel"><h3>Presentations</h3><div class="ustat"><div><b>${u.created}</b><small>created</small></div><div><b>${pct(u.presented, u.created)}%</b><small>presented</small></div><div><b>${pct(u.own, u.created)}%</b><small>with the rep’s own text</small></div></div><h4 class="usub">By presentation rule</h4>${uBars(u.byRule)}<h4 class="usub">By language</h4>${uBars(u.byLang)}</section>
+    <section class="card panel"><h3>Features used most in decks</h3>${u.features.length ? uBars(u.features) : '<p class="muted">None in this period.</p>'}<h4 class="usub">Proof quote chosen in discovery meetings</h4>${uBars(u.quotes)}</section>
+    <section class="card panel"><h3>Views</h3>${uBars(u.views)}</section>
+    <section class="card panel"><h3>Battlecard searches with no answer</h3><p class="muted usm">Objections reps looked for and didn’t find: candidates for new handlers.</p>${u.searches.length ? uBars(u.searches) : '<p class="muted">None in this period.</p>'}<div style="margin-top:12px"><button class="btn btn-line btn-sm" data-view="bcedit">${ico('i-shield')}Open the battlecard editor</button></div></section>
+  </div>
+  <section class="card panel" style="margin-top:18px"><h3>${ico('i-lock')} Privacy</h3><ul class="muted" style="margin:6px 0 0;padding-left:18px;display:grid;gap:4px;font-size:13.5px"><li>Counted by role and by content. No one’s individual activity is shown; per person, admins only see the last sign-in in People.</li><li>Raw events are deleted after 12 months.</li><li>People are told at registration that Fyr counts usage by role.</li><li>Before go-live: raise it with the employee representatives (Norway: drøfting under AML §9-2) and inform staff.</li></ul></section>
+  <p class="demo">Prototype: made-up activity for 45 people over 8 weeks, plus what you do in this browser. <i>Example data</i></p>`;
+}
+function bindUsage() { $$('[data-up]').forEach(b => b.addEventListener('click', () => { USAGE_P = +b.dataset.up; render(); })); }
 /* ---------- Profile ---------- */
 const PROFILE_PHOTOS = ['p105', 'p128', 'p152', 'p31', 'p332', 'p336', 'p339', 'p360', 'p393', 'p405', 'p417', 'p424'];
 function openProfile() {
@@ -3626,7 +3731,7 @@ RELEASES.filter(r => r.lite && r.gate === 'soon' && r.due != null && r.due >= 0 
 const SLOGAN = { EN: 'Everything you need to talk about Simployer', NO: 'Alt du trenger for å snakke om Simployer', SV: 'Allt du behöver för att prata om Simployer' };
 const AUTH_T = {
   EN: { signin: 'Sign in', register: 'Register', email: 'Work email', name: 'Full name', role: 'Role', pick: 'Pick your role', send: 'Email me a sign-in code', create: 'Register', back: 'Back',
-    onlySimployer: 'Use your @simployer.com address.', needName: 'Add your full name.', needRole: 'Pick your role.', approval: 'PM and PMM access is approved by an admin. Until then you can use Presentations, Product truth, Battlecards and Library.',
+    onlySimployer: 'Use your @simployer.com address.', needName: 'Add your full name.', needRole: 'Pick your role.', approval: 'PM and PMM access is approved by an admin. Until then you can use Presentations, Product truth, Battlecards and Library.', usage: 'Fyr counts how it’s used, by role, to improve the content. Nobody’s individual activity is shown.',
     checkH: 'Check your email', checkP: e => `If ${e} is a Simployer address, we’ve sent an email with a sign-in code and a link.`, code: '6-digit code', codeBtn: 'Sign in',
     wrong: n => `That code doesn’t match. ${n} attempt${n === 1 ? '' : 's'} left.`, locked: 'Too many attempts. Send a new email.', expired: 'The code has expired. Send a new email.', used: 'That code has already been used. Send a new email.',
     resend: 'Send a new email', rate: 'Too many emails to this address. Try again in 15 minutes.', expires: t => `The code expires at ${t}.`, examples: 'Example accounts (prototype)',
@@ -3634,7 +3739,7 @@ const AUTH_T = {
     subjSign: 'Your Fyr sign-in code', subjReg: 'Finish registering for Fyr', subjNone: 'Register for Fyr', subjOff: 'Your Fyr access',
     bodySign: 'Use this code to sign in, or the button. It works once and expires in 15 minutes.', bodyNone: 'Someone asked to sign in to Fyr with this address, but there is no account yet. Register first.', bodyOff: 'Your access to Fyr is turned off. Contact PMM if that’s wrong.', link: 'Sign in to Fyr', regLink: 'Register' },
   NO: { signin: 'Logg inn', register: 'Registrer deg', email: 'Jobb-e-post', name: 'Fullt navn', role: 'Rolle', pick: 'Velg rollen din', send: 'Send meg en innloggingskode', create: 'Registrer deg', back: 'Tilbake',
-    onlySimployer: 'Bruk @simployer.com-adressen din.', needName: 'Skriv inn fullt navn.', needRole: 'Velg rollen din.', approval: 'Tilgang som PM og PMM godkjennes av en administrator. Inntil da kan du bruke Presentasjoner, Produktsannhet, Battlecards og Bibliotek.',
+    onlySimployer: 'Bruk @simployer.com-adressen din.', needName: 'Skriv inn fullt navn.', needRole: 'Velg rollen din.', approval: 'Tilgang som PM og PMM godkjennes av en administrator. Inntil da kan du bruke Presentasjoner, Produktsannhet, Battlecards og Bibliotek.', usage: 'Fyr teller hvordan verktøyet brukes, per rolle, for å forbedre innholdet. Ingens individuelle aktivitet vises.',
     checkH: 'Sjekk e-posten din', checkP: e => `Hvis ${e} er en Simployer-adresse, har vi sendt en e-post med en innloggingskode og en lenke.`, code: '6-sifret kode', codeBtn: 'Logg inn',
     wrong: n => `Koden stemmer ikke. ${n} forsøk igjen.`, locked: 'For mange forsøk. Send en ny e-post.', expired: 'Koden har utløpt. Send en ny e-post.', used: 'Koden er allerede brukt. Send en ny e-post.',
     resend: 'Send en ny e-post', rate: 'For mange e-poster til denne adressen. Prøv igjen om 15 minutter.', expires: t => `Koden utløper kl. ${t}.`, examples: 'Eksempelkontoer (prototype)',
@@ -3642,7 +3747,7 @@ const AUTH_T = {
     subjSign: 'Innloggingskoden din for Fyr', subjReg: 'Fullfør registreringen i Fyr', subjNone: 'Registrer deg i Fyr', subjOff: 'Tilgangen din til Fyr',
     bodySign: 'Bruk koden for å logge inn, eller knappen. Den virker én gang og utløper om 15 minutter.', bodyNone: 'Noen ba om å logge inn i Fyr med denne adressen, men det finnes ingen konto ennå. Registrer deg først.', bodyOff: 'Tilgangen din til Fyr er slått av. Kontakt PMM hvis det er feil.', link: 'Logg inn i Fyr', regLink: 'Registrer deg' },
   SV: { signin: 'Logga in', register: 'Registrera dig', email: 'Jobbmejl', name: 'Fullständigt namn', role: 'Roll', pick: 'Välj din roll', send: 'Mejla mig en inloggningskod', create: 'Registrera dig', back: 'Tillbaka',
-    onlySimployer: 'Använd din @simployer.com-adress.', needName: 'Skriv ditt fullständiga namn.', needRole: 'Välj din roll.', approval: 'Behörighet som PM och PMM godkänns av en administratör. Tills dess kan du använda Presentationer, Produktsanning, Battlecards och Bibliotek.',
+    onlySimployer: 'Använd din @simployer.com-adress.', needName: 'Skriv ditt fullständiga namn.', needRole: 'Välj din roll.', approval: 'Behörighet som PM och PMM godkänns av en administratör. Tills dess kan du använda Presentationer, Produktsanning, Battlecards och Bibliotek.', usage: 'Fyr räknar hur verktyget används, per roll, för att förbättra innehållet. Ingens individuella aktivitet visas.',
     checkH: 'Kolla din mejl', checkP: e => `Om ${e} är en Simployer-adress har vi skickat ett mejl med en inloggningskod och en länk.`, code: '6-siffrig kod', codeBtn: 'Logga in',
     wrong: n => `Koden stämmer inte. ${n} försök kvar.`, locked: 'För många försök. Skicka ett nytt mejl.', expired: 'Koden har gått ut. Skicka ett nytt mejl.', used: 'Koden har redan använts. Skicka ett nytt mejl.',
     resend: 'Skicka ett nytt mejl', rate: 'För många mejl till den här adressen. Försök igen om 15 minuter.', expires: t => `Koden går ut kl. ${t}.`, examples: 'Exempelkonton (prototyp)',
@@ -3665,14 +3770,14 @@ function authComplete() {
   if (t.used) return 'used';
   if (now > t.exp) return 'expired';
   t.used = true;
-  let u = USERS.find(x => x.email === AUTH.email);
-  if (!u && t.purpose === 'register') {
+  let u = USERS.find(x => x.email === AUTH.email), fresh = false;
+  if (!u && t.purpose === 'register') { fresh = true;
     const want = ROLE_ACCESS[t.payload.role];
     u = { id: 'u' + now.toString(36), name: t.payload.name, email: AUTH.email, role: t.payload.role, access: 'viewer', requested: want === 'viewer' ? null : want, status: want === 'viewer' ? 'active' : 'pending', title: '', phone: '', photo: null, created: deckStamp().split(' ').slice(0, 2).join(' '), lastIn: '' };
     USERS.push(u);
   }
   if (!u || u.status === 'disabled') return 'wrong';
-  signIn(u); return null;
+  signIn(u); if (fresh) track('register'); return null;
 }
 const FYR_T = { EN: { login: 'Log in', lang: 'Language' }, NO: { login: 'Logg inn', lang: 'Språk' }, SV: { login: 'Logga in', lang: 'Språk' } };
 function fyrMark(size, dark) {
@@ -3735,7 +3840,7 @@ function authPanel(L) {
   const a = AUTH_T[L] || AUTH_T.EN, s = AUTH.step, err = AUTH.err ? `<p class="fl-err" role="alert">${AUTH.err}</p>` : '';
   const wm = `<h1 class="fl-wm"><span class="fyr-word">Fyr</span><span class="fl-dot" aria-hidden="true"></span><span class="sr">Fyr</span></h1>`;
   if (s === 'signin') return `${wm}<form class="fl-card" id="fa-signin" novalidate><h2>${a.signin}</h2><label class="fl-l">${a.email}<input class="fl-in" id="fa-email" type="email" autocomplete="email" value="${esc(AUTH.email || '')}" placeholder="name@simployer.com"></label>${err}<button class="fl-btn" type="submit">${a.send}</button><button class="fl-link" type="button" data-auth="start">${a.back}</button></form>`;
-  if (s === 'register') return `${wm}<form class="fl-card" id="fa-register" novalidate><h2>${a.register}</h2><label class="fl-l">${a.name}<input class="fl-in" id="fa-name" autocomplete="name" value="${esc(AUTH.name || '')}"></label><label class="fl-l">${a.email}<input class="fl-in" id="fa-email" type="email" autocomplete="email" value="${esc(AUTH.email || '')}" placeholder="name@simployer.com"></label><label class="fl-l">${a.role}<select class="fl-in" id="fa-role"><option value="">${a.pick}</option>${ROLE_OPTS.map(([k, t]) => `<option value="${k}" ${AUTH.role === k ? 'selected' : ''}>${t}</option>`).join('')}</select></label><p class="fl-note">${a.approval}</p>${err}<button class="fl-btn" type="submit">${a.create}</button><button class="fl-link" type="button" data-auth="start">${a.back}</button></form>`;
+  if (s === 'register') return `${wm}<form class="fl-card" id="fa-register" novalidate><h2>${a.register}</h2><label class="fl-l">${a.name}<input class="fl-in" id="fa-name" autocomplete="name" value="${esc(AUTH.name || '')}"></label><label class="fl-l">${a.email}<input class="fl-in" id="fa-email" type="email" autocomplete="email" value="${esc(AUTH.email || '')}" placeholder="name@simployer.com"></label><label class="fl-l">${a.role}<select class="fl-in" id="fa-role"><option value="">${a.pick}</option>${ROLE_OPTS.map(([k, t]) => `<option value="${k}" ${AUTH.role === k ? 'selected' : ''}>${t}</option>`).join('')}</select></label><p class="fl-note">${a.approval}</p><p class="fl-note">${a.usage}</p>${err}<button class="fl-btn" type="submit">${a.create}</button><button class="fl-link" type="button" data-auth="start">${a.back}</button></form>`;
   if (s === 'check') {
     const t = AUTH.tok, kind = t.purpose, subj = kind === 'register' ? a.subjReg : kind === 'sign_in' ? a.subjSign : kind === 'off' ? a.subjOff : a.subjNone;
     const body = kind === 'none' ? `<p>${a.bodyNone}</p><button type="button" class="fl-mbtn" data-auth="register">${a.regLink}</button>` : kind === 'off' ? `<p>${a.bodyOff}</p>` : `<p>${a.bodySign}</p><div class="code">${t.code}</div><button type="button" class="fl-mbtn" data-auth="confirm">${a.link}</button>`;
@@ -3796,7 +3901,7 @@ const BOG = [
   { sec: 'bo', t: 'Marketing Remix', ic: 'i-mega', tabs: [['channels', 'Drafts']], badge: () => 0 },
   { sec: 'bo', t: 'Presentation rules', ic: 'i-deck', tabs: [['prules', 'Rules']], badge: () => 0 },
   { sec: 'bo', t: 'Automations', ic: 'i-play', tabs: [['auto', 'Overview']], badge: () => 0 },
-  { sec: 'bo', t: 'People & access', ic: 'i-users', hot: true, tabs: [['people', 'People']], badge: () => USERS.filter(u => u.status === 'pending').length },
+  { sec: 'bo', t: 'People & access', ic: 'i-users', hot: true, tabs: [['people', 'People'], ['usage', 'Usage']], badge: () => USERS.filter(u => u.status === 'pending').length },
 ];
 function boTabs() {
   if (S.role !== 'pmm' && !(S.role === 'pm' && ['product', 'calendar'].includes(S.view))) return '';
@@ -3811,16 +3916,19 @@ function render() {
   if (S.view === 'brief' && !S.brief) S.view = 'create';
   const OPEN = ['create', 'brief', 'gen', 'deck', 'work', 'truth', 'battle', 'library'], PMV = [...OPEN, 'product', 'calendar'];
   if (S.role === 'org' && !OPEN.includes(S.view) || S.role === 'pm' && !PMV.includes(S.view)) S.view = 'create';
-  if (S.view === 'people' && !(CUR && CUR.admin)) S.view = S.role === 'pmm' ? 'office' : 'create';
+  if (['people', 'usage'].includes(S.view) && !(CUR && CUR.admin)) S.view = S.role === 'pmm' ? 'office' : 'create';
+  if (['truth', 'battle', 'library'].includes(S.view) && LAST_VIEW !== S.view) track('view', { area: S.view });
+  LAST_VIEW = S.view;
   renderNav();
-  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople };
+  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
   $('#view').innerHTML = (CUR && CUR.status === 'pending' ? `<div class="ro" style="margin-bottom:16px">${ico('i-clock')}<span><b>Your ${ROLE_LABEL[CUR.role]} access is waiting for approval.</b> You can use Presentations, Product truth, Battlecards and Library meanwhile.</span></div>` : '') + boTabs() + (map[S.view] || vCreate)();
-  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, people: bindPeople }[S.view] || (() => {}))();
+  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, people: bindPeople, usage: bindUsage }[S.view] || (() => {}))();
   if (S.view === 'deck') saveDeck(); // every change in the studio re-renders, so this saves it
   $$('[data-edit]').forEach(b => b.addEventListener('click', () => toast('Editing opens a draft that Tobias or the PM approves.')));
   i18nPass();
 }
 portalLoad();
+eventsLoad();
 { const ss = sessionRead(), su = ss && USERS.find(u => u.id === ss.uid);
   if (su && su.status !== 'disabled') { applyUser(su); FYR_IN = true; S.view = S.role === 'pmm' ? 'office' : 'create'; }
   else { if (su) AUTH = { step: 'start', note: 'Your access to Fyr is turned off. Contact PMM if that’s wrong.' }; sessionClear(); } }

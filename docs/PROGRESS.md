@@ -22,6 +22,7 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | ~~Request Entra ID app registration from IT~~ (not needed, D-023) | Admin | Tobias | 30 Oct | Closed |
 | Ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain, e.g. `mail.simployer.com`; set up Resend | Admin | Tobias | 4 Nov | Open |
 | Roles not on the list: do CSM, PS and Customer Care pick Sales, or do we add a role? | Decision | Tobias | 4 Nov | Open |
+| Raise usage tracking with the employee representatives (drøfting, AML §9-2) and inform staff before go-live (D-025) | Admin | Tobias | 20 Nov | Open |
 | Linear API key + webhook access; confirm tier/visibility fields | Admin | Tobias | 30 Oct | Open |
 | Claude API key + budget + data-policy OK | Admin | Tobias | 30 Oct | Open |
 | Vercel project (personal or Simployer team) | Admin | Tobias | 4 Nov | Open |
@@ -35,6 +36,32 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-29 — Usage tracking in the portal (D-025)
+- **Done:**
+  - **Events recorded:**
+    - sign-in and registration
+    - presentation created, edited, own slide added and presented
+    - proof quote chosen
+    - Product truth, Battlecards and Library views (once per visit)
+    - battlecard searches with no answer, recorded after 1.5 s of no typing
+  - **Usage tab** next to People, for admins:
+    - Active people this week and month, per week (8 weeks) and by role.
+    - Presentations by rule and language, % presented and % with the rep's own text.
+    - Features and proof quotes used most.
+    - Views.
+    - Searches with no answer, with a link to the battlecard editor.
+    - Hours saved by automations.
+    - A 7/30/90-day period switch. The privacy panel is on the page.
+  - **Privacy:** counts by role or content only, role groups under 3 hidden, 12-month retention. The register screen tells people.
+  - Single-colour bars with values at the tips and hover or keyboard tooltips. Example data: made-up activity for 45 people over 8 weeks.
+- **Verified in the browser:**
+  - The register notice shows.
+  - A Sales session recorded each event once, and a repeat view wasn't double-counted.
+  - Sales are redirected away from Usage; Tobias sees it.
+  - No names appear on the tab. Period switching works, and there is no sideways scroll.
+- **Next:** raise it with the employee representatives before go-live. In M2: the events table, aggregate views and the 12-month cleanup.
+- **Decisions:** D-025.
 
 ### 2026-10-29 — Login: own portal with email sign-in; Thea out of scope (D-023, D-024)
 - **Done:**

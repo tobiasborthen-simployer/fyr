@@ -40,6 +40,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.
 
 **Added**
+- **Usage tab (D-025):** admins see how Fyr is used, counted by role: active people, presentations, features and quotes used, views, and battlecard searches with no answer. No per-person activity; groups under 3 hidden; 12-month retention.
 - **Login (D-023), mocked in the prototype:**
   - Register with name, a @simployer.com email and a role.
   - Sign in with an emailed code or link: one-time, 15-minute expiry, lockout after 5 tries.
