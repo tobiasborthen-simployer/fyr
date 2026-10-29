@@ -37,6 +37,24 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — Next-steps timeline in Discovery and Demo (D-026)
+- **Decided with Tobias:**
+  - The timeline replaces the next-step slide in both decks.
+  - Each step has a name and a date.
+  - PMM sets the default steps per rule; reps edit per deck.
+  - Demo-first and Go-live-last are defaults only.
+- **Done:**
+  - **Timeline slide:** headline per rule, a horizontal line with a dot per step, date above and name below. The first step is highlighted and the last ends in the go-live colour. The rule's CTA sits underneath. Text scales with 1–8 steps.
+  - **Side-panel editor:** name and date inputs per step, add, remove and move. The slide and thumbnail update while typing.
+  - **Presentation rules:** timeline headline and default steps per language for Discovery and Demo, with a "Timeline steps in EN, NO and SV" check.
+  - Discovery is v4 and Demo is v2. Rebuild keeps a deck's own timeline.
+- **Verified in the browser:**
+  - Both decks end timeline → contact.
+  - Live typing updates the slide and thumbnail.
+  - New steps go in before the last; remove, reorder, the 1-step minimum and the 8-step maximum work.
+  - 8 steps fit in EN/NO/SV with no broken words, and steps are saved with the deck.
+  - The rules editor shows the fields, every rule passes its checks, and edited defaults reach new decks.
+
 ### 2026-10-29 — Usage tracking in the portal (D-025)
 - **Done:**
   - **Events recorded:**

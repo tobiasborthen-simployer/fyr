@@ -50,6 +50,7 @@
 - [x] **Automations.** Show the five automations with runs, approval rate and time saved, keep two runnable examples, and cut Connections and the Run log.
 - [x] **PMM Home.** Keep only the "Needs you" queue and the automation list.
 - [x] Remove the CSS of the cut modules. 362 rules removed, about 28 KB. A style fingerprint of 36 screens is unchanged.
+- [x] **Next-steps timeline (D-026)** in Discovery and Demo: editable steps (name and date, 1–8) per deck, with defaults per rule in Presentation rules.
 - [x] **Usage tab (D-025).** Admins only, counts by role, groups under 3 hidden, with example data plus what the prototype records. The register screen says Fyr counts usage.
 - [x] **Login mock (D-023).**
   - Register, sign in, check your email (simulated email with code and link) and confirm, on the lighthouse splash.

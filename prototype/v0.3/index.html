@@ -1360,6 +1360,25 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .slide .stagep::before { content: none; }
 .slide .stagep .shot .win { box-shadow: 0 1.5cqw 4cqw rgba(45,12,105,.25); }
 .slide .cols3.q2, .slide .cols3.c2 { grid-template-columns: repeat(2, 1fr); }
+.slide .tl { position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); margin-top: 4.5cqw; }
+.slide .tl::before { content: ""; position: absolute; left: calc(50% / var(--n)); right: calc(50% / var(--n)); top: 3.15cqw; height: .3cqw; border-radius: 99px; background: linear-gradient(90deg, #6B45C9, #CDC0EA 70%, #FF9573); }
+.slide .tl > div { position: relative; display: grid; justify-items: center; align-content: start; gap: .9cqw; padding: 0 .5cqw; text-align: center; }
+.slide .tl time { font-size: clamp(1.05cqw, calc(8cqw / var(--n)), 1.3cqw); font-weight: 600; color: #6B45C9; min-height: 1.6cqw; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.slide .tl i { width: 2cqw; height: 2cqw; box-sizing: border-box; border-radius: 99px; background: #FBFAF7; border: .4cqw solid #6B45C9; z-index: 1; }
+.slide .tl .first i { background: #6B45C9; box-shadow: 0 0 0 .7cqw rgba(107,69,201,.16); }
+.slide .tl .last i { border-color: #FF9573; background: #FF9573; box-shadow: 0 0 0 .7cqw rgba(255,149,115,.2); }
+.slide .tl strong { font-size: clamp(1.15cqw, calc(10cqw / var(--n)), 1.65cqw); font-weight: 600; color: #1F1B2E; line-height: 1.25; overflow-wrap: break-word; hyphens: auto; }
+.slide p.tl-cta { justify-self: start; margin-top: 3cqw; font-size: 1.45cqw; font-weight: 600; color: #2D0C69; background: #E9E4F4; border-radius: 99px; padding: .8cqw 1.8cqw; }
+.tle { display: grid; gap: 6px; }
+.tle-r { display: grid; grid-template-columns: minmax(0, 1fr) 76px 22px 22px 22px; gap: 4px; align-items: center; }
+.tle-r input { height: 30px; min-width: 0; box-sizing: border-box; border-radius: 8px; border: 1px solid var(--night-line); background: rgba(255,255,255,.05); color: #fff; padding: 0 8px; font-size: 12.5px; }
+.tle-r input:focus { outline: 2px solid #9773FF; outline-offset: 0; }
+.tle-r button { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; color: #B7AECF; }
+.tle-r button:hover:not(:disabled) { background: rgba(255,255,255,.08); color: #fff; }
+.tle-r button:disabled { opacity: .3; cursor: default; }
+.tle-r .ico { width: 13px; height: 13px; }
+.tle-r button[data-tlmv$=":-1"] .ico { transform: rotate(-90deg); }
+.tle-r button[data-tlmv$=":1"] .ico { transform: rotate(-90deg); }
 .slide .rows { display: grid; gap: .8cqw; }
 .slide .rows > div { display: grid; grid-template-columns: 3cqw 15cqw 1fr; gap: 1.6cqw; align-items: center; background: #FBFAF7; border-radius: 1.1cqw; padding: .8cqw 1.6cqw; box-shadow: 0 .3cqw 1.4cqw rgba(31,27,46,.07); }
 .slide .rows .k { width: 3cqw; height: 3cqw; border-radius: .8cqw; background: #2D0C69; color: #fff; display: grid; place-items: center; font-size: 1.2cqw; font-weight: 650; }
@@ -1677,16 +1696,18 @@ $('#profile-btn').addEventListener('click', () => openProfile());
 
 /* ---------- Create ---------- */
 /* ---------- Presentation rules: PMM sets the recipe per role and need; reps pick one in Create ---------- */
-const SLIDE_KINDS = [['about', 'Today is about you'], ['insight', 'The insight'], ['proof', 'Customer quote'], ['nextstep', 'Next step: the demo'], ['contact', 'Thank you · contact'], ['how', 'Backup: the how'], ['whoweare', 'Appendix: who we are'], ['cfo', 'Appendix: CFO proof'], ['product', 'Appendix: product overview'], ['title', 'Cover'], ['overview', 'Simployer in short'], ['questions', 'Discovery questions'], ['heard', 'What we heard'], ['feature', 'Feature slides'], ['soon', 'Coming soon'], ['ref', 'Customer story'], ['why', 'Why Simployer'], ['next', 'Next steps']];
+const SLIDE_KINDS = [['timeline', 'Next steps: timeline'], ['about', 'Today is about you'], ['insight', 'The insight'], ['proof', 'Customer quote'], ['nextstep', 'Next step: the demo (old)'], ['contact', 'Thank you · contact'], ['how', 'Backup: the how'], ['whoweare', 'Appendix: who we are'], ['cfo', 'Appendix: CFO proof'], ['product', 'Appendix: product overview'], ['title', 'Cover'], ['overview', 'Simployer in short'], ['questions', 'Discovery questions'], ['heard', 'What we heard'], ['feature', 'Feature slides'], ['soon', 'Coming soon'], ['ref', 'Customer story'], ['why', 'Why Simployer'], ['next', 'Next steps']];
 const OCCASIONS = ['Discovery', 'Demo', 'Follow-up', 'QBR', 'Onboarding', 'Leadership'];
 let PRULES = [
   { id: 'sales-discovery', name: 'Sales · Discovery meeting', audience: 'Prospect, first meeting: HR manager, often with the CEO', occasion: 'Discovery', keys: ['discovery', 'kartlegging', 'kartleggingsmøte', 'behovsanalys'],
-    recipe: ['title', 'about', 'insight', 'questions', 'proof', 'nextstep', 'contact', 'how', 'whoweare', 'cfo', 'product'],
+    recipe: ['title', 'about', 'insight', 'questions', 'proof', 'timeline', 'contact', 'how', 'whoweare', 'cfo', 'product'],
+    tlHead: { EN: 'A demo built on what you just told us.', NO: 'En demo bygget på det dere nettopp fortalte oss.', SV: 'En demo byggd på det ni just berättade för oss.' },
+    timeline: { EN: ['Demo', 'Test week', 'Proposal', 'Agreement', 'Go-live'], NO: ['Demo', 'Prøveuke', 'Tilbud', 'Avtale', 'I drift'], SV: ['Demo', 'Testvecka', 'Offert', 'Avtal', 'I drift'] },
     hidden: ['how', 'whoweare', 'cfo', 'product'], proof: 'betao',
     include: ['One message per slide; the prompts live in the speaker notes', 'Twenty minutes or more on the discovery questions', 'One customer quote, matched to the pillar they cared most about'],
     avoid: ['Opening with features or the stats slide', '“HR system” outside the appendix', 'Figures finance has not approved'],
     tone: 'Curious and short. It is about them: their reality first, then ask.',
-    cta: { EN: 'Book a demo built on what you told us', NO: 'Avtal en demo bygget på det dere fortalte oss', SV: 'Boka en demo byggd på det ni berättade för oss' },
+    cta: { EN: 'Agree on a date for the demo', NO: 'Bli enige om en dato for demoen', SV: 'Bestäm ett datum för demon' },
     qHead: { EN: 'Five things we want to understand.', NO: 'Fem ting vi vil forstå.', SV: 'Fem saker vi vill förstå.' },
     questions: {
       EN: ['Where the work happens | Where does HR work happen today: which systems, spreadsheets and inboxes?', 'The admin | Which routines take most of the week: onboarding, leave, contracts?', 'The worry | Where do you want to be sure before you decide: employment law, sick leave, terminations?', 'The signal | What would you like to see earlier: absence, probation, pay gaps?', 'If it just worked | If the admin got done, what would you spend the time on?'],
@@ -1698,18 +1719,21 @@ let PRULES = [
       insight: 'Read the two lines, then ask: “Does that match your week?” This is the bridge into discovery, not a pitch.',
       questions: 'Stay here for 20+ minutes. Question bank. Where the work happens: Which systems, spreadsheets and inboxes hold HR today? Who carries HR, and how much of their week? The admin: Walk me through your last hire, from signed contract to first day. How is leave approved? The worry: When did you last check something with a lawyer or the HR network? What happens when a manager has a difficult conversation coming up? The signal: How do you see absence or probation dates today? When did a pay gap or a legal change catch you late? If it just worked: What would you do with the time? HOW YOU DECIDE (MEDDICC, for you, never on the slide). Metrics: how do you measure the time HR spends today? Economic buyer: who signs off on this? Decision criteria: what has to be true for you to choose? Decision process: what happens between now and a decision, and when? Paper process: who handles the contract and the data processing agreement? Identify pain: what happens if nothing changes? Champion: who in your team would own this? Competition: what else are you looking at?',
       proof: 'Keep the quote that matches the pillar they cared most about. The other two stay hidden.',
-      nextstep: 'Fill in the three fields with them, live or right after. Book the meeting before you end the call.',
+      timeline: 'Fill in the timeline with them: put a date on the demo before you end the call. Rename, add or remove steps so it matches how they buy.',
       contact: 'Leave this up while you agree the date.',
       how: 'Backup. Show only if they ask how it works: Sia does the task, HR experts help with the judgement.',
       whoweare: 'Appendix. Use if they ask who we are.', cfo: 'Appendix. Only once finance has approved the figures.', product: 'Appendix. For buyers who think in RFP terms; this is where “HR system” belongs.' },
-    notes: 'Seven slides in the main flow, one message each. Backup and appendix stay hidden unless asked.', v: 3, by: 'Tobias', date: '28 Oct' },
+    notes: 'Seven slides in the main flow, one message each. Backup and appendix stay hidden unless asked.', v: 4, by: 'Tobias', date: '28 Oct' },
   { id: 'sales-demo', name: 'Sales · Demo', audience: 'Prospect: HR manager, often with the CEO', occasion: 'Demo', keys: ['demo'],
-    recipe: ['title', 'heard', 'feature', 'soon', 'ref', 'why', 'next', 'contact'],
+    recipe: ['title', 'heard', 'feature', 'soon', 'ref', 'why', 'timeline', 'contact'],
+    tlHead: { EN: 'How we get you there.', NO: 'Slik kommer dere i gang.', SV: 'Så kommer ni igång.' },
+    timeline: { EN: ['Test week', 'Proposal', 'Agreement', 'Implementation', 'Go-live'], NO: ['Prøveuke', 'Tilbud', 'Avtale', 'Implementering', 'I drift'], SV: ['Testvecka', 'Offert', 'Avtal', 'Implementering', 'I drift'] },
+    notesByKind: { timeline: 'Walk through the steps and agree the first date before the meeting ends. Rename, add or remove steps to match how they buy.' },
     include: ['The line on the cover', 'What they told you, in their words', 'One customer story on the same pain'],
     avoid: ['Opening with features', 'Coming-soon features shown as live', 'Figures finance has not approved'],
     tone: 'Lead with what gets done. Name the task, present tense for what has shipped.',
     cta: { EN: 'Book a test week with two managers', NO: 'Avtal en prøveuke med to ledere', SV: 'Boka en testvecka med två chefer' },
-    notes: 'Open with the line, then check what you heard. One feature per slide: show the task being done, then tie it to their pain. Close on the next step, not on price.', v: 1, by: 'Tobias', date: '28 Oct' },
+    notes: 'Open with the line, then check what you heard. One feature per slide: show the task being done, then tie it to their pain. Close on the next step, not on price.', v: 2, by: 'Tobias', date: '28 Oct' },
   { id: 'sales-followup', name: 'Sales · Follow-up', audience: 'Prospect after the demo', occasion: 'Follow-up', keys: ['follow-up', 'followup', 'oppfølging', 'uppföljning'],
     recipe: ['title', 'heard', 'feature', 'soon', 'why', 'next'],
     include: ['Their pains, as they said them', 'Answers to the questions they asked'],
@@ -1890,6 +1914,7 @@ function recipeSlides(r, b, m) {
     if (kind === 'feature') return live.map(k => { const a = ASSETS.find(x => x.f === k && x.status === 'current'); return { kind, f: k, visual: a ? a.type : 'screenshot' }; });
     if (kind === 'soon') return soon.map(k => ({ kind, f: k }));
     if (kind === 'ref') return b.ref ? [{ kind, ref: b.ref }] : [];
+    if (kind === 'timeline') { const tl = r.timeline || {}; return [{ kind, steps: (tl[b.lang] || tl.EN || ['']).map(name => ({ name, date: '' })) }]; }
     if (kind === 'proof') return DISC_QUOTES.map(q => ({ kind, q: q.id, hidden: q.id !== (r.proof || 'betao') }));
     return [(r.hidden || []).includes(kind) || (kind === 'cfo' && cfoLocked()) ? { kind, hidden: true } : { kind }];
   });
@@ -1918,6 +1943,8 @@ function slideHTML(s, i, n) {
   if (s.kind === 'about') return `<div class="slide">${wm}<div class="in"><span class="ey">${occ}</span><h3>${T.aboutH}</h3><div class="cols3">${T.about.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><p class="out">${T.aboutOut}</p></div>${ft}</div>`;
   if (s.kind === 'insight') return `<div class="slide">${wm}<div class="in" style="align-content:center"><h3 style="font-size:5cqw;max-width:18ch">${mm3.story[0][0]}</h3><p style="font-size:2cqw;max-width:52ch">${mm3.story[0][1]}</p><p class="sub2"${s.noStory2 ? ' style="display:none"' : ''}>${mm3.story[1][0]} ${mm3.story[1][1].split(/(?<=\.) /).pop()}</p><p class="bridge">${T.insightAsk}</p></div>${ft}</div>`;
   if (s.kind === 'proof') { const q = DISC_QUOTES.find(x => x.id === s.q) || DISC_QUOTES[0]; return `<div class="slide dark">${q.ok ? '' : `<span class="flag">● ${q.flag}</span>`}${wm}<div class="in" style="align-content:center"><div class="quote" style="font-size:3.4cqw;max-width:28ch">${q.text ? `“${q.text}”` : `[${q.who}: approved quote goes here]`}<small>${q.who}</small></div></div>${ft}</div>`; }
+  if (s.kind === 'timeline') { const r = ruleById(d.rule), st = s.steps && s.steps.length ? s.steps : [{ name: '', date: '' }], head = (r.tlHead || {})[lg] || (r.tlHead || {}).EN || T.nextH, cta = (r.cta || {})[lg] || (r.cta || {}).EN;
+    return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3 style="max-width:24ch">${head}</h3><div class="tl" style="--n:${st.length}" lang="${{ NO: 'nb', SV: 'sv' }[lg] || 'en'}">${st.map((x, k) => `<div class="${k === 0 ? 'first' : ''} ${k === st.length - 1 && st.length > 1 ? 'last' : ''}"><time>${esc(x.date || '')}</time><i></i><strong>${esc(x.name || '')}</strong></div>`).join('')}</div>${cta ? `<p class="tl-cta">${cta}</p>` : ''}</div>${ft}</div>`; }
   if (s.kind === 'nextstep') { const hs = m.heads.filter(Boolean); return `<div class="slide">${wm}<div class="in"><span class="ey">${occ}</span><h3 style="max-width:22ch">${T.nsH}</h3><div class="cols3">${T.nsF.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${k === 0 && hs.length ? hs.join(', ') : b}</p></div>`).join('')}</div></div>${ft}</div>`; }
   if (s.kind === 'contact') return `<div class="slide dark contact">${wm}<div class="in" style="align-content:center"><span class="ey">${occ} · ${when}</span><h3>${T.thanks}</h3><div class="ct">${rp ? repFace(rp) : '<span class="face ph0"></span>'}<div><b>${rp ? rp.name : T.pickName}</b><p>${rp ? (rp.title[lg] || rp.title.EN) : T.pickHint}</p>${rp ? `<p>${rp.email}</p>${rp.phone ? `<p>${rp.phone}</p>` : ''}` : ''}</div></div></div>${ft}</div>`;
   if (s.kind === 'how') return `<div class="slide">${wm}<div class="in"><span class="ey">${T.backupEy}</span><h3 style="max-width:24ch">${T.how}</h3><div class="cols3 c2">${T.howCols.map(([a, b], k) => `<div><span class="k">${k ? 'HR' : 'Sia'}</span><b>${k ? mm3.experts.name : mm3.sia.name}</b><p>${a}</p><p class="sub2">${b}</p></div>`).join('')}</div><div class="proof"><i>✓</i><span>${T.howAuto}</span></div></div>${ft}</div>`;
@@ -1928,7 +1955,7 @@ function slideHTML(s, i, n) {
   if (s.kind === 'why') return `<div class="slide">${wm}<div class="in"><span class="ey">${T.whyEy}</span><h3 style="max-width:24ch">${T.whyH}</h3><p>${T.how}</p><div class="cols3">${T.pillarHeads.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="quote">\u201c${MF.quote.text}\u201d<small>${MF.quote.who}</small></div></div>${ft}</div>`;
   return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3>${T.nextH}</h3><div class="cols3">${T.next.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="cta"><b>${lg === 'NO' ? 'Neste møte' : lg === 'SV' ? 'Nästa möte' : 'Next meeting'}: ${(rp || ROLES[S.role]).name}</b><span>${(d.rule && ruleById(d.rule).cta[lg]) || ruleById(d.rule).cta.EN}</span></div></div>${ft}</div>`;
 }
-const slideName = s => s.kind === 'proof' ? `Quote · ${((DISC_QUOTES.find(q => q.id === s.q) || {}).who || '').split(',').pop().trim()}` : s.kind === 'titleline' ? 'Cover' : ['about', 'insight', 'nextstep', 'contact', 'how', 'whoweare', 'cfo', 'product'].includes(s.kind) ? SLIDE_KINDS.find(x => x[0] === s.kind)[1] : s.kind === 'questions' ? 'Discovery questions' : s.kind === 'custom' ? ((s.edits && s.edits[1] && edPlain(s.edits[1]).slice(0, 28)) || 'Your slide') : s.kind === 'overview' ? 'Simployer in short' : s.kind === 'questions' ? 'Questions for them' : s.kind === 'ref' ? 'Customer story' : s.kind === 'title' ? 'Cover' : s.kind === 'heard' ? 'What we heard' : s.kind === 'why' ? 'Why Simployer' : s.kind === 'next' ? 'Next steps' : FEATURES[s.f].name;
+const slideName = s => s.kind === 'proof' ? `Quote · ${((DISC_QUOTES.find(q => q.id === s.q) || {}).who || '').split(',').pop().trim()}` : s.kind === 'titleline' ? 'Cover' : ['timeline', 'about', 'insight', 'nextstep', 'contact', 'how', 'whoweare', 'cfo', 'product'].includes(s.kind) ? SLIDE_KINDS.find(x => x[0] === s.kind)[1] : s.kind === 'questions' ? 'Discovery questions' : s.kind === 'custom' ? ((s.edits && s.edits[1] && edPlain(s.edits[1]).slice(0, 28)) || 'Your slide') : s.kind === 'overview' ? 'Simployer in short' : s.kind === 'questions' ? 'Questions for them' : s.kind === 'ref' ? 'Customer story' : s.kind === 'title' ? 'Cover' : s.kind === 'heard' ? 'What we heard' : s.kind === 'why' ? 'Why Simployer' : s.kind === 'next' ? 'Next steps' : FEATURES[s.f].name;
 
 function vDeck() {
   const d = S.deck, n = d.slides.length, s = d.slides[S.sel];
@@ -1951,6 +1978,7 @@ function vDeck() {
       <aside class="insp">
         <div><span class="lbl">Slide ${S.sel + 1}</span><b class="name">${slideName(s)}</b></div>
         ${s.hidden ? `<div class="checks"><div class="wa">${ico('i-eye')}<span>${s.kind === 'cfo' && cfoLocked() ? 'Hidden until finance approves the figures.' : 'Hidden: not shown in Present or PDF. Use the eye on the thumbnail to show it.'}</span></div></div>` : ''}
+        ${s.kind === 'timeline' ? `<div><span class="lbl">Timeline · ${s.steps.length} step${s.steps.length === 1 ? '' : 's'}</span><div class="tle">${s.steps.map((x, i) => `<div class="tle-r"><input data-tln="${i}" value="${esc(x.name)}" placeholder="Step" aria-label="Step ${i + 1} name"><input data-tld="${i}" value="${esc(x.date)}" placeholder="Date" aria-label="Step ${i + 1} date"><button type="button" data-tlmv="${i}:-1" aria-label="Move step ${i + 1} left" ${i ? '' : 'disabled'}>${ico('i-up')}</button><button type="button" data-tlmv="${i}:1" aria-label="Move step ${i + 1} right" ${i < s.steps.length - 1 ? '' : 'disabled'}>${ico('i-down')}</button><button type="button" data-tldel="${i}" aria-label="Remove step ${i + 1}" ${s.steps.length > 1 ? '' : 'disabled'}>${ico('i-x')}</button></div>`).join('')}</div>${s.steps.length < 8 ? `<button type="button" class="btn btn-ghost-n btn-sm" id="tl-add" style="margin-top:8px">${ico('i-plus')}Add step</button>` : ''}<small style="display:block;margin-top:6px;color:#B7AECF">Dates are free text: “12 Nov”, “Week 47”, or empty. Up to 8 steps.</small></div>` : ''}
         ${s.kind === 'insight' ? `<div><span class="lbl">Optional line</span><label style="display:flex;gap:8px;align-items:start;color:#E9E4F4;font-size:13px;line-height:1.4"><input type="checkbox" id="story2" ${s.noStory2 ? '' : 'checked'} style="margin-top:2px"> Story step 2: “Elsewhere, software does the work. HR still stores, reminds and answers.”</label></div>` : ''}
         ${s.kind === 'proof' ? `<div><span class="lbl">Customer quote</span><div class="pq">${DISC_QUOTES.map(q => `<button type="button" data-proofpick="${q.id}" aria-pressed="${d.slides.some(x => x.kind === 'proof' && x.q === q.id && !x.hidden)}"><b>${q.who}</b><small>${q.label}${q.ok ? '' : ' · ' + q.flag}</small></button>`).join('')}</div></div>` : ''}
         ${['contact', 'title', 'titleline'].includes(s.kind) ? `<div><span class="lbl">You</span><div class="pbar" role="group" aria-label="Pick your picture">${REPS_ALL().map(p => `<button type="button" data-rep="${p.id}" aria-pressed="${d.rep === p.id}">${repFace(p)}<span>${p.name}</span></button>`).join('')}</div><small class="muted" style="display:block;margin-top:8px;color:#B7AECF">Everyone registered in Fyr. Add your photo, title and phone in Profile.</small></div>` : ''}
@@ -1980,9 +2008,18 @@ function applyEdits(root, sl) { if (!sl.edits) return; const els = edEls(root); 
 function bindDeck() {
   const d = S.deck;
   $$('.thumb').forEach((li, i) => applyEdits(li, d.slides[i]));
-  const st = $('.stage .slide'); applyEdits(st, d.slides[S.sel]);
   const at = S.sel; // the slide these fields belong to, even if the view moves on before blur fires
-  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); track('deck_edited', { deck: d.id }); }); });
+  const bindStage = () => { const st = $('.stage .slide'); applyEdits(st, d.slides[at]);
+  edEls(st).forEach((el, k) => { el.contentEditable = 'true'; el.spellcheck = true; const was = el.innerHTML; el.addEventListener('blur', () => { const sl = d.slides[at]; if (!sl || el.innerHTML === was) return; sl.edits = sl.edits || {}; sl.edits[k] = el.innerHTML; const th = $$('.thumb')[at]; if (th) applyEdits(th, sl); if ($('#ed-state') && S.sel === at) $('#ed-state').innerHTML = edState(sl); saveDeck(); track('deck_edited', { deck: d.id }); }); }); };
+  bindStage();
+  // Timeline: typing updates the slide and its thumbnail live; adding, moving or removing steps re-renders
+  const tlRefresh = () => { const sl = d.slides[at], n = d.slides.length, put = el => { const t = document.createElement('div'); t.innerHTML = slideHTML(sl, at, n); const ns = t.firstElementChild; applyEdits(ns, sl); el.replaceWith(ns); };
+    put($('.stage .slide')); const th = $$('.thumb .tc')[at]; if (th) put(th.querySelector('.slide')); bindStage(); saveDeck(); };
+  $$('[data-tln]').forEach(x => x.addEventListener('input', () => { d.slides[at].steps[+x.dataset.tln].name = x.value; tlRefresh(); }));
+  $$('[data-tld]').forEach(x => x.addEventListener('input', () => { d.slides[at].steps[+x.dataset.tld].date = x.value; tlRefresh(); }));
+  $$('[data-tlmv]').forEach(x => x.addEventListener('click', () => { const st = d.slides[at].steps, [i, dir] = x.dataset.tlmv.split(':').map(Number); [st[i], st[i + dir]] = [st[i + dir], st[i]]; render(); }));
+  $$('[data-tldel]').forEach(x => x.addEventListener('click', () => { d.slides[at].steps.splice(+x.dataset.tldel, 1); render(); }));
+  if ($('#tl-add')) $('#tl-add').addEventListener('click', () => { const st = d.slides[at].steps; st.splice(st.length > 1 ? st.length - 1 : st.length, 0, { name: '', date: '' }); render(); const f = $$('[data-tln]')[st.length > 2 ? st.length - 2 : st.length - 1]; if (f) f.focus(); });
   if ($('#rebuild')) $('#rebuild').addEventListener('click', rebuildDeck);
   $('#add-slide').addEventListener('click', () => { track('own_slide', { deck: d.id }); d.slides.splice(S.sel + 1, 0, { kind: 'custom' }); S.sel++; render(); toast('Added your own slide. Click the text to write it.'); });
   $$('[data-pick]').forEach(x => { x.addEventListener('click', () => { S.sel = +x.dataset.pick; render(); }); x.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); S.sel = +x.dataset.pick; render(); } }); });
@@ -2109,7 +2146,7 @@ function saveDeck() {
 function rebuildDeck() {
   const d = S.deck, r = ruleById(d.rule), old = d.slides, used = new Set();
   const same = (a, b) => a.kind === b.kind && a.f === b.f && a.q === b.q && a.ref === b.ref;
-  const slides = recipeSlides(r, S.brief, S.meeting).map(ns => { const i = old.findIndex((os, k) => !used.has(k) && same(os, ns)); if (i < 0) return ns; used.add(i); const os = old[i]; return { ...ns, ...(os.edits ? { edits: os.edits } : {}), ...(ns.kind === 'proof' ? { hidden: os.hidden } : {}), ...(os.noStory2 ? { noStory2: true } : {}) }; });
+  const slides = recipeSlides(r, S.brief, S.meeting).map(ns => { const i = old.findIndex((os, k) => !used.has(k) && same(os, ns)); if (i < 0) return ns; used.add(i); const os = old[i]; return { ...ns, ...(os.edits ? { edits: os.edits } : {}), ...(ns.kind === 'proof' ? { hidden: os.hidden } : {}), ...(os.noStory2 ? { noStory2: true } : {}), ...(ns.kind === 'timeline' && os.steps ? { steps: os.steps } : {}) }; });
   const own = old.filter((os, k) => os.kind === 'custom' && !used.has(k)), at = slides.findIndex(s => s.kind === 'contact' || SECTION[s.kind]);
   slides.splice(at < 0 ? slides.length : at, 0, ...own); // the rep's own slides stay in the main flow, before thank you / backup
   Object.assign(d, { slides, ruleV: r.v, occasion: r.occasion }); S.sel = 0; render();
@@ -3590,12 +3627,13 @@ function prPreview(r) {
   return html;
 }
 function prChecks(r) {
-  const txt = [r.tone, ...Object.values(r.cta), ...Object.values(r.questions || {}).flat(), ...Object.values(r.qHead || {})].join(' '); // customer-facing text; include/avoid and notes are for the rep
+  const txt = [r.tone, ...Object.values(r.cta), ...Object.values(r.questions || {}).flat(), ...Object.values(r.qHead || {}), ...Object.values(r.tlHead || {}), ...Object.values(r.timeline || {}).flat()].join(' '); // customer-facing text; include/avoid and notes are for the rep
   const hit = MF.avoid.find(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(txt));
   return [
     [!hit, hit ? hit.why : 'Wording follows the Messaging Framework'],
     [['title', 'titleline'].includes(r.recipe[0]), 'Opens with the cover and the line, not with features'],
-    [r.recipe.some(k => k === 'next' || k === 'nextstep'), 'Has a next step'],
+    [r.recipe.some(k => ['next', 'nextstep', 'timeline'].includes(k)), 'Has a next step'],
+    [!r.recipe.includes('timeline') || LANGS.every(([lg]) => ((r.timeline || {})[lg] || []).length), 'Timeline steps in EN, NO and SV'],
     [!r.recipe.includes('questions') || LANGS.every(([lg]) => ((r.questions || {})[lg] || []).length), 'Questions in EN, NO and SV'],
     [Object.values(r.cta).every(Boolean), 'Call to action in EN, NO and SV'],
   ];
@@ -3612,8 +3650,9 @@ function vPRules() {
       ${fld('audience', 'Who it is for', r.audience)}
       <div class="fld"><label for="pf-occasion">Occasion <span>Shown on the cover</span></label><select id="pf-occasion" data-pf="occasion">${OCCASIONS.map(o => `<option value="${o}" ${o === r.occasion ? 'selected' : ''}>${L.EN.occ[o] || o}</option>`).join('')}</select></div>
       <span class="eyebrow">Slide recipe</span>
-      <ol style="list-style:none;margin:0;padding:0;display:grid;gap:6px">${r.recipe.map((k, i) => `<li style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)"><span class="muted" style="width:18px">${i + 1}</span><b style="flex:1;font-weight:600">${kn(k)}</b><small class="muted">${k === 'questions' ? 'written below, per language' : k === 'overview' ? 'line, pillars and scale, from the framework' : k === 'feature' ? 'one per live feature' : k === 'soon' ? 'one per coming-soon feature' : k === 'heard' ? 'only if pains are given' : k === 'ref' ? 'only if a story is picked' : ''}</small><button class="icon-btn" data-rmv="${i}:-1" aria-label="Move up" ${i ? '' : 'disabled'}>${ico('i-up')}</button><button class="icon-btn" data-rmv="${i}:1" aria-label="Move down" ${i < r.recipe.length - 1 ? '' : 'disabled'}>${ico('i-down')}</button><button class="icon-btn" data-rhide="${k}" aria-label="${(r.hidden || []).includes(k) ? 'Shown by default' : 'Hidden by default'}" title="${(r.hidden || []).includes(k) ? 'Hidden by default: click to show' : 'Click to hide by default'}" style="${(r.hidden || []).includes(k) ? 'opacity:.4' : ''}">${ico('i-eye')}</button><button class="icon-btn" data-rdel="${i}" aria-label="Remove">${ico('i-x')}</button></li>`).join('')}</ol>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;gap:6px">${r.recipe.map((k, i) => `<li style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)"><span class="muted" style="width:18px">${i + 1}</span><b style="flex:1;font-weight:600">${kn(k)}</b><small class="muted">${k === 'timeline' ? 'steps written below; reps edit per deck' : k === 'questions' ? 'written below, per language' : k === 'overview' ? 'line, pillars and scale, from the framework' : k === 'feature' ? 'one per live feature' : k === 'soon' ? 'one per coming-soon feature' : k === 'heard' ? 'only if pains are given' : k === 'ref' ? 'only if a story is picked' : ''}</small><button class="icon-btn" data-rmv="${i}:-1" aria-label="Move up" ${i ? '' : 'disabled'}>${ico('i-up')}</button><button class="icon-btn" data-rmv="${i}:1" aria-label="Move down" ${i < r.recipe.length - 1 ? '' : 'disabled'}>${ico('i-down')}</button><button class="icon-btn" data-rhide="${k}" aria-label="${(r.hidden || []).includes(k) ? 'Shown by default' : 'Hidden by default'}" title="${(r.hidden || []).includes(k) ? 'Hidden by default: click to show' : 'Click to hide by default'}" style="${(r.hidden || []).includes(k) ? 'opacity:.4' : ''}">${ico('i-eye')}</button><button class="icon-btn" data-rdel="${i}" aria-label="Remove">${ico('i-x')}</button></li>`).join('')}</ol>
       ${SLIDE_KINDS.some(([k]) => !r.recipe.includes(k)) ? `<label class="sr" for="r-add">Add a slide</label><select id="r-add" class="sel-s"><option value="">+ Add a slide…</option>${SLIDE_KINDS.filter(([k]) => !r.recipe.includes(k)).map(([k, t]) => `<option value="${k}">${t}</option>`).join('')}</select>` : ''}
+      ${r.recipe.includes('timeline') ? `<span class="eyebrow">Timeline <span style="text-transform:none;letter-spacing:0;font-weight:400">· headline and default steps, one per line; reps edit them per deck</span></span>${LANGS.map(([lg]) => `<div class="fld"><label for="ptlh-${lg}">Headline ${lg}</label><input id="ptlh-${lg}" data-ptlh="${lg}" value="${esc((r.tlHead || {})[lg] || '')}"></div><div class="fld"><label for="ptl-${lg}">Steps ${lg}</label><textarea id="ptl-${lg}" data-ptl="${lg}" rows="5">${esc(((r.timeline || {})[lg] || []).join('\n'))}</textarea></div>`).join('')}` : ''}
       ${r.recipe.includes('questions') ? `<span class="eyebrow">Discovery questions <span style="text-transform:none;letter-spacing:0;font-weight:400">· one per line: Label | question</span></span>${LANGS.map(([lg]) => `<div class="fld"><label for="pqh-${lg}">Headline ${lg}</label><input id="pqh-${lg}" data-pqh="${lg}" value="${esc((r.qHead || {})[lg] || '')}"></div>`).join('')}${LANGS.map(([lg]) => `<div class="fld"><label for="pq-${lg}">${lg}</label><textarea id="pq-${lg}" data-pq="${lg}" rows="4">${esc(((r.questions || {})[lg] || []).join('\n'))}</textarea></div>`).join('')}` : ''}
       ${fld('include', 'Must include', r.include.join('\n'), 'One per line', 3)}
       ${fld('avoid', 'Must avoid', r.avoid.join('\n'), 'One per line', 3)}
@@ -3637,10 +3676,12 @@ function bindPRules() {
     $$('[data-pf]').forEach(x => { const k = x.dataset.pf, v = x.value; r[k] = ['include', 'avoid'].includes(k) ? v.split('\n').map(t => t.trim()).filter(Boolean) : v.trim(); });
     $$('[data-pq]').forEach(x => { r.questions = r.questions || {}; r.questions[x.dataset.pq] = x.value.split('\n').map(t => t.trim()).filter(Boolean); });
     $$('[data-pqh]').forEach(x => { r.qHead = r.qHead || {}; r.qHead[x.dataset.pqh] = x.value.trim(); });
+    $$('[data-ptlh]').forEach(x => { r.tlHead = r.tlHead || {}; r.tlHead[x.dataset.ptlh] = x.value.trim(); });
+    $$('[data-ptl]').forEach(x => { r.timeline = r.timeline || {}; r.timeline[x.dataset.ptl] = x.value.split('\n').map(t => t.trim()).filter(Boolean).slice(0, 8); });
     $$('[data-pnk]').forEach(x => { r.notesByKind = r.notesByKind || {}; r.notesByKind[x.dataset.pnk] = x.value.trim(); });
     $$('[data-pcta]').forEach(x => { r.cta[x.dataset.pcta] = x.value.trim(); });
   };
-  $$('[data-pf], [data-pcta], [data-pq], [data-pqh], [data-pnk]').forEach(x => x.addEventListener('change', () => { read(); render(); }));
+  $$('[data-pf], [data-pcta], [data-pq], [data-pqh], [data-pnk], [data-ptlh], [data-ptl]').forEach(x => x.addEventListener('change', () => { read(); render(); }));
   $$('[data-pr]').forEach(b => b.addEventListener('click', () => { PRD = prClone(ruleById(b.dataset.pr)); render(); }));
   $$('[data-rmv]').forEach(b => b.addEventListener('click', () => { read(); const [i, d] = b.dataset.rmv.split(':').map(Number); [r.recipe[i], r.recipe[i + d]] = [r.recipe[i + d], r.recipe[i]]; render(); }));
   $$('[data-rdel]').forEach(b => b.addEventListener('click', () => { read(); r.recipe.splice(+b.dataset.rdel, 1); render(); }));

@@ -491,3 +491,23 @@ Details are in PARKED.md.
 
 **Revisit if:** managers ask for per-person reports. That needs its own decision and a new round with employee representatives.
 
+## D-026 — Next steps as an editable timeline in Discovery and Demo
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the Discovery next-step slide in D-020 (what we'll show / who should be there / when) and Demo's fixed three-step "next" slide.
+
+**Context:** Sales processes differ in steps and length. The next-step slides were fixed.
+
+**Decision:**
+- Discovery and Demo end on one **timeline** slide (before thank you/contact).
+- Each step has a **name and a date**. The date is free text and can be empty.
+- **PMM sets the headline and default steps** per rule and language in Presentation rules.
+- **Reps edit per deck:** rename, date, add (up to 8), remove (down to 1) and reorder.
+- In Discovery, Demo-first and Go-live-last are defaults, not locked.
+
+**Consequences:**
+- Discovery is v4 and Demo is v2. Example decks refresh, and the rep's own decks offer *Rebuild*, which keeps their timeline if they already had one.
+- The rule's call to action shows under the timeline. Discovery's CTA is now "Agree on a date for the demo".
+- Follow-up, QBR, Kickoff and Leadership keep their old next-step slide. PMM can switch them to the timeline in the rules editor.
+
+**Revisit if:** reps want an owner per step (Simployer or the customer). The step model can take it.
+
