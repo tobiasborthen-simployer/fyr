@@ -57,6 +57,7 @@
 html, body { height: 100%; }
 body { margin: 0; background: var(--page); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01"; }
 button, input, select, textarea { font: inherit; color: inherit; }
+input[type=checkbox], input[type=radio] { accent-color: var(--lav); }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
 :focus-visible { outline: none; box-shadow: var(--ring); border-radius: 8px; }
 h1, h2, h3 { margin: 0; font-family: var(--sans); font-weight: 650; letter-spacing: -.025em; color: var(--ink); text-wrap: balance; }
@@ -954,6 +955,9 @@ div.bc-obj p { padding: 0; }
 .sel-s, .in-s { height: 34px; border: 1px solid var(--line-2); border-radius: 10px; padding: 0 10px; background: var(--card); font-size: 13.5px; outline: none; max-width: 100%; box-sizing: border-box; }
 .in-s { width: 100%; min-width: 140px; }
 .sel-s:focus, .in-s:focus { border-color: var(--lav); box-shadow: var(--ring); }
+select.sel-s { appearance: none; -webkit-appearance: none; padding-right: 30px; cursor: pointer; color: var(--ink); background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236A6377' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center; }
+select.sel-s:hover:not(:disabled) { border-color: var(--lav-hover); }
+select.sel-s:disabled { cursor: default; color: var(--muted); background-color: var(--warm); border-color: var(--line); opacity: 1; }
 .sel-s.warn { border-color: #F2B866; background: var(--amber-50); color: var(--amber-ink); font-weight: 600; }
 .panel h3 .badge, .badge.hot { font-size: 11px; font-weight: 600; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; display: inline-grid; place-items: center; background: #F2B866; color: #2A1B05; }
 .ow.big { width: 38px; height: 38px; font-size: 15px; }
@@ -3498,7 +3502,7 @@ function runRun(a, tr, o, s, m) { RUNS.unshift({ t: '21 Oct ' + new Date().toTim
 function vPeople() {
   const pend = USERS.filter(u => u.status === 'pending'), rest = USERS.filter(u => u.status !== 'pending');
   const row = u => `<tr><td><b>${esc(u.name)}</b><small class="muted" style="display:block">${esc(u.email)}</small></td><td>${ROLE_LABEL[u.role]}</td>
-    <td><select data-uacc="${u.id}" aria-label="Access for ${esc(u.name)}" ${u.id === CUR.id ? 'disabled' : ''}>${Object.entries(ACCESS_LABEL).map(([k, t]) => `<option value="${k}" ${u.access === k ? 'selected' : ''}>${t}</option>`).join('')}</select></td>
+    <td><select class="sel-s" data-uacc="${u.id}" aria-label="Access for ${esc(u.name)}" ${u.id === CUR.id ? 'disabled' : ''}>${Object.entries(ACCESS_LABEL).map(([k, t]) => `<option value="${k}" ${u.access === k ? 'selected' : ''}>${t}</option>`).join('')}</select></td>
     <td><label style="display:flex;gap:6px;align-items:center;white-space:nowrap"><input type="checkbox" data-uappr="${u.id}" ${u.approver ? 'checked' : ''}> Approver</label></td>
     <td style="white-space:nowrap">${u.status === 'active' ? '<span class="pill live">Active</span>' : '<span class="pill block">Turned off</span>'}${u.admin ? ' <span class="pill line">Admin</span>' : ''}</td>
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${u.lastIn || '—'}</td>
@@ -3609,7 +3613,7 @@ function vPRules() {
       <div class="fld"><label for="pf-occasion">Occasion <span>Shown on the cover</span></label><select id="pf-occasion" data-pf="occasion">${OCCASIONS.map(o => `<option value="${o}" ${o === r.occasion ? 'selected' : ''}>${L.EN.occ[o] || o}</option>`).join('')}</select></div>
       <span class="eyebrow">Slide recipe</span>
       <ol style="list-style:none;margin:0;padding:0;display:grid;gap:6px">${r.recipe.map((k, i) => `<li style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)"><span class="muted" style="width:18px">${i + 1}</span><b style="flex:1;font-weight:600">${kn(k)}</b><small class="muted">${k === 'questions' ? 'written below, per language' : k === 'overview' ? 'line, pillars and scale, from the framework' : k === 'feature' ? 'one per live feature' : k === 'soon' ? 'one per coming-soon feature' : k === 'heard' ? 'only if pains are given' : k === 'ref' ? 'only if a story is picked' : ''}</small><button class="icon-btn" data-rmv="${i}:-1" aria-label="Move up" ${i ? '' : 'disabled'}>${ico('i-up')}</button><button class="icon-btn" data-rmv="${i}:1" aria-label="Move down" ${i < r.recipe.length - 1 ? '' : 'disabled'}>${ico('i-down')}</button><button class="icon-btn" data-rhide="${k}" aria-label="${(r.hidden || []).includes(k) ? 'Shown by default' : 'Hidden by default'}" title="${(r.hidden || []).includes(k) ? 'Hidden by default: click to show' : 'Click to hide by default'}" style="${(r.hidden || []).includes(k) ? 'opacity:.4' : ''}">${ico('i-eye')}</button><button class="icon-btn" data-rdel="${i}" aria-label="Remove">${ico('i-x')}</button></li>`).join('')}</ol>
-      ${SLIDE_KINDS.some(([k]) => !r.recipe.includes(k)) ? `<label class="sr" for="r-add">Add a slide</label><select id="r-add"><option value="">+ Add a slide…</option>${SLIDE_KINDS.filter(([k]) => !r.recipe.includes(k)).map(([k, t]) => `<option value="${k}">${t}</option>`).join('')}</select>` : ''}
+      ${SLIDE_KINDS.some(([k]) => !r.recipe.includes(k)) ? `<label class="sr" for="r-add">Add a slide</label><select id="r-add" class="sel-s"><option value="">+ Add a slide…</option>${SLIDE_KINDS.filter(([k]) => !r.recipe.includes(k)).map(([k, t]) => `<option value="${k}">${t}</option>`).join('')}</select>` : ''}
       ${r.recipe.includes('questions') ? `<span class="eyebrow">Discovery questions <span style="text-transform:none;letter-spacing:0;font-weight:400">· one per line: Label | question</span></span>${LANGS.map(([lg]) => `<div class="fld"><label for="pqh-${lg}">Headline ${lg}</label><input id="pqh-${lg}" data-pqh="${lg}" value="${esc((r.qHead || {})[lg] || '')}"></div>`).join('')}${LANGS.map(([lg]) => `<div class="fld"><label for="pq-${lg}">${lg}</label><textarea id="pq-${lg}" data-pq="${lg}" rows="4">${esc(((r.questions || {})[lg] || []).join('\n'))}</textarea></div>`).join('')}` : ''}
       ${fld('include', 'Must include', r.include.join('\n'), 'One per line', 3)}
       ${fld('avoid', 'Must avoid', r.avoid.join('\n'), 'One per line', 3)}
