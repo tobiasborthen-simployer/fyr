@@ -117,5 +117,5 @@
 | OpenAI access: route (Azure OpenAI or the OpenAI API), model and budget | Blocks M3 drafting | Ask IT in week 1; stub drafts behind the drafting module until access arrives | Tobias |
 | NO/SV draft quality on the chosen model | More editing before approval | Test set through the copy check in M3; tune the prompts | Dev |
 | Approval bandwidth for migrating content (one approver) | Delays M5 | Start content review during M3; approve in batches | Tobias |
-| PDF fidelity of 16:9 slides | Rep trust | Spike PDF rendering early in M4; keep "Open in new tab → print" as a fallback | Dev |
+| PDF fidelity of 16:9 slides | Rep trust | The prototype's print CSS is proven: 13.33 × 7.5 in pages, no margins, exact colours. Blurred box shadows turn into grey boxes in PDF viewers, so print uses a 1 px edge instead. Reuse that CSS for server-side Chromium and check the output in Preview as well as Acrobat | Dev |
 | Scope creep (cut modules coming back) | Misses the month | Scope guard in CLAUDE.md: re-adding a cut item needs a DECISIONS entry | Tobias |

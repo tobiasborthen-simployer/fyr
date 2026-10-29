@@ -39,6 +39,20 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — PDF export works; Why slide fixed
+- **Done:**
+  - **PDF export:** until now the *PDF* button only showed a message. It now opens the deck (the same page as *Open in new tab*) and starts the print dialog.
+    - Print CSS gives one 13.33 × 7.5 in page per visible slide, with no margins and exact colours. Hidden slides are left out.
+    - The deck page also has a *Save as PDF* button.
+  - **Grey boxes in the PDF:** blurred card and screenshot shadows printed as solid grey boxes. Print now draws a 1 px edge instead.
+  - **"Why Simployer" slide:** the quote ran into the footer in NO (and touched it in EN/SV). The slide is tighter and now clears the footer in all three languages.
+  - **Start box:** it now understands "Discovery with X" (and "med", "hos", "för").
+- **Verified:**
+  - Rendered real PDFs with headless Chrome: Discovery EN (7 pages) and Demo NO (10 pages), every page 960 × 540 pt. All pages were checked visually.
+  - Copy check: 0 errors.
+- **Next:** M4 reuses the print CSS for server-side PDF (PLAN risk row updated).
+- **Decisions:** none.
+
 ### 2026-10-29 — OpenAI replaces the Claude API for drafting (D-031)
 - **Done:**
   - Simployer uses OpenAI in its solutions, so Fyr's AI drafting moves to OpenAI.

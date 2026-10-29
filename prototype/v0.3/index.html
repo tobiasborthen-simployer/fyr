@@ -1465,6 +1465,12 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .slide .q2 > div { display: flex; gap: 1.4cqw; align-items: start; }
 .slide .q2 p { font-size: 1.7cqw; color: #1F1B2E; }
 .slide .cols3 > div { background: #FBFAF7; box-shadow: 0 .3cqw 1.4cqw rgba(31,27,46,.07); }
+/* Why Simployer carries a headline, the how, three pillars and a quote: tighter so it clears the footer in NO/SV */
+.slide.why .in { gap: 1.2cqw; }
+.slide.why h3 { font-size: 3.5cqw; }
+.slide.why .cols3 { margin-top: 0; }
+.slide.why .cols3 > div { padding: 1.7cqw 2cqw; gap: .7cqw; }
+.slide.why .quote { margin-top: 0; }
 .slide .cols3 .k { background: #2D0C69; }
 .slide .cols3 b { color: #1F1B2E; font-weight: 600; }
 .slide .quote { font-family: var(--display); font-weight: 400; background: var(--nightg); color: #F6F2FF; }
@@ -1882,7 +1888,7 @@ function bindCreate() {
   $$('[data-sug]').forEach(b => b.addEventListener('click', () => startFromText(b.dataset.sug)));
 }
 function startFromText(text) {
-  const m = text.match(/^([\w-]+) for (.+)$/i), r = m && PRULES.find(x => x.keys.includes(m[1].toLowerCase()));
+  const m = text.match(/^([\w-]+) (?:for|with|med|hos|för|till?) (.+)$/i), r = m && PRULES.find(x => x.keys.includes(m[1].toLowerCase()));
   if (r) S.rule = r.id;
   openBrief(r ? m[2] : text);
 }
@@ -2019,7 +2025,7 @@ function slideHTML(s, i, n) {
   if (s.kind === 'cfo') return `<div class="slide">${cfoLocked() ? `<span class="flag">● ${T.cfoFlag}</span>` : ''}${wm}<div class="in"><span class="ey">${T.appEy}</span><h3 style="max-width:22ch">${T.cfoH}</h3><p style="font-size:2.2cqw;max-width:40ch">${T.cfoP}</p></div>${ft}</div>`;
   if (s.kind === 'product') { const mods = MODS.map(md => [lg === 'EN' || !I18N[md] ? md : I18N[md][lg === 'NO' ? 0 : 1], Object.values(FEATURES).filter(f => f.mod === md && f.state === 'live').length]); return `<div class="slide">${wm}<div class="in"><span class="ey">${T.appEy}</span><h3>${T.prodH}</h3><p>${T.prodP}</p><div class="mods">${mods.map(([a, n]) => `<div><b>${a}</b><span>${n} ${T.live}</span></div>`).join('')}</div></div>${ft}</div>`; }
   if (s.kind === 'custom') return `<div class="slide">${wm}<div class="in"><span class="ey">${occ} · ${d.company}</span><h3 style="max-width:24ch">${T.cuH}</h3><p>${T.cuP}</p></div>${ft}</div>`;
-  if (s.kind === 'why') return `<div class="slide">${wm}<div class="in"><span class="ey">${T.whyEy}</span><h3 style="max-width:24ch">${T.whyH}</h3><p>${T.how}</p><div class="cols3">${T.pillarHeads.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="quote">\u201c${MF.quote.text}\u201d<small>${MF.quote.who}</small></div></div>${ft}</div>`;
+  if (s.kind === 'why') return `<div class="slide why">${wm}<div class="in"><span class="ey">${T.whyEy}</span><h3 style="max-width:24ch">${T.whyH}</h3><p>${T.how}</p><div class="cols3">${T.pillarHeads.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="quote">\u201c${MF.quote.text}\u201d<small>${MF.quote.who}</small></div></div>${ft}</div>`;
   return `<div class="slide">${wm}<div class="in"><span class="ey">${T.nextEy}</span><h3>${T.nextH}</h3><div class="cols3">${T.next.map(([a, b], k) => `<div><span class="k">0${k + 1}</span><b>${a}</b><p>${b}</p></div>`).join('')}</div><div class="cta"><b>${lg === 'NO' ? 'Neste møte' : lg === 'SV' ? 'Nästa möte' : 'Next meeting'}: ${(rp || ROLES[S.role]).name}</b><span>${(d.rule && ruleById(d.rule).cta[lg]) || ruleById(d.rule).cta.EN}</span></div></div>${ft}</div>`;
 }
 const slideName = s => s.kind === 'proof' ? `Quote · ${((DISC_QUOTES.find(q => q.id === s.q) || {}).who || '').split(',').pop().trim()}` : s.kind === 'titleline' ? 'Cover' : ['timeline', 'about', 'insight', 'nextstep', 'contact', 'how', 'whoweare', 'cfo', 'product'].includes(s.kind) ? SLIDE_KINDS.find(x => x[0] === s.kind)[1] : s.kind === 'questions' ? 'Discovery questions' : s.kind === 'custom' ? ((s.edits && s.edits[1] && edPlain(s.edits[1]).slice(0, 28)) || 'Your slide') : s.kind === 'overview' ? 'Simployer in short' : s.kind === 'questions' ? 'Questions for them' : s.kind === 'ref' ? 'Customer story' : s.kind === 'title' ? 'Cover' : s.kind === 'heard' ? 'What we heard' : s.kind === 'why' ? 'Why Simployer' : s.kind === 'next' ? 'Next steps' : FEATURES[s.f].name;
@@ -2122,7 +2128,7 @@ function bindDeck() {
   });
   $('#present').addEventListener('click', present);
   $('#newtab').addEventListener('click', () => openDeckTab(d));
-  $('#pdf').addEventListener('click', () => toast(`Exported ${d.occasion}-${d.company.split(' ')[0]}.pdf. (Prototype: the app renders a real PDF, one page per slide.)`));
+  $('#pdf').addEventListener('click', () => { track('pdf', { deck: d.id }); openDeckTab(d, true); });
 }
 document.addEventListener('click', e => { if (!e.target.closest('#ed-reset') || !S.deck) return; delete S.deck.slides[S.sel].edits; render(); toast('Text reset to the original wording.'); });
 function move(a, b) {
@@ -2153,7 +2159,7 @@ function present() {
 }
 
 /* ---------- Open a deck in its own browser tab ---------- */
-function deckDoc(d) {
+function deckDoc(d, print = false) {
   const tmp = document.createElement('div');
   const vs = d.slides.filter(x => !x.hidden); // hidden slides stay out of the shared deck and the PDF
   tmp.innerHTML = vs.map((x, i) => `<section class="dk-s" id="s${i + 1}"><div class="dk-n">${i + 1} / ${vs.length} · ${slideName(x)}</div>${slideHTML(x, i, vs.length)}</section>`).join('');
@@ -2177,8 +2183,11 @@ body.pres .dk-s{display:none;height:100vh;align-items:center;justify-content:cen
 body.pres .dk-s.on{display:flex}
 body.pres .dk-s .slide{width:min(100vw,177.78vh);border-radius:0}
 .dk-hint{position:fixed;right:16px;bottom:14px;color:#A9A6C2;font:500 12px Inter,system-ui,sans-serif;display:none}body.pres .dk-hint{display:block}
+.dk-top .dk-b{display:flex;gap:8px}.dk-top button.ln{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+@page{size:13.333in 7.5in;margin:0}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}html,body{background:#fff;min-height:0}.dk-top,.dk-n,.dk-hint{display:none!important}.dk-list{display:block;padding:0;margin:0;max-width:none}.dk-s{width:13.333in;height:7.5in;overflow:hidden;break-after:page;page-break-after:always}.dk-s:last-child{break-after:auto;page-break-after:auto}.dk-s .slide{width:13.333in;border-radius:0;box-shadow:none!important}.slide .pain,.slide .cols3>div,.slide .rows>div,.slide .kpi4>div{box-shadow:0 0 0 1px rgba(31,27,46,.09)!important}.slide .stagep,.slide .stagep .shot .win,.slide .cta span{box-shadow:none!important}.slide .soonart svg{filter:none!important}}
 </style></head><body>${sprite}
-<header class="dk-top"><div><b>${title}</b><small>${d.slides.length} slides · ${d.lang} · made in Fyr</small></div><button id="go" title="Present full screen (F)">Present · F</button></header>
+<header class="dk-top"><div><b>${title}</b><small>${vs.length} slides · ${d.lang} · made in Fyr</small></div><div class="dk-b"><button id="pdf" class="ln" title="Opens the print dialog: choose Save as PDF">Save as PDF</button><button id="go" title="Present full screen (F)">Present · F</button></div></header>
 <main class="dk-list">${tmp.innerHTML}</main><div class="dk-hint">← → to move · F for fullscreen · Esc to exit</div>
 <script>
 var i=0,ss=[].slice.call(document.querySelectorAll('.dk-s'));
@@ -2186,16 +2195,18 @@ function show(){ss.forEach(function(x,k){x.classList.toggle('on',k===i)})}
 function go(){i=0;document.body.classList.add('pres');show();try{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}catch(e){}}
 function stop(){document.body.classList.remove('pres');try{document.fullscreenElement&&document.exitFullscreen()}catch(e){}}
 document.getElementById('go').onclick=go;
+document.getElementById('pdf').onclick=function(){stop();window.print()};
+${print ? "window.addEventListener('load',function(){(document.fonts&&document.fonts.ready||Promise.resolve()).then(function(){setTimeout(function(){window.print()},300)})});" : ''}
 document.addEventListener('keydown',function(e){if((e.key==='f'||e.key==='F')&&!e.metaKey&&!e.ctrlKey){e.preventDefault();if(!document.body.classList.contains('pres'))go();else{try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(x){}}return}if(!document.body.classList.contains('pres'))return;if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();if(i<ss.length-1){i++;show()}}else if(e.key==='ArrowLeft'){if(i>0){i--;show()}}else if(e.key==='Escape')stop()});
 
 document.addEventListener('click',function(e){if(document.body.classList.contains('pres')&&!e.target.closest('button')){if(i<ss.length-1){i++;show()}else stop()}});
 <\/script></body></html>`;
 }
-async function openDeckTab(d) {
-  const html = deckDoc(d);
+async function openDeckTab(d, print = false) {
+  const html = deckDoc(d, print);
   let w = null;
   try { w = window.open('', '_blank'); } catch (_) { w = null; }
-  if (w) { try { w.document.open(); w.document.write(html); w.document.close(); toast('Opened in a new tab.'); return; } catch (_) { try { w.close(); } catch (e) {} } }
+  if (w) { try { w.document.open(); w.document.write(html); w.document.close(); toast(print ? 'Choose “Save as PDF” in the print dialog. One page per slide; hidden slides are left out.' : 'Opened in a new tab.'); return; } catch (_) { try { w.close(); } catch (e) {} } }
   const dl = window.claude && claude.use ? await claude.use('downloads') : null;
   if (!dl) { toast('Your browser blocked the new tab. Allow pop-ups for this page and try again.'); return; }
   try { await dl.save({ filename: `${d.occasion}-${d.company.split(' ')[0]}.html`.replace(/\s+/g, '-'), data: html }); toast('The new tab was blocked, so the deck was saved as an HTML file. Open it in your browser to view or present.'); }

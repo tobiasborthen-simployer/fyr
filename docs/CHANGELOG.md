@@ -6,6 +6,9 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
+**Added**
+- **PDF export works in the prototype.** *PDF* opens the deck with the print dialog: one 16:9 page per visible slide, hidden slides left out. The shared deck page also has *Save as PDF*.
+
 **Changed**
 - Planned AI drafting runs on OpenAI instead of the Claude API (D-031). There is no change in the prototype.
 - No more picture bar: the signed-in user is the rep. Their name, photo, title, email and phone come from Profile, and the deck panel shows them, with *Edit profile* (D-030).
@@ -32,6 +35,8 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Fixed**
+- "Why Simployer" no longer runs into the footer in Norwegian. The slide is a little tighter in all languages.
+- The start box understands "Discovery with …" (and "med", "hos", "för"), not only "… for …".
 - The slide list in the deck editor no longer jumps back to slide 1 when you click or edit. It keeps its scroll position.
 - The timeline editor is lighter: a small vertical timeline with quiet fields that wrap, drag dots (or Alt + ↑ / ↓) to reorder, and × on hover. Timeline text can also be edited directly on the slide.
 - People & access: the access dropdowns (and the rules editor's "Add a slide") use the app's dropdown style instead of the browser default; checkboxes use the app's purple.
