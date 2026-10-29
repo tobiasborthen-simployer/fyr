@@ -7,6 +7,12 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Added**
+- **Roadmap for everyone (D-032).** A new org area that shows where Simployer is going, by the six product pillars of Product Strategy 2027, in plain words:
+  - Now / Coming soon / Later, with no dates.
+  - "Worth knowing this month" (max 3).
+  - A card per bigger change, with before → after, who it helps and *Say it like this*. Smaller changes fold into one line each.
+  - Only External releases show.
+  - PMM curates it in *Releases → Roadmap cards*.
 - **PDF export works in the prototype.** *PDF* opens the deck with the print dialog: one 16:9 page per visible slide, hidden slides left out. The shared deck page also has *Save as PDF*.
 
 **Changed**

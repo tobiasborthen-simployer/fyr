@@ -33,11 +33,42 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Tobias | 4 Nov | Open |
 | Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow | Content | Tobias | 4 Nov | Open |
 | Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Tobias (Linda for SV) | 4 Nov | Open |
+| Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) | Admin | Tobias | 11 Nov | Open |
+| Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) | Decision | Tobias | 4 Nov | Open |
+| Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-29 — Roadmap for everyone (D-032)
+- **Done:**
+  - A new org area, **Roadmap**, built on the six pillars from Product Strategy 2027, in plain words.
+  - **Overview:** "Worth knowing this month" (3 cards) and six pillar cards with counts, the 2027 goal, the messaging pillar to use, and a New marker until opened.
+  - **Pillar view:** Now / Coming soon / Later.
+    - Cards carry before → after, who it helps, the market and *Say it like this* with Copy.
+    - T3/T4 changes fold into "+ N smaller improvements".
+  - **Filters:** who it helps, and market. EN/NO/SV, with a labelled English fallback.
+  - **Only External releases appear.** No Linear names and no dates. Coming-soon lines start with "Coming soon:".
+  - **PMM tab *Releases → Roadmap cards*:**
+    - a queue (needs a pillar / needs a card / waiting / on the roadmap)
+    - pillar pick with a team suggestion
+    - *Draft from Linear* (AI draft)
+    - a live check (avoid list, tense, no dates, no figures, ≤ 30 words)
+    - approve per language
+    - the "worth knowing" pick (max 3)
+    - pillar promises and 2027 goals, editable
+  - **Seeded:** cards for the current External releases (45 approved cards and lines, 12 items for PMM to finish). NO/SV for the "worth knowing" cards and all pillar texts.
+  - Roadmap views count in Usage. PM sees the Roadmap but not the cards tab.
+- **Verified:**
+  - Tested in the browser as Sales: 6 pillars, 3 digest cards, no Internal/P&T release names and no dates on the page, filters, NO fallback, and the New marker clearing.
+  - As PMM: pillar → draft → check → approve → digest, after which Sales sees it with a New marker.
+  - As PM: no cards tab.
+  - At 375 px: no horizontal scroll.
+  - Copy check: 0 errors.
+- **Next:** P&T "Pillar" label in Linear; Nima to confirm the pillar texts for all staff; NO/SV approvals.
+- **Decisions:** D-032.
 
 ### 2026-10-29 — PDF export works; Why slide fixed
 - **Done:**

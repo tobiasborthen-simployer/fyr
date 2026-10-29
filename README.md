@@ -9,6 +9,7 @@ Fyr is Simployer's **PMM planning and creation tool**. Product marketing uses it
 **Org-facing (everyone):**
 - Create (Presentations)
 - Product Truth
+- Roadmap (what's coming, by pillar, in plain words)
 - Battlecards
 - Library
 

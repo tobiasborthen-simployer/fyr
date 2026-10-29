@@ -1413,6 +1413,80 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .tlx-add { display: inline-flex; align-items: center; gap: 6px; margin: 6px 0 0 22px; padding: 5px 8px; border-radius: 8px; color: #CDC0EA; font-size: 12.5px; font-weight: 500; }
 .tlx-add:hover { background: rgba(255,255,255,.06); color: #fff; }
 .tlx-add .ico { width: 13px; height: 13px; }
+/* Roadmap (D-032) */
+.chip { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 99px; background: #F0EFF5; color: var(--muted); font-size: 11.5px; font-weight: 500; white-space: nowrap; }
+.chip.lav { background: var(--lav-50); color: var(--lav); }
+.rm-guard { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 12px; background: var(--lav-50); color: var(--ink); font-size: 13.5px; margin-bottom: 14px; }
+.rm-guard .ico { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--lav); }
+.rm-f { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-bottom: 22px; font-size: 13px; }
+.rm-fg { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.rm-sh { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; margin: 6px 0 12px; }
+.rm-sh h2 { font-size: 19px; }
+.rm-dig { margin-bottom: 30px; }
+.rm-dg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.rm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.rm-p { position: relative; display: grid; align-content: start; gap: 8px; text-align: left; padding: 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.rm-p:hover, .rm-p:focus-visible { border-color: var(--lav); box-shadow: 0 6px 20px rgba(45,12,105,.08); }
+.rm-p > b { font-size: 17px; font-weight: 650; letter-spacing: -.01em; }
+.rm-p > span:not(.rm-num):not(.chip):not(.rm-new):not(.rm-cnt) { color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+.rm-p .chip { justify-self: start; }
+.rm-num { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #1B1038; color: #fff; font-size: 13px; font-weight: 650; }
+.rm-new { position: absolute; top: 16px; right: 16px; height: 20px; padding: 0 8px; border-radius: 99px; background: #FF9573; color: #2D0C69; font-size: 11px; font-weight: 650; display: inline-flex; align-items: center; }
+.rm-cnt { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.rm-goal { color: var(--muted); font-size: 12.5px; line-height: 1.45; padding-top: 8px; border-top: 1px dashed var(--line); }
+.rm-goal b { color: var(--ink); font-weight: 600; }
+.rm-c { display: grid; align-content: start; gap: 10px; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); margin-bottom: 12px; }
+.rm-dg .rm-c { margin: 0; }
+.rm-c.later { background: var(--lav-50); border-color: transparent; }
+.rm-c-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.rm-pn { font-size: 12px; color: var(--muted); font-weight: 500; }
+.rm-c h3 { font-size: 15.5px; font-weight: 650; line-height: 1.3; letter-spacing: -.005em; }
+.rm-c p { color: var(--muted); font-size: 13.5px; line-height: 1.5; margin: 0; }
+.rm-ba { display: grid; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); gap: 8px; align-items: center; padding: 10px 12px; border-radius: 10px; background: #F7F5F0; font-size: 12.5px; line-height: 1.35; }
+.rm-c.later .rm-ba { background: #fff; }
+.rm-ba small, .rm-say small, .rm-ex small { display: block; color: var(--faint); font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 2px; }
+.rm-ba .ico { width: 14px; height: 14px; color: var(--lav); }
+.rm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rm-say { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: end; padding: 10px 12px; border-radius: 10px; border-left: 3px solid var(--lav); background: var(--lav-50); }
+.rm-say small { grid-column: 1 / -1; }
+.rm-say p { color: var(--ink); font-size: 13.5px; }
+.rm-fb { color: var(--faint); font-size: 12px; }
+.rm-small { font-size: 13px; color: var(--muted); }
+.rm-small summary { cursor: pointer; font-weight: 600; color: var(--ink); padding: 4px 0; }
+.rm-small ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.rm-ph { display: flex; gap: 14px; align-items: flex-start; margin: 16px 0 20px; }
+.rm-ph .rm-num { width: 40px; height: 40px; font-size: 17px; border-radius: 11px; flex: none; }
+.rm-ph h2 { font-size: 24px; letter-spacing: -.015em; }
+.rm-ph p { color: var(--muted); max-width: 62ch; margin: 4px 0 8px; }
+.rm-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.rm-ch { display: grid; gap: 4px; margin-bottom: 12px; font-size: 14px; }
+.rm-ch .pill { justify-self: start; }
+.rm-ch small { color: var(--muted); font-weight: 400; font-size: 12.5px; }
+.rm-ex b { font-size: 13.5px; font-weight: 600; display: block; margin-bottom: 8px; }
+/* PMM: Roadmap cards */
+.rm-ed { display: grid; grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.rm-q { padding: 12px; display: grid; gap: 14px; max-height: 76vh; overflow: auto; }
+.rm-qg { display: grid; gap: 4px; }
+.rm-qg .eyebrow { padding: 0 6px 4px; }
+.rm-qg button { display: grid; gap: 2px; text-align: left; padding: 8px 10px; border-radius: 10px; color: var(--ink); font-size: 13px; }
+.rm-qg button small { color: var(--muted); font-size: 11.5px; }
+.rm-qg button:hover { background: #F7F5F0; }
+.rm-qg button[aria-current="true"] { background: var(--lav-50); box-shadow: inset 3px 0 0 var(--lav); }
+.rm-form { padding: 18px; display: grid; gap: 12px; align-content: start; }
+.rm-form h2 { font-size: 19px; }
+.rm-form .rm-sel { width: 100%; height: 40px; line-height: 1.2; padding-block: 0; }
+.rm-form .ltabs { justify-self: start; }
+.rm-ck { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 13px; }
+.rm-ck > span { color: var(--muted); font-weight: 600; font-size: 12px; }
+.rm-ck label, .rm-dk { display: inline-flex; gap: 6px; align-items: center; }
+.rm-ck input, .rm-dk input { accent-color: var(--lav); }
+.rm-dk { font-size: 13.5px; font-weight: 500; flex-wrap: wrap; }
+.rm-pe { margin-top: 16px; padding: 14px 18px; }
+.rm-pe summary { cursor: pointer; }
+.rm-per { display: grid; grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 13px; align-items: start; }
+.rm-per label { display: grid; gap: 4px; color: var(--muted); font-size: 12px; }
+@media (max-width: 1100px) { .rm-dg, .rm-grid, .rm-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } .rm-cols > section:last-child { grid-column: 1 / -1; } }
+@media (max-width: 760px) { .rm-dg, .rm-grid, .rm-cols, .rm-ed, .rm-per { grid-template-columns: 1fr; } .rm-cols > section:last-child { grid-column: auto; } .rm-q { max-height: none; } }
 .tlx-hint { display: block; margin-top: 8px; color: #9E98C4; font-size: 11.5px; line-height: 1.4; }
 .tle { display: grid; gap: 10px; }
 .tle-s { display: grid; gap: 4px; }
@@ -1646,7 +1720,7 @@ function usageData(P) {
     byLang: ['NO', 'SV', 'EN'].map(l => [l, created.filter(e => e.m.lang === l).length]),
     features: top(count(created.flatMap(e => (e.m.features || []).map(f => ({ m: { f } }))), e => e.m.f), 8, k => FEATURES[k] ? FEATURES[k].name : k),
     quotes: DISC_QUOTES.map(q => [q.who.split(',').pop().trim(), of('quote').filter(e => e.m.q === q.id).length]),
-    views: [['Product truth', 'truth'], ['Battlecards', 'battle'], ['Library', 'library']].map(([t, k]) => [t, of('view').filter(e => e.m.area === k).length]),
+    views: [['Product truth', 'truth'], ['Roadmap', 'roadmap'], ['Battlecards', 'battle'], ['Library', 'library']].map(([t, k]) => [t, of('view').filter(e => e.m.area === k).length]),
     searches: top(count(of('search_empty'), e => e.m.q), 6),
   };
 }
@@ -1719,7 +1793,7 @@ function shot(img, type = 'screenshot', label = true, vid) {
   const a = type === 'animation', v = a && vid;
   return `<div class="shot ${a ? 'anim' : ''} ${v ? 'vid' : ''}">${label ? `<span class="type">${a ? '<svg viewBox="0 0 24 24"><use href="#i-play"/></svg>Animation' : 'Screenshot'}</span>` : ''}<div class="win"><div class="bar"><i></i><i></i><i></i><u></u></div><div class="vp"><img src="${IMG[img]}" alt="" loading="lazy">${v ? `<video autoplay muted loop playsinline preload="metadata">${vsrc(vid)}</video>` : ''}<span class="ring"></span>${a ? '<svg class="cur" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cursor"/></svg>' : ''}</div></div></div>`;
 }
-const VIEW_NAMES = { create: 'Create', brief: 'New presentation', gen: 'New presentation', deck: 'Presentation', work: 'My presentations', library: 'Library', truth: 'Product truth', battle: 'Battlecards' };
+const VIEW_NAMES = { create: 'Create', brief: 'New presentation', gen: 'New presentation', deck: 'Presentation', work: 'My presentations', library: 'Library', truth: 'Product truth', roadmap: 'Roadmap', battle: 'Battlecards' };
 
 function renderNav() {
   fyrBrand();
@@ -1731,13 +1805,13 @@ function renderNav() {
   const it = (v, i, t, badge, hot, on) => `<button data-view="${v}" ${(on !== undefined ? on : cur === v) ? 'aria-current="page"' : ''}>${ico(i)}<span>${t}</span>${badge ? `<span class="badge ${hot ? 'hot' : ''}">${badge}</span>` : ''}</button>`;
   $('#nav').innerHTML = `
     <div class="nav-group"><span class="nav-label">Create</span>${it('create', 'i-deck', 'Presentations')}${it('work', 'i-brief', 'My presentations', DECKS.length)}</div>
-    <div class="nav-group"><span class="nav-label">Knowledge</span>${it('truth', 'i-book', 'Product truth')}${it('battle', 'i-shield', 'Battlecards')}${it('library', 'i-grid', 'Library', pm && attn ? attn : null, true)}</div>
+    <div class="nav-group"><span class="nav-label">Knowledge</span>${it('truth', 'i-book', 'Product truth')}${it('roadmap', 'i-flag', 'Roadmap', rmNewCount() || null, true)}${it('battle', 'i-shield', 'Battlecards')}${it('library', 'i-grid', 'Library', pm && attn ? attn : null, true)}</div>
     ${S.role === 'pm' ? `<div class="nav-group"><span class="nav-label">Release plan</span>${it('product', 'i-branch', 'Releases')}${it('calendar', 'i-cal', 'Release map')}</div>` : ''}
     ${pm ? `<div class="nav-group"><span class="nav-label">PMM workspace</span>${BOG.filter(g => g.tabs[0][0] !== 'people' || (CUR && CUR.admin)).map(g => gi(g)).join('')}</div>` : ''}`;
   const r = ROLES[S.role];
   $('#me').innerHTML = `<span class="av">${r.init}</span><div><b>${r.name}</b><small>${r.title}</small></div>`;
   const sub = S.view === 'deck' && S.deck ? S.deck.company : S.view === 'brief' && S.meeting ? S.meeting.company : '';
-  const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks', prules: 'Presentation rules', people: 'People & access', usage: 'Usage' };
+  const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks', prules: 'Presentation rules', people: 'People & access', usage: 'Usage', rmed: 'Roadmap cards' };
   { const g = BOG.find(g => g.tabs.length > 1 && g.tabs.some(x => x[0] === S.view)); if (g && S.view !== 'office') { $('#crumbs').innerHTML = `<span>${S.role === 'pm' ? 'Release plan' : 'PMM workspace'}</span>${ico('i-arrow')}<span>${g.t}</span>${ico('i-arrow')}<b>${g.tabs.find(x => x[0] === S.view)[1]}</b>`; return; } }
   if (nm[S.view]) { $('#crumbs').innerHTML = S.view === 'office' ? '<b>PMM workspace</b>' : `<span>PMM workspace</span>${ico('i-arrow')}<b>${nm[S.view]}${(S.view === 'pack' && S.pack) ? ' · ' + relById(S.pack).short : S.view === 'packnew' && NEW.rid ? ' · ' + relById(NEW.rid).short : ''}</b>`; return; }
   $('#crumbs').innerHTML = sub ? `<span>Create</span>${ico('i-arrow')}<b>${sub}</b>` : `<b>${VIEW_NAMES[S.view]}</b>`;
@@ -2378,6 +2452,228 @@ LINEAR_RAW.forEach(([lid, name, status, tier, vis, target, done, lead, team, sum
   if (ex) { Object.assign(ex, base, { target: done ? 'Released ' + fd(done) : fd(target) }); if (vis === 'No label') ex.nolabel = true; return; }
   RELEASES.push({ id: 'L' + lid, name, short: name, ...base, target: done ? 'Released ' + fd(done) : fd(target), lite: true, nolabel: vis === 'No label' || undefined, summary: summary || '' });
 });
+
+/* ---------- Roadmap: where Simployer is going, by product pillar, for everyone (D-032) ---------- */
+// Pillars from Product Strategy 2027. mf = the messaging pillar reps use with customers. ex = the strategy's 2027 example (a goal, not a claim).
+const PILLARS = [
+  { id: 'datain', n: 1, mf: 'Leave the admin', t: {
+    EN: { name: 'Moving in takes a day', promise: 'Getting started with Simployer should feel like unpacking one box. Policies, handbook and data are set up for HR to approve.', goal: 'A 200-person customer goes from signed to everyone invited in one day.', ex: ['Getting 200 people in three countries started', '6 weeks of workshops, country by country', '1 day. HR reviews and approves'] },
+    NO: { name: 'Flytt inn på én dag', promise: 'Å komme i gang med Simployer skal føles som å pakke ut én eske. Rutiner, håndbok og data settes opp for HR å godkjenne.', goal: 'En kunde med 200 ansatte går fra signert avtale til alle er invitert, på én dag.', ex: ['Oppstart for 200 ansatte i tre land', '6 uker med workshops, land for land', '1 dag. HR går gjennom og godkjenner'] },
+    SV: { name: 'Flytta in på en dag', promise: 'Att komma igång med Simployer ska kännas som att packa upp en låda. Rutiner, handbok och data sätts upp för HR att godkänna.', goal: 'En kund med 200 anställda går från signerat avtal till att alla är inbjudna, på en dag.', ex: ['Uppstart för 200 anställda i tre länder', '6 veckor med workshops, land för land', '1 dag. HR granskar och godkänner'] } } },
+  { id: 'record', n: 2, mf: 'Get the signal', t: {
+    EN: { name: 'One record, no double entry', promise: 'Salary, absence, documents, surveys and reviews share one record for each person. Enter it once, and every part of Simployer uses it.', goal: 'Sia and Automation Studio can carry out tasks in every part of Simployer.', ex: ['A salary review for a team of 12', '4 modules and a spreadsheet, half a day', '1 screen, 20 minutes'] },
+    NO: { name: 'Én oversikt, ingen dobbeltføring', promise: 'Lønn, fravær, dokumenter, undersøkelser og samtaler deler én oversikt over hver ansatt. Registrer én gang, så bruker hele Simployer det.', goal: 'Sia og Automation Studio kan utføre oppgaver i alle deler av Simployer.', ex: ['Lønnsgjennomgang for et team på 12', '4 moduler og et regneark, en halv dag', '1 skjermbilde, 20 minutter'] },
+    SV: { name: 'Ett register, ingen dubbelregistrering', promise: 'Lön, frånvaro, dokument, undersökningar och samtal delar ett register över varje person. Registrera en gång, så använder hela Simployer det.', goal: 'Sia och Automation Studio kan utföra uppgifter i alla delar av Simployer.', ex: ['Lönerevision för ett team på 12', '4 moduler och ett kalkylark, en halv dag', '1 vy, 20 minuter'] } } },
+  { id: 'anywhere', n: 3, mf: 'Leave the admin', t: {
+    EN: { name: 'No front door', promise: 'The work happens where people already are: in Teams, in Slack and on the phone.', goal: 'The ten most common manager and employee tasks get done in Teams, Slack or the app, without opening the web.', ex: ['New hours and a new team for one employee', '5 modules, 2 people, days of back and forth', '1 message, 1 confirm'] },
+    NO: { name: 'Ingen inngangsdør', promise: 'Arbeidet skjer der folk allerede er: i Teams, i Slack og på mobilen.', goal: 'De ti vanligste oppgavene for ledere og ansatte gjøres i Teams, Slack eller appen, uten å åpne nettsiden.', ex: ['Ny stillingsprosent og nytt team for én ansatt', '5 moduler, 2 personer, dager med fram og tilbake', '1 melding, 1 bekreftelse'] },
+    SV: { name: 'Ingen ytterdörr', promise: 'Arbetet sker där folk redan är: i Teams, i Slack och i mobilen.', goal: 'De tio vanligaste uppgifterna för chefer och anställda görs i Teams, Slack eller appen, utan att öppna webben.', ex: ['Ny sysselsättningsgrad och nytt team för en anställd', '5 moduler, 2 personer, dagar av fram och tillbaka', '1 meddelande, 1 bekräftelse'] } } },
+  { id: 'foryou', n: 4, mf: 'Leave the admin', t: {
+    EN: { name: 'Work done for you', promise: 'Sia notices what needs doing, brings it to the right person and gets it done. Routines run on their own.', goal: 'Sia flags expiring contracts and probation periods, onboarding gaps and absence patterns before anyone asks.', ex: ['A probation period ends in two weeks', '3 people, and it is often missed', '0 clicks to start it, 1 to say yes'] },
+    NO: { name: 'Arbeidet gjøres for deg', promise: 'Sia ser hva som må gjøres, tar det til rett person og får det gjort. Rutinene går av seg selv.', goal: 'Sia varsler om kontrakter og prøvetid som går ut, hull i onboardingen og fraværsmønstre før noen spør.', ex: ['En prøvetid går ut om to uker', '3 personer, og det blir ofte glemt', '0 klikk for å starte, 1 for å si ja'] },
+    SV: { name: 'Arbetet görs åt dig', promise: 'Sia ser vad som behöver göras, tar det till rätt person och ser till att det blir gjort. Rutinerna går av sig själva.', goal: 'Sia flaggar avtal och provanställningar som löper ut, luckor i onboardingen och frånvaromönster innan någon frågar.', ex: ['En provanställning går ut om två veckor', '3 personer, och det missas ofta', '0 klick för att starta, 1 för att säga ja'] } } },
+  { id: 'insight', n: 5, mf: 'Get the signal', t: {
+    EN: { name: 'Answers before questions', promise: 'Ask in plain words and get the chart. When a trend matters, the right manager hears about it first.', goal: 'Ask in words and get a chart across every module, and the first insights reach managers without anyone asking.', ex: ['Sick leave rising in one team', 'A report nobody reads, weeks late', 'One message, in time'] },
+    NO: { name: 'Svar før spørsmålet', promise: 'Spør med vanlige ord og få grafen. Når en trend betyr noe, får rett leder vite det først.', goal: 'Spør med ord og få en graf på tvers av alle moduler, og de første innsiktene når lederne uten at noen spør.', ex: ['Sykefraværet øker i ett team', 'En rapport ingen leser, uker for sent', 'Én melding, i tide'] },
+    SV: { name: 'Svar innan frågan', promise: 'Fråga med vanliga ord och få diagrammet. När en trend spelar roll får rätt chef veta det först.', goal: 'Fråga med ord och få ett diagram i alla moduler, och de första insikterna når cheferna utan att någon frågar.', ex: ['Sjukfrånvaron ökar i ett team', 'En rapport ingen läser, veckor för sent', 'Ett meddelande, i tid'] } } },
+  { id: 'easy', n: 6, mf: 'Leave the admin', t: {
+    EN: { name: 'You already know how it works', promise: 'One calm look across Simployer, and the next step is always clear. Nobody should need a course to approve a holiday.', goal: 'Surveys are rebuilt in the same look on the same people record, and groups with several companies fit in.', ex: ['A pulse survey, and what happens after', '2 systems, and the insight is lost', '1 system, 20 seconds to answer'] },
+    NO: { name: 'Du vet allerede hvordan det virker', promise: 'Ett rolig uttrykk i hele Simployer, og neste steg er alltid tydelig. Ingen skal trenge kurs for å godkjenne ferie.', goal: 'Undersøkelsene er bygget på nytt i samme uttrykk og på samme oversikt, og konsern med flere selskaper får plass.', ex: ['En pulsundersøkelse, og det som skjer etterpå', '2 systemer, og innsikten blir borte', '1 system, 20 sekunder å svare'] },
+    SV: { name: 'Du vet redan hur det fungerar', promise: 'Ett lugnt uttryck i hela Simployer, och nästa steg är alltid tydligt. Ingen ska behöva en kurs för att godkänna semester.', goal: 'Undersökningarna är ombyggda i samma uttryck och på samma register, och koncerner med flera bolag får plats.', ex: ['En pulsundersökning, och det som händer sedan', '2 system, och insikten går förlorad', '1 system, 20 sekunder att svara'] } } },
+];
+// Until P&T labels Linear projects with a pillar, PMM picks one; the Linear team gives the suggestion
+const TEAM_PILLAR = { 'Integrations & API': 'datain', 'Customer Activation': 'datain', 'Time & Payroll': 'datain', 'People & Permissions': 'record', 'Suite Services': 'record', 'AI Foundation': 'foryou', 'Automation Studio': 'foryou', 'Knowledge Operations': 'foryou', 'Employee Activation': 'foryou', 'Intelligence & Reports': 'insight', 'Experience Layer': 'easy', 'Frontend Platform': 'easy', 'Employee Surveys': 'easy', 'People Growth': 'easy' };
+// Cards per Linear id. T1/T2: [title, what changes, before, after, say it like this]. T3/T4: [one line]. st = status per language; only approved text reaches the org.
+const ROADMAP = {
+  // 1 · Moving in takes a day
+  'P-API-66': { p: 'datain', aud: ['hr'], mk: ['NO'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Absence history comes in from Tidsbanken and Tripletex', 'Customers moving from Tidsbanken or Tripletex bring their absence data with them, so nobody types it in again.', 'Export, clean and re-type absence history', 'Imported, and kept up to date', 'Moving from Tidsbanken or Tripletex? Your absence history comes with you, so nobody types it in again.'] } },
+  'P-TAP-3': { p: 'datain', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Holiday rules for every country you have people in', 'Simployer handles holiday rules per country, so companies with people in several countries set holiday up once.', 'Holiday rules worked out by hand, country by country', 'Rules per country, set up once', 'Got people in more than one country? Simployer handles the holiday rules for each of them.'] } },
+  'P-TAP-70': { p: 'datain', aud: ['hr', 'employee'], mk: ['NO', 'SE'], at: '2026-10-14', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Swedish and Norwegian holiday rules, built in', 'Swedish advance holiday and Norwegian holiday entitlements are calculated for you.', 'Special cases calculated in a spreadsheet', 'Calculated in Simployer', 'Swedish advance holiday and Norwegian entitlements are calculated for you, so HR stops checking them by hand.'] } },
+  'P-EMPA-192': { p: 'datain', aud: ['hr', 'employee'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['New hires equipped before day one', 'New hires will choose their equipment during pre-boarding, IT is told straight away, and their accounts are ready when they start.', 'Emails to IT and a scramble on day one', 'Equipment chosen and accounts ready before day one', 'Coming soon: new hires choose their equipment before they start, with their accounts ready on day one.'] } },
+  'P-AUT-136': { p: 'datain', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['HR routines that reach your other systems', 'Routines will update systems outside Simployer too, with every handoff visible.', 'HR copies changes into other systems by hand', 'The routine updates them, and you see each step', 'Coming soon: your HR routines update the other systems you use, and you see every step.'] } },
+  'P-TAP-85': { p: 'datain', at: '2026-10-02', st: { EN: 'approved' }, t: { EN: ['A clearer, better documented API for time and pay integrations.'] } },
+  // 2 · One record, no double entry
+  'P-EMPA-14': { p: 'record', aud: ['hr', 'employee'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['New hires fill in their details once', 'Employees enter their information once while they sign, and Simployer reuses it everywhere.', 'The same details asked for in several forms', 'Asked once, reused everywhere', 'Your new hires fill in their details once, and Simployer reuses them everywhere.'] } },
+  'P-LAA-2': { p: 'record', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', mfo: 'Skip the worry', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Everyone sees exactly what their role needs', 'HR sets access role by role, so managers and HR work within the right scope.', 'Broad access, or a workaround', 'Access set per role', 'You decide exactly who sees what, role by role.'] } },
+  'P-PAD-55': { p: 'record', aud: ['manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-03', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Reviews start with a summary of last time', 'Before a review or check-in, Sia sums up past conversations and answers, so nobody digs through old notes.', 'Digging through last year’s notes', 'A short briefing at the top', 'Before a review, Sia sums up what you talked about last time.'] } },
+  'P-AUT-137': { p: 'record', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Routines that check the facts first', 'Before a routine acts, it will ask Sia for the current details, so it does the right thing for each person.', 'One routine for everyone, exceptions by hand', 'The routine checks first, then acts', 'Coming soon: your routines check the current details with Sia before they act.'] } },
+  'P-EMPA-101': { p: 'record', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', mfo: 'Skip the worry', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Employee documents shared the same way every time', 'Company-wide defaults will decide who can open and share employee documents.', 'Access decided document by document', 'Company defaults, applied every time', 'Coming soon: company-wide rules for who can open and share employee documents.'] } },
+  'P-EMPA-197': { p: 'record', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['A full record of who opened, downloaded or shared each document.'] } },
+  'P-LAA-230': { p: 'record' },
+  // 3 · No front door
+  'P-AIPA-50': { p: 'anywhere', aud: ['manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Sia on the phone', 'Managers and employees ask Sia and get HR tasks done in the Simployer app.', 'Wait until you are at a desk', 'Done from the phone', 'Your managers ask Sia and get HR tasks done from their phone.'] } },
+  'P-AAC-13': { p: 'anywhere', aud: ['manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Everyday HR tasks in the Simployer app', 'Employees and managers handle important HR tasks away from a desk, in the app.', 'Log in on a laptop', 'Tap it in the app', 'Employees and managers handle their HR tasks in the Simployer app, wherever they are.'] } },
+  'P-AIPA-49': { p: 'anywhere', aud: ['hr', 'manager'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Sia in Microsoft Teams', 'Sia is in the Teams Marketplace, so IT adds it in a few clicks and people ask where they already work.', 'One more tool to roll out', 'Added from the Teams Marketplace', 'Sia lives in Teams, so your people ask where they already work.'] } },
+  'P-PAD-86': { p: 'anywhere', aud: ['manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-18', st: { EN: 'approved', NO: 'approved', SV: 'approved' }, t: {
+    EN: ['Reviews done in Teams, Slack or the app', 'Managers and employees will complete reviews in the app, Slack, Teams or Sia.', 'Log in to a separate review module', 'Done where they already are', 'Coming soon: reviews your people complete in Teams, Slack or the app.'],
+    NO: ['Medarbeidersamtaler i Teams, Slack eller appen', 'Ledere og ansatte skal kunne fullføre samtalene i appen, Slack, Teams eller Sia.', 'Logge inn i en egen samtalemodul', 'Gjort der de allerede er', 'Kommer snart: medarbeidersamtaler som gjøres i Teams, Slack eller appen.'],
+    SV: ['Medarbetarsamtal i Teams, Slack eller appen', 'Chefer och anställda ska kunna slutföra samtalen i appen, Slack, Teams eller Sia.', 'Logga in i en separat samtalsmodul', 'Gjort där de redan är', 'Kommer snart: medarbetarsamtal som görs i Teams, Slack eller appen.'] } },
+  // 4 · Work done for you
+  'P-AIPA-51': { p: 'foryou', aud: ['hr', 'manager'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Five common HR jobs, guided by Sia', 'Sia walks people through five of the most common HR jobs step by step, and does the clicking.', 'Find the right page, then the right form', 'Tell Sia, confirm the steps', 'Tell Sia what you need done. Sia walks you through it and does the clicking.'] } },
+  'P-AIPA-48': { p: 'foryou', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Start and follow up processes by asking Sia', 'HR starts and follows up processes by asking Sia in plain words.', 'Clicking through process menus', 'One message to Sia', 'Start or follow up an HR process by asking Sia.'] } },
+  'P-EMPA-15': { p: 'foryou', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Agreements go to the right people, in the right order', 'Reviewers and signing order are built in, and you see where each agreement is.', 'Chasing signatures by email', 'Sent in order, with a status for each step', 'Agreements go to reviewers and signers in the right order, and you see where each one is.'] } },
+  'P-KNO2-33': { p: 'foryou', aud: ['manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-01', mfo: 'Skip the worry', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Handbook answers that include your own attachments', 'When employees ask the handbook, the answer also draws on the documents attached to it.', 'Read the answer, then open the attachment', 'One answer that includes it', 'Your employees get handbook answers that include your own attached documents.'] } },
+  'P-EMPA-1': { p: 'foryou', aud: ['hr', 'employee'], mk: ['NO', 'SE'], at: '2026-10-15', st: { EN: 'approved', NO: 'approved', SV: 'approved' }, t: {
+    EN: ['Pre-boarding that sets itself up for each new hire', 'A guided pre-boarding flow will adapt to each new hire’s department, role and office, and collect their details securely.', 'A checklist built by hand for every hire', 'A flow that adapts to each hire', 'Coming soon: pre-boarding that adapts to each new hire’s role and office.'],
+    NO: ['Preboarding som tilpasser seg hver nyansatt', 'En veiledet preboarding skal tilpasse seg avdeling, rolle og kontor for hver nyansatt, og samle inn opplysningene trygt.', 'En sjekkliste laget for hånd for hver ansettelse', 'En flyt som tilpasser seg hver nyansatt', 'Kommer snart: preboarding som tilpasser seg hver nyansatts rolle og kontor.'],
+    SV: ['Preboarding som anpassar sig efter varje nyanställd', 'En guidad preboarding ska anpassa sig efter avdelning, roll och kontor för varje nyanställd och samla in uppgifterna säkert.', 'En checklista som byggs för hand för varje anställning', 'Ett flöde som anpassar sig efter varje nyanställd', 'Kommer snart: preboarding som anpassar sig efter varje nyanställds roll och kontor.'] } },
+  'P-KNO2-34': { p: 'foryou', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', mfo: 'Skip the worry', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Handbooks that keep up with the law', 'Legal changes will be applied to the handbook automatically, and other updates proposed for HR to approve.', 'HR tracks law changes and rewrites pages', 'Updates applied, or proposed for approval', 'Coming soon: handbooks that stay in line with the law, with HR approving the changes.'] } },
+  'P-AIPA-47': { p: 'foryou', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['The task list shows only what needs you now.'] } },
+  'P-KNO2-142': { p: 'foryou', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Expert search opens with a short answer and the conditions that apply.'] } },
+  'P-KNO2-126': { p: 'foryou', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Sia answers Norwegian and Swedish law questions for people who work across both.'] } },
+  'P-TAP-74': { p: 'foryou', at: '2026-10-08', st: { EN: 'approved' }, t: { EN: ['HR approves pending leave straight from the absence overview.'] } },
+  'P-AUT-42': { p: 'foryou' }, 'P-EMPA-193': { p: 'foryou' }, 'P-EMPA-181': { p: 'foryou' },
+  // 5 · Answers before questions
+  'P-TAP-4': { p: 'insight', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-16', st: { EN: 'approved', NO: 'approved', SV: 'approved' }, t: {
+    EN: ['Absence across the whole company, in one view', 'HR sees absence across the company in one place, for planning, follow-up and balances.', 'Absence pieced together from several reports', 'One overview, ready to follow up', 'HR sees absence across the whole company in one place, and follows up from there.'],
+    NO: ['Fravær i hele selskapet, i én oversikt', 'HR ser fraværet i hele selskapet på ett sted, for planlegging, oppfølging og saldoer.', 'Fravær satt sammen fra flere rapporter', 'Én oversikt, klar til å følge opp', 'HR ser fraværet i hele selskapet på ett sted og følger opp derfra.'],
+    SV: ['Frånvaron i hela företaget, i en översikt', 'HR ser frånvaron i hela företaget på ett ställe, för planering, uppföljning och saldon.', 'Frånvaro hopsatt från flera rapporter', 'En översikt, redo att följa upp', 'HR ser frånvaron i hela företaget på ett ställe och följer upp därifrån.'] } },
+  'P-AIPA-43': { p: 'insight', aud: ['hr', 'manager'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Ask Sia how things have changed over time', 'Sia answers questions on headcount, turnover and absence with history, so trends show up.', 'Build the report, compare quarters', 'Ask Sia, see the trend', 'Ask Sia how absence or turnover has developed, and see the trend.'] } },
+  'P-EMP-68': { p: 'insight', aud: ['hr', 'manager'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Survey results that point to what matters', 'The survey dashboard will put the most relevant findings first, so managers know where to follow up.', 'Read every chart to find the point', 'The key findings first', 'Coming soon: survey results that show managers what to follow up first.'] } },
+  'P-TAP-7': { p: 'insight', aud: ['hr'], mk: ['NO', 'SE'], at: '2026-10-01', mfo: 'Skip the worry', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Less manual work in the equal pay analysis', 'Simployer will suggest how to group roles in the equal pay analysis, and HR decides.', 'Grouping roles by hand in spreadsheets', 'Groupings suggested, HR decides', 'Coming soon: Simployer suggests the groupings in your equal pay analysis, and HR decides.'] } },
+  'P-EMP-139': { p: 'insight', at: '2026-10-07', st: { EN: 'approved' }, t: { EN: ['Compare survey results with your industry, question by question.'] } },
+  'P-TAP-78': { p: 'insight', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Managers see their team’s absence and follow up earlier.'] } },
+  'P-TAP-5': { p: 'insight', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Pay data and analysis to prepare for EU pay transparency.'] } },
+  'P-INT-183': { p: 'insight', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Add age, tenure and team to colleague reports.'] } },
+  'P-KNO2-30': { p: 'insight', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['See how employees read and use your handbooks.'] } },
+  'P-PAD-8': { p: 'insight', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Clearer survey results for each person, with benchmarks.'] } },
+  'P-PAD-125': { p: 'insight' }, 'P-AAC-87': { p: 'insight' },
+  // 6 · You already know how it works
+  'P-FRP-130': { p: 'easy', aud: ['hr', 'manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-17', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['One calm look across Simployer', 'Screens share one design, so things look and behave the same everywhere.', 'Each part of the product worked its own way', 'One look, with the next step clear', 'Simployer looks and works the same everywhere, so people find their way without training.'] } },
+  'P-AAC-36': { p: 'easy', aud: ['hr', 'manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-19', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['A start page with what needs doing', 'Employees, managers and HR see their most relevant tasks as soon as they log in.', 'Hunt through menus for the next task', 'The next task is on the start page', 'When your people log in, the start page shows what needs doing.'] } },
+  'P-LAA-69': { p: 'easy', aud: ['hr', 'manager'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Find any employee quickly', 'A faster employee list, with flexible filters for HR and managers.', 'Scroll and filter page by page', 'Search, filter, done', 'Find, filter and manage employees in a faster, more flexible list.'] } },
+  'P-PAD-54': { p: 'easy', aud: ['manager', 'employee'], mk: ['NO', 'SE'], at: '2026-10-01', st: { EN: 'approved', NO: 'waiting', SV: 'waiting' }, t: { EN: ['Notes from quick check-ins, kept in one place', 'Managers and employees will keep notes from informal talks and follow-ups in one place.', 'Notes spread across notebooks and chats', 'One place, ready for the next talk', 'Coming soon: notes from quick check-ins kept in one place, ready for the next conversation.'] } },
+  'P-PAD-225': { p: 'easy', at: '2026-10-10', st: { EN: 'approved' }, t: { EN: ['Choose who answers each point in a review conversation.'] } },
+  'P-PAD-53': { p: 'easy', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Managers make their own conversation templates.'] } },
+  'P-PAD-52': { p: 'easy', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Quick answer options in conversations, next to free text.'] } },
+  'P-KNO2-145': { p: 'easy', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Search every handbook by keyword, next to asking Sia.'] } },
+  'P-KNO2-18': { p: 'easy', at: '2026-10-01', st: { EN: 'approved' }, t: { EN: ['Pick up where you left off in Expert.'] } },
+  'P-KNO2-20': { p: 'easy', aud: ['hr', 'manager'], mk: ['NO', 'SE'], st: { EN: 'waiting' }, ai: true, t: { EN: ['A clearer Expert start page', 'The Expert start page shows what Expert offers, and search guides people to the right content.', 'Search and hope', 'Guided to the right article', 'Expert shows what it offers on the start page, and search guides people to the right article.'] } },
+  'P-PAD-56': { p: 'easy' }, 'P-AIPA-9': { p: 'easy' },
+};
+const RM_DIGEST = ['P-TAP-4', 'P-PAD-86', 'P-EMPA-1'];
+const RM_FROM = addDays('2026-10-20', -183); // Now = released in the last six months; after that it is simply the product
+const RM_UI = { EN: { soon: 'Coming soon:' }, NO: { soon: 'Kommer snart:' }, SV: { soon: 'Kommer snart:' } };
+const rmPillar = id => PILLARS.find(p => p.id === id);
+const rmPT = (p, lg) => p.t[lg] || p.t.EN;
+const rmHz = r => !r || r.vis !== 'External' ? null : r.gate === 'live' ? (r.doneISO && r.doneISO >= RM_FROM ? 'now' : null) : r.gate === 'soon' ? 'next' : null;
+const rmBig = r => ['T1', 'T2'].includes(r.tier);
+const rmItems = () => RELEASES.filter(r => r.lid && rmHz(r));
+const rmOn = c => !!(c && c.p && c.t && c.t.EN && c.st && c.st.EN === 'approved');
+const rmText = (c, lg) => (c.st[lg] === 'approved' && c.t[lg] ? [c.t[lg], false] : [c.t.EN, lg !== 'EN']);
+const rmPass = (r, c) => !rmBig(r) || ((S.rmAud === 'all' || (c.aud || []).includes(S.rmAud)) && (S.rmMk === 'all' || (c.mk || ['NO', 'SE']).includes(S.rmMk)));
+const RM_SEEN_KEY = 'fyr-v03-rm-seen';
+function rmSeen() { try { const v = JSON.parse(localStorage.getItem(RM_SEEN_KEY) || '{}'); return (CUR && v[CUR.id]) || {}; } catch (_) { return {}; } }
+function rmSeenSet(pid) { try { const v = JSON.parse(localStorage.getItem(RM_SEEN_KEY) || '{}'), me = CUR ? CUR.id : 'anon'; v[me] = { ...(v[me] || {}), [pid]: new Date().toISOString() }; localStorage.setItem(RM_SEEN_KEY, JSON.stringify(v)); } catch (_) {} }
+const rmIsNew = p => { const seen = rmSeen()[p.id] || '2026-10-16'; return rmItems().some(r => { const c = ROADMAP[r.lid]; return rmOn(c) && c.p === p.id && c.at && c.at > seen; }); };
+const rmNewCount = () => PILLARS.filter(rmIsNew).length;
+const AUD_L = { hr: 'HR', manager: 'Managers', employee: 'Employees' }, MK_L = { NO: 'Norway', SE: 'Sweden' };
+
+function rmCard(r, c, lg, withPillar) {
+  const [t, fb] = rmText(c, lg), hz = rmHz(r), p = rmPillar(c.p), mf = c.mfo || p.mf, nt = { NO: 'Norwegian', SV: 'Swedish' }[lg];
+  return `<article class="rm-c ${hz}">${withPillar ? `<div class="rm-c-h"><span class="pill ${hz === 'now' ? 'live' : 'soon'}"><span class="d"></span>${hz === 'now' ? 'Now' : 'Coming soon'}</span><span class="rm-pn">${p.n} · <span class="rm-x">${rmPT(p, lg).name}</span></span></div>` : ''}
+    <h3 class="rm-x">${esc(t[0])}</h3><p class="rm-x">${esc(t[1])}</p>
+    ${t[2] ? `<div class="rm-ba"><div><small>Before</small><span class="rm-x">${esc(t[2])}</span></div>${ico('i-arrow')}<div><small>${hz === 'now' ? 'Now' : 'After'}</small><span class="rm-x">${esc(t[3])}</span></div></div>` : ''}
+    <div class="rm-chips">${(c.aud || []).map(a => `<span class="chip">${AUD_L[a]}</span>`).join('')}${(c.mk || []).length === 1 ? `<span class="chip">${MK_L[c.mk[0]]} only</span>` : ''}<span class="chip lav">${mf}</span></div>
+    <div class="rm-say"><small>Say it like this</small><p class="rm-x">${esc(t[4])}</p><button type="button" class="btn btn-line btn-sm" data-rmcopy="${r.lid}">${ico('i-copy')}Copy</button></div>
+    ${fb ? `<small class="rm-fb">${nt} wording on its way. Shown in English.</small>` : ''}</article>`;
+}
+function rmSmall(list, lg, label) {
+  if (!list.length) return '';
+  return `<details class="rm-small"><summary>+ ${list.length} smaller ${label}</summary><ul>${list.map(([r, c]) => `<li class="rm-x">${esc(rmText(c, lg)[0][0])}</li>`).join('')}</ul></details>`;
+}
+function vRoadmap() {
+  S.rmAud = S.rmAud || 'all'; S.rmMk = S.rmMk || 'all';
+  const lg = S.clang, all = rmItems().map(r => [r, ROADMAP[r.lid]]).filter(([r, c]) => rmOn(c)), vis = all.filter(([r, c]) => rmPass(r, c));
+  const P = S.rmPillar && rmPillar(S.rmPillar);
+  const seg = (k, opts) => `<div class="seg" role="group">${opts.map(([v, t]) => `<button data-${k}="${v}" aria-pressed="${S[k === 'rmaud' ? 'rmAud' : 'rmMk'] === v}">${t}</button>`).join('')}</div>`;
+  const filters = `<div class="rm-f"><div class="rm-fg"><span class="muted">Who it helps</span>${seg('rmaud', [['all', 'All'], ['hr', 'HR'], ['manager', 'Managers'], ['employee', 'Employees']])}</div><div class="rm-fg"><span class="muted">Market</span>${seg('rmmk', [['all', 'All'], ['NO', 'Norway'], ['SE', 'Sweden']])}</div></div>`;
+  const head = `<div class="page-title"><div><h1>Roadmap</h1><p>Where Simployer is going. Every change makes an HR task take fewer clicks, fewer words and less waiting.</p></div></div>
+    <div class="rm-guard">${ico('i-clock')}<span><b>No dates on purpose.</b> Say “coming soon”, never a day. Only what is cleared for customers is here.</span></div>${filters}`;
+  if (P) {
+    const pt = rmPT(P, lg), mine = vis.filter(([r, c]) => c.p === P.id), now = mine.filter(([r]) => rmHz(r) === 'now'), next = mine.filter(([r]) => rmHz(r) === 'next');
+    const col = (list, big) => list.filter(([r]) => rmBig(r) === big);
+    return `${head}<button type="button" class="btn btn-line btn-sm" id="rm-back" style="justify-self:start;width:max-content">${ico('i-left')}All pillars</button>
+      <section class="rm-ph"><span class="rm-num">${P.n}</span><div><h2 class="rm-x">${pt.name}</h2><p class="rm-x">${pt.promise}</p><span class="chip lav">Say: <span>${P.mf}</span></span></div></section>
+      <div class="rm-cols">
+        <section><h3 class="rm-ch"><span class="pill live"><span class="d"></span>Now</span><small>Released in the last six months</small></h3>${col(now, true).map(([r, c]) => rmCard(r, c, lg)).join('') || '<p class="muted">Nothing new here right now.</p>'}${rmSmall(col(now, false), lg, 'improvements')}</section>
+        <section><h3 class="rm-ch"><span class="pill soon"><span class="d"></span>Coming soon</span><small>On its way. No dates</small></h3>${col(next, true).map(([r, c]) => rmCard(r, c, lg)).join('') || '<p class="muted">Nothing announced yet.</p>'}${rmSmall(col(next, false), lg, 'improvements on the way')}</section>
+        <section><h3 class="rm-ch"><span class="pill">Later</span><small>The goal for the end of 2027</small></h3>
+          <article class="rm-c later"><h3 class="rm-x">${pt.goal}</h3><div class="rm-ex"><small>For example</small><b class="rm-x">${pt.ex[0]}</b><div class="rm-ba"><div><small>Today</small><span class="rm-x">${pt.ex[1]}</span></div>${ico('i-arrow')}<div><small>The goal</small><span class="rm-x">${pt.ex[2]}</span></div></div></div>
+          <small class="rm-fb">Product’s goal, not a promise. Use it to explain the direction, not to sell a date.</small></article></section>
+      </div>`;
+  }
+  const dig = RM_DIGEST.map(id => all.find(([r]) => r.lid === id)).filter(Boolean);
+  return `${head}
+    ${dig.length ? `<section class="rm-dig"><div class="rm-sh"><h2>Worth knowing this month</h2><small class="muted">Picked by Product Marketing. If you read one thing, read these.</small></div><div class="rm-dg">${dig.map(([r, c]) => rmCard(r, c, lg, true)).join('')}</div></section>` : ''}
+    <section><div class="rm-sh"><h2>Six things Simployer is making easier</h2><small class="muted">Open one to see what is new, what is coming and where it is going.</small></div>
+    <div class="rm-grid">${PILLARS.map(p => { const pt = rmPT(p, lg), mine = vis.filter(([r, c]) => c.p === p.id && rmBig(r)), nn = mine.filter(([r]) => rmHz(r) === 'now').length, nx = mine.filter(([r]) => rmHz(r) === 'next').length;
+      return `<button type="button" class="rm-p" data-rmp="${p.id}"><span class="rm-num">${p.n}</span>${rmIsNew(p) ? '<span class="rm-new">New</span>' : ''}<b class="rm-x">${pt.name}</b><span class="rm-x">${pt.promise}</span><span class="rm-cnt"><span>Now ${nn}</span> · <span>Coming soon ${nx}</span></span><small class="rm-goal"><b>By end of 2027:</b> <span class="rm-x">${pt.goal}</span></small><span class="chip lav">Say: <span>${p.mf}</span></span></button>`; }).join('')}</div></section>`;
+}
+function bindRoadmap() {
+  $$('[data-rmp]').forEach(b => b.addEventListener('click', () => { S.rmPillar = b.dataset.rmp; rmSeenSet(S.rmPillar); track('roadmap_pillar', { p: S.rmPillar }); render(); window.scrollTo({ top: 0 }); }));
+  if ($('#rm-back')) $('#rm-back').addEventListener('click', () => { S.rmPillar = null; render(); });
+  $$('[data-rmaud]').forEach(b => b.addEventListener('click', () => { S.rmAud = b.dataset.rmaud; render(); }));
+  $$('[data-rmmk]').forEach(b => b.addEventListener('click', () => { S.rmMk = b.dataset.rmmk; render(); }));
+  $$('[data-rmcopy]').forEach(b => b.addEventListener('click', async () => { const c = ROADMAP[b.dataset.rmcopy], line = rmText(c, S.clang)[0][4]; try { await navigator.clipboard.writeText(line); } catch (_) {} track('roadmap_copy', { lid: b.dataset.rmcopy }); toast('Line copied. Keep it as it is: no dates.'); }));
+}
+
+/* PMM: turn External releases into roadmap cards */
+function rmGroup(r) { const c = ROADMAP[r.lid]; if (!c || !c.p) return 'pillar'; if (!c.t || !c.t.EN) return 'card'; return c.st && c.st.EN === 'approved' ? 'on' : 'wait'; }
+const RM_GROUPS = [['pillar', 'Needs a pillar'], ['card', 'Needs a card'], ['wait', 'Waiting for approval'], ['on', 'On the roadmap']];
+function rmCheck(r, txt) {
+  const hz = rmHz(r), body = txt.join(' '), say = txt[4] || txt[0] || '', lg = S.clang;
+  const hit = MF.avoid.find(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(body));
+  return [
+    [!hit, hit ? hit.why : 'Follows the framework’s avoid list'],
+    hz === 'now' ? [!/\b(will|soon|coming|planned|skal|kommer|ska)\b/i.test(body), 'Present tense: it has shipped'] : [!rmBig(r) || say.startsWith(RM_UI[lg].soon), `The line starts with “${RM_UI[lg].soon}”`],
+    [!/\b\d{1,2}\.? ?(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|okt|oct|nov|des|dec)|\bQ[1-4]\b|\b20\d\d\b|\bweek \d/i.test(body), 'No dates, quarters or years'],
+    [!/\d+\s?%|\bROI\b/i.test(body), 'No figures finance hasn’t approved'],
+    [(txt[1] || txt[0] || '').split(/\s+/).filter(Boolean).length <= 30, 'What changes fits in 30 words'],
+  ];
+}
+function vRmEd() {
+  const items = rmItems().sort((a, b) => (rmBig(b) - rmBig(a)) || (a.tier || '').localeCompare(b.tier || ''));
+  if (!S.rmSel || !items.some(r => r.lid === S.rmSel)) S.rmSel = (items.find(r => rmGroup(r) !== 'on') || items[0]).lid;
+  const r = items.find(x => x.lid === S.rmSel), c = ROADMAP[r.lid] || {}, big = rmBig(r), lg = S.clang, hz = rmHz(r);
+  const cur = (c.t && c.t[lg]) || (big ? ['', '', '', '', ''] : ['']), st = (c.st || {})[lg], sug = TEAM_PILLAR[r.team];
+  const fields = big ? [['Title', 'The task, in plain words'], ['What changes', 'One or two sentences'], ['Before', 'How it works without it'], [hz === 'now' ? 'Now' : 'After', 'How it works with it'], ['Say it like this', hz === 'now' ? 'A line a rep can say to a customer' : `Starts with “${RM_UI[lg].soon}”`]] : [['One line', 'What changed, in plain words']];
+  const digN = RM_DIGEST.length, inDig = RM_DIGEST.includes(r.lid);
+  return `<div class="page-title"><div><h1>Roadmap cards</h1><p>Turn External releases into plain cards for the org Roadmap. T1 and T2 get a card; T3 and T4 get one line. Nothing shows until the English is approved.</p></div><button class="btn btn-line" data-view="roadmap">${ico('i-eye')}See the Roadmap</button></div>
+    <div class="rm-ed">
+      <section class="card rm-q">${RM_GROUPS.map(([g, t]) => { const list = items.filter(x => rmGroup(x) === g); return list.length ? `<div class="rm-qg"><span class="eyebrow">${t} · ${list.length}</span>${list.map(x => `<button type="button" data-rmsel="${x.lid}" aria-current="${x.lid === S.rmSel}"><b>${esc(x.name)}</b><small>${x.tier} · ${rmHz(x) === 'now' ? 'Now' : 'Coming soon'} · ${esc(x.team)}${RM_DIGEST.includes(x.lid) ? ' · Worth knowing' : ''}</small></button>`).join('')}</div>` : ''; }).join('')}</section>
+      <section class="card rm-form">
+        <div class="lin-h"><span class="src-ic">${ico('i-branch')}</span><span class="muted">From Linear</span><span class="pill">${r.status}</span><span class="pill">${r.tier}</span><span class="pill ${hz === 'now' ? 'live' : 'soon'}">${hz === 'now' ? 'Now' : 'Coming soon'}</span></div>
+        <h2>${esc(r.name)}</h2>${r.summaryL ? `<p class="muted">${esc(r.summaryL)}</p>` : ''}
+        <div class="fld"><label for="rm-p">Pillar ${!c.p && sug ? `<span>Suggested from ${esc(r.team)}: ${rmPillar(sug).n} · ${rmPT(rmPillar(sug), 'EN').name}</span>` : ''}</label><select id="rm-p" class="sel-s rm-sel"><option value="">Pick a pillar</option>${PILLARS.map(p => `<option value="${p.id}" ${(c.p || (!c.p && sug)) === p.id ? 'selected' : ''}>${p.n} · ${rmPT(p, 'EN').name}</option>`).join('')}</select></div>
+        ${c.p ? `<div class="ltabs sm" role="tablist">${LANGS.map(([k, n]) => `<button role="tab" data-clang="${k}" aria-selected="${lg === k}">${k} <small>${((c.st || {})[k]) === 'approved' ? '✓' : ((c.st || {})[k]) === 'waiting' ? '·' : ''}</small></button>`).join('')}</div>
+          ${lg !== 'EN' && c.t && c.t.EN ? `<div class="src-en"><span class="eyebrow">English source</span>${c.t.EN.map(x => `<p>${esc(x)}</p>`).join('')}</div>` : ''}
+          ${lg === 'EN' && !(c.t && c.t.EN) ? `<button class="btn btn-line btn-sm" id="rm-draft" style="justify-self:start;width:max-content">${ico('i-sparkle')}Draft from Linear</button>` : ''}
+          ${c.ai && lg === 'EN' && st !== 'approved' ? `<div class="ro">${ico('i-sparkle')}<span><b>AI draft.</b> Check it against the release before you approve.</span></div>` : ''}
+          ${fields.map(([l, h], i) => `<div class="fld"><label for="rm-f${i}">${l} <span>${h}</span></label>${i === 1 ? `<textarea id="rm-f${i}" class="in-s" rows="2" data-rmf="${i}">${esc(cur[i] || '')}</textarea>` : `<input id="rm-f${i}" class="in-s" data-rmf="${i}" value="${esc(cur[i] || '')}">`}</div>`).join('')}
+          ${big ? `<div class="rm-ck"><span>Who it helps</span>${Object.entries(AUD_L).map(([k, t]) => `<label><input type="checkbox" data-rmaudck="${k}" ${(c.aud || []).includes(k) ? 'checked' : ''}>${t}</label>`).join('')}<span>Market</span>${Object.entries(MK_L).map(([k, t]) => `<label><input type="checkbox" data-rmmkck="${k}" ${(c.mk || ['NO', 'SE']).includes(k) ? 'checked' : ''}>${t}</label>`).join('')}</div>` : ''}
+          <div class="mchk" id="rm-chk"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="btn btn-line" id="rm-save">Save draft</button><button class="btn btn-primary" id="rm-ok">${ico('i-check')}Approve ${lg}</button><span class="muted">${st === 'approved' ? `Approved${c.by ? ' by ' + esc(c.by) : ''}` : st === 'waiting' ? 'Waiting for approval' : 'Not written yet'}</span></div>
+          ${big ? `<label class="rm-dk"><input type="checkbox" id="rm-dig" ${inDig ? 'checked' : ''} ${!rmOn(c) || (!inDig && digN >= 3) ? 'disabled' : ''}>Worth knowing this month <small class="muted">${digN} of 3 picked${!rmOn(c) ? ' · approve the English first' : ''}</small></label>` : ''}` : '<p class="muted">Pick a pillar first. The card is written after that.</p>'}
+      </section>
+    </div>
+    <details class="card rm-pe"><summary><b>Pillars and 2027 goals</b> <small class="muted">From Product Strategy 2027 · ${lg}</small></summary>${PILLARS.map(p => { const pt = rmPT(p, lg); return `<div class="rm-per"><b>${p.n} · ${pt.name}</b><label>Promise<textarea class="in-s" rows="2" data-rmpe="${p.id}:promise">${esc(pt.promise)}</textarea></label><label>By end of 2027<textarea class="in-s" rows="2" data-rmpe="${p.id}:goal">${esc(pt.goal)}</textarea></label></div>`; }).join('')}</details>`;
+}
+function bindRmEd() {
+  const lid = S.rmSel, r = RELEASES.find(x => x.lid === lid), lg = S.clang;
+  const c = () => (ROADMAP[lid] = ROADMAP[lid] || {});
+  const vals = () => $$('[data-rmf]').map(x => x.value.trim());
+  const check = () => { const box = $('#rm-chk'); if (!box) return; box.innerHTML = rmCheck(r, vals()).map(([o, t]) => `<div class="${o ? 'ok' : 'bad'}">${ico(o ? 'i-check-c' : 'i-alert')}<span>${t}</span></div>`).join(''); };
+  const keep = () => { const v = vals(); if (!v.length) return; const o = c(); o.t = o.t || {}; o.t[lg] = v; o.aud = $$('[data-rmaudck]').filter(x => x.checked).map(x => x.dataset.rmaudck); const mk = $$('[data-rmmkck]').filter(x => x.checked).map(x => x.dataset.rmmkck); if ($$('[data-rmmkck]').length) o.mk = mk.length ? mk : ['NO', 'SE']; o.st = o.st || {}; };
+  $$('[data-rmsel]').forEach(b => b.addEventListener('click', () => { S.rmSel = b.dataset.rmsel; render(); }));
+  if ($('#rm-p')) $('#rm-p').addEventListener('change', e => { if (!e.target.value) return; c().p = e.target.value; render(); toast(`Pillar set: ${rmPT(rmPillar(e.target.value), 'EN').name}.`); });
+  $$('[data-rmf]').forEach(x => x.addEventListener('input', check)); check();
+  if ($('#rm-draft')) $('#rm-draft').addEventListener('click', () => { const o = c(), s = (r.summaryL || r.name).replace(/\s+/g, ' ').trim(); o.t = o.t || {}; o.t.EN = rmBig(r) ? [r.name, s.split(/(?<=\.)\s/)[0], '', '', rmHz(r) === 'next' ? `${RM_UI.EN.soon} ${s.charAt(0).toLowerCase()}${s.slice(1).split(/(?<=\.)\s/)[0]}` : s.split(/(?<=\.)\s/)[0]] : [s.split(/(?<=\.)\s/)[0]]; o.st = { ...(o.st || {}), EN: 'waiting' }; o.ai = true; render(); toast('Drafted from the Linear summary. Rewrite it in plain words, then approve.'); });
+  if ($('#rm-save')) $('#rm-save').addEventListener('click', () => { keep(); c().st[lg] = 'waiting'; render(); toast(`${lg} saved. Waiting for approval.`); });
+  if ($('#rm-ok')) $('#rm-ok').addEventListener('click', () => { keep(); const v = c().t[lg]; if (!v || !v[0] || (rmBig(r) && (!v[1] || !v[4]))) { toast('Fill in the title, what changes and the line first.'); return; } const bad = rmCheck(r, v).find(([o]) => !o); if (bad) { toast(`Fix this first: ${bad[1]}.`); return; } Object.assign(c(), { at: new Date().toISOString(), by: CUR ? CUR.name.split(' ')[0] : 'Tobias' }); c().st[lg] = 'approved'; delete c().ai; render(); toast(lg === 'EN' ? 'Approved. It is on the Roadmap now.' : `${lg} approved.`); });
+  if ($('#rm-dig')) $('#rm-dig').addEventListener('change', e => { const i = RM_DIGEST.indexOf(lid); if (e.target.checked && i < 0 && RM_DIGEST.length < 3) RM_DIGEST.push(lid); if (!e.target.checked && i >= 0) RM_DIGEST.splice(i, 1); render(); });
+  $$('[data-rmpe]').forEach(x => x.addEventListener('change', () => { const [id, k] = x.dataset.rmpe.split(':'), p = rmPillar(id); p.t[lg] = p.t[lg] || { ...p.t.EN }; p.t[lg][k] = x.value.trim(); toast('Pillar text saved.'); }));
+}
 
 const PACKS = {};
 const boCount = () => RELEASES.filter(r => r.days && !PACKS[r.id]).length + Object.values(PACKS).filter(p => !p.published).length + Object.values(FEATURES).filter(f => !f.drafted && !f.approved.startsWith('Approved')).length + (Object.values(FEATURES).some(f => f.drafted && !f.approved.startsWith('Approved')) ? 1 : 0) + ASSETS.filter(a => a.status === 'proposed').length + (ASSETS.some(a => a.status === 'outdated') ? 1 : 0) + Math.min(4, RELEASES.filter(r => r.nolabel && !EARLY.includes(r.status) && !r.doneISO).length);
@@ -3497,6 +3793,7 @@ Object.assign(I18N, {
   'The customer layer. Write what we say about each feature, run it against the messaging framework, and get it signed off by Tobias and the PM.': ['Kundelaget. Skriv hva vi sier om hver funksjon, sjekk det mot budskapsrammeverket, og få det godkjent av Tobias og produktsjefen.', 'Kundlagret. Skriv vad vi säger om varje funktion, kontrollera det mot budskapsramverket och få det godkänt av Tobias och produktchefen.'], 'As customers see it': ['Slik kundene ser det', 'Så som kunderna ser det'], 'Native name, not a literal translation': ['Naturlig navn, ikke en direkte oversettelse', 'Naturligt namn, inte en direktöversättning'], 'Present tense, only what has shipped': ['Presens, bare det som er lansert', 'Presens, bara det som har lanserats'], 'Approved figures and quotes only': ['Bare godkjente tall og sitater', 'Bara godkända siffror och citat'], 'Version history': ['Versjonshistorikk', 'Versionshistorik'], 'Full history': ['Hele historikken', 'Hela historiken'], 'Save draft': ['Lagre utkast', 'Spara utkast'], 'Send for approval': ['Send til godkjenning', 'Skicka för godkännande'], 'Message check, live': ['Budskapssjekk, direkte', 'Budskapskontroll, direkt'], 'Written by the agent from the English source. Rewrite it so it sounds native, then approve.': ['Skrevet av agenten fra den engelske kilden. Skriv den om så den høres naturlig ut, og godkjenn.', 'Skrivet av agenten från den engelska källan. Skriv om den så att den låter naturlig, och godkänn.'], 'Decks, packs and outputs use this wording, flagged until it is approved.': ['Presentasjoner, pakker og innhold bruker denne ordlyden, flagget til den er godkjent.', 'Presentationer, paket och innehåll använder den här formuleringen, flaggad tills den är godkänd.'],
 });
 Object.assign(I18N, { 'Approve NO': ['Godkjenn NO', 'Godkänn NO'], 'Approve SV': ['Godkjenn SV', 'Godkänn SV'], 'Approve EN': ['Godkjenn EN', 'Godkänn EN'], 'Sia is paired with the experts': ['Sia står sammen med ekspertene', 'Sia står tillsammans med experterna'], 'What it is fits in {n} words': ['Hva det er får plass på {n} ord', 'Vad det är ryms på {n} ord'], 'No competitor names, and never “replaces”': ['Ingen konkurrentnavn, og aldri «erstatter»', 'Inga konkurrentnamn, och aldrig ”ersätter”'], 'Future tense is fine: not released yet': ['Fremtid er greit: ikke lansert ennå', 'Framtid går bra: inte lanserad ännu'], 'Approved by {n}': ['Godkjent av {n}', 'Godkänd av {n}'], 'English': ['English', 'English'], 'E.g. a customer quote from the approved list': ['F.eks. et kundesitat fra den godkjente listen', 'T.ex. ett kundcitat från den godkända listan'], 'Waiting for approval': ['Venter på godkjenning', 'Väntar på godkännande'], 'Save as new draft': ['Lagre som nytt utkast', 'Spara som nytt utkast'], 'Approve': ['Godkjenn', 'Godkänn'], 'Waiting for Tobias and the PM': ['Venter på Tobias og produktsjefen', 'Väntar på Tobias och produktchefen'], 'drafted from Linear and the messaging framework': ['laget fra Linear og budskapsrammeverket', 'skapat från Linear och budskapsramverket'] });
+Object.assign(I18N, { "Roadmap": ["Veikart", "Färdplan"], "Roadmap cards": ["Veikartkort", "Färdplanskort"], "Where Simployer is going. Every change makes an HR task take fewer clicks, fewer words and less waiting.": ["Hvor Simployer er på vei. Hver endring gjør en HR-oppgave raskere: færre klikk, færre ord og mindre venting.", "Vart Simployer är på väg. Varje förändring gör en HR-uppgift snabbare: färre klick, färre ord och mindre väntan."], "No dates on purpose.": ["Ingen datoer, med vilje.", "Inga datum, med flit."], "Say “coming soon”, never a day. Only what is cleared for customers is here.": ["Si «kommer snart», aldri en dag. Her er bare det som er klarert for kunder.", "Säg ”kommer snart”, aldrig en dag. Här finns bara det som är klart att berätta för kunder."], "Who it helps": ["Hvem det hjelper", "Vem det hjälper"], "Market": ["Marked", "Marknad"], "Managers": ["Ledere", "Chefer"], "Employees": ["Ansatte", "Anställda"], "Norway": ["Norge", "Norge"], "Sweden": ["Sverige", "Sverige"], "Norway only": ["Bare Norge", "Endast Norge"], "Sweden only": ["Bare Sverige", "Endast Sverige"], "Worth knowing this month": ["Verdt å vite denne måneden", "Värt att veta den här månaden"], "Picked by Product Marketing. If you read one thing, read these.": ["Valgt av produktmarkedsføring. Leser du én ting, så les disse.", "Utvalt av produktmarknadsföring. Läser du en sak, läs de här."], "Six things Simployer is making easier": ["Seks ting Simployer gjør enklere", "Sex saker Simployer gör enklare"], "Open one to see what is new, what is coming and where it is going.": ["Åpne en for å se hva som er nytt, hva som kommer og hvor det går.", "Öppna en för att se vad som är nytt, vad som kommer och vart det går."], "Now": ["Nå", "Nu"], "Coming soon": ["Kommer snart", "Kommer snart"], "Now {n}": ["Nå {n}", "Nu {n}"], "Coming soon {n}": ["Kommer snart {n}", "Kommer snart {n}"], "By end of {n}:": ["Innen utgangen av {n}:", "Före slutet av {n}:"], "Say:": ["Si:", "Säg:"], "New": ["Ny", "Ny"], "Before": ["Før", "Före"], "After": ["Etter", "Efter"], "The goal": ["Målet", "Målet"], "For example": ["For eksempel", "Till exempel"], "Say it like this": ["Si det slik", "Säg det så här"], "All pillars": ["Alle pilarer", "Alla pelare"], "Released in the last six months": ["Lansert de siste seks månedene", "Lanserat de senaste sex månaderna"], "On its way. No dates": ["På vei. Ingen datoer", "På väg. Inga datum"], "Later": ["Senere", "Senare"], "The goal for the end of {n}": ["Målet for utgangen av {n}", "Målet för slutet av {n}"], "Nothing new here right now.": ["Ikke noe nytt her akkurat nå.", "Inget nytt här just nu."], "Nothing announced yet.": ["Ingenting annonsert ennå.", "Inget annonserat än."], "+ {n} smaller improvements": ["+ {n} mindre forbedringer", "+ {n} mindre förbättringar"], "+ {n} smaller improvements on the way": ["+ {n} mindre forbedringer på vei", "+ {n} mindre förbättringar på väg"], "Product’s goal, not a promise. Use it to explain the direction, not to sell a date.": ["Produktets mål, ikke et løfte. Bruk det til å forklare retningen, ikke til å selge en dato.", "Produktens mål, inte ett löfte. Använd det för att förklara riktningen, inte för att sälja ett datum."], "Norwegian wording on its way. Shown in English.": ["Norsk tekst er på vei. Vises på engelsk.", "Norsk text är på väg. Visas på engelska."], "Swedish wording on its way. Shown in English.": ["Svensk tekst er på vei. Vises på engelsk.", "Svensk text är på väg. Visas på engelska."], "Line copied. Keep it as it is: no dates.": ["Linjen er kopiert. Bruk den som den er: uten datoer.", "Raden är kopierad. Använd den som den är: utan datum."] });
 I18N[L.EN.tag] = [L.NO.tag, L.SV.tag]; I18N[L.EN.trust] = [L.NO.trust, L.SV.trust];
 ['Leave the admin', 'Skip the worry', 'Get the signal'].forEach(p => { I18N[p] = [L.NO.pillars[p] || p, L.SV.pillars[p] || p]; });
 
@@ -3522,7 +3819,7 @@ function trText(s, L) {
   if (core.startsWith('· ')) { const t = trOne(core.slice(2), L); if (t != null) return lead + '· ' + t + tail; }
   return null;
 }
-const I18N_SKIP = '.ax,.axv-h,.vb,.vfacts,[contenteditable="true"],textarea,script,style,.slide,.mail-b,.lang,.lfv,.onep,.banner,.soc-i,.news-b,.fd,.qa,.bc-card,.bc-hero,.bc-hits,.lz-c,.sec-i,.ev,.wn,.guide,.plan,.script,.pat-b,.rep-l,.trow .nm,.trow dl,.feat .bd b,.mtg .t b,.slack-d .sl-m p,.present,#present-root,.sl-b,.lfs,.tl-name';
+const I18N_SKIP = '.rm-x,.ax,.axv-h,.vb,.vfacts,[contenteditable="true"],textarea,script,style,.slide,.mail-b,.lang,.lfv,.onep,.banner,.soc-i,.news-b,.fd,.qa,.bc-card,.bc-hero,.bc-hits,.lz-c,.sec-i,.ev,.wn,.guide,.plan,.script,.pat-b,.rep-l,.trow .nm,.trow dl,.feat .bd b,.mtg .t b,.slack-d .sl-m p,.present,#present-root,.sl-b,.lfs,.tl-name';
 let I18N_BUSY = false;
 function i18nPass(root) {
   const L = S.clang; if (L === 'EN') return; I18N_BUSY = true;
@@ -4033,7 +4330,7 @@ function fyrBrand() {
 /* ---------- Back office: merged menu groups ---------- */
 const BOG = [
   { sec: 'bo', t: 'Home', ic: 'i-inbox', hot: true, tabs: [['office', 'Needs you']], badge: () => boCount() },
-  { sec: 'bo', t: 'Releases', ic: 'i-branch', tabs: [['product', 'List'], ['calendar', 'Map']], badge: () => 0 },
+  { sec: 'bo', t: 'Releases', ic: 'i-branch', tabs: [['product', 'List'], ['calendar', 'Map'], ['rmed', 'Roadmap cards']], badge: () => 0 },
   { sec: 'bo', t: 'Launch packs', ic: 'i-rocket', tabs: [['packs', 'Packs'], ['playbooks', 'Tier playbooks']], also: ['pack', 'packnew'], badge: () => 0 },
   { sec: 'bo', t: 'Truth editor', ic: 'i-edit', tabs: [['editor', 'Feature wording'], ['framework', 'Messaging framework']], badge: () => 0 },
   { sec: 'bo', t: 'Battlecards', ic: 'i-shield', tabs: [['bcedit', 'Battlecards']], badge: () => 0 },
@@ -4047,22 +4344,22 @@ function boTabs() {
   const g = BOG.find(g => g.tabs.some(x => x[0] === S.view) || (g.also || []).includes(S.view));
   if (!g || g.tabs.length < 2) return '';
   const on = g.tabs.some(x => x[0] === S.view) ? S.view : g.tabs[0][0];
-  return `<nav class="bo-tabs" aria-label="${g.t}"><span class="bo-tabs-t">${g.t}</span><div class="seg">${g.tabs.map(([v, t]) => `<button data-view="${v}" aria-pressed="${v === on}">${t}</button>`).join('')}</div></nav>`;
+  return `<nav class="bo-tabs" aria-label="${g.t}"><span class="bo-tabs-t">${g.t}</span><div class="seg">${g.tabs.filter(([v]) => S.role === 'pmm' || v !== 'rmed').map(([v, t]) => `<button data-view="${v}" aria-pressed="${v === on}">${t}</button>`).join('')}</div></nav>`;
 }
 Object.assign(I18N, { 'Open in new tab': ['Åpne i ny fane', 'Öppna i ny flik'], 'Opened in a new tab.': ['Åpnet i ny fane.', 'Öppnad i ny flik.'], 'Target picture': ['Målbilde', 'Målbild'], 'Today': ['I dag', 'Idag'], 'Phase 1': ['Fase 1', 'Fas 1'], 'Phase 2': ['Fase 2', 'Fas 2'], 'Phase 3': ['Fase 3', 'Fas 3'], 'Real data': ['Ekte data', 'Riktiga data'], 'Not built': ['Ikke bygget', 'Inte byggt'], 'Decisions for sign-off': ['Beslutninger for godkjenning', 'Beslut för godkännande'], 'Today in the prototype': ['I prototypen i dag', 'I prototypen idag'], 'Map': ['Kart', 'Karta'], 'List': ['Liste', 'Lista'], 'All flows': ['Alle flyter', 'Alla flöden'], 'Demo': ['Demo', 'Demo'], 'Waiting': ['Venter', 'Väntar'], 'Sources': ['Kilder', 'Källor'], 'Intake': ['Inntak', 'Intag'], 'Core': ['Kjerne', 'Kärna'], 'Outputs': ['Leveranser', 'Leveranser'], 'Destinations': ['Mottakere', 'Mottagare'], 'Receives': ['Mottar', 'Tar emot'], 'Sends': ['Sender', 'Skickar'], 'Show all': ['Vis alle', 'Visa alla'], 'How Fyr is wired': ['Slik henger Fyr sammen', 'Så hänger Fyr ihop'], 'Waiting on': ['Venter på', 'Väntar på'], 'Click any box to see what it sends and receives.': ['Klikk på en boks for å se hva den sender og mottar.', 'Klicka på en ruta för att se vad den skickar och tar emot.'], 'Inbox': ['Innboks', 'Inkorg'], 'List': ['Liste', 'Lista'], 'Calendar': ['Kalender', 'Kalender'], 'Packs': ['Pakker', 'Paket'], 'Tier rules': ['Nivåregler', 'Nivåregler'], 'Wording': ['Formuleringer', 'Formuleringar'], 'Framework': ['Rammeverk', 'Ramverk'], 'Languages': ['Språk', 'Språk'], 'Outputs': ['Leveranser', 'Leveranser'], 'Training': ['Opplæring', 'Utbildning'], 'Triggers': ['Utløsere', 'Utlösare'], 'Activity log': ['Aktivitetslogg', 'Aktivitetslogg'], 'Agent runs': ['Agentkjøringer', 'Agentkörningar'], 'Changes': ['Endringer', 'Ändringar'], 'Owners': ['Eiere', 'Ägare'], 'Signals': ['Signaler', 'Signaler'] });
 function render() {
   if (S.view === 'deck' && !S.deck) S.view = 'create';
   if (S.view === 'brief' && !S.brief) S.view = 'create';
-  const OPEN = ['create', 'brief', 'gen', 'deck', 'work', 'truth', 'battle', 'library'], PMV = [...OPEN, 'product', 'calendar'];
+  const OPEN = ['create', 'brief', 'gen', 'deck', 'work', 'truth', 'roadmap', 'battle', 'library'], PMV = [...OPEN, 'product', 'calendar'];
   if (S.role === 'org' && !OPEN.includes(S.view) || S.role === 'pm' && !PMV.includes(S.view)) S.view = 'create';
   if (['people', 'usage'].includes(S.view) && !(CUR && CUR.admin)) S.view = S.role === 'pmm' ? 'office' : 'create';
-  if (['truth', 'battle', 'library'].includes(S.view) && LAST_VIEW !== S.view) track('view', { area: S.view });
+  if (['truth', 'roadmap', 'battle', 'library'].includes(S.view) && LAST_VIEW !== S.view) track('view', { area: S.view });
   LAST_VIEW = S.view;
   renderNav();
-  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
+  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, roadmap: vRoadmap, rmed: vRmEd, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
   const thumbsEl = $('.thumbs'), thumbsTop = thumbsEl && S.deck && S.__deckId === S.deck.id ? thumbsEl.scrollTop : 0;
-  $('#view').innerHTML = (CUR && CUR.status === 'pending' ? `<div class="ro" style="margin-bottom:16px">${ico('i-clock')}<span><b>Your ${ROLE_LABEL[CUR.role]} access is waiting for approval.</b> You can use Presentations, Product truth, Battlecards and Library meanwhile.</span></div>` : '') + boTabs() + (map[S.view] || vCreate)();
-  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, people: bindPeople, usage: bindUsage }[S.view] || (() => {}))();
+  $('#view').innerHTML = (CUR && CUR.status === 'pending' ? `<div class="ro" style="margin-bottom:16px">${ico('i-clock')}<span><b>Your ${ROLE_LABEL[CUR.role]} access is waiting for approval.</b> You can use Presentations, Product truth, Roadmap, Battlecards and Library meanwhile.</span></div>` : '') + boTabs() + (map[S.view] || vCreate)();
+  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, roadmap: bindRoadmap, rmed: bindRmEd, people: bindPeople, usage: bindUsage }[S.view] || (() => {}))();
   if (S.view === 'deck') saveDeck(); // every change in the studio re-renders, so this saves it
   { // keep the slide list where the user scrolled it; only nudge it when the selected slide would be out of view
     const th = $('.thumbs');

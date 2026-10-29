@@ -118,7 +118,7 @@ Viewers see only Create (Presentations), Product Truth, Battlecards and Library.
 **Revisit if:** reps ask for PPTX or CRM attach after the pilot.
 
 ## D-007 — v0.3 scope: PMM planning/creation tool; cut list frozen
-`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-28` · **Status:** Accepted; org-facing areas widened to five by D-032 · **Owner:** Tobias
 
 **Context:** v0.2's scope and dependencies made going live within a month unrealistic.
 
@@ -610,3 +610,45 @@ Details are in PARKED.md.
 - Week-1 admin: get access to the company's OpenAI setup instead of a Claude API key. If OpenAI is already approved for company solutions, the data-policy approval may already be covered.
 - M3 adds a small test set (a few features in EN/NO/SV) that runs through the framework copy check, to confirm NO/SV draft quality before M3 is done.
 - Not affected: building with Claude Code, sharing the prototype and the Messaging Framework as claude.ai links, and the weekly framework drift check. These are internal working tools, not part of the product. To confirm with IT.
+
+## D-032 — A Roadmap for everyone, by product pillar, in plain words
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** "only four org-facing areas" in D-007. Roadmap is the fifth.
+
+**Context:**
+- Releases come so often that the org can't follow them; 62 of 204 Linear projects are External, and updates turn into noise.
+- Only PMM and PM see the release plan, in Linear terms.
+- Product Strategy 2027 (Nima Samimi, Oct 2026) organises development around six pillars, each with a plain promise and a 2027 goal.
+
+**Decision:**
+- **Roadmap** is its own org nav item, for all users.
+- **Structure:** the six product pillars, in plain language:
+  1. Moving in takes a day
+  2. One record, no double entry
+  3. No front door
+  4. Work done for you
+  5. Answers before questions
+  6. You already know how it works
+
+  Each pillar names the messaging pillar to use with customers (*Leave the admin* for 1, 3, 4 and 6; *Get the signal* for 2 and 5; *Skip the worry* per card).
+- **Visibility:** External Linear items only, plus the six 2027 goals from the strategy. Internal and P&T-only work never shows.
+- **Timing:** Now (released in the last six months) / Coming soon (no dates) / Later (the 2027 goal).
+- **Noise rules:**
+  - T1/T2 get a card: task-first title, what changes, before → after, who it helps, *Say it like this*.
+  - T3/T4 get one line.
+  - At most three "Worth knowing this month", picked by PMM.
+- **Curation:**
+  - PMM turns External releases into cards in *Releases → Roadmap cards*.
+  - The pillar comes from a Linear "Pillar" label once P&T adds it; until then PMM picks it, with a suggestion from the Linear team.
+  - In the app, cards are AI drafts (OpenAI, D-031) from the Linear summary, as a new launch pack kind *Roadmap card*.
+  - Each language is approved like all other content.
+- **Left out on purpose:** win rates, competitor names, internal metrics from the strategy deck.
+
+**Consequences:**
+- The prototype has the org view, the PMM tab, the Usage count and seeded cards for the current External releases (EN; NO/SV for the "worth knowing" cards).
+- Open items:
+  - P&T adds a "Pillar" label in Linear.
+  - Nima confirms the pillar promises and 2027 goals can be shown to all staff.
+  - Tobias approves the NO/SV card wording.
+
+**Revisit if:** reps ask for dates on coming-soon items, or "worth knowing" grows past three a month.

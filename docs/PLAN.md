@@ -57,6 +57,7 @@
   - Users and sessions in the browser, with access levels for viewer, PM (+ Release plan) and PMM.
   - People & access for admins, and a profile panel.
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
+- [x] **Roadmap for everyone (D-032).** Six pillar cards, Now / Coming soon / Later, "Worth knowing this month", filters, EN/NO/SV with fallback; PMM tab *Roadmap cards* with pillar pick, AI draft, check and approval.
 - [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it, and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, access to the company's OpenAI setup (Azure OpenAI or the OpenAI API, model, budget; D-031), and a Vercel project.
 
@@ -87,6 +88,7 @@
 - [ ] Tier playbooks: editor, publish and versioning.
 - [ ] Launch packs: auto-create (A2), manual create, brief override, items per kind and language, AI drafting (A3) through the one drafting module (OpenAI, D-031), approve/reopen/approve all, and publish.
 - [ ] Drafting test set: a few features in EN/NO/SV run through the framework copy check, to confirm NO/SV quality.
+- [ ] Roadmap cards (D-032): Linear "Pillar" label mapping (team suggestion until then), `Pillar` and `RoadmapCard` tables, the *Roadmap card* pack kind for T1/T2 with AI drafts, T3/T4 one-liners, approval per language.
 - [ ] Battlecards: viewer and manual editor with publish and versioning.
 - [ ] Library: upload, the proposed → current flow, and the outdated flag (A5).
 
@@ -98,6 +100,7 @@
 - [ ] Real PDF export (server-side headless Chromium, one page per 16:9 slide).
 - [ ] Marketing Remix: auto drafts on approval (A4), channel templates, the Remix library with copy/export, and approval inside packs.
 - [ ] Automations overview: list, stats and time-saved baselines.
+- [ ] Org Roadmap view (D-032): pillars, Now / Coming soon / Later, "Worth knowing", New markers per user, copy line, usage events.
 - [ ] PMM Home queue.
 
 ## M5 — Pilot + go-live (25 – 27 Nov)

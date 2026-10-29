@@ -15,7 +15,7 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
   - Training, Team / Rituals, Requests, role switcher, non-deck Create types
 - If a request would bring one of these back, say so. Bringing it back needs a new DECISIONS entry first.
 - The only external dependencies are **Linear** and **OpenAI** (D-031). Don't add the Claude API or any other AI provider to the app.
-- Org-facing areas are only Create (Presentations), Product Truth, Battlecards and Library.
+- Org-facing areas are only Create (Presentations), Product Truth, Roadmap (D-032), Battlecards and Library.
 
 ## Ending every working session (log discipline)
 1. **PROGRESS.md:** add a dated entry at the top of the Log (done / next / blockers / decisions), and update the status board and open items.

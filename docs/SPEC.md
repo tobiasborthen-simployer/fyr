@@ -19,7 +19,7 @@
 None of that can go live within a month.
 
 **Where we're going.** v0.3 is a downsized rebuild. Fyr becomes **PMM's planning and creation tool**:
-- Only four areas face the rest of the organisation.
+- Only five areas face the rest of the organisation: Create, Product Truth, Roadmap ([D-032](DECISIONS.md)), Battlecards and Library.
 - The only external dependencies are **Linear** (the trigger source) and **OpenAI** (for drafting, [D-031](DECISIONS.md)).
 
 ### Principles
@@ -35,7 +35,7 @@ People register themselves in Fyr's own portal ([D-023](DECISIONS.md)): full nam
 
 | Role picked at registration | Access | Sees | Approval |
 |---|---|---|---|
-| Sales | **Viewer** | Presentations, My presentations, Product truth, Battlecards, Library | None |
+| Sales | **Viewer** | Presentations, My presentations, Product truth, Roadmap, Battlecards, Library | None |
 | Management | **Viewer** | Same as Sales | None |
 | PM | **Viewer + Release plan** | Same as Sales, plus Releases (list and map), read-only, with no pack actions | Admin approves; viewer until then |
 | PMM | **Editor** | Everything, including the PMM workspace | Admin approves; viewer until then |
@@ -50,10 +50,11 @@ People register themselves in Fyr's own portal ([D-023](DECISIONS.md)): full nam
 ```
 ORG AREA (everyone)                  PMM WORKSPACE (editors + approvers)
 ├── Create                           ├── Home              (approval queue / needs action)
-│   ├── New presentation             ├── Releases          List | Map
+│   ├── New presentation             ├── Releases          List | Map | Roadmap cards
 │   └── My presentations             ├── Launch packs      Packs | Tier playbooks
 ├── Product Truth                    ├── Truth editor      Messaging framework | Feature wording  (EN/NO/SV)
-├── Battlecards                      ├── Battlecards       (editor)
+├── Roadmap (D-032)                  ├── Battlecards       (editor)
+├── Battlecards                      │
 └── Library                          ├── Marketing Remix   Drafts | Brand rules
                                      ├── Presentation rules
                                      └── Automations
@@ -127,6 +128,7 @@ Each module below is laid out as: **purpose**, **reuse from v0.2**, **changes in
   - Screenshot & animation (Library)
   - LinkedIn post
   - Paid ads
+  - **Roadmap card** (T1/T2, [D-032](DECISIONS.md)): the plain-language card for the org Roadmap. T3/T4 get a one-line entry drafted automatically.
 - **Dropped** ([D-009](DECISIONS.md)):
   - Slack announcement
   - Ready training
@@ -429,6 +431,62 @@ v0.2 had none of these. Every deck followed one fixed order.
 
 ---
 
+### 4.11 Roadmap (org-facing; PMM curates) ([D-032](DECISIONS.md))
+
+**Purpose.** Show everyone where the product is going, in plain words, without the release noise. It is built on the six product pillars of Product Strategy 2027.
+
+**The org view**
+- **Header** with one line on effort (fewer clicks, fewer words, less waiting) and a guard: *no dates on purpose; say "coming soon", never a day; only what is cleared for customers is here.*
+- **Worth knowing this month:** at most 3 cards picked by PMM.
+- **Six pillar cards**, each with:
+  - the number, plain name and promise
+  - counts: *Now n · Coming soon n*
+  - the 2027 goal
+  - the messaging pillar to use with customers ("Say: Leave the admin")
+  - a **New** marker until the user opens the pillar
+- **Pillar detail** in three columns:
+  - **Now:** External T1/T2 cards released in the last six months, plus "+ N smaller improvements" (T3/T4 one-liners).
+  - **Coming soon:** External items not yet released, with no dates.
+  - **Later:** the pillar's 2027 goal and the strategy's before/after example, labelled as a goal, not a promise.
+- **A card holds:**
+  - a task-first title
+  - what changes (≤ 30 words)
+  - Before → Now/After
+  - who it helps (HR / Managers / Employees)
+  - market, when only one
+  - the messaging pillar
+  - **Say it like this** with Copy. Coming-soon lines start with "Coming soon:".
+- **Filters:** who it helps, and market.
+- **Language:** content follows the EN/NO/SV toggle. If a language isn't approved, the card shows English with "… wording on its way".
+
+**Noise rules**
+- External only. Internal and P&T-only work never shows.
+- Only T1/T2 get cards; T3/T4 collapse into one line each.
+- Now drops off after six months.
+- At most three "worth knowing" a month.
+- No Linear names and no dates. Coming-soon items have no quarter or month either.
+
+**PMM: Releases → Roadmap cards**
+- **Queue of External now/next items:** *Needs a pillar · Needs a card · Waiting for approval · On the roadmap*.
+- **Pillar:**
+  - Comes from a Linear label "Pillar" once P&T adds it.
+  - Until then PMM picks it, with a suggestion from the Linear team.
+- **Card form per language:**
+  - *Draft from Linear* (AI draft from the summary, labelled as a draft)
+  - a live check: avoid list; present tense for Now; "Coming soon:" for Next; no dates, quarters or years; no unapproved figures; ≤ 30 words
+  - **Approve per language**
+  - the "Worth knowing" pick (max 3)
+- Pillar promises and 2027 goals are edited here per language.
+
+**Acceptance criteria**
+- [ ] No release with visibility other than External, or with an early status, appears in the org Roadmap.
+- [ ] No date, month or quarter appears for a coming-soon item.
+- [ ] Unapproved text never appears; the English fallback is labelled.
+- [ ] A card approved by PMM appears for everyone at once, with a New marker on its pillar until opened.
+- [ ] Roadmap views and copied lines are counted in Usage, by role only.
+
+---
+
 ### 4.10 Portal: registration, sign-in and People & access ([D-023](DECISIONS.md))
 
 **Purpose.** Fyr keeps its own users. There is no Microsoft sign-in.
@@ -493,7 +551,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 
 | Entity | Key fields |
 |---|---|
-| `portal.users` | id, email (unique, lowercased), name, role (`pm`/`pmm`/`sales`/`management`), access (`viewer`/`pm`/`editor`), requested_access, approver, admin, status (`active`/`pending`/`disabled`), title, phone, photo_url, verified_at, last_sign_in_at, approved_by/at, created_at |
+| `portal.users` | id, email (unique, lowercased), name, role (`pm`/`pmm`/`sales`/`management`), access (`viewer`/`pm`/`editor`), requested_access, approver, admin, status (`active`/`pending`/`disabled`), title, phone, photo_url, verified_at, last_sign_in_at, approved_by/at, roadmap_seen (per pillar), created_at |
 | `portal.login_tokens` | email, purpose (`register`/`sign_in`), code_hash, link_hash, payload (name, role), expires_at, used_at, attempts, ip, created_at |
 | `portal.sessions` | token_hash, user_id, created_at, expires_at, last_seen_at |
 | `portal.events` | user_id, role, type (`sign_in`/`register`/`deck_created`/`deck_presented`/`deck_edited`/`own_slide`/`quote`/`view`/`search_empty`), meta (JSON), at. Deleted after 12 months; the Usage tab reads aggregate views only ([D-025](DECISIONS.md)). |
@@ -506,6 +564,8 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `PackItem` | packId, kind, audience, owner, lang, content (JSON fields), status |
 | `BrandRule` | id, text, kind (`voice`/`banned`/`proof`/`term`), active |
 | `RemixItem` | releaseId, packItemId, channel, lang, content, status, builtFrom[] |
+| `Pillar` | id, number, mf (messaging pillar), per language: name, promise, goal2027, example (what, today, goal); version ([D-032](DECISIONS.md)) |
+| `RoadmapCard` | linearId, pillar, kind (`card`/`line`), audience[], markets[], per language: title, what, before, after, say + status; approvedBy/At, digestMonth |
 | `Battlecard` | market, competitor, sections (JSON), version, publishedBy/At |
 | `Asset` | featureId, title, type (`screenshot`/`animation`), lang, blobUrl, status, why |
 | `PresentationRule` | name, audience, recipe[], featureMin/Max, mustInclude[], mustAvoid[], tone, cta, notes |
