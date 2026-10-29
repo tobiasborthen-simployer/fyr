@@ -7,6 +7,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Changed**
+- No more picture bar: the signed-in user is the rep. Their name, photo, title, email and phone come from Profile, and the deck panel shows them, with *Edit profile* (D-030).
 - The next-steps timeline always starts with Demo and ends with Go-live. Steps that have happened are marked with a ✓, and the Demo deck starts with Demo ticked off (D-028).
 - "Test week" is gone. The Demo call to action is now "Agree on a date for the proposal" (D-029).
 - Tobias is the approver; Thea is removed from the scope (D-024).
@@ -51,12 +52,12 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
   - Register with name, a @simployer.com email and a role.
   - Sign in with an emailed code or link: one-time, 15-minute expiry, lockout after 5 tries.
   - PM and PMM access needs admin approval. PMs get the Release plan, read-only.
-  - People & access for admins, and a profile with photo, title and phone for the picture bar.
+  - People & access for admins, and a profile with photo, title and phone for the contact slide.
 - **Discovery meeting, rebuilt (D-020):**
   - A seven-slide flow (title, today is about you, the insight, five discovery questions, one proof quote, next step, thank you/contact), plus a hidden backup slide and appendix.
   - Hidden slides, skipped by Present and PDF.
   - A proof-quote picker.
-  - A picture bar for the rep's photo and contact details.
+  - The signed-in rep's photo and contact details on the contact slide.
   - The meeting date on the slides.
   - The contact slide is also added to Demo.
 - **Saved presentations (D-019):** decks save automatically as you work. My presentations lists them with Open (continue where you left off), Copy and Delete.

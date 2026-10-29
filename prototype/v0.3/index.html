@@ -1162,7 +1162,7 @@ select.fl-in option { background: #221646; color: #fff; }
 .me-acts button:hover { background: rgba(255,255,255,.06); }
 .face.ini { background: #6B45C9; color: #fff; display: grid; place-items: center; font-weight: 600; }
 .slide .ct .face.ini { font-size: 5cqw; }
-.pbar .face.ini { font-size: 15px; }
+.rep1 .face.ini { font-size: 14px; }
 .pf-scrim { position: fixed; inset: 0; background: rgba(18,17,31,.35); z-index: 90; }
 .pf { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%); box-sizing: border-box; background: var(--card); z-index: 91; padding: 20px; display: grid; gap: 14px; align-content: start; overflow-y: auto; box-shadow: var(--shadow-lg); }
 .pf-h { display: flex; justify-content: space-between; align-items: center; }
@@ -1452,11 +1452,12 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .slide.contact .ct p { font-size: 1.6cqw; margin-top: .3cqw; }
 .thumb.hid .tc { opacity: .4; }
 .thumbs .tsec { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #9E98C4; padding: 6px 0 0 24px; }
-.pbar { display: flex; gap: 10px; flex-wrap: wrap; }
-.pbar button { display: grid; justify-items: center; gap: 5px; width: 64px; color: #E9E4F4; font-size: 11px; line-height: 1.2; text-align: center; }
-.pbar .face { width: 48px; height: 48px; outline: 2px solid transparent; outline-offset: 2px; transition: outline-color .15s; }
-.pbar button:hover .face { outline-color: rgba(255,255,255,.35); }
-.pbar button[aria-pressed="true"] .face { outline-color: #9773FF; }
+.rep1 { display: flex; gap: 12px; align-items: center; }
+.rep1 .face { width: 44px; height: 44px; flex: none; }
+.rep1 > div { display: grid; gap: 2px; min-width: 0; }
+.rep1 b { color: #fff; font-size: 13.5px; font-weight: 600; }
+.rep1 small { color: #B7AECF; font-size: 12px; overflow-wrap: anywhere; }
+.rep-miss { display: block; margin-top: 8px; color: #FFC9B5; font-size: 12px; line-height: 1.4; }
 .pq { display: grid; gap: 6px; }
 .pq button { text-align: left; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--night-line); color: #E9E4F4; display: grid; gap: 2px; }
 .pq button[aria-pressed="true"] { border-color: #9773FF; background: rgba(151,115,255,.14); }
@@ -2048,7 +2049,7 @@ function vDeck() {
         ${s.kind === 'timeline' ? (() => { const n = s.steps.length, last = n > 1 ? s.steps[n - 1].name : ''; return `<div><span class="lbl">Timeline · ${n} step${n === 1 ? '' : 's'}</span><div class="tlx" role="list" aria-label="Timeline steps">${s.steps.map((x, i) => `<div class="tlx-s ${x.done ? 'done' : ''} ${i === s.steps.findIndex(y => !y.done) ? 'next' : ''} ${x.a ? 'fixed' : ''} ${i === n - 1 && n > 1 ? 'last' : ''}" role="listitem" data-tlrow="${i}">${x.a === 'end' ? '<span class="tlx-dot" aria-hidden="true"></span>' : `<span class="tlx-dot" role="checkbox" tabindex="0" aria-checked="${!!x.done}" aria-label="${esc(x.name || `Step ${i + 1}`)} done" data-tldone="${i}"${x.a ? '' : ` draggable="true" data-tldrag="${i}"`} title="${x.done ? 'Done. Click to undo' : 'Click to mark as done'}${x.a ? '' : ', drag to reorder'}"></span>`}<div class="tlx-b"><input class="tlx-d" data-tld="${i}" value="${esc(x.date)}" placeholder="Add date" aria-label="Step ${i + 1} date"><textarea class="tlx-n" rows="1" data-tln="${i}" placeholder="Step name" aria-label="Step ${i + 1} name"${x.a ? ` readonly title="${x.a === 'start' ? 'Always the first step' : 'Always the last step'}"` : ''}>${esc(x.name)}</textarea><textarea class="tlx-desc" rows="1" data-tldesc="${i}" placeholder="Add a line (optional)" aria-label="Step ${i + 1} description">${esc(x.desc || '')}</textarea></div>${x.a ? '<span></span>' : `<button type="button" class="tlx-x" data-tldel="${i}" aria-label="Remove step ${i + 1}" title="Remove step">${ico('i-x')}</button>`}</div>`).join('')}</div>${n < 8 ? `<button type="button" class="tlx-add" id="tl-add">${ico('i-plus')}Add step${last ? ` before ${esc(last)}` : ''}</button>` : ''}<small class="tlx-hint">Starts with the demo, ends with go-live. Click a dot to mark a step done; drag it (or Alt + ↑ / ↓) to move a step. You can also type on the slide.</small></div>`; })() : ''}
         ${s.kind === 'insight' ? `<div><span class="lbl">Optional line</span><label style="display:flex;gap:8px;align-items:start;color:#E9E4F4;font-size:13px;line-height:1.4"><input type="checkbox" id="story2" ${s.noStory2 ? '' : 'checked'} style="margin-top:2px"> Story step 2: “Elsewhere, software does the work. HR still stores, reminds and answers.”</label></div>` : ''}
         ${s.kind === 'proof' ? `<div><span class="lbl">Customer quote</span><div class="pq">${DISC_QUOTES.map(q => `<button type="button" data-proofpick="${q.id}" aria-pressed="${d.slides.some(x => x.kind === 'proof' && x.q === q.id && !x.hidden)}"><b>${q.who}</b><small>${q.label}${q.ok ? '' : ' · ' + q.flag}</small></button>`).join('')}</div></div>` : ''}
-        ${['contact', 'title', 'titleline'].includes(s.kind) ? `<div><span class="lbl">You</span><div class="pbar" role="group" aria-label="Pick your picture">${REPS_ALL().map(p => `<button type="button" data-rep="${p.id}" aria-pressed="${d.rep === p.id}">${repFace(p)}<span>${p.name}</span></button>`).join('')}</div><small class="muted" style="display:block;margin-top:8px;color:#B7AECF">Everyone registered in Fyr. Add your photo, title and phone in Profile.</small></div>` : ''}
+        ${['contact', 'title', 'titleline'].includes(s.kind) ? (() => { const rp = deckRep(d), miss = rp ? [!rp.ph && 'photo', !rp.phone && 'phone number'].filter(Boolean) : []; return `<div><span class="lbl">On the slides</span>${rp ? `<div class="rep1">${repFace(rp)}<div><b>${esc(rp.name)}</b><small>${esc(rp.title.EN)}</small><small>${esc(rp.email)}${rp.phone ? ` · ${esc(rp.phone)}` : ''}</small></div></div>` : ''}${miss.length ? `<small class="rep-miss">Add your ${miss.join(' and ')} in Profile to show ${miss.length > 1 ? 'them' : 'it'} on the contact slide.</small>` : ''}<button type="button" class="btn btn-line btn-sm" id="rep-profile" style="margin-top:10px">Edit profile</button></div>`; })() : ''}
         ${s.kind === 'feature' ? `<div><span class="lbl">Visual</span><div class="seg n" role="group" aria-label="Visual type">${['screenshot', 'animation'].map(t => `<button type="button" data-vis="${t}" aria-pressed="${s.visual === t}">${t === 'screenshot' ? 'Screenshot' : 'Animation'}</button>`).join('')}</div></div>
         <div><span class="lbl">Source</span><div class="src"><span class="mini"><img src="${IMG[f.img]}" alt=""></span><div><b>${asset ? 'Library · Current' : 'Rendered now'}</b><small>Prototype Lab · ${asset ? asset.date : '20 Oct'}</small></div></div></div>` : ''}
         <div><span class="lbl">Message check</span><div class="checks">
@@ -2110,7 +2111,7 @@ function bindDeck() {
   if ($('#story2')) $('#story2').addEventListener('change', e => { d.slides[S.sel].noStory2 = !e.target.checked; render(); });
   $$('[data-hide]').forEach(x => x.addEventListener('click', () => { const sl = d.slides[+x.dataset.hide]; sl.hidden = !sl.hidden; render(); }));
   $$('[data-proofpick]').forEach(x => x.addEventListener('click', () => { const id = x.dataset.proofpick; track('quote', { q: id }); d.slides.forEach(sl => { if (sl.kind === 'proof') sl.hidden = sl.q !== id; }); S.sel = d.slides.findIndex(sl => sl.kind === 'proof' && sl.q === id); render(); }));
-  $$('[data-rep]').forEach(x => x.addEventListener('click', () => { d.rep = x.dataset.rep; d.slides.forEach(sl => { if (sl.kind === 'contact') delete sl.edits; }); render(); toast(`Added ${deckRep(d).name} to the slides.`); }));
+  if ($('#rep-profile')) $('#rep-profile').addEventListener('click', () => openProfile());
   let from = null;
   $$('.thumb').forEach(li => {
     li.addEventListener('dragstart', e => { from = +li.dataset.i; li.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(from)); } catch (_) {} });
@@ -2235,7 +2236,7 @@ function rebuildDeck() {
 }
 function openDeck(id) {
   const x = DECKS.find(d => d.id === id); if (!x) return;
-  S.deck = deckClone(x); S.meeting = deckClone(x.meeting || newCustomer(x.company)); S.brief = deckClone(x.brief || { rule: x.rule, occasion: x.occasion, features: [], lang: x.lang, note: '', ref: null });
+  S.deck = deckClone(x); if (String(x.id).startsWith('seed-')) S.deck.rep = signedInRep(); S.meeting = deckClone(x.meeting || newCustomer(x.company)); S.brief = deckClone(x.brief || { rule: x.rule, occasion: x.occasion, features: [], lang: x.lang, note: '', ref: null });
   S.sel = 0; S.view = 'deck'; render(); window.scrollTo({ top: 0 });
 }
 function seedDecks() {
@@ -2252,7 +2253,7 @@ function seedDecks() {
 }
 document.addEventListener('click', e => {
   const o = e.target.closest('[data-dopen]'); if (o) { openDeck(o.dataset.dopen); return; }
-  const c = e.target.closest('[data-ddup]'); if (c) { const x = DECKS.find(d => d.id === c.dataset.ddup); if (!x) return; const y = { ...deckClone(x), id: 'd' + Date.now().toString(36), created: deckStamp(), updated: deckStamp(), presented: false }; DECKS.unshift(y); decksStore(); openDeck(y.id); toast(`Copy of ${x.company} saved. Tailor it for the next meeting.`); return; }
+  const c = e.target.closest('[data-ddup]'); if (c) { const x = DECKS.find(d => d.id === c.dataset.ddup); if (!x) return; const y = { ...deckClone(x), id: 'd' + Date.now().toString(36), created: deckStamp(), updated: deckStamp(), presented: false, rep: signedInRep() }; if (y.rep !== x.rep) y.slides.forEach(sl => { if (sl.kind === 'contact') delete sl.edits; }); DECKS.unshift(y); decksStore(); openDeck(y.id); toast(`Copy of ${x.company} saved. Tailor it for the next meeting.`); return; }
   const del = e.target.closest('[data-ddel]'); if (del) {
     if (del.dataset.armed !== '1') { del.dataset.armed = '1'; del.innerHTML = 'Delete?'; del.style.padding = ''; del.style.color = 'var(--red-ink)'; setTimeout(() => { if (del.isConnected && del.dataset.armed === '1') { del.dataset.armed = ''; render(); } }, 3000); return; }
     const x = DECKS.find(d => d.id === del.dataset.ddel); DECKS = DECKS.filter(d => d.id !== del.dataset.ddel); decksStore();
@@ -2678,7 +2679,7 @@ Object.assign(L.EN, {
   aboutH: 'Today is about you.', about: [['Your reality', 'How HR works for you today, and who carries it.'], ['What it costs', 'Where the time, the money and the worry go.'], ['Whether there’s a fit', 'If Simployer takes work off your desk, or not.']],
   aboutOut: 'The outcome: a demo built on your setup, or an honest “not a fit.”', insightAsk: 'Does that match your week?',
   nsH: 'A demo built on what you just told us.', nsF: [['What we’ll show', 'Your top three: …'], ['Who should be there', 'Champion and decision-maker: …'], ['When', 'Date and time: …']],
-  thanks: 'Thank you', pickName: 'Your name', pickHint: 'Pick your picture in the panel on the right', backupEy: 'Backup', appEy: 'Appendix',
+  thanks: 'Thank you', pickName: 'Your name', pickHint: 'Add your details in Profile', backupEy: 'Backup', appEy: 'Appendix',
   howCols: [['Hand it to Sia.', '“Start a check-in with Anna,” and it starts.'], ['An HR expert by your side.', '“A long-term sick leave with no return date. What are our options?”']], howAuto: 'Automation Studio: the onboarding starts when the contract is signed.',
   whoH: 'Who we are', who: [['12,000+', 'customers'], ['1.2 million', 'users'], ['40 years', 'of Nordic HR and employment law'], ['EU', 'GDPR-ready, data stored in the EU']],
   cfoH: 'Hours back, compared with a salary.', cfoP: 'About 1,600 hours freed per year for a 115-person organisation. 4 to 8 month payback.', cfoFlag: 'Waiting for finance · do not show',
@@ -2687,7 +2688,7 @@ Object.assign(L.NO, {
   aboutH: 'I dag handler det om dere.', about: [['Hverdagen deres', 'Hvordan HR fungerer hos dere i dag, og hvem som bærer det.'], ['Hva det koster', 'Hvor tiden, pengene og usikkerheten går.'], ['Om det passer', 'Om Simployer tar arbeid av bordet deres, eller ikke.']],
   aboutOut: 'Utfallet: en demo bygget på deres oppsett, eller et ærlig «passer ikke».', insightAsk: 'Kjenner dere igjen uka deres?',
   nsH: 'En demo bygget på det dere nettopp fortalte oss.', nsF: [['Det vi viser', 'Deres tre viktigste: …'], ['Hvem som bør være med', 'Pådriver og beslutningstaker: …'], ['Når', 'Dato og tid: …']],
-  thanks: 'Takk', pickName: 'Ditt navn', pickHint: 'Velg bildet ditt i panelet til høyre', backupEy: 'Reserve', appEy: 'Vedlegg',
+  thanks: 'Takk', pickName: 'Ditt navn', pickHint: 'Legg til detaljene dine i Profil', backupEy: 'Reserve', appEy: 'Vedlegg',
   howCols: [['Gi det til Sia.', '«Start en oppfølgingssamtale med Anna», og den starter.'], ['En HR-ekspert ved din side.', '«En langtidssykmelding uten dato for tilbakekomst. Hvilke muligheter har vi?»']], howAuto: 'Automation Studio: onboardingen starter når kontrakten er signert.',
   whoH: 'Hvem vi er', who: [['12 000+', 'kunder'], ['1,2 millioner', 'brukere'], ['40 år', 'med nordisk HR og arbeidsrett'], ['EU', 'GDPR-klart, data lagret i EU']],
   cfoH: 'Timer tilbake, sammenlignet med en lønn.', cfoP: 'Rundt 1 600 timer frigjort per år for en virksomhet med 115 ansatte. 4 til 8 måneders tilbakebetalingstid.', cfoFlag: 'Venter på økonomi · ikke vis',
@@ -2696,7 +2697,7 @@ Object.assign(L.SV, {
   aboutH: 'I dag handlar det om er.', about: [['Er vardag', 'Hur HR fungerar hos er i dag, och vem som bär det.'], ['Vad det kostar', 'Var tiden, pengarna och osäkerheten tar vägen.'], ['Om det passar', 'Om Simployer tar arbete från ert bord, eller inte.']],
   aboutOut: 'Utfallet: en demo byggd på ert upplägg, eller ett ärligt ”passar inte”.', insightAsk: 'Känner ni igen er vecka?',
   nsH: 'En demo byggd på det ni just berättade för oss.', nsF: [['Det vi visar', 'Era tre viktigaste: …'], ['Vem som bör vara med', 'Pådrivare och beslutsfattare: …'], ['När', 'Datum och tid: …']],
-  thanks: 'Tack', pickName: 'Ditt namn', pickHint: 'Välj din bild i panelen till höger', backupEy: 'Reserv', appEy: 'Bilaga',
+  thanks: 'Tack', pickName: 'Ditt namn', pickHint: 'Lägg till dina uppgifter i Profil', backupEy: 'Reserv', appEy: 'Bilaga',
   howCols: [['Lämna det till Sia.', '”Starta en avstämning med Anna”, och den startar.'], ['En HR-expert vid din sida.', '”En långtidssjukskrivning utan återgångsdatum. Vilka alternativ har vi?”']], howAuto: 'Automation Studio: onboardingen startar när avtalet är signerat.',
   whoH: 'Vilka vi är', who: [['12 000+', 'kunder'], ['1,2 miljoner', 'användare'], ['40 år', 'av nordisk HR och arbetsrätt'], ['EU', 'GDPR-redo, data lagrad i EU']],
   cfoH: 'Timmar tillbaka, jämfört med en lön.', cfoP: 'Omkring 1 600 timmar frigjorda per år för en organisation med 115 anställda. 4 till 8 månaders återbetalningstid.', cfoFlag: 'Väntar på ekonomi · visa inte',

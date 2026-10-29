@@ -352,7 +352,7 @@ Details are in PARKED.md.
 **Revisit if:** reps want to share a deck with a colleague. That needs sharing and permissions on `Deck`.
 
 ## D-020 — Discovery meeting follows PMM's seven-slide flow; contact slide in Demo
-`2026-10-28` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-28` · **Status:** Accepted; picture bar superseded by D-030 · **Owner:** Tobias
 **Supersedes:** the first Discovery recipe (cover → Simployer in short → questions → features…) from D-018.
 
 **Context:** Tobias gave the discovery-call flow: seven slides with one message each, the rep's prompts in the notes, one backup slide and an appendix.
@@ -565,3 +565,20 @@ Details are in PARKED.md.
 - In the older next-step slide still used by Follow-up and QBR, the first point "Try it with two managers" becomes "Get a proposal: scope and price for your setup".
 
 **Consequences:** Example decks refresh, and own decks offer *Rebuild with v4/v6*. The D-027 example text that quotes the old step stays as written, because the log is append-only.
+
+## D-030 — No picture bar: the signed-in user is the rep
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the picture bar in D-020 (also on the cover, D-021), and "feeding the picture bar" in D-023.
+
+**Context:** Since sign-in (D-023), Fyr knows who the rep is. Picking a photo adds a step and lets people put someone else's details on their slides.
+
+**Decision:**
+- The signed-in user is the rep. Their name goes on the cover, and their photo, name, title, email and phone go on the contact slide, from their Fyr profile.
+- The inspector shows one line, "On the slides", with an **Edit profile** button. If the photo or phone is missing, it says so.
+- A deck keeps the rep who built it. **Copy** puts the person copying on the copy. Example decks show whoever is signed in.
+
+**Consequences:**
+- Building a deck for a colleague is no longer possible. The colleague copies the deck instead, which puts their own details on it.
+- The profile (photo, title, phone) matters more, so M2 needs photo upload in Profile.
+
+**Revisit if:** two reps often present together and want both on the contact slide.

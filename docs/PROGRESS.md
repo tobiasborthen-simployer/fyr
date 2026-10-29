@@ -37,6 +37,19 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — Picture bar removed: the signed-in user is the rep (D-030)
+- **Done:**
+  - The cover and contact slides always show the signed-in user's details from Profile.
+  - On those two slides, the deck panel shows one line, "On the slides", with *Edit profile*. It says when the photo or phone is missing.
+  - Copy puts the person copying on the copy. Example decks show whoever is signed in.
+  - The contact slide's empty-state hint (EN/NO/SV) now points to Profile.
+  - SPEC and PLAN are updated.
+- **Verified:**
+  - Tested in the browser: a new deck, the cover and contact slide, Edit profile then Save updates the slide (the missing-phone note disappears), an example deck opens with the signed-in user, and copying Sara's deck puts Tobias on the copy.
+  - No errors. Copy check: 0 errors.
+- **Next:** photo upload in Profile becomes more important for M2 (Vercel Blob).
+- **Decisions:** D-030.
+
 ### 2026-10-29 — Timeline runs from Demo to Go-live, done steps marked; no test week (D-028, D-029)
 - **Done:**
   - **Fixed ends:**

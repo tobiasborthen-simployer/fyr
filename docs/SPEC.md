@@ -342,7 +342,10 @@ Seed rules (prototype `PRULES`):
 
 **Hidden slides.** Any slide can be hidden with the eye on its thumbnail. Hidden slides stay in the deck but are skipped by Present, Open in new tab and PDF. Backup and appendix slides are grouped under their own labels. Rules set which slides start hidden.
 
-**Picture bar.** On the title and contact slides, the inspector shows a row of photos with names. Clicking yours puts your photo, name, title, email and phone on the contact slide and your name on the title slide. **A new deck starts with the signed-in rep already on it**; the picture bar is for switching. The bar lists everyone registered in Fyr, with the photo, title and phone from their profile; people without a photo show their initials.
+**The rep on the slides ([D-030](DECISIONS.md)).** The signed-in user is the rep; there is no picker.
+- The cover shows their name. The contact slide shows their photo, name, title, email and phone, all from their Fyr profile.
+- On the title and contact slides, the inspector shows one line, "On the slides", with their photo and details and an **Edit profile** button. If the photo or phone is missing, it says so; people without a photo show their initials.
+- A deck keeps the rep who built it. **Copy** puts the person copying on the copy. Example decks show whoever is signed in.
 
 **Story step 2** on the insight slide is optional: the rep can switch it off in the inspector.
 
@@ -459,7 +462,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 - PMM Home shows "N access requests".
 
 **Profile** (rail)
-- Name, title, phone and photo. These feed the picture bar and the contact slide.
+- Name, title, phone and photo. These go on the cover and the contact slide of the user's own decks (D-030).
 - Role change: moving to PM or PMM needs approval again. Moving down takes effect straight away.
 
 **Usage** (admins, next to People; [D-025](DECISIONS.md))
