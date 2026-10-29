@@ -1413,56 +1413,41 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .tlx-add { display: inline-flex; align-items: center; gap: 6px; margin: 6px 0 0 22px; padding: 5px 8px; border-radius: 8px; color: #CDC0EA; font-size: 12.5px; font-weight: 500; }
 .tlx-add:hover { background: rgba(255,255,255,.06); color: #fff; }
 .tlx-add .ico { width: 13px; height: 13px; }
-/* Roadmap (D-032) */
-.chip { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 99px; background: #F0EFF5; color: var(--muted); font-size: 11.5px; font-weight: 500; white-space: nowrap; }
-.chip.lav { background: var(--lav-50); color: var(--lav); }
-.rm-guard { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 12px; background: var(--lav-50); color: var(--ink); font-size: 13.5px; margin-bottom: 14px; }
-.rm-guard .ico { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--lav); }
-.rm-f { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-bottom: 22px; font-size: 13px; }
-.rm-fg { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
-.rm-sh { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; margin: 6px 0 12px; }
-.rm-sh h2 { font-size: 19px; }
-.rm-dig { margin-bottom: 30px; }
-.rm-dg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.rm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.rm-p { position: relative; display: grid; align-content: start; gap: 8px; text-align: left; padding: 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: border-color .15s, box-shadow .15s; }
-.rm-p:hover, .rm-p:focus-visible { border-color: var(--lav); box-shadow: 0 6px 20px rgba(45,12,105,.08); }
-.rm-p > b { font-size: 17px; font-weight: 650; letter-spacing: -.01em; }
-.rm-p > span:not(.rm-num):not(.chip):not(.rm-new):not(.rm-cnt) { color: var(--muted); font-size: 13.5px; line-height: 1.45; }
-.rm-p .chip { justify-self: start; }
-.rm-num { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #1B1038; color: #fff; font-size: 13px; font-weight: 650; }
-.rm-new { position: absolute; top: 16px; right: 16px; height: 20px; padding: 0 8px; border-radius: 99px; background: #FF9573; color: #2D0C69; font-size: 11px; font-weight: 650; display: inline-flex; align-items: center; }
-.rm-cnt { font-size: 12.5px; font-weight: 600; color: var(--ink); }
-.rm-goal { color: var(--muted); font-size: 12.5px; line-height: 1.45; padding-top: 8px; border-top: 1px dashed var(--line); }
-.rm-goal b { color: var(--ink); font-weight: 600; }
-.rm-c { display: grid; align-content: start; gap: 10px; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); margin-bottom: 12px; }
-.rm-dg .rm-c { margin: 0; }
-.rm-c.later { background: var(--lav-50); border-color: transparent; }
-.rm-c-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.rm-pn { font-size: 12px; color: var(--muted); font-weight: 500; }
-.rm-c h3 { font-size: 15.5px; font-weight: 650; line-height: 1.3; letter-spacing: -.005em; }
-.rm-c p { color: var(--muted); font-size: 13.5px; line-height: 1.5; margin: 0; }
-.rm-ba { display: grid; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); gap: 8px; align-items: center; padding: 10px 12px; border-radius: 10px; background: #F7F5F0; font-size: 12.5px; line-height: 1.35; }
-.rm-c.later .rm-ba { background: #fff; }
-.rm-ba small, .rm-say small, .rm-ex small { display: block; color: var(--faint); font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 2px; }
-.rm-ba .ico { width: 14px; height: 14px; color: var(--lav); }
-.rm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.rm-say { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: end; padding: 10px 12px; border-radius: 10px; border-left: 3px solid var(--lav); background: var(--lav-50); }
-.rm-say small { grid-column: 1 / -1; }
-.rm-say p { color: var(--ink); font-size: 13.5px; }
-.rm-fb { color: var(--faint); font-size: 12px; }
-.rm-small { font-size: 13px; color: var(--muted); }
-.rm-small summary { cursor: pointer; font-weight: 600; color: var(--ink); padding: 4px 0; }
-.rm-small ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
-.rm-ph { display: flex; gap: 14px; align-items: flex-start; margin: 16px 0 20px; }
-.rm-ph .rm-num { width: 40px; height: 40px; font-size: 17px; border-radius: 11px; flex: none; }
-.rm-ph h2 { font-size: 24px; letter-spacing: -.015em; }
-.rm-ph p { color: var(--muted); max-width: 62ch; margin: 4px 0 8px; }
-.rm-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
-.rm-ch { display: grid; gap: 4px; margin-bottom: 12px; font-size: 14px; }
-.rm-ch .pill { justify-self: start; }
-.rm-ch small { color: var(--muted); font-weight: 400; font-size: 12.5px; }
-.rm-ex b { font-size: 13.5px; font-weight: 600; display: block; margin-bottom: 8px; }
+/* Roadmap (D-032, simplified by D-033) */
+.rm-hero { background: #1B1038; color: #fff; border-radius: 18px; padding: 22px 24px; margin-bottom: 22px; }
+.rm-hero h2 { font-size: 20px; color: #fff; margin-bottom: 12px; }
+.rm-hero ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.rm-hero li { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.1); }
+.rm-hero li:first-child { border-top: 0; }
+.rm-hero .pill { justify-self: start; }
+.rm-hero p { margin: 0; font-size: 16.5px; line-height: 1.4; color: #fff; }
+.rm-hero .rm-hcp { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2); }
+.rm-hero .rm-hcp:hover { background: rgba(255,255,255,.18); }
+.rm-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.rm-col { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 18px 14px; }
+.rm-col h2 { display: flex; align-items: center; gap: 8px; font-size: 18px; }
+.rm-col > small { display: block; color: var(--muted); font-size: 12.5px; margin: 2px 0 10px; }
+.rm-dot { width: 10px; height: 10px; border-radius: 99px; background: var(--green, #2E9E6A); }
+.rm-col.next .rm-dot { background: var(--lav); }
+.rm-col ul { list-style: none; margin: 0; padding: 0; }
+.rm-col li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14.5px; font-weight: 500; color: var(--ink); }
+.rm-col li:first-child { border-top: 0; }
+.rm-cp { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; color: var(--muted); }
+.rm-cp:hover, .rm-cp:focus-visible { background: var(--lav-50); color: var(--lav); }
+.rm-cp .ico { width: 15px; height: 15px; }
+.rm-fb { font-size: 10.5px; font-weight: 600; color: var(--faint); border: 1px solid var(--line); border-radius: 5px; padding: 0 4px; }
+.rm-more { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--lav); padding: 4px 0; }
+.rm-small { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.rm-small summary { cursor: pointer; padding: 4px 0; }
+.rm-small ul { list-style: disc; padding-left: 18px; }
+.rm-small li { display: list-item; border: 0; padding: 3px 0; font-size: 13px; font-weight: 400; color: var(--muted); }
+.rm-goals { margin-top: 18px; font-size: 13.5px; }
+.rm-goals summary { cursor: pointer; font-weight: 600; color: var(--ink); padding: 6px 0; }
+.rm-goals ol { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 8px; }
+.rm-goals li b { display: block; color: var(--ink); }
+.rm-goals li span { color: var(--muted); }
+@media (max-width: 760px) { .rm-two { grid-template-columns: 1fr; } .rm-hero { padding: 18px; } .rm-hero li { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; } .rm-hero .pill { grid-column: 1 / -1; } }
+
 /* PMM: Roadmap cards */
 .rm-ed { display: grid; grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
 .rm-q { padding: 12px; display: grid; gap: 14px; max-height: 76vh; overflow: auto; }
@@ -1805,7 +1790,7 @@ function renderNav() {
   const it = (v, i, t, badge, hot, on) => `<button data-view="${v}" ${(on !== undefined ? on : cur === v) ? 'aria-current="page"' : ''}>${ico(i)}<span>${t}</span>${badge ? `<span class="badge ${hot ? 'hot' : ''}">${badge}</span>` : ''}</button>`;
   $('#nav').innerHTML = `
     <div class="nav-group"><span class="nav-label">Create</span>${it('create', 'i-deck', 'Presentations')}${it('work', 'i-brief', 'My presentations', DECKS.length)}</div>
-    <div class="nav-group"><span class="nav-label">Knowledge</span>${it('truth', 'i-book', 'Product truth')}${it('roadmap', 'i-flag', 'Roadmap', rmNewCount() || null, true)}${it('battle', 'i-shield', 'Battlecards')}${it('library', 'i-grid', 'Library', pm && attn ? attn : null, true)}</div>
+    <div class="nav-group"><span class="nav-label">Knowledge</span>${it('truth', 'i-book', 'Product truth')}${it('roadmap', 'i-flag', 'Roadmap')}${it('battle', 'i-shield', 'Battlecards')}${it('library', 'i-grid', 'Library', pm && attn ? attn : null, true)}</div>
     ${S.role === 'pm' ? `<div class="nav-group"><span class="nav-label">Release plan</span>${it('product', 'i-branch', 'Releases')}${it('calendar', 'i-cal', 'Release map')}</div>` : ''}
     ${pm ? `<div class="nav-group"><span class="nav-label">PMM workspace</span>${BOG.filter(g => g.tabs[0][0] !== 'people' || (CUR && CUR.admin)).map(g => gi(g)).join('')}</div>` : ''}`;
   const r = ROLES[S.role];
@@ -2552,7 +2537,7 @@ const ROADMAP = {
   'P-PAD-56': { p: 'easy' }, 'P-AIPA-9': { p: 'easy' },
 };
 const RM_DIGEST = ['P-TAP-4', 'P-PAD-86', 'P-EMPA-1'];
-const RM_FROM = addDays('2026-10-20', -183); // Now = released in the last six months; after that it is simply the product
+const RM_FROM = addDays('2026-10-20', -92); // New = released in the last three months; after that it is simply the product
 const RM_UI = { EN: { soon: 'Coming soon:' }, NO: { soon: 'Kommer snart:' }, SV: { soon: 'Kommer snart:' } };
 const rmPillar = id => PILLARS.find(p => p.id === id);
 const rmPT = (p, lg) => p.t[lg] || p.t.EN;
@@ -2561,61 +2546,26 @@ const rmBig = r => ['T1', 'T2'].includes(r.tier);
 const rmItems = () => RELEASES.filter(r => r.lid && rmHz(r));
 const rmOn = c => !!(c && c.p && c.t && c.t.EN && c.st && c.st.EN === 'approved');
 const rmText = (c, lg) => (c.st[lg] === 'approved' && c.t[lg] ? [c.t[lg], false] : [c.t.EN, lg !== 'EN']);
-const rmPass = (r, c) => !rmBig(r) || ((S.rmAud === 'all' || (c.aud || []).includes(S.rmAud)) && (S.rmMk === 'all' || (c.mk || ['NO', 'SE']).includes(S.rmMk)));
-const RM_SEEN_KEY = 'fyr-v03-rm-seen';
-function rmSeen() { try { const v = JSON.parse(localStorage.getItem(RM_SEEN_KEY) || '{}'); return (CUR && v[CUR.id]) || {}; } catch (_) { return {}; } }
-function rmSeenSet(pid) { try { const v = JSON.parse(localStorage.getItem(RM_SEEN_KEY) || '{}'), me = CUR ? CUR.id : 'anon'; v[me] = { ...(v[me] || {}), [pid]: new Date().toISOString() }; localStorage.setItem(RM_SEEN_KEY, JSON.stringify(v)); } catch (_) {} }
-const rmIsNew = p => { const seen = rmSeen()[p.id] || '2026-10-16'; return rmItems().some(r => { const c = ROADMAP[r.lid]; return rmOn(c) && c.p === p.id && c.at && c.at > seen; }); };
-const rmNewCount = () => PILLARS.filter(rmIsNew).length;
-const AUD_L = { hr: 'HR', manager: 'Managers', employee: 'Employees' }, MK_L = { NO: 'Norway', SE: 'Sweden' };
-
-function rmCard(r, c, lg, withPillar) {
-  const [t, fb] = rmText(c, lg), hz = rmHz(r), p = rmPillar(c.p), mf = c.mfo || p.mf, nt = { NO: 'Norwegian', SV: 'Swedish' }[lg];
-  return `<article class="rm-c ${hz}">${withPillar ? `<div class="rm-c-h"><span class="pill ${hz === 'now' ? 'live' : 'soon'}"><span class="d"></span>${hz === 'now' ? 'Now' : 'Coming soon'}</span><span class="rm-pn">${p.n} · <span class="rm-x">${rmPT(p, lg).name}</span></span></div>` : ''}
-    <h3 class="rm-x">${esc(t[0])}</h3><p class="rm-x">${esc(t[1])}</p>
-    ${t[2] ? `<div class="rm-ba"><div><small>Before</small><span class="rm-x">${esc(t[2])}</span></div>${ico('i-arrow')}<div><small>${hz === 'now' ? 'Now' : 'After'}</small><span class="rm-x">${esc(t[3])}</span></div></div>` : ''}
-    <div class="rm-chips">${(c.aud || []).map(a => `<span class="chip">${AUD_L[a]}</span>`).join('')}${(c.mk || []).length === 1 ? `<span class="chip">${MK_L[c.mk[0]]} only</span>` : ''}<span class="chip lav">${mf}</span></div>
-    <div class="rm-say"><small>Say it like this</small><p class="rm-x">${esc(t[4])}</p><button type="button" class="btn btn-line btn-sm" data-rmcopy="${r.lid}">${ico('i-copy')}Copy</button></div>
-    ${fb ? `<small class="rm-fb">${nt} wording on its way. Shown in English.</small>` : ''}</article>`;
-}
-function rmSmall(list, lg, label) {
-  if (!list.length) return '';
-  return `<details class="rm-small"><summary>+ ${list.length} smaller ${label}</summary><ul>${list.map(([r, c]) => `<li class="rm-x">${esc(rmText(c, lg)[0][0])}</li>`).join('')}</ul></details>`;
-}
+// The org page answers one question in five seconds: what do I tell customers? (D-033)
+const rmList = hz => rmItems().filter(r => rmHz(r) === hz && rmBig(r) && rmOn(ROADMAP[r.lid]) && !RM_DIGEST.includes(r.lid)).sort((a, b) => hz === 'now' ? (b.doneISO || '').localeCompare(a.doneISO || '') : (a.targetISO || '9').localeCompare(b.targetISO || '9'));
+const rmSay = (c, lg) => rmText(c, lg)[0][4] || rmText(c, lg)[0][0];
+const rmBare = s => { const t = s.replace(/^(Coming soon|Kommer snart):\s*/i, ''); return t.charAt(0).toUpperCase() + t.slice(1); };
 function vRoadmap() {
-  S.rmAud = S.rmAud || 'all'; S.rmMk = S.rmMk || 'all';
-  const lg = S.clang, all = rmItems().map(r => [r, ROADMAP[r.lid]]).filter(([r, c]) => rmOn(c)), vis = all.filter(([r, c]) => rmPass(r, c));
-  const P = S.rmPillar && rmPillar(S.rmPillar);
-  const seg = (k, opts) => `<div class="seg" role="group">${opts.map(([v, t]) => `<button data-${k}="${v}" aria-pressed="${S[k === 'rmaud' ? 'rmAud' : 'rmMk'] === v}">${t}</button>`).join('')}</div>`;
-  const filters = `<div class="rm-f"><div class="rm-fg"><span class="muted">Who it helps</span>${seg('rmaud', [['all', 'All'], ['hr', 'HR'], ['manager', 'Managers'], ['employee', 'Employees']])}</div><div class="rm-fg"><span class="muted">Market</span>${seg('rmmk', [['all', 'All'], ['NO', 'Norway'], ['SE', 'Sweden']])}</div></div>`;
-  const head = `<div class="page-title"><div><h1>Roadmap</h1><p>Where Simployer is going. Every change makes an HR task take fewer clicks, fewer words and less waiting.</p></div></div>
-    <div class="rm-guard">${ico('i-clock')}<span><b>No dates on purpose.</b> Say “coming soon”, never a day. Only what is cleared for customers is here.</span></div>${filters}`;
-  if (P) {
-    const pt = rmPT(P, lg), mine = vis.filter(([r, c]) => c.p === P.id), now = mine.filter(([r]) => rmHz(r) === 'now'), next = mine.filter(([r]) => rmHz(r) === 'next');
-    const col = (list, big) => list.filter(([r]) => rmBig(r) === big);
-    return `${head}<button type="button" class="btn btn-line btn-sm" id="rm-back" style="justify-self:start;width:max-content">${ico('i-left')}All pillars</button>
-      <section class="rm-ph"><span class="rm-num">${P.n}</span><div><h2 class="rm-x">${pt.name}</h2><p class="rm-x">${pt.promise}</p><span class="chip lav">Say: <span>${P.mf}</span></span></div></section>
-      <div class="rm-cols">
-        <section><h3 class="rm-ch"><span class="pill live"><span class="d"></span>Now</span><small>Released in the last six months</small></h3>${col(now, true).map(([r, c]) => rmCard(r, c, lg)).join('') || '<p class="muted">Nothing new here right now.</p>'}${rmSmall(col(now, false), lg, 'improvements')}</section>
-        <section><h3 class="rm-ch"><span class="pill soon"><span class="d"></span>Coming soon</span><small>On its way. No dates</small></h3>${col(next, true).map(([r, c]) => rmCard(r, c, lg)).join('') || '<p class="muted">Nothing announced yet.</p>'}${rmSmall(col(next, false), lg, 'improvements on the way')}</section>
-        <section><h3 class="rm-ch"><span class="pill">Later</span><small>The goal for the end of 2027</small></h3>
-          <article class="rm-c later"><h3 class="rm-x">${pt.goal}</h3><div class="rm-ex"><small>For example</small><b class="rm-x">${pt.ex[0]}</b><div class="rm-ba"><div><small>Today</small><span class="rm-x">${pt.ex[1]}</span></div>${ico('i-arrow')}<div><small>The goal</small><span class="rm-x">${pt.ex[2]}</span></div></div></div>
-          <small class="rm-fb">Product’s goal, not a promise. Use it to explain the direction, not to sell a date.</small></article></section>
-      </div>`;
-  }
-  const dig = RM_DIGEST.map(id => all.find(([r]) => r.lid === id)).filter(Boolean);
-  return `${head}
-    ${dig.length ? `<section class="rm-dig"><div class="rm-sh"><h2>Worth knowing this month</h2><small class="muted">Picked by Product Marketing. If you read one thing, read these.</small></div><div class="rm-dg">${dig.map(([r, c]) => rmCard(r, c, lg, true)).join('')}</div></section>` : ''}
-    <section><div class="rm-sh"><h2>Six things Simployer is making easier</h2><small class="muted">Open one to see what is new, what is coming and where it is going.</small></div>
-    <div class="rm-grid">${PILLARS.map(p => { const pt = rmPT(p, lg), mine = vis.filter(([r, c]) => c.p === p.id && rmBig(r)), nn = mine.filter(([r]) => rmHz(r) === 'now').length, nx = mine.filter(([r]) => rmHz(r) === 'next').length;
-      return `<button type="button" class="rm-p" data-rmp="${p.id}"><span class="rm-num">${p.n}</span>${rmIsNew(p) ? '<span class="rm-new">New</span>' : ''}<b class="rm-x">${pt.name}</b><span class="rm-x">${pt.promise}</span><span class="rm-cnt"><span>Now ${nn}</span> · <span>Coming soon ${nx}</span></span><small class="rm-goal"><b>By end of 2027:</b> <span class="rm-x">${pt.goal}</span></small><span class="chip lav">Say: <span>${p.mf}</span></span></button>`; }).join('')}</div></section>`;
+  const lg = S.clang, more = S.rmAll || {}, fbL = lg !== 'EN' ? `<small class="rm-fb" title="${{ NO: 'Norwegian', SV: 'Swedish' }[lg]} wording on its way">EN</small>` : '';
+  const dig = RM_DIGEST.map(id => RELEASES.find(r => r.lid === id)).filter(r => r && rmHz(r) && rmOn(ROADMAP[r.lid]));
+  const line = r => { const c = ROADMAP[r.lid], [t, fb] = rmText(c, lg); return `<li><span class="rm-x">${esc(t[0])}</span>${fb ? fbL : ''}<button type="button" class="rm-cp" data-rmcopy="${r.lid}" title="Copy what to say" aria-label="Copy what to say">${ico('i-copy')}</button></li>`; };
+  const small = rmItems().filter(r => rmHz(r) === 'now' && !rmBig(r) && rmOn(ROADMAP[r.lid]));
+  const col = (hz, title, sub) => { const list = rmList(hz), show = more[hz] ? list : list.slice(0, 6);
+    return `<section class="rm-col ${hz}"><h2><span class="rm-dot"></span>${title}</h2><small>${sub}</small><ul>${show.map(line).join('')}</ul>${list.length > 6 ? `<button type="button" class="rm-more" data-rmall="${hz}">${more[hz] ? 'Show fewer' : `Show all ${list.length}`}</button>` : ''}
+      ${hz === 'now' && small.length ? `<details class="rm-small"><summary>+ ${small.length} smaller improvements</summary><ul>${small.map(r => `<li class="rm-x">${esc(rmText(ROADMAP[r.lid], lg)[0][0])}</li>`).join('')}</ul></details>` : ''}</section>`; };
+  return `<div class="page-title"><div><h1>Roadmap</h1><p>What to tell customers about Simployer. Updated every month.</p></div></div>
+    ${dig.length ? `<section class="rm-hero"><h2>Tell customers this month</h2><ol>${dig.map(r => { const hz = rmHz(r); return `<li><span class="pill ${hz === 'now' ? 'live' : 'soon'}"><span class="d"></span>${hz === 'now' ? 'New' : 'Coming soon'}</span><p class="rm-x">${esc(rmBare(rmSay(ROADMAP[r.lid], lg)))}</p><button type="button" class="btn btn-sm rm-hcp" data-rmcopy="${r.lid}">${ico('i-copy')}Copy</button></li>`; }).join('')}</ol></section>` : ''}
+    <div class="rm-two">${col('now', 'New', 'Released in the last three months')}${col('next', 'Coming soon', 'No dates. Say “coming soon”, never a day.')}</div>
+    <details class="rm-goals"><summary>Where Simployer is going by 2027</summary><ol>${PILLARS.map(p => { const pt = rmPT(p, lg); return `<li><b class="rm-x">${pt.name}</b><span class="rm-x">${pt.promise}</span></li>`; }).join('')}</ol></details>`;
 }
 function bindRoadmap() {
-  $$('[data-rmp]').forEach(b => b.addEventListener('click', () => { S.rmPillar = b.dataset.rmp; rmSeenSet(S.rmPillar); track('roadmap_pillar', { p: S.rmPillar }); render(); window.scrollTo({ top: 0 }); }));
-  if ($('#rm-back')) $('#rm-back').addEventListener('click', () => { S.rmPillar = null; render(); });
-  $$('[data-rmaud]').forEach(b => b.addEventListener('click', () => { S.rmAud = b.dataset.rmaud; render(); }));
-  $$('[data-rmmk]').forEach(b => b.addEventListener('click', () => { S.rmMk = b.dataset.rmmk; render(); }));
-  $$('[data-rmcopy]').forEach(b => b.addEventListener('click', async () => { const c = ROADMAP[b.dataset.rmcopy], line = rmText(c, S.clang)[0][4]; try { await navigator.clipboard.writeText(line); } catch (_) {} track('roadmap_copy', { lid: b.dataset.rmcopy }); toast('Line copied. Keep it as it is: no dates.'); }));
+  $$('[data-rmall]').forEach(b => b.addEventListener('click', () => { S.rmAll = { ...(S.rmAll || {}), [b.dataset.rmall]: !(S.rmAll || {})[b.dataset.rmall] }; render(); }));
+  $$('[data-rmcopy]').forEach(b => b.addEventListener('click', async () => { const line = rmSay(ROADMAP[b.dataset.rmcopy], S.clang); try { await navigator.clipboard.writeText(line); } catch (_) {} track('roadmap_copy', { lid: b.dataset.rmcopy }); toast(`Copied: “${line}”`); }));
 }
 
 /* PMM: turn External releases into roadmap cards */
@@ -2629,7 +2579,8 @@ function rmCheck(r, txt) {
     hz === 'now' ? [!/\b(will|soon|coming|planned|skal|kommer|ska)\b/i.test(body), 'Present tense: it has shipped'] : [!rmBig(r) || say.startsWith(RM_UI[lg].soon), `The line starts with “${RM_UI[lg].soon}”`],
     [!/\b\d{1,2}\.? ?(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|okt|oct|nov|des|dec)|\bQ[1-4]\b|\b20\d\d\b|\bweek \d/i.test(body), 'No dates, quarters or years'],
     [!/\d+\s?%|\bROI\b/i.test(body), 'No figures finance hasn’t approved'],
-    [(txt[1] || txt[0] || '').split(/\s+/).filter(Boolean).length <= 30, 'What changes fits in 30 words'],
+    [(txt[0] || '').split(/\s+/).filter(Boolean).length <= 8, 'Title fits in 8 words'],
+    [!rmBig(r) || (txt[4] || '').split(/\s+/).filter(Boolean).length <= 25, 'The line fits in 25 words'],
   ];
 }
 function vRmEd() {
@@ -2637,9 +2588,9 @@ function vRmEd() {
   if (!S.rmSel || !items.some(r => r.lid === S.rmSel)) S.rmSel = (items.find(r => rmGroup(r) !== 'on') || items[0]).lid;
   const r = items.find(x => x.lid === S.rmSel), c = ROADMAP[r.lid] || {}, big = rmBig(r), lg = S.clang, hz = rmHz(r);
   const cur = (c.t && c.t[lg]) || (big ? ['', '', '', '', ''] : ['']), st = (c.st || {})[lg], sug = TEAM_PILLAR[r.team];
-  const fields = big ? [['Title', 'The task, in plain words'], ['What changes', 'One or two sentences'], ['Before', 'How it works without it'], [hz === 'now' ? 'Now' : 'After', 'How it works with it'], ['Say it like this', hz === 'now' ? 'A line a rep can say to a customer' : `Starts with “${RM_UI[lg].soon}”`]] : [['One line', 'What changed, in plain words']];
+  const fields = big ? [[0, 'Title', 'Short: the task, in plain words'], [4, 'Say it like this', hz === 'now' ? 'One sentence a rep can say to a customer' : `One sentence, starting with “${RM_UI[lg].soon}”`]] : [[0, 'One line', 'What changed, in plain words']];
   const digN = RM_DIGEST.length, inDig = RM_DIGEST.includes(r.lid);
-  return `<div class="page-title"><div><h1>Roadmap cards</h1><p>Turn External releases into plain cards for the org Roadmap. T1 and T2 get a card; T3 and T4 get one line. Nothing shows until the English is approved.</p></div><button class="btn btn-line" data-view="roadmap">${ico('i-eye')}See the Roadmap</button></div>
+  return `<div class="page-title"><div><h1>Roadmap cards</h1><p>Turn External releases into lines a seller understands in five seconds. T1 and T2 get a short title and one sentence to say; T3 and T4 get one line. Nothing shows until the English is approved.</p></div><button class="btn btn-line" data-view="roadmap">${ico('i-eye')}See the Roadmap</button></div>
     <div class="rm-ed">
       <section class="card rm-q">${RM_GROUPS.map(([g, t]) => { const list = items.filter(x => rmGroup(x) === g); return list.length ? `<div class="rm-qg"><span class="eyebrow">${t} · ${list.length}</span>${list.map(x => `<button type="button" data-rmsel="${x.lid}" aria-current="${x.lid === S.rmSel}"><b>${esc(x.name)}</b><small>${x.tier} · ${rmHz(x) === 'now' ? 'Now' : 'Coming soon'} · ${esc(x.team)}${RM_DIGEST.includes(x.lid) ? ' · Worth knowing' : ''}</small></button>`).join('')}</div>` : ''; }).join('')}</section>
       <section class="card rm-form">
@@ -2650,8 +2601,7 @@ function vRmEd() {
           ${lg !== 'EN' && c.t && c.t.EN ? `<div class="src-en"><span class="eyebrow">English source</span>${c.t.EN.map(x => `<p>${esc(x)}</p>`).join('')}</div>` : ''}
           ${lg === 'EN' && !(c.t && c.t.EN) ? `<button class="btn btn-line btn-sm" id="rm-draft" style="justify-self:start;width:max-content">${ico('i-sparkle')}Draft from Linear</button>` : ''}
           ${c.ai && lg === 'EN' && st !== 'approved' ? `<div class="ro">${ico('i-sparkle')}<span><b>AI draft.</b> Check it against the release before you approve.</span></div>` : ''}
-          ${fields.map(([l, h], i) => `<div class="fld"><label for="rm-f${i}">${l} <span>${h}</span></label>${i === 1 ? `<textarea id="rm-f${i}" class="in-s" rows="2" data-rmf="${i}">${esc(cur[i] || '')}</textarea>` : `<input id="rm-f${i}" class="in-s" data-rmf="${i}" value="${esc(cur[i] || '')}">`}</div>`).join('')}
-          ${big ? `<div class="rm-ck"><span>Who it helps</span>${Object.entries(AUD_L).map(([k, t]) => `<label><input type="checkbox" data-rmaudck="${k}" ${(c.aud || []).includes(k) ? 'checked' : ''}>${t}</label>`).join('')}<span>Market</span>${Object.entries(MK_L).map(([k, t]) => `<label><input type="checkbox" data-rmmkck="${k}" ${(c.mk || ['NO', 'SE']).includes(k) ? 'checked' : ''}>${t}</label>`).join('')}</div>` : ''}
+          ${fields.map(([i, l, h]) => `<div class="fld"><label for="rm-f${i}">${l} <span>${h}</span></label>${i === 4 ? `<textarea id="rm-f${i}" class="in-s" rows="2" data-rmf="${i}">${esc(cur[i] || '')}</textarea>` : `<input id="rm-f${i}" class="in-s" data-rmf="${i}" value="${esc(cur[i] || '')}">`}</div>`).join('')}
           <div class="mchk" id="rm-chk"></div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="btn btn-line" id="rm-save">Save draft</button><button class="btn btn-primary" id="rm-ok">${ico('i-check')}Approve ${lg}</button><span class="muted">${st === 'approved' ? `Approved${c.by ? ' by ' + esc(c.by) : ''}` : st === 'waiting' ? 'Waiting for approval' : 'Not written yet'}</span></div>
           ${big ? `<label class="rm-dk"><input type="checkbox" id="rm-dig" ${inDig ? 'checked' : ''} ${!rmOn(c) || (!inDig && digN >= 3) ? 'disabled' : ''}>Worth knowing this month <small class="muted">${digN} of 3 picked${!rmOn(c) ? ' · approve the English first' : ''}</small></label>` : ''}` : '<p class="muted">Pick a pillar first. The card is written after that.</p>'}
@@ -2662,15 +2612,15 @@ function vRmEd() {
 function bindRmEd() {
   const lid = S.rmSel, r = RELEASES.find(x => x.lid === lid), lg = S.clang;
   const c = () => (ROADMAP[lid] = ROADMAP[lid] || {});
-  const vals = () => $$('[data-rmf]').map(x => x.value.trim());
+  const vals = () => { const o = ROADMAP[lid] || {}, v = [...((o.t && o.t[lg]) || (rmBig(r) ? ['', '', '', '', ''] : ['']))]; $$('[data-rmf]').forEach(x => { v[+x.dataset.rmf] = x.value.trim(); }); return v; };
   const check = () => { const box = $('#rm-chk'); if (!box) return; box.innerHTML = rmCheck(r, vals()).map(([o, t]) => `<div class="${o ? 'ok' : 'bad'}">${ico(o ? 'i-check-c' : 'i-alert')}<span>${t}</span></div>`).join(''); };
-  const keep = () => { const v = vals(); if (!v.length) return; const o = c(); o.t = o.t || {}; o.t[lg] = v; o.aud = $$('[data-rmaudck]').filter(x => x.checked).map(x => x.dataset.rmaudck); const mk = $$('[data-rmmkck]').filter(x => x.checked).map(x => x.dataset.rmmkck); if ($$('[data-rmmkck]').length) o.mk = mk.length ? mk : ['NO', 'SE']; o.st = o.st || {}; };
+  const keep = () => { if (!$$('[data-rmf]').length) return; const o = c(); o.t = o.t || {}; o.t[lg] = vals(); o.st = o.st || {}; };
   $$('[data-rmsel]').forEach(b => b.addEventListener('click', () => { S.rmSel = b.dataset.rmsel; render(); }));
   if ($('#rm-p')) $('#rm-p').addEventListener('change', e => { if (!e.target.value) return; c().p = e.target.value; render(); toast(`Pillar set: ${rmPT(rmPillar(e.target.value), 'EN').name}.`); });
   $$('[data-rmf]').forEach(x => x.addEventListener('input', check)); check();
-  if ($('#rm-draft')) $('#rm-draft').addEventListener('click', () => { const o = c(), s = (r.summaryL || r.name).replace(/\s+/g, ' ').trim(); o.t = o.t || {}; o.t.EN = rmBig(r) ? [r.name, s.split(/(?<=\.)\s/)[0], '', '', rmHz(r) === 'next' ? `${RM_UI.EN.soon} ${s.charAt(0).toLowerCase()}${s.slice(1).split(/(?<=\.)\s/)[0]}` : s.split(/(?<=\.)\s/)[0]] : [s.split(/(?<=\.)\s/)[0]]; o.st = { ...(o.st || {}), EN: 'waiting' }; o.ai = true; render(); toast('Drafted from the Linear summary. Rewrite it in plain words, then approve.'); });
+  if ($('#rm-draft')) $('#rm-draft').addEventListener('click', () => { const o = c(), s = (r.summaryL || r.name).replace(/\s+/g, ' ').trim(); o.t = o.t || {}; o.t.EN = rmBig(r) ? [r.name, '', '', '', rmHz(r) === 'next' ? `${RM_UI.EN.soon} ${s.charAt(0).toLowerCase()}${s.slice(1).split(/(?<=\.)\s/)[0]}` : s.split(/(?<=\.)\s/)[0]] : [s.split(/(?<=\.)\s/)[0]]; o.st = { ...(o.st || {}), EN: 'waiting' }; o.ai = true; render(); toast('Drafted from the Linear summary. Rewrite it in plain words, then approve.'); });
   if ($('#rm-save')) $('#rm-save').addEventListener('click', () => { keep(); c().st[lg] = 'waiting'; render(); toast(`${lg} saved. Waiting for approval.`); });
-  if ($('#rm-ok')) $('#rm-ok').addEventListener('click', () => { keep(); const v = c().t[lg]; if (!v || !v[0] || (rmBig(r) && (!v[1] || !v[4]))) { toast('Fill in the title, what changes and the line first.'); return; } const bad = rmCheck(r, v).find(([o]) => !o); if (bad) { toast(`Fix this first: ${bad[1]}.`); return; } Object.assign(c(), { at: new Date().toISOString(), by: CUR ? CUR.name.split(' ')[0] : 'Tobias' }); c().st[lg] = 'approved'; delete c().ai; render(); toast(lg === 'EN' ? 'Approved. It is on the Roadmap now.' : `${lg} approved.`); });
+  if ($('#rm-ok')) $('#rm-ok').addEventListener('click', () => { keep(); const v = c().t[lg]; if (!v || !v[0] || (rmBig(r) && !v[4])) { toast('Fill in the title and the line first.'); return; } const bad = rmCheck(r, v).find(([o]) => !o); if (bad) { toast(`Fix this first: ${bad[1]}.`); return; } Object.assign(c(), { at: new Date().toISOString(), by: CUR ? CUR.name.split(' ')[0] : 'Tobias' }); c().st[lg] = 'approved'; delete c().ai; render(); toast(lg === 'EN' ? 'Approved. It is on the Roadmap now.' : `${lg} approved.`); });
   if ($('#rm-dig')) $('#rm-dig').addEventListener('change', e => { const i = RM_DIGEST.indexOf(lid); if (e.target.checked && i < 0 && RM_DIGEST.length < 3) RM_DIGEST.push(lid); if (!e.target.checked && i >= 0) RM_DIGEST.splice(i, 1); render(); });
   $$('[data-rmpe]').forEach(x => x.addEventListener('change', () => { const [id, k] = x.dataset.rmpe.split(':'), p = rmPillar(id); p.t[lg] = p.t[lg] || { ...p.t.EN }; p.t[lg][k] = x.value.trim(); toast('Pillar text saved.'); }));
 }
@@ -3794,6 +3744,7 @@ Object.assign(I18N, {
 });
 Object.assign(I18N, { 'Approve NO': ['Godkjenn NO', 'Godkänn NO'], 'Approve SV': ['Godkjenn SV', 'Godkänn SV'], 'Approve EN': ['Godkjenn EN', 'Godkänn EN'], 'Sia is paired with the experts': ['Sia står sammen med ekspertene', 'Sia står tillsammans med experterna'], 'What it is fits in {n} words': ['Hva det er får plass på {n} ord', 'Vad det är ryms på {n} ord'], 'No competitor names, and never “replaces”': ['Ingen konkurrentnavn, og aldri «erstatter»', 'Inga konkurrentnamn, och aldrig ”ersätter”'], 'Future tense is fine: not released yet': ['Fremtid er greit: ikke lansert ennå', 'Framtid går bra: inte lanserad ännu'], 'Approved by {n}': ['Godkjent av {n}', 'Godkänd av {n}'], 'English': ['English', 'English'], 'E.g. a customer quote from the approved list': ['F.eks. et kundesitat fra den godkjente listen', 'T.ex. ett kundcitat från den godkända listan'], 'Waiting for approval': ['Venter på godkjenning', 'Väntar på godkännande'], 'Save as new draft': ['Lagre som nytt utkast', 'Spara som nytt utkast'], 'Approve': ['Godkjenn', 'Godkänn'], 'Waiting for Tobias and the PM': ['Venter på Tobias og produktsjefen', 'Väntar på Tobias och produktchefen'], 'drafted from Linear and the messaging framework': ['laget fra Linear og budskapsrammeverket', 'skapat från Linear och budskapsramverket'] });
 Object.assign(I18N, { "Roadmap": ["Veikart", "Färdplan"], "Roadmap cards": ["Veikartkort", "Färdplanskort"], "Where Simployer is going. Every change makes an HR task take fewer clicks, fewer words and less waiting.": ["Hvor Simployer er på vei. Hver endring gjør en HR-oppgave raskere: færre klikk, færre ord og mindre venting.", "Vart Simployer är på väg. Varje förändring gör en HR-uppgift snabbare: färre klick, färre ord och mindre väntan."], "No dates on purpose.": ["Ingen datoer, med vilje.", "Inga datum, med flit."], "Say “coming soon”, never a day. Only what is cleared for customers is here.": ["Si «kommer snart», aldri en dag. Her er bare det som er klarert for kunder.", "Säg ”kommer snart”, aldrig en dag. Här finns bara det som är klart att berätta för kunder."], "Who it helps": ["Hvem det hjelper", "Vem det hjälper"], "Market": ["Marked", "Marknad"], "Managers": ["Ledere", "Chefer"], "Employees": ["Ansatte", "Anställda"], "Norway": ["Norge", "Norge"], "Sweden": ["Sverige", "Sverige"], "Norway only": ["Bare Norge", "Endast Norge"], "Sweden only": ["Bare Sverige", "Endast Sverige"], "Worth knowing this month": ["Verdt å vite denne måneden", "Värt att veta den här månaden"], "Picked by Product Marketing. If you read one thing, read these.": ["Valgt av produktmarkedsføring. Leser du én ting, så les disse.", "Utvalt av produktmarknadsföring. Läser du en sak, läs de här."], "Six things Simployer is making easier": ["Seks ting Simployer gjør enklere", "Sex saker Simployer gör enklare"], "Open one to see what is new, what is coming and where it is going.": ["Åpne en for å se hva som er nytt, hva som kommer og hvor det går.", "Öppna en för att se vad som är nytt, vad som kommer och vart det går."], "Now": ["Nå", "Nu"], "Coming soon": ["Kommer snart", "Kommer snart"], "Now {n}": ["Nå {n}", "Nu {n}"], "Coming soon {n}": ["Kommer snart {n}", "Kommer snart {n}"], "By end of {n}:": ["Innen utgangen av {n}:", "Före slutet av {n}:"], "Say:": ["Si:", "Säg:"], "New": ["Ny", "Ny"], "Before": ["Før", "Före"], "After": ["Etter", "Efter"], "The goal": ["Målet", "Målet"], "For example": ["For eksempel", "Till exempel"], "Say it like this": ["Si det slik", "Säg det så här"], "All pillars": ["Alle pilarer", "Alla pelare"], "Released in the last six months": ["Lansert de siste seks månedene", "Lanserat de senaste sex månaderna"], "On its way. No dates": ["På vei. Ingen datoer", "På väg. Inga datum"], "Later": ["Senere", "Senare"], "The goal for the end of {n}": ["Målet for utgangen av {n}", "Målet för slutet av {n}"], "Nothing new here right now.": ["Ikke noe nytt her akkurat nå.", "Inget nytt här just nu."], "Nothing announced yet.": ["Ingenting annonsert ennå.", "Inget annonserat än."], "+ {n} smaller improvements": ["+ {n} mindre forbedringer", "+ {n} mindre förbättringar"], "+ {n} smaller improvements on the way": ["+ {n} mindre forbedringer på vei", "+ {n} mindre förbättringar på väg"], "Product’s goal, not a promise. Use it to explain the direction, not to sell a date.": ["Produktets mål, ikke et løfte. Bruk det til å forklare retningen, ikke til å selge en dato.", "Produktens mål, inte ett löfte. Använd det för att förklara riktningen, inte för att sälja ett datum."], "Norwegian wording on its way. Shown in English.": ["Norsk tekst er på vei. Vises på engelsk.", "Norsk text är på väg. Visas på engelska."], "Swedish wording on its way. Shown in English.": ["Svensk tekst er på vei. Vises på engelsk.", "Svensk text är på väg. Visas på engelska."], "Line copied. Keep it as it is: no dates.": ["Linjen er kopiert. Bruk den som den er: uten datoer.", "Raden är kopierad. Använd den som den är: utan datum."] });
+Object.assign(I18N, { "What to tell customers about Simployer. Updated every month.": ["Hva du kan fortelle kundene om Simployer. Oppdateres hver måned.", "Vad du kan berätta för kunderna om Simployer. Uppdateras varje månad."], "Tell customers this month": ["Fortell kundene denne måneden", "Berätta för kunderna den här månaden"], "Released in the last three months": ["Lansert de siste tre månedene", "Lanserat de senaste tre månaderna"], "No dates. Say “coming soon”, never a day.": ["Ingen datoer. Si «kommer snart», aldri en dag.", "Inga datum. Säg ”kommer snart”, aldrig en dag."], "Show all {n}": ["Vis alle {n}", "Visa alla {n}"], "Show fewer": ["Vis færre", "Visa färre"], "Where Simployer is going by {n}": ["Hvor Simployer skal innen {n}", "Vart Simployer är på väg till {n}"], "Copy what to say": ["Kopier hva du kan si", "Kopiera vad du kan säga"] });
 I18N[L.EN.tag] = [L.NO.tag, L.SV.tag]; I18N[L.EN.trust] = [L.NO.trust, L.SV.trust];
 ['Leave the admin', 'Skip the worry', 'Get the signal'].forEach(p => { I18N[p] = [L.NO.pillars[p] || p, L.SV.pillars[p] || p]; });
 

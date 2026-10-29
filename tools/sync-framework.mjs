@@ -12,7 +12,7 @@ const END = '/* MF:END */';
 
 // Top-level blocks in the prototype that hold customer-facing copy (slides, truth, packs, ads, talk tracks).
 const COPY_BLOCKS = ['L', 'PRULES', 'DISC_QUOTES', 'FEATURES', 'FL', 'NEWF', 'ADS', 'VADS', 'SOCIAL', 'RELEASES', 'TPL', 'LOC', 'REFS', 'EXAMPLE', 'BATTLE',
-  'PILLARS', 'ROADMAP', 'RM_UI', 'rmCard', 'vRoadmap', 'slideHTML', 'vDeck', 'genFields', 'itemBody', 'adFromRelease', 'autoFill', 'autoItem'];
+  'PILLARS', 'ROADMAP', 'RM_UI', 'vRoadmap', 'slideHTML', 'vDeck', 'genFields', 'itemBody', 'adFromRelease', 'autoFill', 'autoItem'];
 
 const fw = JSON.parse(await readFile(FW, 'utf8'));
 let html = await readFile(TARGET, 'utf8');

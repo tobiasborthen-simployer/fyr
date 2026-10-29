@@ -431,58 +431,46 @@ v0.2 had none of these. Every deck followed one fixed order.
 
 ---
 
-### 4.11 Roadmap (org-facing; PMM curates) ([D-032](DECISIONS.md))
+### 4.11 Roadmap (org-facing; PMM curates) ([D-032](DECISIONS.md), simplified by [D-033](DECISIONS.md))
 
-**Purpose.** Show everyone where the product is going, in plain words, without the release noise. It is built on the six product pillars of Product Strategy 2027.
+**Purpose.** Answer one question for a seller in five seconds: *what do I tell customers?* No release noise, no Linear terms, no dates.
 
-**The org view**
-- **Header** with one line on effort (fewer clicks, fewer words, less waiting) and a guard: *no dates on purpose; say "coming soon", never a day; only what is cleared for customers is here.*
-- **Worth knowing this month:** at most 3 cards picked by PMM.
-- **Six pillar cards**, each with:
-  - the number, plain name and promise
-  - counts: *Now n · Coming soon n*
-  - the 2027 goal
-  - the messaging pillar to use with customers ("Say: Leave the admin")
-  - a **New** marker until the user opens the pillar
-- **Pillar detail** in three columns:
-  - **Now:** External T1/T2 cards released in the last six months, plus "+ N smaller improvements" (T3/T4 one-liners).
-  - **Coming soon:** External items not yet released, with no dates.
-  - **Later:** the pillar's 2027 goal and the strategy's before/after example, labelled as a goal, not a promise.
-- **A card holds:**
-  - a task-first title
-  - what changes (≤ 30 words)
-  - Before → Now/After
-  - who it helps (HR / Managers / Employees)
-  - market, when only one
-  - the messaging pillar
-  - **Say it like this** with Copy. Coming-soon lines start with "Coming soon:".
-- **Filters:** who it helps, and market.
-- **Language:** content follows the EN/NO/SV toggle. If a language isn't approved, the card shows English with "… wording on its way".
+**The org view: one page**
+1. **Tell customers this month:** at most 3 sentences picked by PMM, each with a *New* or *Coming soon* tag and **Copy**.
+2. **Two short lists side by side:**
+   - **New:** released in the last three months.
+   - **Coming soon:** no dates.
 
-**Noise rules**
+   One short title per line, with a copy button that copies the sentence to say. At most 6 per list, then *Show all*. The three highlighted items aren't repeated. Smaller T3/T4 changes fold into one collapsed "+ N smaller improvements".
+3. **Where Simployer is going by 2027:** the six pillars of Product Strategy 2027, collapsed at the bottom.
+- **Not on the page:** filters, pillar navigation, before/after, chips and "New" markers.
+- **Language:** content follows the EN/NO/SV toggle. If a line isn't approved in that language, it shows in English with a small "EN" tag.
+
+**Rules**
 - External only. Internal and P&T-only work never shows.
-- Only T1/T2 get cards; T3/T4 collapse into one line each.
-- Now drops off after six months.
-- At most three "worth knowing" a month.
-- No Linear names and no dates. Coming-soon items have no quarter or month either.
+- T1/T2 get a title and a sentence; T3/T4 get one line.
+- New drops off after three months.
+- At most three highlights a month.
+- No Linear names and no dates. Coming-soon sentences start with "Coming soon:".
 
 **PMM: Releases → Roadmap cards**
 - **Queue of External now/next items:** *Needs a pillar · Needs a card · Waiting for approval · On the roadmap*.
 - **Pillar:**
   - Comes from a Linear label "Pillar" once P&T adds it.
   - Until then PMM picks it, with a suggestion from the Linear team.
-- **Card form per language:**
-  - *Draft from Linear* (AI draft from the summary, labelled as a draft)
-  - a live check: avoid list; present tense for Now; "Coming soon:" for Next; no dates, quarters or years; no unapproved figures; ≤ 30 words
+- **Form per language:** a **title** (≤ 8 words) and **say it like this** (one sentence, ≤ 25 words).
+  - *Draft from Linear* (AI draft, labelled as a draft)
+  - a live check: avoid list; present tense for New; "Coming soon:" for coming items; no dates, quarters or years; no unapproved figures
   - **Approve per language**
-  - the "Worth knowing" pick (max 3)
+  - the "Tell customers this month" pick (max 3)
 - Pillar promises and 2027 goals are edited here per language.
 
 **Acceptance criteria**
 - [ ] No release with visibility other than External, or with an early status, appears in the org Roadmap.
 - [ ] No date, month or quarter appears for a coming-soon item.
 - [ ] Unapproved text never appears; the English fallback is labelled.
-- [ ] A card approved by PMM appears for everyone at once, with a New marker on its pillar until opened.
+- [ ] A line approved by PMM appears for everyone at once.
+- [ ] A seller can find what to say about this month's highlights without scrolling on a laptop.
 - [ ] Roadmap views and copied lines are counted in Usage, by role only.
 
 ---
@@ -551,7 +539,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 
 | Entity | Key fields |
 |---|---|
-| `portal.users` | id, email (unique, lowercased), name, role (`pm`/`pmm`/`sales`/`management`), access (`viewer`/`pm`/`editor`), requested_access, approver, admin, status (`active`/`pending`/`disabled`), title, phone, photo_url, verified_at, last_sign_in_at, approved_by/at, roadmap_seen (per pillar), created_at |
+| `portal.users` | id, email (unique, lowercased), name, role (`pm`/`pmm`/`sales`/`management`), access (`viewer`/`pm`/`editor`), requested_access, approver, admin, status (`active`/`pending`/`disabled`), title, phone, photo_url, verified_at, last_sign_in_at, approved_by/at, created_at |
 | `portal.login_tokens` | email, purpose (`register`/`sign_in`), code_hash, link_hash, payload (name, role), expires_at, used_at, attempts, ip, created_at |
 | `portal.sessions` | token_hash, user_id, created_at, expires_at, last_seen_at |
 | `portal.events` | user_id, role, type (`sign_in`/`register`/`deck_created`/`deck_presented`/`deck_edited`/`own_slide`/`quote`/`view`/`search_empty`), meta (JSON), at. Deleted after 12 months; the Usage tab reads aggregate views only ([D-025](DECISIONS.md)). |
@@ -565,7 +553,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `BrandRule` | id, text, kind (`voice`/`banned`/`proof`/`term`), active |
 | `RemixItem` | releaseId, packItemId, channel, lang, content, status, builtFrom[] |
 | `Pillar` | id, number, mf (messaging pillar), per language: name, promise, goal2027, example (what, today, goal); version ([D-032](DECISIONS.md)) |
-| `RoadmapCard` | linearId, pillar, kind (`card`/`line`), audience[], markets[], per language: title, what, before, after, say + status; approvedBy/At, digestMonth |
+| `RoadmapCard` | linearId, pillar, kind (`card`/`line`), per language: title, say + status; approvedBy/At, digestMonth ([D-033](DECISIONS.md)) |
 | `Battlecard` | market, competitor, sections (JSON), version, publishedBy/At |
 | `Asset` | featureId, title, type (`screenshot`/`animation`), lang, blobUrl, status, why |
 | `PresentationRule` | name, audience, recipe[], featureMin/Max, mustInclude[], mustAvoid[], tone, cta, notes |

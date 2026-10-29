@@ -612,7 +612,7 @@ Details are in PARKED.md.
 - Not affected: building with Claude Code, sharing the prototype and the Messaging Framework as claude.ai links, and the weekly framework drift check. These are internal working tools, not part of the product. To confirm with IT.
 
 ## D-032 — A Roadmap for everyone, by product pillar, in plain words
-`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+`2026-10-29` · **Status:** Accepted; the org view superseded by D-033 · **Owner:** Tobias
 **Supersedes:** "only four org-facing areas" in D-007. Roadmap is the fifth.
 
 **Context:**
@@ -652,3 +652,24 @@ Details are in PARKED.md.
   - Tobias approves the NO/SV card wording.
 
 **Revisit if:** reps ask for dates on coming-soon items, or "worth knowing" grows past three a month.
+
+## D-033 — Roadmap simplified: a seller understands it in five seconds
+`2026-10-29` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** the org view in D-032 (pillar cards, the Now/Next/Later pillar view, filters, before → after, "New" markers, and six months as "Now").
+
+**Context:** Tobias tried the first Roadmap and found it too complex: "lazy sellers must understand it in five seconds".
+
+**Decision:**
+- **One page** that answers *what do I tell customers?*:
+  1. **Tell customers this month:** 3 sentences, each with a New / Coming soon tag and Copy.
+  2. **New | Coming soon:** two short lists of titles, with copy buttons. At most 6 each, then *Show all*. Highlights aren't repeated.
+  3. **Where Simployer is going by 2027:** the six pillars, collapsed.
+- **New** = released in the last three months.
+- A card is now only a **title** (≤ 8 words) and **one sentence to say** (≤ 25 words). What changes, before/after, audience and market are dropped.
+- **Unchanged from D-032:** External only, no dates, PMM curates in *Releases → Roadmap cards*, pillars kept for PMM, approval per language.
+
+**Consequences:**
+- The pillars stay in the data and in PMM's form, but sellers don't navigate by them.
+- The PMM form is shorter.
+
+**Revisit if:** sellers ask for more context per item. If so, add one optional "what changes" line behind a click, not on the page.

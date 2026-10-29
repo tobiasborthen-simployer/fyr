@@ -16,6 +16,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **PDF export works in the prototype.** *PDF* opens the deck with the print dialog: one 16:9 page per visible slide, hidden slides left out. The shared deck page also has *Save as PDF*.
 
 **Changed**
+- **Roadmap is now one simple page (D-033):** "Tell customers this month" (3 sentences to copy), then New | Coming soon as two short lists, with the 2027 pillars folded away at the bottom. Pillar cards, filters and before/after are gone.
 - Planned AI drafting runs on OpenAI instead of the Claude API (D-031). There is no change in the prototype.
 - No more picture bar: the signed-in user is the rep. Their name, photo, title, email and phone come from Profile, and the deck panel shows them, with *Edit profile* (D-030).
 - The next-steps timeline always starts with Demo and ends with Go-live. Steps that have happened are marked with a ✓, and the Demo deck starts with Demo ticked off (D-028).

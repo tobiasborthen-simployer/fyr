@@ -42,6 +42,23 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-10-29 — Roadmap simplified to a five-second page (D-033)
+- **Done:**
+  - Tobias found the Roadmap too complex. It is now one page:
+    1. **Tell customers this month:** 3 sentences, with New / Coming soon tags and Copy.
+    2. **New | Coming soon:** short title lists with copy buttons, at most 6 each before *Show all*. Highlights aren't repeated, and smaller changes are folded away.
+    3. **Where Simployer is going by 2027:** collapsed.
+  - Removed: pillar navigation, filters, before/after, chips, New markers. New is now the last three months.
+  - The PMM form is now a title plus one sentence, with checks: title ≤ 8 words, line ≤ 25 words.
+- **Verified:**
+  - Sales view: 3 highlights; 6 + 6 lines with *Show all 9 / 8*; no Internal names and no dates; Copy puts the sentence on the clipboard.
+  - Swedish works, with EN tags where a line isn't translated.
+  - 375 px: no horizontal scroll.
+  - As PMM: draft → title + line → check → approve, and the line shows up under Coming soon.
+  - Copy check: 0 errors.
+- **Next:** still open from D-032 (Linear "Pillar" label, Nima's OK, NO/SV approvals). One-pager from a deck (D-033 candidate → now D-034) is waiting for Tobias's go-ahead.
+- **Decisions:** D-033.
+
 ### 2026-10-29 — Roadmap for everyone (D-032)
 - **Done:**
   - A new org area, **Roadmap**, built on the six pillars from Product Strategy 2027, in plain words.
