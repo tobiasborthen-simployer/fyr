@@ -34,6 +34,7 @@ Everything in v0.2 that is **not** built in v0.3. Each row says what the item di
 | **Slack** | Messages drawer, publishing notes, battlecard import (`renderSlack` l.3118) | External dependency |
 | **Role switcher / personas** | Six role views and PMM persona switch (`ROLES`, `PERS`/`setPers` l.4276) | Replaced by editor / approver / viewer access (D-003) |
 | **Non-deck Create types** | Follow-up email, one-pager, demo video, security/integration/business case, what's new, customer email, guide, plan, answer, macro, leadership brief, web copy… (`outFor`/`extraOut`, l.2609/3822) | Create = Presentations only; marketing outputs live in Remix |
+|  | *30 Oct 2026: a one-pager built from the rep's deck was proposed and put on hold by Tobias ("not now").* | Revisit when reps ask for a leave-behind |
 | **Pack kinds: Slack announcement, Ready training, Product video** | Items in launch packs (`KINDS`, l.3953) | Depend on Slack, Training and ElevenLabs |
 | **Pack runway: "Sold", "Used 30/90d"** | Post-launch tracking via tl;dv, Salesforce and adoption | Depends on cut data |
 | **Launch-day channel check** | Intercom / Freshdesk / HubSpot / web check (`vCheck` l.3386) | External dependencies |

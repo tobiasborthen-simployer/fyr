@@ -56,7 +56,7 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
   - 375 px: no horizontal scroll.
   - As PMM: draft → title + line → check → approve, and the line shows up under Coming soon.
   - Copy check: 0 errors.
-- **Next:** still open from D-032 (Linear "Pillar" label, Nima's OK, NO/SV approvals). One-pager from a deck (D-033 candidate → now D-034) is waiting for Tobias's go-ahead.
+- **Next:** still open from D-032 (Linear "Pillar" label, Nima's OK, NO/SV approvals). One-pager from a deck: Tobias said "not now" (30 Oct), so it stays parked with the non-deck Create types (D-009, PARKED.md).
 - **Decisions:** D-033.
 
 ### 2026-10-29 — Roadmap for everyone (D-032)
