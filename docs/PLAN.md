@@ -58,7 +58,8 @@
   - People & access for admins, and a profile panel.
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
 - [x] **Roadmap for everyone (D-032, simplified by D-033).** One page: "Tell customers this month" (3), New | Coming soon lists, 2027 pillars collapsed; EN/NO/SV with fallback; PMM tab *Roadmap cards* (title + one sentence, AI draft, check, approval).
-- [ ] Publish the prototype as a new artifact, "Fyr v0.3". Walk through it, and log sign-off and changes in DECISIONS.
+- [x] Publish the prototype as a new artifact, "Fyr v0.3": [https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) (30 Oct). Republish to the same link after each change.
+- [ ] Walk through it, and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, access to the company's OpenAI setup (Azure OpenAI or the OpenAI API, model, budget; D-031), and a Vercel project.
 
 ## M2 — App foundation (5 – 11 Nov)

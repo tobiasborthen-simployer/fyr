@@ -36,11 +36,24 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) | Admin | Tobias | 11 Nov | Open |
 | Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) | Decision | Tobias | 4 Nov | Open |
 | Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
+| Walk through the published prototype and give sign-off (M1 exit); decide who to share it with | Approval | Tobias | 4 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-10-30 — Prototype published for sharing
+- **Done:**
+  - Published `prototype/v0.3/index.html` with its 48 media files (`img/`, `lab/`, `ph/`) as a private claude.ai artifact: [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE). No Vercel needed for the prototype.
+  - Declared the `downloads` capability, so *Open in new tab* and *PDF* fall back to saving the deck when the new tab is blocked.
+- **How sharing works:**
+  - Tobias shares it from the page's Share menu.
+  - Every viewer's sign-ins, decks and approvals stay in their own browser. The example accounts let people try Sales, PM or PMM.
+  - Later changes are republished to the same link.
+- **Verified:** 49 files live with the right types. A visual check of the live page needs a claude.ai sign-in, so it's still to do on Tobias's side.
+- **Before sharing widely:** the page shows real Linear project names, the strategy pillars (Nima's OK is open) and example people with ad photos.
+- **Next:** Tobias's walkthrough and M1 sign-off.
 
 ### 2026-10-29 — Roadmap simplified to a five-second page (D-033)
 - **Done:**

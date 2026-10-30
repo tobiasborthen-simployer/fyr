@@ -49,6 +49,8 @@ node tools/serve.mjs prototype/v0.3 8765
 
 Then open http://localhost:8765. Use `reference/v0.2 8766` to compare with v0.2.
 
+**Shared version:** the prototype is published as a private claude.ai artifact, [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE). Share it from the page's Share menu. Each viewer's sign-ins, decks and approvals stay in their own browser.
+
 Sign in with **Register** (any `@simployer.com` address; the email is simulated on screen), or open **Example accounts (prototype)** on the start screen. Tobias Borthen is the admin. Users and sessions are kept in your browser.
 
 ## Messaging Framework
