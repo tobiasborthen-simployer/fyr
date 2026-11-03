@@ -7,6 +7,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Added**
+- **Add slide picker (D-034):** six layouts with placeholders (Headline and text, Three points, Today and with Simployer, One big number, Agenda, What they said) and four ready-made slides with approved text (Feature, Customer quote, Why Simployer, Next steps). Faded placeholders and a count of what's left.
 - The prototype is published as a claude.ai artifact, [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE), for walkthrough and sign-off.
 - **Roadmap for everyone (D-032).** A new org area that shows where Simployer is going, by the six product pillars of Product Strategy 2027, in plain words:
   - Now / Coming soon / Later, with no dates.
@@ -43,6 +44,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Fixed**
+- On a phone, the deck page's button row now wraps instead of making the page wider than the screen.
 - "Why Simployer" no longer runs into the footer in Norwegian. The slide is a little tighter in all languages.
 - The start box understands "Discovery with …" (and "med", "hos", "för"), not only "… for …".
 - The slide list in the deck editor no longer jumps back to slide 1 when you click or edit. It keeps its scroll position.

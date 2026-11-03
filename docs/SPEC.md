@@ -380,7 +380,9 @@ v0.2 had none of these. Every deck followed one fixed order.
    - Screenshot/animation toggle, message check, speaker notes
    - **Editing ([D-017](DECISIONS.md)).**
      - Every text block on a slide can be changed: headline, eyebrow, body, pains, proof, quote and CTA. Only the footer's trust line stays fixed.
-     - **Add slide** inserts the rep's own slide (headline and text) for case-specific information.
+     - **Add slide** opens a picker with a live preview of each option ([D-034](DECISIONS.md)). The new slide goes in after the current one.
+       - **Your own, with placeholders:** Headline and text · Three points · Today and with Simployer · One big number · Agenda · What they said. Placeholder text is faded until the rep writes over it. The side panel counts the placeholders left.
+       - **Ready-made from Simployer** (approved text, nothing to write): Feature (pick one) · Customer quote (pick one) · Why Simployer · Next steps timeline.
      - Edits are marked on the thumbnail and checked against the brand rules. A breach is a warning, never a block.
      - **Reset text on this slide** restores the original wording.
      - Edits carry into Present, Open in new tab and PDF.
@@ -398,6 +400,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 - [ ] A rep goes from the empty Create page to a presentable deck in under 3 minutes.
 - [ ] The deck follows the chosen rule's recipe and passes the message check.
 - [ ] The rep can change any slide text and add their own slides; edits survive reorder, Present and PDF.
+- [ ] Add slide offers the six own layouts and four ready-made slides. A ready-made slide uses approved text only, and an own slide shows how many placeholders are left.
 - [ ] A deck closed mid-work reopens later, from My presentations, with every slide and edit intact.
 - [ ] Coming-soon features appear only as "Coming soon" slides. Blocked features never appear.
 - [ ] The PDF matches the on-screen 16:9 slides (fonts, images, page per slide).

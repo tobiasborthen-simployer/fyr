@@ -97,7 +97,7 @@
 - [ ] Presentation rules: CRUD and the 6 seeded rules.
 - [ ] Rep photo, title and phone from the signed-in user's Fyr profile on the cover and contact slide (D-030); photo upload to Vercel Blob.
 - [ ] Decks saved to the `Deck` table as the rep works (slides, edits, own slides, brief), listed in My presentations with open / copy / delete, and rendered into the PDF.
-- [ ] Create: home, brief, generate (recipe-driven), studio (edit, reorder, notes, message check), present, open in a tab, and My presentations.
+- [ ] Create: home, brief, generate (recipe-driven), studio (edit, reorder, notes, message check, Add slide picker with six own layouts and four ready-made slides, D-034), present, open in a tab, and My presentations.
 - [ ] Real PDF export (server-side headless Chromium, one page per 16:9 slide).
 - [ ] Marketing Remix: auto drafts on approval (A4), channel templates, the Remix library with copy/export, and approval inside packs.
 - [ ] Automations overview: list, stats and time-saved baselines.

@@ -43,6 +43,21 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-03 — Add slide picker with layouts and ready-made slides (D-034)
+- **Done:**
+  - *Add slide* now opens a picker with live previews.
+    - Six own layouts with faded placeholders.
+    - Four ready-made slides with approved text. Feature and Customer quote ask which one.
+  - The side panel counts the placeholders left. Writing over one removes the fade, and the slide list names the slide by what you wrote.
+  - Escape or ✕ closes the picker. NO/SV placeholders and labels added.
+  - Fixed along the way: on a phone the deck's button row didn't wrap and made the page wider than the screen.
+- **Verified:**
+  - Tested in the browser: all 10 options add in the right place; feature, quote and timeline content is correct; placeholders clear on edit and the count updates; Escape closes the picker.
+  - Desktop shows rows of 3 and 4; the phone shows 2 columns inside the 16 px gutters.
+  - Copy check: 0 errors.
+- **Next:** republish the artifact (same link). Still open: Tobias's walkthrough and M1 sign-off.
+- **Decisions:** D-034.
+
 ### 2026-10-30 — Prototype published for sharing
 - **Done:**
   - Published `prototype/v0.3/index.html` with its 48 media files (`img/`, `lab/`, `ph/`) as a private claude.ai artifact: [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE). No Vercel needed for the prototype.

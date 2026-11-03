@@ -673,3 +673,32 @@ Details are in PARKED.md.
 - The PMM form is shorter.
 
 **Revisit if:** sellers ask for more context per item. If so, add one optional "what changes" line behind a click, not on the page.
+
+## D-034 — Add slide offers layouts with placeholders and ready-made slides
+`2026-11-03` · **Status:** Accepted · **Owner:** Tobias
+**Extends:** D-017, where reps could add one blank "own slide" (headline and text).
+
+**Context:** A blank slide leaves the rep to design from nothing, and lazy sellers stop there. Tobias asked for a choice of slide types with placeholders.
+
+**Decision:**
+- **Add slide** opens a picker with a live preview of each option, in two groups.
+- **Your own, with placeholders** (six layouts):
+  - Headline and text
+  - Three points
+  - Today and with Simployer
+  - One big number
+  - Agenda
+  - What they said
+- **Ready-made from Simployer** (approved text, nothing to write):
+  - Feature (pick one)
+  - Customer quote (pick one)
+  - Why Simployer
+  - Next steps timeline
+- **Placeholders:** placeholder text is faded until the rep writes over it, and the side panel counts what is left. Own slides are checked against the brand rules like every edit, and are never approved by PMM.
+
+**Consequences:**
+- An own slide stores its layout (`lay`) with the slide. Older own slides read as "Headline and text".
+- Rebuild keeps own slides with their layouts.
+- Usage counts which layouts are added.
+
+**Revisit if:** reps ask for image upload on their own slides (needs Vercel Blob in the app), or a layout is never used.
