@@ -38,10 +38,27 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
 | Walk through the published prototype and give sign-off (M1 exit); decide who to share it with | Approval | Tobias | 4 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
+| Confirm D-035 (paid ad sets take the Paid Ads Engine template; the engine stays outside Fyr), and agree with Thea who owns paid ads day to day | Decision | Tobias | 11 Nov | Open |
+| Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea | Content | Tobias | 11 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-06 — Thea's Paid Ads Engine reviewed for fit (D-035, proposed)
+- **Done:**
+  - Read Thea's [Paid Ads Engine](https://claude.ai/artifact/9CtU7DqELamJiPdk7ovRSp), a concept and build plan from PRO-91 to PRO-95, and checked it against the SPEC, PARKED and DECISIONS.
+  - **Fits Remix:** the eight-part ad template, per-channel limits, ladder and pillar tags, the extra ad checks, variant and UTM naming, and a *Part 1 handover* export.
+  - **Doesn't fit v0.3:**
+    - the results loop and measurement
+    - HubSpot, Slack and Vercel partner pages (parked, D-031)
+    - Claude as the in-app model
+
+    These stay in her engine, which runs beside Fyr and takes approved ad sets from it.
+  - Ran her ad lines against the framework rules. PRO-93 uses "hard calls", and her pillar headlines differ from the framework heads.
+- **Next:** Tobias confirms D-035. If it's accepted, update SPEC §4.5 and the `RemixItem` model, and build in M4.
+- **Blockers:** none.
+- **Decisions:** D-035 (proposed).
 
 ### 2026-11-03 — Add slide picker with layouts and ready-made slides (D-034)
 - **Done:**

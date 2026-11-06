@@ -702,3 +702,58 @@ Details are in PARKED.md.
 - Usage counts which layouts are added.
 
 **Revisit if:** reps ask for image upload on their own slides (needs Vercel Blob in the app), or a layout is never used.
+
+## D-035 — Paid ad sets in Remix use the Paid Ads Engine template; the engine stays outside Fyr
+`2026-11-06` · **Status:** Proposed · **Owner:** Tobias
+**Extends:** D-012 (the paid ad set channel type in Marketing Remix).
+
+**Context:**
+- Thea's [Paid Ads Engine](https://claude.ai/artifact/9CtU7DqELamJiPdk7ovRSp) (concept and build plan, 5 Nov 2026, from Linear PRO-91 to PRO-95) plans every paid ad from one structure:
+  - a ladder: brand line, then pillars, then product ads
+  - an eight-part ad template with per-channel limits
+  - the hybrid creative pattern
+  - test waves
+  - a handover to an outside performance marketing partner and back
+- It runs as a Claude Code repo with HubSpot, Slack, Vercel and scheduled runs. Nothing is built yet.
+- Fyr already has a paid ad set in Remix (people / product / hybrid, D-012) and a *Paid ads* item in T1 launch packs. The two overlap on drafting and checking ad copy, and differ on where the copy comes from.
+
+**Decision (proposed):**
+- **Template.** A Remix paid ad set has the engine's eight parts: hook, headline, subline, proof, creative, CTA, landing page and tracking.
+  - Per-channel fields with live character counts: LinkedIn (intro about 150, headline about 70), Meta (primary text about 125, headline about 40), Google search (up to 15 headlines of 30, 4 descriptions of 90).
+  - Channel limits are configuration, checked against the platforms' current specs before M4.
+- **Tags.** Every ad carries its ladder level (Brand / Pillar / Product) and its pillar. Level 2 uses the framework's three pillars. A foundation level is added only when the Messaging Framework has one.
+- **Copy source.** Headlines and sublines come from the Messaging Framework (`MF`) and approved Product Truth, never from Linear issues (D-016). Where the engine's Linear copy differs from the framework, it goes back to the framework owner. Fyr doesn't fix it locally.
+- **Checks.** The Brand Rules check adds four ad checks: one level and one pillar, one proof from the approved proof list, one CTA with a tracked link, and a landing page set.
+- **Naming.** Each approved variant gets a variant ID (e.g. `W1-BRAND-HERO`) and a UTM name (e.g. `paid-l2-admin-hookA-no`), shown in the export.
+- **Export.** An approved ad set exports as a *Part 1 handover*: copy per channel, creative files, variant IDs and tracking names, in the shape the engine expects. This extends Remix's copy and export. Fyr doesn't host the page or send it.
+- **Creatives.** The hybrid ad spec (1080 × 1080, MP4 of 10 seconds and PNG) is the paid ad set's creative spec. Creatives are uploaded, not rendered in Fyr (Prototype Lab rendering stays parked).
+- **Outside Fyr.** These stay in Thea's engine, as an internal Claude Code tool next to Fyr:
+  - test waves and winner rules
+  - creative rendering
+  - hosting the handover
+  - partner results (Part 2)
+  - the HubSpot campaign and the Slack summaries
+- **Direction.** Fyr is upstream. The engine takes approved ad sets from Fyr instead of copying lines from Linear.
+- **Not added to Fyr:**
+  - ad results and measurement
+  - HubSpot, Slack, Vercel-hosted partner pages
+
+  They stay parked (HubSpot, Slack, Adoption/Insights in PARKED.md). The only external dependencies stay Linear and OpenAI (D-031).
+
+**Consequences:**
+- Once this is accepted, SPEC §4.5 gets the template, tags, checks and export.
+- `RemixItem` gains:
+  - `level`
+  - `pillar`
+  - per-channel fields
+  - `variantId`
+  - `utm`
+- The work lands in M4 (Remix), with no new dependency.
+- To raise with Thea, against the framework:
+  - PRO-93's subline uses "hard calls", which the framework rules out.
+  - The pillar headlines in PRO-92 to PRO-94 differ from the framework's pillar heads.
+  - The Trust ad's headline is the framework's *Skip the worry* head.
+- Open: who owns paid ads day to day. Thea runs the engine, and Tobias approves ad sets in Fyr (D-024).
+- Ties to the open item on the "HR-systemet for [bransje]" banner tag.
+
+**Revisit if:** ad results become reachable (an ads connector or HubSpot ads reporting) and leadership asks to see them in Fyr, or the engine doesn't use Fyr's export.
