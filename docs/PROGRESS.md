@@ -38,12 +38,26 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
 | Walk through the published prototype and give sign-off (M1 exit); decide who to share it with | Approval | Tobias | 4 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
-| Confirm D-035 (paid ad sets take the Paid Ads Engine template; the engine stays outside Fyr), and agree with Thea who owns paid ads day to day | Decision | Tobias | 11 Nov | Open |
+| Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) | Decision | Tobias | 11 Nov | Open |
 | Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea | Content | Tobias | 11 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-06 — D-035 accepted; SPEC updated for paid ad sets
+- **Done:**
+  - Tobias accepted D-035.
+  - SPEC §4.5 has a new *Paid ad sets* section:
+    - the eight-part template and per-channel limits
+    - ladder and pillar tags, and the copy source
+    - four ad checks, plus variant and UTM naming
+    - the Part 1 handover export
+    - what stays in Thea's engine
+  - Four acceptance criteria added. `RemixItem` gains level, pillar, per-channel fields, variantId and utm.
+- **Next:** build in M4 (Remix). Before then, check the channel limits against the platforms' current specs. Agree ownership with Thea, and raise the copy mismatches with her.
+- **Blockers:** none.
+- **Decisions:** D-035 accepted.
 
 ### 2026-11-06 — Thea's Paid Ads Engine reviewed for fit (D-035, proposed)
 - **Done:**

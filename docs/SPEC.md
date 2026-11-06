@@ -214,7 +214,7 @@ Each module below is laid out as: **purpose**, **reuse from v0.2**, **changes in
 
 **Remix channel types for v1** (proposed, see [D-012](DECISIONS.md))
 - LinkedIn post
-- Paid ad set (variants: people / product / hybrid)
+- Paid ad set (variants: people / product / hybrid), see *Paid ad sets* below
 - Vertical/industry ad
 - Customer email / monthly round-up
 - Release note
@@ -243,6 +243,45 @@ Every draft and every message check uses these rules. To change a rule, change t
   - The launch pack lists its Remix drafts and the approver approves them there.
   - Evergreen drafts (no release) are marked *Evergreen · approved here*.
 
+**Paid ad sets** ([D-035](DECISIONS.md))
+- **Template.** Every paid ad set has eight parts. They follow Thea's [Paid Ads Engine](https://claude.ai/artifact/9CtU7DqELamJiPdk7ovRSp).
+
+  | # | Part | Comes from |
+  |---|---|---|
+  | 1 | Hook (intro text) | AI draft, up to 3 options |
+  | 2 | Headline | `MF` or approved Product Truth, word for word |
+  | 3 | Subline | `MF` or approved Product Truth, word for word |
+  | 4 | Proof | One item from the approved proof list |
+  | 5 | Creative | Uploaded hybrid ad: 1080 × 1080, MP4 (10 seconds) and PNG, with alt text |
+  | 6 | CTA | One, fixed per level |
+  | 7 | Landing page | URL, set per level |
+  | 8 | Tracking | Generated UTM name |
+
+- **Channels.** Per-channel fields with live character counts. The limits are configuration; check them against the platforms' current specs before M4.
+  - LinkedIn: intro about 150, headline about 70
+  - Meta: primary text about 125, headline about 40
+  - Google search: up to 15 headlines of 30 and 4 descriptions of 90
+- **Tags.** Each ad has a ladder level (Brand / Pillar / Product) and a pillar. Level 2 uses the framework's three pillars. A foundation level is added only when the Messaging Framework has one.
+- **Copy source.** The headline and subline are never typed by hand or copied from Linear. Where a Linear campaign issue differs from the framework, it goes back to the framework owner (D-016).
+- **Ad checks** (on top of the brand-rules check):
+  - one level and one pillar
+  - one proof from the approved proof list
+  - one CTA with a tracked link
+  - a landing page set
+- **Naming.** Each approved variant gets a variant ID (e.g. `W1-BRAND-HERO`) and a UTM name (e.g. `paid-l2-admin-hookA-no`).
+- **Export: Part 1 handover.**
+  - **Contains:** copy per channel, creative files, variant IDs and tracking names.
+  - **When:** only for approved ad sets.
+  - **What Fyr doesn't do:** host the handover or send it.
+- **Outside Fyr.** Thea's Paid Ads Engine is an internal Claude Code tool next to Fyr. It takes approved ad sets from this export and owns:
+  - test waves and winner rules
+  - creative rendering
+  - hosting the handover
+  - partner results
+  - the HubSpot campaign and the Slack summaries
+
+  Ad results and measurement stay out of Fyr (PARKED: HubSpot, Slack, Adoption/Insights).
+
 **Dropped from Outputs**
 - Product videos (ElevenLabs)
 - HubSpot newsletter send
@@ -253,6 +292,10 @@ Every draft and every message check uses these rules. To change a rule, change t
 - [ ] Approving a pack's truth item, or publishing the framework, generates Remix drafts for that release's tier.
 - [ ] Drafts show which approved truth and brand rules they were built from.
 - [ ] Remix lists items by release, channel, language and status. Each item has copy and export (text/PNG).
+- [ ] A paid ad set shows the eight parts per channel, with live character counts against each channel's limits.
+- [ ] Headline and subline can't be typed by hand. They come from `MF` or approved Product Truth.
+- [ ] The four ad checks run with the brand-rules check. An ad set that fails one can't be approved.
+- [ ] An approved paid ad set exports as a Part 1 handover, with variant IDs and UTM names.
 
 ### 4.6 Automations (PMM) — downscaled overview
 
@@ -554,7 +597,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `LaunchPack` | releaseId, tier, playbookVersion, status, auto, publishedAt |
 | `PackItem` | packId, kind, audience, owner, lang, content (JSON fields), status |
 | `BrandRule` | id, text, kind (`voice`/`banned`/`proof`/`term`), active |
-| `RemixItem` | releaseId, packItemId, channel, lang, content, status, builtFrom[] |
+| `RemixItem` | releaseId, packItemId, channel, lang, content, status, builtFrom[]; for paid ad sets also level (`brand`/`pillar`/`product`), pillar, per-channel fields, variantId, utm ([D-035](DECISIONS.md)) |
 | `Pillar` | id, number, mf (messaging pillar), per language: name, promise, goal2027, example (what, today, goal); version ([D-032](DECISIONS.md)) |
 | `RoadmapCard` | linearId, pillar, kind (`card`/`line`), per language: title, say + status; approvedBy/At, digestMonth ([D-033](DECISIONS.md)) |
 | `Battlecard` | market, competitor, sections (JSON), version, publishedBy/At |

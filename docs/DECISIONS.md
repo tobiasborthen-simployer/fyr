@@ -704,7 +704,7 @@ Details are in PARKED.md.
 **Revisit if:** reps ask for image upload on their own slides (needs Vercel Blob in the app), or a layout is never used.
 
 ## D-035 — Paid ad sets in Remix use the Paid Ads Engine template; the engine stays outside Fyr
-`2026-11-06` · **Status:** Proposed · **Owner:** Tobias
+`2026-11-06` · **Status:** Accepted · **Owner:** Tobias
 **Extends:** D-012 (the paid ad set channel type in Marketing Remix).
 
 **Context:**
@@ -717,7 +717,7 @@ Details are in PARKED.md.
 - It runs as a Claude Code repo with HubSpot, Slack, Vercel and scheduled runs. Nothing is built yet.
 - Fyr already has a paid ad set in Remix (people / product / hybrid, D-012) and a *Paid ads* item in T1 launch packs. The two overlap on drafting and checking ad copy, and differ on where the copy comes from.
 
-**Decision (proposed):**
+**Decision:**
 - **Template.** A Remix paid ad set has the engine's eight parts: hook, headline, subline, proof, creative, CTA, landing page and tracking.
   - Per-channel fields with live character counts: LinkedIn (intro about 150, headline about 70), Meta (primary text about 125, headline about 40), Google search (up to 15 headlines of 30, 4 descriptions of 90).
   - Channel limits are configuration, checked against the platforms' current specs before M4.
@@ -741,7 +741,7 @@ Details are in PARKED.md.
   They stay parked (HubSpot, Slack, Adoption/Insights in PARKED.md). The only external dependencies stay Linear and OpenAI (D-031).
 
 **Consequences:**
-- Once this is accepted, SPEC §4.5 gets the template, tags, checks and export.
+- SPEC §4.5 gets the template, tags, checks and export (6 Nov 2026).
 - `RemixItem` gains:
   - `level`
   - `pillar`
