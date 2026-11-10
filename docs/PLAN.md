@@ -5,7 +5,7 @@
 | **Window** | Wed 28 Oct → Fri 27 Nov 2026 (go-live target, [D-014](DECISIONS.md)) |
 | **Approach** | Slim HTML prototype first (week 1), then the real app (weeks 2–4) ([D-001](DECISIONS.md)) |
 | **Branching** | One branch per milestone (`m1-prototype`, `m2-foundation`, …), merged to `main` through a PR |
-| **Status** | Tracked in [PROGRESS.md](PROGRESS.md) |
+| **Status** | Tracked in [PROGRESS.md](PROGRESS.md). **10 Nov scope check:** M1 is built and waits for sign-off. M2 isn't started (no `app/` yet) and is due 11 Nov. The admin that blocks M2 is overdue. Deal rooms (D-036, D-037) are new scope, placed in M4 *if* the 13 Nov decision keeps them in v0.3. See Risks. |
 
 ## Milestones
 
@@ -15,8 +15,9 @@
 | **M1** | Slim v0.3 prototype | 29 Oct – 4 Nov | v0.3 prototype published as an artifact; **UX sign-off by Tobias**, logged as a decision |
 | **M2** | App foundation | 5 – 11 Nov | App deployed on Vercel with the portal (registration, email sign-in, access levels); schema and seed in place; Linear sync live; Releases list and map working on real data |
 | **M3** | PMM core | 12 – 18 Nov | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with AI drafts (OpenAI); Battlecards; Library |
-| **M4** | Create + Remix + Automations | 19 – 25 Nov | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats |
+| **M4** | Create + Remix + Automations | 19 – 25 Nov | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats. Deal rooms only if the 13 Nov decision keeps them in v0.3. |
 | **M5** | Pilot + go-live | 25 – 27 Nov | Content migrated and approved; pilot with 3–5 users; go-live; CHANGELOG `v0.3.0` |
+| **v0.4** | After go-live | From 30 Nov | The backlog below: what doesn't fit by 27 Nov, Deal rooms first if they move |
 
 ---
 
@@ -59,6 +60,12 @@
 - [x] **Messaging Framework alignment** (D-016). Snapshot in `docs/messaging-framework.json`. Slides, ads, the Product truth panel and the message check are derived from it. `tools/sync-framework.mjs` syncs and checks the copy.
 - [x] **Roadmap for everyone (D-032, simplified by D-033).** One page: "Tell customers this month" (3), New | Coming soon lists, 2027 pillars collapsed; EN/NO/SV with fallback; PMM tab *Roadmap cards* (title + one sentence, AI draft, check, approval).
 - [x] Publish the prototype as a new artifact, "Fyr v0.3": [https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) (30 Oct). Republish to the same link after each change.
+- [x] **Deal rooms (D-036, D-037), 10 Nov.**
+  - Create → Deal rooms: the list, the editor (live preview, click-to-edit, hide blocks, image bank, locked framework lines, message check), and *From the meeting* with example tl;dv drafts the rep approves.
+  - *Share and track*: personal links, forwarded links, reading per person and section, activity, alerts.
+  - The customer page (`deal-room/`): saved rooms, a notice before tracking, simple e-signature.
+  - The *Deal room* button in My presentations.
+- [x] **Collapsible menu** everywhere, plus Sections/Fields/Focus in the room editor (10 Nov).
 - [ ] Walk through it, and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, access to the company's OpenAI setup (Azure OpenAI or the OpenAI API, model, budget; D-031), and a Vercel project.
 
@@ -103,12 +110,38 @@
 - [ ] Automations overview: list, stats and time-saved baselines.
 - [ ] Org Roadmap page (D-032, D-033): "Tell customers this month", New | Coming soon lists, 2027 pillars collapsed, copy line, usage events.
 - [ ] PMM Home queue.
+- [ ] **Deal rooms (D-036, D-037). Only if the 13 Nov decision keeps them in v0.3, otherwise first in v0.4:**
+  - [ ] `DealRoom`, `RoomPerson` and `RoomEvent` tables. Rooms are made from a `Deck`, with blocks, hidden parts and photos as JSON.
+  - [ ] A public room route on a Simployer subdomain (the domain is to be decided). Unguessable slugs and personal `?r=` tokens. Drafts don't open.
+  - [ ] The editor in Create: a live preview, click-to-edit, locked framework lines, the image bank picker, the message check, and publishing blocked by placeholders.
+  - [ ] Share and track:
+    - people and links
+    - the forward email gate
+    - a viewer notice before any tracking
+    - events (view, section, time, click, sign), the per-person and per-section views, and alerts by email
+  - [ ] Simple e-signature: name, title and a tick, with a timestamp and a PDF receipt. The room shows *Signed*.
+  - [ ] *From the meeting* (D-037):
+    - a read-only tl;dv connection, with meetings matched by email domain
+    - OpenAI drafts the rep approves
+    - quotes only with OK
+    - no transcripts stored in the room
+  - [ ] Room text in NO and SV, from Product truth and the framework (the prototype is EN only).
 
 ## M5 — Pilot + go-live (25 – 27 Nov)
 - [ ] Content migration: Tobias approves the framework and feature truth in EN/NO/SV, plus battlecards and presentation rules.
 - [ ] Pilot with 3–5 users (sales, CSM, PS), using a feedback list in PROGRESS.
 - [ ] Fix blockers only. Anything else goes to the v0.4 backlog.
 - [ ] Go-live, tag `v0.3.0`, update CHANGELOG, and write a short announcement.
+
+---
+
+## v0.4 backlog (candidates)
+
+- Deal rooms in the app, if the 13 Nov decision moves them out of v0.3 (see M4).
+- BankID signing, which needs a signing provider and a new decision.
+- Video upload for the room's welcome.
+- tl;dv beyond deal rooms (call coach, objection matching). Still parked.
+- Anything else from the M5 pilot that isn't a blocker.
 
 ---
 
@@ -123,3 +156,7 @@
 | Approval bandwidth for migrating content (one approver) | Delays M5 | Start content review during M3; approve in batches | Tobias |
 | PDF fidelity of 16:9 slides | Rep trust | The prototype's print CSS is proven: 13.33 × 7.5 in pages, no margins, exact colours. Blurred box shadows turn into grey boxes in PDF viewers, so print uses a 1 px edge instead. Reuse that CSS for server-side Chromium and check the output in Preview as well as Acrobat | Dev |
 | Scope creep (cut modules coming back) | Misses the month | Scope guard in CLAUDE.md: re-adding a cut item needs a DECISIONS entry | Tobias |
+| **Behind plan (10 Nov):** M2 not started, M2–M5 left in 17 days, and the admin for Linear, Vercel, OpenAI and DNS is overdue | Go-live on 27 Nov at risk | Scaffold M2 now with stubs, without waiting for keys. Chase the admin this week. Decide the scope by 13 Nov (Deal rooms, and possibly Remix, to v0.4) | Tobias |
+| Deal rooms and tl;dv add scope (D-036, D-037) | M4 overload | Decide on 13 Nov whether they stay in v0.3 or lead v0.4. The prototype is already built for demos and the pilot conversation | Tobias |
+| Legal and the DPO on tracking named people and processing transcripts | No real rooms until approved | Raise it now with the notice text and the D-037 safeguards. Until then, only example rooms | Tobias |
+| tl;dv API access on our plan, plus a DPA | Blocks *From the meeting* | Check the plan and the DPA this week. The rep can type the personal parts until then | Tobias |

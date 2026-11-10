@@ -41,7 +41,7 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) | Decision | Tobias | 11 Nov | Open |
 | Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea | Content | Tobias | 11 Nov | Open |
 | Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) | Admin | Tobias | Before the first real room | Open |
-| Deal rooms: get GetAccept's licence cost and deals per month for the business case | Content | Tobias | 13 Nov | Open |
+| ~~Deal rooms: get GetAccept's licence cost and deals per month for the business case~~ (SEK 360,000 a year; 3 deals a month × 20 sellers) | Content | Tobias | 13 Nov | Closed |
 | Deal rooms: decide signing (simple e-signature only, or a BankID provider) and the room domain (`rom.simployer.com`?) | Decision | Tobias | 18 Nov | Open |
 | Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? | Decision | Tobias | 13 Nov | Open |
 | tl;dv for deal rooms (D-037): API access on our plan, a DPA, and legal/DPO on processing transcripts | Admin | Tobias | 18 Nov | Open |
@@ -49,6 +49,24 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-10 — Scope check: the prototype covers the spec, the app isn't started
+- **Done:**
+  - Checked Fyr against SPEC, PLAN and PROGRESS.
+  - The prototype has all 12 SPEC areas, including Deal rooms. M1 waits for sign-off.
+  - The app (M2–M5) isn't started: there's no `app/`, and all 49 SPEC acceptance criteria are still open (they apply to the app).
+  - PLAN updated:
+    - Deal rooms added to M4, only if the 13 Nov decision keeps them in v0.3
+    - a v0.4 backlog
+    - four new risks: behind plan, Deal rooms scope, legal on tracking and transcripts, tl;dv access
+  - The GetAccept figures item is closed.
+- **Next:**
+  - Scaffold M2 now with stubs.
+  - Chase the Linear, Vercel, OpenAI and DNS admin.
+  - Decide the scope by 13 Nov: Deal rooms, and possibly Remix, to v0.4.
+  - Sign off M1.
+- **Blockers:** Linear API key, Vercel project, the OpenAI route and DNS/Resend, all overdue. Unconfirmed decisions D-009, D-010, D-012, D-013, D-014 and D-015.
+- **Decisions:** none new. The scope decision is due 13 Nov.
 
 ### 2026-11-10 — Room next steps from the presentation's timeline (D-039)
 - **Done:**
