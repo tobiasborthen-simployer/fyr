@@ -44,11 +44,31 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | ~~Deal rooms: get GetAccept's licence cost and deals per month for the business case~~ (SEK 360,000 a year; 3 deals a month × 20 sellers) | Content | Tobias | 13 Nov | Closed |
 | Deal rooms: decide signing (simple e-signature only, or a BankID provider) and the room domain (`rom.simployer.com`?) | Decision | Tobias | 18 Nov | Open |
 | Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? | Decision | Tobias | 13 Nov | Open |
-| tl;dv for deal rooms (D-037): API access on our plan, a DPA, and legal/DPO on processing transcripts | Admin | Tobias | 18 Nov | Open |
+| tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts | Admin | Tobias | 18 Nov | Open |
+| Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) | Decision | Tobias | 13 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-10 — tl;dv connection tested, and a dry run of *From the meeting*
+- **Done:**
+  - Read tl;dv through Tobias's account, read-only: meetings, attendees with email domain, AI notes and transcripts all come through. Matching meetings by the customer's email domain (D-037) works with the data as it is.
+  - Tobias has no external meetings since October, so there was nothing of his own to test on with a customer.
+  - The account sees 194 external meetings across the organisation, not only Tobias's own. Fyr has to check participation itself.
+  - Dry run of *From the meeting* on an internal meeting (Tobias / Johan, 6 Nov), with Johan as the stand-in customer. Drafts came out for all five D-037 blocks, each line with a timestamp. No customer data was used, and nothing went into the prototype or the repo.
+  - What it showed:
+    - tl;dv's AI notes are enough for everything but quotes.
+    - Private talk, including religion, has to be filtered out.
+    - Relative dates need working out and confirming.
+    - The transcript misspells names, and an attendee can have an email but no name.
+    - The meeting's next steps overlap with the deck's timeline (D-039).
+- **Next:**
+  - Tobias confirms D-040 by 13 Nov, together with the deal rooms scope decision.
+  - Check our tl;dv plan for API access.
+  - SPEC §4.12 is updated once D-040 is accepted.
+- **Blockers:** a real sales meeting can't be tested until the DPA is signed and legal and the DPO have approved (D-037).
+- **Decisions:** D-040 proposed.
 
 ### 2026-11-10 — Scope check: the prototype covers the spec, the app isn't started
 - **Done:**

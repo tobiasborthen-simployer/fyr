@@ -893,3 +893,39 @@ Details are in PARKED.md.
 - App: the timeline steps are part of the deck, so the room reads them from the same record. tl;dv's "agreed next steps" (D-037) can later arrive as AI drafts on top of this table.
 
 **Revisit if:** reps want the room and the deck timeline to stay linked both ways.
+
+## D-040 — How Fyr turns a tl;dv meeting into room drafts
+`2026-11-10` · **Status:** Proposed · **Owner:** Tobias
+**Extends:** D-037 (tl;dv makes each deal room personal) and D-039 (next steps from the presentation).
+
+**Context:**
+- On 10 Nov 2026 we tested the tl;dv connection read-only through Tobias's account. We ran *From the meeting* on an internal meeting (Tobias / Johan, 6 Nov), with Johan standing in for the customer. No customer data was used.
+- The draft held up for all five D-037 blocks: challenges, dates, people, next steps with owners, and numbers.
+- The test also showed six things D-037 doesn't settle:
+  - tl;dv's own AI notes already give owners, timestamps and topics.
+  - The last three minutes of the meeting were private talk, including religion, which is special-category data under GDPR art. 9.
+  - Dates were relative ("next week", "Monday").
+  - The transcript misspelt names ("cold" for Claude, "Josefine" and "Josephine"), and the attendee list had an invitee with an email but no name.
+  - The account can see every meeting in the organisation (194 external meetings), not only the ones the user took part in.
+  - The meeting's next steps overlap with the presentation's timeline (D-039).
+- tl;dv says its API (`v1alpha1`) needs a Pro or Business plan, and what counts is the meeting organiser's plan.
+
+**Decision:**
+- **Notes first.** Fyr drafts the challenges, dates, people, next steps and numbers from tl;dv's AI notes. It reads the full transcript only to find quote candidates. Less personal data goes to OpenAI.
+- **Private talk is filtered out.** The drafting prompt keeps only what is about the deal. Small talk, family, health, religion, politics and remarks about colleagues are never drafted, even as a suggestion.
+- **Only the rep's own meetings.** Fyr checks that the signed-in rep's email is the organiser or an invitee before it reads a meeting, whatever the API key can see.
+- **Dates are worked out and flagged.** Relative dates are turned into dates from the meeting date and marked *Check date*, so the rep confirms them.
+- **Names come from the meeting, never from the draft.**
+  - Names are matched against the attendee list and the transcript's speaker names.
+  - A name found in neither is shown as the rep wrote it or left empty.
+  - People who were mentioned but not present are labelled as such.
+- **Next steps from the meeting are suggestions on top of the timeline.** The table stays built from the presentation's timeline (D-039). Agreed steps from tl;dv appear as drafts the rep adds, merges or skips. They never replace the table.
+- **Every line keeps its source.** Each draft line carries the meeting ID and a timestamp, so the rep can check it in tl;dv. The room stores only the approved text and the meeting reference (D-037).
+
+**Consequences:**
+- When accepted, SPEC §4.12 *Personal from the meeting* gets these rules and an acceptance criterion for the private-talk filter.
+- App (M4 or v0.4): a `lib/tldv` client using the `x-api-key` header, a participant check, and a drafting prompt with the filter.
+- Before building: confirm that our tl;dv plan includes the API (Pro or Business), and which sales reps organise their meetings on a paid plan.
+- The test was internal and in English. Quality on a real sales meeting in NO or SV is untested until the DPA is signed and legal and the DPO have approved (D-037).
+
+**Revisit if:** tl;dv's notes turn out to miss what sales meetings need, or legal asks for transcripts not to be sent to OpenAI at all.
