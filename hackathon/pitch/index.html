@@ -275,9 +275,9 @@ In ten minutes: what that costs us, what changes when the room is made in Fyr, w
   <div class="photo" style="left:auto;width:820px"><img src="assets/photo-desk.jpg" alt="A desk on the floor with a laptop, coffee, notebooks and Simployer cards" style="object-position:50% 45%"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(90deg, #1f1b2e 0%, #1f1b2e 55%, rgba(31,27,46,.6) 64%, rgba(31,27,46,0) 80%)"></div>
   <div class="pad">
-    <p class="eyebrow b rise" data-s="0" style="position:absolute;left:160px;top:290px">PMM hackathon · 10 November 2026</p>
-    <h1 class="b wipe" data-s="0" style="position:absolute;left:160px;top:350px;width:1100px"><span class="ln"><span>Deal rooms</span></span><span class="ln"><span>in Fyr.</span></span></h1>
-    <p class="lede b rise" data-s="0" data-d="700" style="position:absolute;left:166px;top:800px;width:900px">One page per prospect. Personal from your meetings, true to Product truth.</p>
+    <p class="eyebrow b rise" data-s="0" style="position:absolute;left:160px;top:330px">PMM hackathon · 10 November 2026</p>
+    <h1 class="b wipe" data-s="0" style="position:absolute;left:160px;top:390px;width:1000px;font-size:136px"><span class="ln"><span>Deal rooms</span></span><span class="ln"><span>in Fyr.</span></span></h1>
+    <p class="lede b rise" data-s="0" data-d="700" style="position:absolute;left:164px;top:700px;width:820px;font-size:32px">One page per prospect. Personal from your meetings, true to Product truth.</p>
   </div>
   <p class="caption" style="right:40px;bottom:30px">Photo: Simployer, Stockholm 2026</p>
 </section>
@@ -534,8 +534,8 @@ Say what is faked: tl;dv isn’t connected in the prototype yet, so the challeng
   <div class="photo"><img src="assets/photo-laptop.jpg" alt="A colleague smiling on a sofa with a laptop and Simployer cards" style="object-position:50% 34%"></div>
   <div class="scrim-left"></div>
   <div class="pad">
-    <h2 class="b wipe" data-s="0" style="position:absolute;left:144px;top:330px;width:1200px;font-size:150px"><span class="ln"><span>Let’s build</span></span><span class="ln"><span>a room, live.</span></span></h2>
-    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:690px;width:900px">From the meeting and Product truth to a shared, tracked deal room.</p>
+    <h2 class="b wipe" data-s="0" style="position:absolute;left:160px;top:350px;width:1000px;font-size:112px"><span class="ln"><span>Let’s build</span></span><span class="ln"><span>a room, live.</span></span></h2>
+    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:164px;top:640px;width:820px;font-size:32px">From the meeting and Product truth to a shared, tracked deal room.</p>
   </div>
   <p class="caption" style="right:144px;bottom:98px">Photo: Simployer, Stockholm 2026</p>
 </section>
@@ -568,12 +568,15 @@ Say what is faked: tl;dv isn’t connected in the prototype yet, so the challeng
 
   /* the stage scales to fit the window, inside the side gutter */
   function fit() {
-    var gx = Math.max(16, 0) * 2, gy = 32;
-    var k = Math.min((innerWidth - gx) / 1920, (innerHeight - gy) / 1080);
-    if (document.fullscreenElement) k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    // use the area that is actually visible: some frames report a wider layout viewport than they show
+    var vv = window.visualViewport, de = document.documentElement;
+    var W = Math.min(innerWidth, de.clientWidth || innerWidth, vv ? vv.width : innerWidth);
+    var H = Math.min(innerHeight, de.clientHeight || innerHeight, vv ? vv.height : innerHeight);
+    var k = Math.min((W - 32) / 1920, (H - 32) / 1080);
+    if (document.fullscreenElement) k = Math.min(W / 1920, H / 1080);
     stage.style.transform = 'translate(-50%, -50%) scale(' + k + ')';
   }
-  addEventListener('resize', fit); document.addEventListener('fullscreenchange', fit); fit();
+  addEventListener('resize', fit); document.addEventListener('fullscreenchange', fit); if (window.visualViewport) visualViewport.addEventListener('resize', fit); fit();
 
   /* builds */
   function stepsOf(s) {
