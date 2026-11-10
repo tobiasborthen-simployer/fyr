@@ -42,6 +42,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 **Changed**
 - Deal room editor (D-038): the right panel shows only the selected block's fields and can be closed. Hint paragraphs became one first-time tip, and the example-data notices became one *Example data* tag.
 - Typing your own text over a meeting draft, in the room or in a field, approves that line with your words.
+- The room editor's phone preview button shows a smartphone, not a handset.
 - **Roadmap is now one simple page (D-033):** "Tell customers this month" (3 sentences to copy), then New | Coming soon as two short lists, with the 2027 pillars folded away at the bottom. Pillar cards, filters and before/after are gone.
 - Planned AI drafting runs on OpenAI instead of the Claude API (D-031). There is no change in the prototype.
 - No more picture bar: the signed-in user is the rep. Their name, photo, title, email and phone come from Profile, and the deck panel shows them, with *Edit profile* (D-030).

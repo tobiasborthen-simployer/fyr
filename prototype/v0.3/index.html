@@ -1872,6 +1872,7 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
   <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1z"/></symbol>
   <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
@@ -2983,7 +2984,7 @@ function vRoom() {
       <div class="seg n" role="group" aria-label="Room tabs"><button type="button" data-dr-tab="edit" aria-pressed="${tab === 'edit'}">${ico('i-edit')}Edit</button><button type="button" data-dr-tab="share" aria-pressed="${tab === 'share'}">${ico('i-link')}Share and track</button></div>
       <div class="dr-acts">
         <div class="dr-popw dr-edit-only" id="dr-readyw">${roomReadyHTML()}</div>
-        <div class="seg n dr-edit-only" role="group" aria-label="Preview size"><button type="button" data-dr-dev="desktop" aria-pressed="${(S.roomDev || 'desktop') === 'desktop'}" title="Desktop" aria-label="Desktop">${ico('i-monitor')}</button><button type="button" data-dr-dev="phone" aria-pressed="${S.roomDev === 'phone'}" title="Phone" aria-label="Phone">${ico('i-phone')}</button></div>
+        <div class="seg n dr-edit-only" role="group" aria-label="Preview size"><button type="button" data-dr-dev="desktop" aria-pressed="${(S.roomDev || 'desktop') === 'desktop'}" title="Desktop" aria-label="Desktop">${ico('i-monitor')}</button><button type="button" data-dr-dev="phone" aria-pressed="${S.roomDev === 'phone'}" title="Phone" aria-label="Phone">${ico('i-mobile')}</button></div>
         <button type="button" class="dr-tb dr-pv dr-edit-only" data-dr="preview" aria-pressed="${!!S.roomPreview}" title="See the room as the customer does, with its own menu">${ico('i-eye')}<span>${S.roomPreview ? 'Exit preview' : 'Preview'}</span></button>
         <div class="dr-popw" id="dr-morew">${roomMenuHTML()}</div>
         <button type="button" class="btn btn-primary ${draft ? '' : 'dr-edit-only'}" style="background:#9773FF" ${draft ? 'data-dr="publish"' : 'data-dr-tab="share"'}>${ico('i-send')}${draft ? 'Publish and share' : 'Share'}</button>
