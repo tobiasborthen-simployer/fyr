@@ -70,6 +70,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **Release calendar → Release map:** Brief / Ready / Live only.
 
 **Fixed**
+- In a browser that had never opened Fyr, the example deal room showed "This room isn't available" in the editor's preview and on its personal links. The example rooms are now saved on first load.
 - On a phone, the deck page's button row now wraps instead of making the page wider than the screen.
 - "Why Simployer" no longer runs into the footer in Norwegian. The slide is a little tighter in all languages.
 - The start box understands "Discovery with …" (and "med", "hos", "för"), not only "… for …".

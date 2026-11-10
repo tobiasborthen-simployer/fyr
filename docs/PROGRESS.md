@@ -51,6 +51,17 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-10 — Fix: example deal rooms open in a new browser
+- **Done:**
+  - Found during the tl;dv dry run. In a browser that had never opened Fyr, the editor's room preview and the room's personal links said "This room isn't available". The example rooms were only kept in memory until something in a room was saved, and the room page reads them from storage.
+  - Fyr now saves the example rooms on first load.
+  - Checked on a fresh origin: the rooms are stored on load, the room page opens, and there are no console errors. The copy check shows 0 errors.
+  - Republished [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) as version 6. Only `index.html` changed. The live version matched the last commit before the publish.
+  - The dry-run drafts from the Tobias / Johan meeting were shown in a local copy only. They are not in the repo or the published prototype.
+- **Next:** unchanged: the M1 walkthrough and sign-off, and the 13 Nov scope decision with D-040.
+- **Blockers:** none.
+- **Decisions:** none.
+
 ### 2026-11-10 — tl;dv connection tested, and a dry run of *From the meeting*
 - **Done:**
   - Read tl;dv through Tobias's account, read-only: meetings, attendees with email domain, AI notes and transcripts all come through. Matching meetings by the customer's email domain (D-037) works with the data as it is.

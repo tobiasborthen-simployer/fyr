@@ -5406,7 +5406,8 @@ DECKS = decksLoad() || seedDecks();
   DECKS = DECKS.map(d => { const f = fresh.find(x => x.id === d.id); if (f && (d.ruleV || 0) < f.ruleV) { changed = true; return { ...f, presented: d.presented }; } return d; });
   if (changed) decksStore();
 }
-ROOMS = roomsLoad() || seedRooms(); seedRoomEvents();
+// Save the example rooms on first load: the room page (editor preview and personal links) reads them from storage
+ROOMS = roomsLoad() || seedRooms(); if (!roomsLoad()) roomsStore(); seedRoomEvents();
 render();
 renderLogin();
 </script>
