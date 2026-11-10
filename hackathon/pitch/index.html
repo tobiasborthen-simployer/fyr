@@ -127,17 +127,19 @@ p { margin: 0; }
 .hrs-cap { position: absolute; left: 150px; top: 680px; transition: opacity var(--t-state) ease, transform var(--t-state) ease; }
 .s-hours.st1 .hrs-cap { opacity: 0; transform: translateY(-12px); }
 .op { position: absolute; top: 432px; font-family: var(--display); font-size: 120px; line-height: 1; color: var(--mute-on-ink); font-variation-settings: "opsz" 72; }
-.slot { position: absolute; box-sizing: border-box; display: grid; gap: 10px; align-content: center; padding: 28px 32px 26px; background: var(--slot); color: var(--text); border: 3px dashed var(--text); border-radius: 24px; cursor: text; }
-.slot .tag { justify-self: start; font: 700 18px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; background: var(--text); color: var(--slot); padding: 8px 12px; border-radius: 99px; }
-.slot input { width: 100%; box-sizing: border-box; border: 0; background: transparent; font: 400 108px/1 var(--display); font-variation-settings: "opsz" 72; letter-spacing: -.03em; color: var(--text); outline: none; padding: 0; font-variant-numeric: tabular-nums; }
-.slot input::placeholder { color: rgba(31,27,46,.38); }
-.slot .cap { font: 500 26px/1.2 var(--ui); color: var(--text); }
-.slot:focus-within { border-style: solid; box-shadow: 0 0 0 6px rgba(151,115,255,.45); }
-.slot.filled { border-style: solid; }
+/* editable figures: ink cards, no yellow */
+.slot { position: absolute; box-sizing: border-box; display: grid; gap: 10px; align-content: center; padding: 28px 32px 26px; background: var(--ink-2); color: var(--head-on-ink); border: 1.5px solid rgba(246,242,255,.16); border-radius: 24px; cursor: text; transition: border-color var(--t-state) ease, box-shadow var(--t-state) ease; }
+.slot .tag { justify-self: start; font: 600 18px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; background: rgba(246,242,255,.08); color: var(--mute-on-ink); padding: 8px 12px; border-radius: 99px; }
+.slot input { width: 100%; box-sizing: border-box; border: 0; background: transparent; font: 400 108px/1 var(--display); font-variation-settings: "opsz" 72; letter-spacing: -.03em; color: var(--head-on-ink); outline: none; padding: 0; font-variant-numeric: tabular-nums; caret-color: var(--lav); }
+.slot input::placeholder { color: rgba(246,242,255,.32); }
+.slot .cap { font: 500 26px/1.2 var(--ui); color: var(--text-on-ink); }
+.slot:hover { border-color: rgba(246,242,255,.32); }
+.slot:focus-within { border-color: var(--lav); box-shadow: 0 0 0 6px rgba(151,115,255,.22); }
 .res { position: absolute; left: 1236px; top: 392px; width: 540px; display: grid; gap: 14px; }
 .odo { display: inline-flex; font-family: var(--display); font-size: 150px; line-height: 1; letter-spacing: -.04em; color: var(--head-on-ink); font-variation-settings: "opsz" 72; font-variant-numeric: tabular-nums; }
-.odo .d { display: inline-block; height: 1em; overflow: hidden; }
-.odo .reel { display: flex; flex-direction: column; transition: transform 1400ms var(--arrive) var(--d, 0ms); }
+/* each digit slot is as wide as the digit it lands on, so a narrow 1 doesn't leave a gap */
+.odo .d { display: inline-flex; justify-content: center; height: 1em; overflow: hidden; }
+.odo .reel { display: flex; flex-direction: column; align-items: center; flex: none; transition: transform 1400ms var(--arrive) var(--d, 0ms); }
 .odo .reel span { height: 1em; }
 .odo .sep { padding: 0 .04em; }
 .res .unit { font: 500 30px/1.2 var(--ui); color: var(--text-on-ink); }
@@ -145,7 +147,7 @@ p { margin: 0; }
 .year .odo { font-size: 72px; }
 .slot.inline { position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; border-radius: 16px; }
 .slot.inline input { width: 230px; font-size: 56px; }
-.slot.inline .cur-sym { font: 400 56px/1 var(--display); }
+.slot.inline .cur-sym { font: 400 56px/1 var(--display); color: var(--mute-on-ink); }
 
 /* ---------- slide 4: two ways ---------- */
 .split { position: absolute; left: 160px; right: 160px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
@@ -619,6 +621,8 @@ Say what is faked: in the prototype, rooms and tracking live in this browser, an
         var r = document.createElement('span'); r.className = 'reel';
         for (var k = 0; k <= 9; k++) { var c = document.createElement('span'); c.textContent = k; r.appendChild(c); }
         d.appendChild(r); el.appendChild(d); digits.push([r, +ch]);
+        var m = document.createElement('span'); m.textContent = ch; el.appendChild(m);
+        d.style.width = (m.offsetWidth / (parseFloat(getComputedStyle(el).fontSize) || 1)) + 'em'; el.removeChild(m);
       } else { var s = document.createElement('span'); s.className = 'sep'; s.textContent = ch; el.appendChild(s); }
     });
     if (!animate || reduce) { digits.forEach(function (x) { x[0].style.transition = 'none'; x[0].style.transform = 'translateY(' + (-x[1]) + 'em)'; }); return; }
@@ -738,6 +742,8 @@ Say what is faked: in the prototype, rooms and tracking live in this browser, an
   addEventListener('pointerup', function (e) { if (tx == null) return; var dx = e.clientX - tx; tx = null; if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); } });
 
   renderHours(false);
+  // measure the digit widths again once Fraunces has loaded
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { renderHours(false); });
   var m = /^#s(\d+)$/.exec(location.hash || ''), start = m ? +m[1] - 1 : 0;
   go(start, 0, true);
   addEventListener('hashchange', function () { var h = /^#s(\d+)$/.exec(location.hash || ''); if (h && +h[1] - 1 !== cur) go(+h[1] - 1, 0, true); });
