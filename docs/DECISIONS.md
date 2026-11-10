@@ -759,7 +759,7 @@ Details are in PARKED.md.
 **Revisit if:** ad results become reachable (an ads connector or HubSpot ads reporting) and leadership asks to see them in Fyr, or the engine doesn't use Fyr's export.
 
 ## D-036 — Deal rooms: a customer page per deal, built and shared from Create
-`2026-11-10` · **Status:** Accepted · **Owner:** Tobias
+`2026-11-10` · **Status:** Accepted; "tl;dv stays parked" superseded by D-037 · **Owner:** Tobias
 **Extends:** 4.7 Presentations (Create). **Supersedes:** "No customer personal data" in SPEC §7 (Privacy), for deal rooms only.
 
 **Context:**
@@ -790,3 +790,46 @@ Details are in PARKED.md.
 - Adds work to M4 (Create) in the app. If it threatens the 27 Nov go-live, the app version moves to v0.4. The prototype version stays.
 
 **Revisit if:** sales keeps GetAccept for signing anyway, legal doesn't approve the tracking, or reps ask for meeting notes (tl;dv) or Salesforce sync to fill rooms.
+
+## D-037 — tl;dv makes each deal room personal
+`2026-11-10` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** tl;dv in PARKED.md and "tl;dv stays parked" in D-036, for deal rooms only. "Linear and OpenAI as the only external dependencies" in D-031: tl;dv is added as the third, for deal rooms only.
+
+**Context:**
+- A deal room is only worth more than a brochure if it's about this prospect: their challenges, in their words, the dates that matter to them, and the people in the meeting.
+- Today that comes from the rep's memory or typed notes. Our meetings are already recorded in tl;dv.
+- Tobias, 10 Nov 2026: "The meetings / tl;dv is what makes the deal room personal for each prospect." He had also asked earlier to bring the tl;dv connection back into the spec.
+
+**Decision:**
+- **Two layers.**
+  - Product truth and the Messaging Framework are the substance: what Simployer does, approved by PMM.
+  - The meetings in tl;dv are the personal layer: what this prospect said.
+  - A room needs both. tl;dv never changes a product claim.
+- **What tl;dv fills in** (sections 01, 05 and 07):
+  - the challenges, in the customer's words
+  - the dates and constraints they mentioned
+  - who was in the meeting
+  - the agreed next steps
+  - the numbers for the ROI block, where they said them
+- **Which meetings.** Fyr matches a rep's tl;dv meetings by the attendees' email domain, and the rep confirms or picks the meetings. Fyr reads only meetings the rep took part in.
+- **Drafts, not quotes.** OpenAI drafts each personal block from the transcript. Each block is labelled as an AI draft, and the rep approves it before the room can be published.
+- **Customer quotes.** A quote appears only with the customer's OK. Otherwise the room uses a summary.
+- **Transcripts stay out of the room.** They are never shown or stored there. Fyr keeps the approved text and a reference to the meeting.
+- **Read-only.** Fyr reads from tl;dv and never writes to it.
+- **Salesforce stays parked.** So do call coaching and objection matching from v0.2's tl;dv features.
+
+**Consequences:**
+- SPEC:
+  - §1 and §7: external dependencies become Linear, OpenAI and, for deal rooms, tl;dv.
+  - §4.12 gets "Personal from the meeting".
+  - `DealRoom` gains `meetingRefs[]`.
+  - §6 no longer lists tl;dv as cut.
+- PARKED.md: the tl;dv row says it's back for deal rooms (D-037). The rest stays parked.
+- CLAUDE.md scope guard and README: updated to match.
+- Prototype: not connected yet. The example room shows meeting-based content as example data, and the rep can type the personal parts.
+- App: needs a tl;dv API key or workspace access, and its plan must include the API.
+- Open:
+  - A DPA covering tl;dv data in Fyr.
+  - Legal and the DPO on processing transcripts. Do the meeting participants' recording notices cover this use?
+
+**Revisit if:** tl;dv's API isn't available on our plan, legal blocks transcript processing, or reps would rather pick and edit than get drafts.

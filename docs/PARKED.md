@@ -14,7 +14,7 @@ Everything in v0.2 that is **not** built in v0.3. Each row says what the item di
 | **Activity Log** | Global change history and agent run log (`LOG`/`logEv` l.2776, `vHistory` l.2834, `RUNS`/`vRuns` l.4056–4090) | Replaced by version history per entry plus run stats in Automations | Audit or compliance needs a global trail |
 | **Adoption** | Usage and win-rate runway per release (`ADOPT`, `vAdoption`, l.3221–3258) | Needs Planhat, Salesforce and in-app data | v0.3 is live and stable, and leadership asks for impact numbers |
 | **Insights** | Management dashboard (`vInsights`, l.2173) | Depends on adoption, CRM and call data | Same as Adoption |
-| **tl;dv** | Call context for briefs, call coach, objection matching (`CALLS`, `vCalls`, `vCoach`, l.2880–2930) | External dependency; reps type in the pains instead | Rep feedback shows typing the context is a real barrier |
+| **tl;dv** | Call context for briefs, call coach, objection matching (`CALLS`, `vCalls`, `vCoach`, l.2880–2930) | External dependency; reps type in the pains instead | **Partly back (D-037):** meeting notes make each deal room personal. Call coach and objection matching stay parked. |
 | **Freshdesk** | CC answers, macros, tickets, launch-day check | External dependency; CC gets truth through Product Truth | CC asks for in-tool answers |
 | **Synapse / Sales Insights** | Weekly "Monday machine" input | External dependency | — |
 | **Salesforce** | CRM for meetings, deck attach, outcome (won/lost), pipeline (`OPPS`, `vDeals` l.3865) | External dependency; decks are not attached to CRM | Reps ask for deck-in-opportunity |

@@ -20,7 +20,7 @@ None of that can go live within a month.
 
 **Where we're going.** v0.3 is a downsized rebuild. Fyr becomes **PMM's planning and creation tool**:
 - Only five areas face the rest of the organisation: Create, Product Truth, Roadmap ([D-032](DECISIONS.md)), Battlecards and Library.
-- The only external dependencies are **Linear** (the trigger source) and **OpenAI** (for drafting, [D-031](DECISIONS.md)).
+- The only external dependencies are **Linear** (the trigger source) and **OpenAI** (for drafting, [D-031](DECISIONS.md)), plus **tl;dv** for deal rooms only (meeting notes that make each room personal, [D-037](DECISIONS.md)).
 
 ### Principles
 1. **PMM writes, Tobias approves, the org consumes.**
@@ -612,7 +612,20 @@ v0.2 had none of these. Every deck followed one fixed order.
 - Seven sections in the Simployer brand design system, in the room's language. Content from approved Product Truth, the Messaging Framework, the Roadmap and the image bank.
 - *Review and sign*: simple e-signature (name, title, a tick), timestamp and PDF receipt. The room then shows *Signed*.
 
-**Not in this version:** BankID or another signing provider, tl;dv meeting notes, Salesforce sync, video recording in Fyr (an uploaded file only).
+**Personal from the meeting** ([D-037](DECISIONS.md))
+- Product truth and the Messaging Framework are the substance. The prospect's meetings in tl;dv make the room personal.
+- Fyr matches the rep's tl;dv meetings by the attendees' email domain. The rep confirms or picks the meetings. Fyr reads only meetings the rep took part in, read-only.
+- From the meetings, Fyr drafts:
+  - the challenges, in the customer's words (01)
+  - the dates and constraints they mentioned (01)
+  - who was there (07)
+  - the agreed next steps (01)
+  - the figures for the ROI block, where they said them (05)
+- Each drafted block is labelled as an AI draft and approved by the rep before the room can be published.
+- Quotes appear only with the customer's OK. Otherwise the block is a summary.
+- Transcripts are never shown or stored in the room. Fyr keeps the approved text and a reference to the meeting.
+
+**Not in this version:** BankID or another signing provider, Salesforce sync, video recording in Fyr (an uploaded file only).
 
 **Acceptance criteria**
 - [ ] A rep makes a room from a deck in My presentations in under 2 minutes, with company, language and challenges carried over.
@@ -624,6 +637,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 - [ ] The share tab shows views, reading depth per section and the latest activity per person.
 - [ ] A forwarded link asks for a work email at the customer's domain, or doesn't open, depending on the room's setting.
 - [ ] A signed room shows *Signed* in the list, and the rep gets the PDF receipt.
+- [ ] With tl;dv connected, a new room offers the prospect's meetings, and its personal blocks arrive as AI drafts the rep must approve before publishing.
 
 ## 5. Data model (app)
 
@@ -648,7 +662,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `Asset` | featureId, title, type (`screenshot`/`animation`), lang, blobUrl, status, why |
 | `PresentationRule` | name, audience, recipe[], featureMin/Max, mustInclude[], mustAvoid[], tone, cta, notes |
 | `Deck` | ownerId, ruleId, company, pains[], lang, slides (JSON), createdAt |
-| `DealRoom` | ownerId, deckId, company, contact, lang, package, slug, access (`links_and_email`/`invited_only`), status (`draft`/`live`/`signed`), content (JSON: block texts, hidden blocks, photos), publishedAt, signedBy/At ([D-036](DECISIONS.md)) |
+| `DealRoom` | ownerId, deckId, company, contact, lang, package, slug, access (`links_and_email`/`invited_only`), status (`draft`/`live`/`signed`), content (JSON: block texts, hidden blocks, photos), meetingRefs[] (tl;dv meeting ids, [D-037](DECISIONS.md)), publishedAt, signedBy/At ([D-036](DECISIONS.md)) |
 | `RoomPerson` | roomId, name, email, role, token, invitedBy (`rep`/`forward`), createdAt |
 | `RoomEvent` | roomId, personId, type (`consent`/`view`/`section`/`click`/`sign`), section, seconds, at. Deleted 12 months after the room closes. |
 | `AutomationRun` | automation, at, trigger, result, outcome, minutesSaved |
@@ -658,14 +672,14 @@ v0.2 had none of these. Every deck followed one fixed order.
 
 Everything cut is listed in [PARKED.md](PARKED.md), with what it did in v0.2 and what would trigger reconsidering it.
 
-- **Explicitly cut:** Market Signals, Activity Log, Adoption, Insights, tl;dv, Freshdesk, Synapse / Sales Insights, Salesforce, Planhat, HubSpot, In-app, ElevenLabs.
+- **Explicitly cut:** Market Signals, Activity Log, Adoption, Insights, tl;dv (except meeting notes for deal rooms, D-037), Freshdesk, Synapse / Sales Insights, Salesforce, Planhat, HubSpot, In-app, ElevenLabs.
 - **Also dropped as a consequence:** training, team/rituals, requests, calls, pipeline, plays, launch readiness, Slack, the role switcher, and the non-deck Create types ([D-009](DECISIONS.md)).
 
 ## 7. Non-functional requirements
 
 - **Auth.** Fyr's own portal: self-registration with a @simployer.com address, and sign-in by emailed code or link (Resend, from a Simployer sending subdomain). A small custom implementation, no Auth.js ([D-023](DECISIONS.md)).
 - **Data.** One Neon Postgres via Drizzle, with a `portal` schema (users, tokens, sessions) and a `fyr` schema (content). Every other table above lives in `fyr`.
-- **Stack.** Next.js (App Router, TypeScript) on Vercel; Postgres (Neon) via Drizzle; Vercel Blob for media; Linear API and webhooks; OpenAI for drafting, behind one drafting module, with the route (Azure OpenAI or the OpenAI API) to be confirmed with IT ([D-005](DECISIONS.md), [D-031](DECISIONS.md)).
+- **Stack.** Next.js (App Router, TypeScript) on Vercel; Postgres (Neon) via Drizzle; Vercel Blob for media; Linear API and webhooks; OpenAI for drafting, behind one drafting module, with the route (Azure OpenAI or the OpenAI API) to be confirmed with IT ([D-005](DECISIONS.md), [D-031](DECISIONS.md)). For deal rooms, the tl;dv API, read-only ([D-037](DECISIONS.md)).
 - **AI drafts.** Always labelled as drafts. Never shown in the org area before approval. The prompt includes Brand Rules plus approved truth only.
 - **Privacy.** No customer personal data in decks. The only customer data in decks is the company name and pains a rep types in. Deal rooms are the exception ([D-036](DECISIONS.md)): they hold the names and work emails of the people a room is shared with, and their reading events, only after they accept the notice on the page. Legal and the DPO approve the notice before the first real room.
 - **Languages.** EN, NO and SV for both UI and content.

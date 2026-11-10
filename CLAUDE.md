@@ -11,10 +11,10 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
 - v0.3 builds only what is in SPEC.md.
 - Do **not** re-add anything listed in [docs/PARKED.md](docs/PARKED.md):
   - Market Signals, Activity Log, Adoption, Insights
-  - tl;dv, Freshdesk, Synapse / Sales Insights, Salesforce, Planhat, HubSpot, In-app, ElevenLabs, Slack
+  - tl;dv (except meeting notes for deal rooms, D-037), Freshdesk, Synapse / Sales Insights, Salesforce, Planhat, HubSpot, In-app, ElevenLabs, Slack
   - Training, Team / Rituals, Requests, role switcher, non-deck Create types
 - If a request would bring one of these back, say so. Bringing it back needs a new DECISIONS entry first.
-- The only external dependencies are **Linear** and **OpenAI** (D-031). Don't add the Claude API or any other AI provider to the app.
+- The only external dependencies are **Linear** and **OpenAI** (D-031), plus **tl;dv** read-only for deal rooms (D-037). Don't add the Claude API or any other AI provider to the app.
 - Org-facing areas are only Create (Presentations), Product Truth, Roadmap (D-032), Battlecards and Library.
 
 ## Ending every working session (log discipline)

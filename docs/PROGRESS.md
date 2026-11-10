@@ -44,6 +44,7 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Deal rooms: get GetAccept's licence cost and deals per month for the business case | Content | Tobias | 13 Nov | Open |
 | Deal rooms: decide signing (simple e-signature only, or a BankID provider) and the room domain (`rom.simployer.com`?) | Decision | Tobias | 18 Nov | Open |
 | Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? | Decision | Tobias | 13 Nov | Open |
+| tl;dv for deal rooms (D-037): API access on our plan, a DPA, and legal/DPO on processing transcripts | Admin | Tobias | 18 Nov | Open |
 
 ## Log
 
@@ -67,7 +68,8 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
 - **Next:** fill the licence cost in the pitch. Legal and DPO on tracking.
 - **Published:** the prototype artifact [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) is version 3, with the `deal-room/` folder. Room links point at `deal-room/index.html` so they work on the artifact.
 - **Blockers:** none for the prototype. Real rooms wait for legal, finance (CFO figures) and customer OK on quotes.
-- **Decisions:** D-036 (accepted).
+- **Decisions:** D-036 (accepted). D-037 (accepted): tl;dv makes each deal room personal. Meeting content arrives as AI drafts the rep approves. Quotes only with the customer's OK. tl;dv is read-only, for deal rooms only. Salesforce stays parked. SPEC, PARKED, CLAUDE.md and README updated.
+- **Pitch, last changes:** licence SEK 360,000 a year. Rooms are "personal from the meeting, true to Product truth".
 - **Known gaps:**
   - The room text is English only. NO/SV should come from Product truth in the app.
   - Video upload, BankID and server-side links come with the app.
