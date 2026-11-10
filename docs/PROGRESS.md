@@ -50,6 +50,17 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-10 — Room next steps from the presentation's timeline (D-039)
+- **Done:**
+  - A new room's "What happens next, and who does what" table is built from the deck's timeline slide: steps, descriptions, dates and done ticks. The first open step is marked *Next*, and undated steps say *To agree*. Owners are prefilled.
+  - The panel says where the steps came from. *Update from the presentation* pulls them again.
+  - Decks without a timeline slide, and blank rooms, get the presentation type's usual plan.
+  - The phone preview button shows a smartphone, not a handset.
+- **Verified in the browser:** a room from the Fjellheim deck (NO) shows its 5 steps with a done demo and a dated proposal. After changing the deck, *Update from the presentation* refreshes the table, keeps it editable and saves it. The fallbacks work for Lindqvist (no timeline) and a blank room. Every inline script parses.
+- **Next:** republish the prototype artifact (same link).
+- **Blockers:** none.
+- **Decisions:** D-039 (accepted, from Tobias's question).
+
 ### 2026-11-10 — Deal room editor rebuilt as a full-window studio (D-038)
 - **Done:**
   - Measured the old editor at 1440×900. The room got 544×638 px at 0.43 scale, with three menus side by side and 277 px of header above it.

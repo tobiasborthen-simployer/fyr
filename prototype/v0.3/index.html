@@ -2747,12 +2747,34 @@ function vRooms() {
   </form></div>` : ''}`;
 }
 function bindRooms() { const f = $('#drn-co'); if (f) f.focus(); }
+// The room's "What happens next" table comes from the timeline the seller made in the presentation (D-039).
+// It is the plan agreed with the customer, so the room repeats it: same steps, same dates, the same ticks.
+function deckTimeline(d) {
+  const sl = d && (d.slides || []).filter(x => x.kind === 'timeline' && x.steps && x.steps.length), s = sl && (sl.find(x => !x.hidden) || sl[0]);
+  if (s) return { own: true, steps: s.steps.map(x => ({ name: String(x.name || '').trim(), desc: String(x.desc || '').trim(), date: String(x.date || '').trim(), done: !!x.done })).filter(x => x.name) };
+  const lg = d ? d.lang : 'EN', rl = d && ruleById(d.rule), tl = rl && rl.timeline && (rl.timeline[lg] || rl.timeline.EN) ? rl.timeline : ruleById('sales-demo').timeline;
+  return { own: false, steps: tlFix((tl[lg] || tl.EN).map(tlStep), lg).map(x => ({ name: x.name, desc: x.desc, date: '', done: false })) };
+}
+function roomStepRows(r, steps) {
+  const rep = firstName(r.rep), con = firstName(r.contact), nxt = steps.findIndex(x => !x.done), both = r.lang === 'NO' ? 'Begge' : r.lang === 'SV' ? 'Båda' : 'Both';
+  const owner = (x, i) => i === 0 ? [con, rep].filter(Boolean).join(', ') || both : /proposal|tilbud|offert/i.test(x.name) ? rep || both : both;
+  const tag = (x, i) => x.done ? `<span class="tag done">${r.lang === 'EN' ? 'Done' : 'Klar'}</span>` : i === nxt ? `<span class="tag next">${r.lang === 'NO' ? 'Neste' : r.lang === 'SV' ? 'Nästa' : 'Next'}</span>` : '';
+  const when = x => x.date ? esc(x.date) : `<span style="color:var(--text-meta)">${r.lang === 'NO' ? 'Avtales' : r.lang === 'SV' ? 'Bestäms' : 'To agree'}</span>`;
+  return steps.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.name)}${x.desc ? `<span class="small" style="display:block;font-weight:400;margin-top:2px">${esc(x.desc)}</span>` : ''}</td><td>${esc(owner(x, i))}</td><td>${when(x)}</td><td>${tag(x, i)}</td></tr>`).join('');
+}
+function roomSetSteps(d, r, steps) {
+  const tb = d.querySelector('#p12 tbody'); if (!tb || !steps || !steps.length) return false;
+  tb.innerHTML = roomStepRows(r, steps);
+  const note = d.querySelector('#p12 p.small'); if (note) note.innerHTML = r.lang === 'NO' ? 'Dette er planen vi la sammen. Si fra hvis noe mangler eller en dato må flyttes.' : r.lang === 'SV' ? 'Det här är planen vi gjorde tillsammans. Säg till om något saknas eller ett datum behöver flyttas.' : 'This is the plan we made together. Tell me if something is missing or a date needs to move.';
+  return true;
+}
+
 function createRoom(deckId, company, contact, email, pkg) {
   const d = DECKS.find(x => x.id === deckId), m = d && d.meeting ? d.meeting : {}, rep = CUR ? CUR.name : 'Nicole Udd';
   const r = { id: 'room-' + Date.now().toString(36), slug: (company.toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'room') + '-' + Math.random().toString(36).slice(2, 8),
     company, contact, email, lang: d ? d.lang : 'EN', pkg, from: d ? ruleById(d.rule).name : 'Blank room', deckId: d ? d.id : null, rep, repEmail: CUR ? CUR.email : '', status: 'draft', access: 'email',
     created: deckStamp(), updated: deckStamp(), html: null, hidden: [], alerts: { fresh: true, proposal: true, sign: true, quiet: false },
-    init: { heads: (m.heads || []).slice(0, 3), pains: (m.pains || []).slice(0, 3) },
+    init: { heads: (m.heads || []).slice(0, 3), pains: (m.pains || []).slice(0, 3), steps: deckTimeline(d).steps },
     people: contact ? [{ name: contact, email, role: '', token: roomTok(contact), by: 'rep' }] : [] };
   r.meet = makeMeet(r);
   roomPut(r); return r;
@@ -2792,7 +2814,7 @@ const ROOM_FIELDS = {
     { l: 'Date that matters, 1', s: '#p11 .cards.two .c:nth-child(1) h4' },
     { l: 'Date that matters, 2', s: '#p11 .cards.two .c:nth-child(2) h4' }
   ],
-  p12: [{ type: 'addstep' }],
+  p12: [{ type: 'steps' }, { type: 'addstep' }],
   p21: [
     { l: 'Hours a week on HR admin', s: '#p21 .cards .c:nth-child(1) .big .v' },
     { l: 'Size of the HR team', s: '#p21 .cards .c:nth-child(1) p:not(.big) .v' },
@@ -3023,6 +3045,10 @@ function roomFieldHTML(f, i) {
   const sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"');
   if (f.type === 'pic') { const cur = (roomAll(f.s)[0] || { getAttribute: () => '' }).getAttribute('src') || ''; return `<div class="dr-f"><label>${sm('i-image')}${f.l} <span style="font-weight:400;color:#9E98C4">· Simployer image bank</span></label><div class="dr-pics">${ROOM_PICS.map(p => `<button type="button" data-dr-pic="${i}" data-src="assets/img/${p}.jpg" class="${cur.includes(p) ? 'on' : ''}" title="${p}"><img src="deal-room/assets/img/${p}.jpg" alt=""></button>`).join('')}</div></div>`; }
   if (f.type === 'video') return `<div class="dr-f"><label>${f.l}</label><button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="video">${sm('i-play')}Upload a video</button><p class="dr-note">It plays in the welcome.</p></div>`;
+  if (f.type === 'steps') { const r = roomCur(), d = DECKS.find(x => x.id === r.deckId), tl = d && deckTimeline(d);
+    if (!d) return `<p class="dr-note">${ico('i-deck')}Blank room: the steps are Simployer's usual plan. Rooms made from a presentation take the timeline you made there.</p>`;
+    return `<div class="dr-hint">${ico('i-deck')}<span>${tl.own ? `From the timeline in your presentation for ${esc(d.company)}: ${tl.steps.length} steps, ${tl.steps.filter(x => x.done).length} done, ${tl.steps.filter(x => x.date).length} with a date.` : `Your presentation for ${esc(d.company)} has no timeline slide yet, so this is the usual plan for ${esc(ruleById(d.rule).name)}.`}</span></div>
+      <button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="pullsteps">${ico('i-refresh')}Update from the presentation</button>`; }
   if (f.type === 'addstep') return `<button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="addstep">${ico('i-plus')}Add a step</button><p class="dr-note">Change steps, owners and dates straight in the table.</p>`;
   if (f.type === 'sign') return `<div class="dr-f"><label>How the customer signs</label><select data-dr="signhow"><option>Simple e-signature: name, title and a tick</option><option>BankID (needs a signing provider)</option></select></div><p class="dr-note">The agreement is built from 07 Your proposal. When it's signed, the room shows Signed and you get the receipt.</p>`;
   if (f.type === 'items') return `${f.note ? `<p class="dr-note">${f.note}</p>` : ''}<div class="dr-items">${roomAll(f.s).map((el, j) => `<label><input type="checkbox" data-dr-item="${i}" data-j="${j}" ${el.style.display === 'none' ? '' : 'checked'}>${esc(f.label ? f.label(el) : (el.querySelector('h4') || el).textContent.trim())}</label>`).join('')}</div>`;
@@ -3142,7 +3168,16 @@ function roomApplyInit(d, r) {
   const mo = new Date(); set('.v[data-t="{month}"]', `${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][mo.getMonth()]} ${mo.getFullYear()}`);
   (r.init.heads || []).forEach((h, i) => set(`#p11 .cards:not(.two) .c:nth-child(${i + 1}) h4`, h));
   (r.init.pains || []).forEach((p, i) => set(`#p11 .cards:not(.two) .c:nth-child(${i + 1}) ${i ? 'p:not(.k)' : '.q'}`, p));
+  roomSetSteps(d, r, r.init.steps);
   r.init = null; roomSave();
+}
+// Every text in the room can be clicked and changed, except the locked framework lines
+function roomPrepEditable(root) {
+  if (!root) return;
+  root.querySelectorAll('h1,h3,h4,p,li,td,summary,blockquote span,.k,.big,.d4,.d5,.sr > span').forEach(el => {
+    if (el.closest('.fyr-lock') || el.querySelector('.fyr-lock') || el.closest('[contenteditable]') || el.querySelector('p,h4,td,li')) return;
+    el.setAttribute('contenteditable', S.roomPreview ? 'false' : 'true'); el.dataset.fyrCe = '1'; el.spellcheck = false;
+  });
 }
 function roomPrep() {
   const d = roomDoc(), r = roomCur(); if (!d || !r || !d.querySelector('.main') || d.documentElement.dataset.fyr) return;
@@ -3170,10 +3205,7 @@ function roomPrep() {
   d.head.appendChild(st);
   const locked = new Set(ROOM_LOCKED.flatMap(s => [...d.querySelectorAll(s)]));
   locked.forEach(el => { el.classList.add('fyr-lock'); el.title = 'From the Messaging Framework. PMM owns this line.'; });
-  d.querySelector('.main').querySelectorAll('h1,h3,h4,p,li,td,summary,blockquote span,.k,.big,.d4,.d5,.sr > span').forEach(el => {
-    if (locked.has(el) || el.closest('.fyr-lock') || el.querySelector('.fyr-lock') || el.closest('[contenteditable="true"]') || el.querySelector('p,h4,td,li')) return;
-    el.setAttribute('contenteditable', 'true'); el.dataset.fyrCe = '1'; el.spellcheck = false;
-  });
+  roomPrepEditable(d.querySelector('.main'));
   d.querySelectorAll('summary[contenteditable]').forEach(s => s.addEventListener('keydown', e => { if (e.key === ' ') e.stopPropagation(); }));
   d.addEventListener('click', e => {
     const a = e.target.closest('a'); if (a && !String(a.getAttribute('href') || '').startsWith('#')) e.preventDefault(); if (e.target.closest('summary[contenteditable]') && !S.roomPreview) e.preventDefault();
@@ -3290,6 +3322,7 @@ document.addEventListener('click', e => {
     const first = r.status === 'draft'; if (r.status !== 'signed') r.status = 'live'; roomSave(); if (first) S.roomTab = 'share'; S.roomMenu = false; render();
     toast(first ? 'Published. Add the people and copy their personal links.' : 'Published. Everyone with a link sees the new version.'); return;
   }
+  if (a === 'pullsteps') { const d = DECKS.find(x => x.id === r.deckId), doc = roomDoc(); if (!d || !doc) return; if (roomSetSteps(doc, r, deckTimeline(d).steps)) { roomPrepEditable(doc.querySelector('#p12')); roomSave('p12'); roomOutline(); roomInspector(); roomRefreshChecks(); roomScrollTo('p12'); toast('Steps, dates and ticks now match the timeline in your presentation. Owners are a starting point: change them in the table.'); } return; }
   if (a === 'addstep') { const tb = roomAll('#p12 tbody')[0]; if (!tb) return; const n = tb.children.length + 1, tr = roomDoc().createElement('tr'); tr.innerHTML = `<td>${n}</td><td contenteditable="true">New step</td><td contenteditable="true">Both</td><td contenteditable="true">Date</td><td></td>`; tb.appendChild(tr); roomSave('p12'); roomOutline(); roomScrollTo('p12'); toast('Step added. Type in the table to fill it in.'); return; }
   if (a === 'video') { toast('Video upload comes with the app (Vercel Blob). The prototype keeps the placeholder.'); return; }
 });

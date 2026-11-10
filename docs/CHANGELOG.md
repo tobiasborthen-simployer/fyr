@@ -7,6 +7,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Added**
+- **Deal room next steps from the presentation (D-039):** "What happens next" is built from the deck's timeline slide (steps, dates and done ticks, with *Next* on the first open step and *To agree* instead of `{date}`). *Update from the presentation* takes it again.
 - **Deal room studio (D-038):** the room editor now fills the window.
   - One top bar instead of four rows, and a slim section strip that opens on hover.
   - At 1440×900 the room shows at real size: 960×809 px, up from 544×638 px at 0.43 scale.

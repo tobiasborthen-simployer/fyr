@@ -591,7 +591,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 **Rooms list**
 - One row per room: customer and contact, the presentation it was built from, status (Draft, Live, Signed), people and views, how much has been read, and the latest activity.
 - Figures on top: live rooms, views this week, new people via forwards, rooms waiting for a signature.
-- *New deal room* starts from a deck in My presentations (company, language, contact and challenges from its brief) or blank. The rep picks the package.
+- *New deal room* starts from a deck in My presentations (company, language, contact and challenges from its brief, and the steps from its timeline slide) or blank. The rep picks the package.
 
 **Room editor** (a full-window studio, [D-038](DECISIONS.md))
 - **Studio mode:** Fyr's top bar is hidden and its menu collapses to icons, so the editor fills the window.
@@ -602,6 +602,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 - **Locked:** Messaging Framework lines (line, reason, how, trust line, "A classic HR system stores the work. Simployer does it.", the CFO line), approved claims and approved customer quotes.
 - **Message check:** one chip in the top bar: green *Ready* or amber *N to fix*. It runs the framework's avoid list on every edit and counts meeting drafts waiting and placeholders. Each item has a button that goes to it in the room. Notes cover unapproved CFO figures, customer quotes without written OK, and changed Product Truth wording (sent to PMM). *Publish and share* opens the list while anything is left to fix.
 - **A first-time tip** explains click-to-edit and the locks once.
+- **What happens next** (01) is built from the presentation's timeline slide: the same steps, descriptions, dates and done ticks, the first open step marked *Next*, and *To agree* where there is no date yet. Owners start as a suggestion (the contact and the rep on the first step, the rep on the proposal, both on the rest). The panel says where the steps came from, and *Update from the presentation* takes them again. Without a timeline slide, or for a blank room, it uses the presentation type's usual plan ([D-039](DECISIONS.md)).
 
 **Share and track**
 - One unguessable room link, plus a personal link per person (`?r=<token>`). Adding a person creates their link.
@@ -632,7 +633,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 **Not in this version:** BankID or another signing provider, Salesforce sync, video recording in Fyr (an uploaded file only).
 
 **Acceptance criteria**
-- [ ] A rep makes a room from a deck in My presentations in under 2 minutes, with company, language and challenges carried over.
+- [ ] A rep makes a room from a deck in My presentations in under 2 minutes, with company, language, challenges and the timeline carried over.
 - [ ] Every text in the room can be changed in the editor except locked lines, and the change shows in the preview at once.
 - [ ] Hiding a section or block removes it from the customer page and its menu.
 - [ ] Photos can only be picked from the image bank.

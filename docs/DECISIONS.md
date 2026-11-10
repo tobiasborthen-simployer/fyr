@@ -868,3 +868,28 @@ Details are in PARKED.md.
 - Prototype only for now. The app builds the same layout in M4 (or v0.4, see the open item on deal rooms).
 
 **Revisit if:** reps miss the always-visible section list, or the hover strip is hard to use on touch screens.
+
+## D-039 — A room's next steps come from the presentation's timeline
+`2026-11-10` · **Status:** Accepted · **Owner:** Tobias
+**Extends:** D-036 ("Made from a presentation") and D-038.
+
+**Context:**
+- Tobias, 10 Nov 2026, on the room's "What happens next, and who does what" table: "This should be based on the timeline the seller makes in the presentations, no?"
+- The table was a fixed eight-step template full of `{Contact}`, `{you}` and `{date}` placeholders. That's 23 placeholders before the rep has written anything.
+- The deck's timeline slide is where the seller agrees the plan with the customer. The speaker note says to put a date on the demo before the call ends. So the plan already exists, in the deck.
+
+**Decision:**
+- A room made from a presentation builds the table from that deck's timeline slide: the same steps, descriptions, dates and done ticks.
+  - The first step that isn't done is marked *Next*.
+  - A step without a date says *To agree*, not `{date}`, so an open date doesn't block publishing.
+- Owners start as a suggestion: the contact and the rep on the first step, the rep on the proposal, both on the rest. The rep changes them in the table.
+- The panel for the block says where the steps came from (how many, how many done, how many dated). *Update from the presentation* takes them again after the deck changes. It's a manual pull, not a live link, so the rep's edits in the room aren't overwritten by surprise.
+- If the deck has no timeline slide, or the room is blank, the table uses the usual plan for that presentation type (Demo → … → Go-live).
+- The step names follow the deck's language, since they are what the seller said to the customer.
+
+**Consequences:**
+- SPEC §4.12: "made from a presentation" includes the timeline; the room editor section and an acceptance criterion are updated.
+- Rooms made before this keep their table. *Update from the presentation* replaces it if the rep wants.
+- App: the timeline steps are part of the deck, so the room reads them from the same record. tl;dv's "agreed next steps" (D-037) can later arrive as AI drafts on top of this table.
+
+**Revisit if:** reps want the room and the deck timeline to stay linked both ways.
