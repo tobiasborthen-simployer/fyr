@@ -17,7 +17,12 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
   - My presentations gets a *Deal room* button on each row. The prototype keeps rooms and reading in the browser, so opening a personal link in the same browser shows up in Fyr.
 - **Collapsible menu:** the Fyr menu collapses to icons from the button next to the breadcrumbs, everywhere in Fyr, and Fyr remembers the choice. The room editor can also hide the sections and the fields, and *Focus* does both and collapses the menu.
 - `tools/sync-framework.mjs --check` also checks the deal room page.
-- **tl;dv is back for deal rooms (D-037)**, in the spec. The prospect's meetings make each room personal, as drafts the rep approves. It isn't connected in the prototype yet.
+- **tl;dv is back for deal rooms (D-037)**, in the spec. The prospect's meetings make each room personal, as drafts the rep approves.
+- **From the meeting:** a new first step in the room editor. Fyr lists the prospect's meetings in tl;dv, matched by email domain, and drafts the personal parts: the challenges, a quote, who said it, the dates that matter and the hours for the ROI block.
+  - Each draft has *Use*, *Skip* and *Undo* and can be edited. A quote goes in only once the rep ticks that the customer said OK.
+  - A room can't be published while drafts are waiting.
+  - In the prototype the meetings and drafts are example data, because tl;dv isn't connected.
+- The room editor's toolbar wraps on narrow windows instead of covering the fields panel.
 - **Add slide picker (D-034):** six layouts with placeholders (Headline and text, Three points, Today and with Simployer, One big number, Agenda, What they said) and four ready-made slides with approved text (Feature, Customer quote, Why Simployer, Next steps). Faded placeholders and a count of what's left.
 - The prototype is published as a claude.ai artifact, [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE), for walkthrough and sign-off.
 - **Roadmap for everyone (D-032).** A new org area that shows where Simployer is going, by the six product pillars of Product Strategy 2027, in plain words:

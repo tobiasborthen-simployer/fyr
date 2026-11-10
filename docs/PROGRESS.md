@@ -70,6 +70,7 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
 - **Blockers:** none for the prototype. Real rooms wait for legal, finance (CFO figures) and customer OK on quotes.
 - **Decisions:** D-036 (accepted). D-037 (accepted): tl;dv makes each deal room personal. Meeting content arrives as AI drafts the rep approves. Quotes only with the customer's OK. tl;dv is read-only, for deal rooms only. Salesforce stays parked. SPEC, PARKED, CLAUDE.md and README updated.
 - **Pitch, last changes:** licence SEK 360,000 a year. Rooms are "personal from the meeting, true to Product truth".
+- **From the meeting (prototype):** a new first step in the room editor, with example tl;dv meetings and AI drafts the rep uses, skips or edits. A quote needs the customer's OK, and publishing waits until every draft is reviewed. Tested on a new Strand Helse room and on the Vantera example.
 - **Known gaps:**
   - The room text is English only. NO/SV should come from Product truth in the app.
   - Video upload, BankID and server-side links come with the app.

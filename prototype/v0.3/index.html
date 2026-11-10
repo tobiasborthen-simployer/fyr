@@ -1671,6 +1671,24 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .dr-modal .note { font-size: 13px; color: var(--muted); background: var(--lav-50); border-radius: 10px; padding: 10px 12px; }
 .dr-modal .end { display: flex; justify-content: flex-end; gap: 8px; }
 .pill.n.sample { background: rgba(242,184,102,.16); color: #F2B866; }
+/* From the meeting (D-037): drafts from tl;dv the rep approves */
+.dr-drafts { display: grid; gap: 10px; }
+.dr-insp > *, .dr-fields > *, .dr-drafts > * { min-width: 0; }
+.dr-draft { background: rgba(255,255,255,.05); border: 1px solid var(--night-line); border-radius: 12px; padding: 12px; display: grid; gap: 8px; }
+.dr-draft .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #E9E4F4; }
+.dr-draft .ai { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #CDC0EA; background: rgba(151,115,255,.2); border-radius: 99px; padding: 2px 8px; white-space: nowrap; }
+.dr-draft textarea { width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid var(--night-line); border-radius: 8px; padding: 8px 10px; color: #fff; font-size: 13px; line-height: 1.45; resize: vertical; outline: none; }
+.dr-draft textarea:focus { border-color: #9773FF; box-shadow: var(--ring); }
+.dr-draft textarea:disabled { opacity: .75; }
+.dr-draft .src { display: flex; gap: 6px; align-items: center; font-size: 11.5px; color: #9E98C4; }
+.dr-draft .src .ico { width: 12px; height: 12px; }
+.dr-draft .acts { display: flex; gap: 6px; align-items: center; }
+.dr-draft .st { font-size: 12px; font-weight: 600; color: #7FDDB0; }
+.dr-draft.skipped .st { color: #9E98C4; }
+.dr-draft.used, .dr-draft.skipped { background: rgba(255,255,255,.025); }
+.dr-draft .lnk { font-size: 12px; color: #CDC0EA; text-decoration: underline; margin-left: auto; }
+.dr-draft .okq { display: flex; gap: 8px; align-items: center; font-size: 12px; color: #F2B866; }
+.dr-cnt { min-width: 18px; height: 18px; border-radius: 99px; background: #F2B866; color: #2A1B05; font-size: 11px; font-weight: 700; display: grid; place-items: center; padding: 0 5px; flex: none; }
 .pill.n.live { background: rgba(46,178,122,.16); color: #7FDDB0; }
 /* collapsible editor panels: hide the sections list, the fields, or both, so the preview gets the room */
 .dr-body.no-left > .dr-left, .dr-body.no-right > .dr-insp { display: none; }
@@ -1678,8 +1696,10 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .dr-body.no-right { grid-template-columns: 224px minmax(0,1fr); }
 .dr-body.no-left.no-right { grid-template-columns: minmax(0,1fr); }
 .dr-tools { display: flex; gap: 6px; align-items: center; flex: none; }
-.dr-stage > .dr-stage-bar:first-child { flex-wrap: nowrap; }
-.dr-stage > .dr-stage-bar:first-child .dr-url { flex: 1 1 auto; }
+/* the toolbar wraps rather than spilling over the fields panel when the window is narrow */
+.dr-stage > .dr-stage-bar:first-child { flex-wrap: wrap; row-gap: 8px; }
+.dr-stage > .dr-stage-bar:first-child .dr-url { flex: 1 1 160px; }
+.dr-stage { overflow: hidden; }
 .dr-tools .seg.n button { height: 32px; padding: 0 10px; }
 .dr-tools button { height: 32px; padding: 0 10px; border-radius: 8px; display: inline-flex; gap: 6px; align-items: center; color: var(--night-sub); font-size: 12.5px; font-weight: 500; border: 1px solid var(--night-line); background: rgba(255,255,255,.04); }
 .dr-tools button:hover { color: #fff; background: rgba(255,255,255,.08); }
@@ -2619,7 +2639,7 @@ function vRooms() {
     <div class="fld"><label for="drn-co">Company</label><textarea id="drn-co" rows="1" required>${esc(deck ? deck.company : '')}</textarea></div>
     <div class="row"><div class="fld"><label for="drn-c">Contact</label><textarea id="drn-c" rows="1"></textarea></div><div class="fld"><label for="drn-e">Their work email</label><textarea id="drn-e" rows="1"></textarea></div></div>
     <div class="fld"><label for="drn-p">Package</label><select id="drn-p"><option>Complete</option><option>Essential</option></select></div>
-    <p class="note">The company, language and challenges come from your presentation's brief. Fyr fills the rest from Product truth and the Messaging Framework. Everything you need to fill in shows in curly brackets.</p>
+    <p class="note">Fyr finds your meetings with this contact's company in tl;dv and drafts the personal parts for you to approve. Product truth and the Messaging Framework fill the rest. What you still need to fill in shows in curly brackets.</p>
     <div class="end"><button type="button" class="btn btn-line" data-dr="cancel">Cancel</button><button class="btn btn-primary" type="submit">Create room</button></div>
   </form></div>` : ''}`;
 }
@@ -2631,11 +2651,13 @@ function createRoom(deckId, company, contact, email, pkg) {
     created: deckStamp(), updated: deckStamp(), html: null, hidden: [], alerts: { fresh: true, proposal: true, sign: true, quiet: false },
     init: { heads: (m.heads || []).slice(0, 3), pains: (m.pains || []).slice(0, 3) },
     people: contact ? [{ name: contact, email, role: '', token: roomTok(contact), by: 'rep' }] : [] };
+  r.meet = makeMeet(r);
   roomPut(r); return r;
 }
 
 /* The room editor: sections on the left, the live room in the middle, fields and checks on the right */
 const ROOM_OUTLINE = [
+  { id: 'meet', n: '', t: 'From the meeting', blocks: [{ id: 'meet', t: 'Meeting drafts · tl;dv', el: '.hero' }] },
   { id: 'hero', n: '', t: 'Welcome', blocks: [{ id: 'details', t: 'Customer, contact and you', el: '.hero' }] },
   { id: 's1', n: '01', t: 'Where you are today', blocks: [{ id: 'p11', t: 'What you told us' }, { id: 'p12', t: 'What happens next' }] },
   { id: 's2', n: '02', t: 'Why do anything at all', blocks: [{ id: 'p21', t: 'The cost of doing nothing' }] },
@@ -2703,11 +2725,66 @@ const ROOM_FIELDS = {
     { l: 'Valid until', s: `${RT('p71')}(6) td:last-child .v` }
   ],
   p72: [{ type: 'items', s: '#p72 details', label: el => el.querySelector('summary').textContent, note: 'Change a question or answer by clicking it in the preview.' }],
-  p73: [{ type: 'sign' }]
+  p73: [{ type: 'sign' }],
+  meet: [{ type: 'meeting' }]
 };
 // Lines the rep can't change: Messaging Framework lines, approved claims and approved customer quotes
 const ROOM_LOCKED = ['#p31 > h3', '#p31 > .lede', '#p31 > .how', '#p32 > h3', '#p32 .callout.tint .d4', '#p32 .callout.tint p', '#p21 > h3', '#p21 > .lede', '.trustline', '.chips span', '#p51 .cards.two .c .d5', '#p52 blockquote p', '.foot b'];
 const ROOM_PICS = ['photo-desk', 'photo-team', 'photo-side-by-side', 'photo-pair', 'photo-laptop', 'photo-floor', 'photo-table'];
+
+/* From the meeting (D-037): Fyr reads the prospect's meetings in tl;dv and drafts the personal parts; the rep approves each one.
+   Prototype: tl;dv isn't connected, so the meetings and drafts below are example data built from the room and its presentation brief. */
+const MEET_SEL = {
+  c1: '#p11 .cards:not(.two) .c:nth-child(1) h4', q1: '#p11 .cards:not(.two) .c:nth-child(1) .q', who1: '#p11 .cards:not(.two) .c:nth-child(1) .who',
+  c2: '#p11 .cards:not(.two) .c:nth-child(2) h4', t2: '#p11 .cards:not(.two) .c:nth-child(2) p:not(.k)',
+  c3: '#p11 .cards:not(.two) .c:nth-child(3) h4', t3: '#p11 .cards:not(.two) .c:nth-child(3) p:not(.k)',
+  d1: '#p11 .cards.two .c:nth-child(1) h4', d1t: '#p11 .cards.two .c:nth-child(1) p:not(.k)',
+  hrs: '#p51 table tr:nth-child(3) td:last-child .v'
+};
+function makeMeet(r, state = 'pending') {
+  const d = DECKS.find(x => x.id === r.deckId), m = (d && d.meeting) || {}, first = firstName(r.contact) || 'They';
+  const dom = String(r.email || '').split('@')[1] || (r.company.toLowerCase().normalize('NFD').replace(/[^a-z]/g, '') || 'customer') + '.com';
+  const day = d && d.date ? new Date(d.date) : new Date(Date.now() - 6 * 864e5), fd = x => `${x.getDate()} ${MON3[x.getMonth()]}`;
+  const meetings = [
+    { id: 'm1', title: 'Discovery', date: fd(day), mins: 42, who: [r.contact || 'Their HR lead', 'their CFO'].join(', '), on: true },
+    { id: 'm2', title: 'Follow-up call', date: fd(new Date(day.getTime() + 3 * 864e5)), mins: 18, who: r.contact || 'Their HR lead', on: true }];
+  const H = ['Onboarding runs through one person', 'No clear picture of who is away', 'Managers send everything to HR'];
+  const P = ['When that person is away, a new starter waits for contracts and equipment.', 'Each site keeps its own list, so the monthly number arrives late and nobody fully trusts it.', 'Approvals, questions and role changes all land with a small HR team.'];
+  const hd = k => (m.heads || [])[k] || H[k], pn = k => (m.pains || [])[k] || P[k], src = (mt, t) => `${mt.title}, ${mt.date} · ${t}`;
+  const [M1, M2] = meetings;
+  const drafts = [
+    { id: 'c1', label: 'Challenge 1', sel: MEET_SEL.c1, text: hd(0), from: src(M1, '06:12') },
+    { id: 'q1', label: 'In their words', sel: MEET_SEL.q1, isQuote: true, ok: false, quote: '“If one person is away, everything waits. That’s our onboarding today.”', text: `${first} said onboarding stops when one person is away.`, from: src(M1, '06:40') },
+    { id: 'who1', label: 'Who said it', sel: MEET_SEL.who1, text: `${r.contact || first}, ${M1.date}`, from: src(M1, '06:40') },
+    { id: 'c2', label: 'Challenge 2', sel: MEET_SEL.c2, text: hd(1), from: src(M1, '14:05') },
+    { id: 't2', label: 'What it costs them', sel: MEET_SEL.t2, text: pn(1), from: src(M1, '14:30') },
+    { id: 'c3', label: 'Challenge 3', sel: MEET_SEL.c3, text: hd(2), from: src(M1, '19:50') },
+    { id: 't3', label: 'What it costs them', sel: MEET_SEL.t3, text: pn(2), from: src(M1, '20:15') },
+    { id: 'd1', label: 'A date that matters', sel: MEET_SEL.d1, text: 'Pay transparency reporting starts', from: src(M2, '03:05') },
+    { id: 'd1t', label: 'What it means', sel: MEET_SEL.d1t, text: 'The pay mapping isn’t done yet.', from: src(M2, '03:20') },
+    { id: 'hrs', sec: '05', block: 'p51', label: 'Hours on HR admin a week', sel: MEET_SEL.hrs, text: '20', from: src(M1, '27:40') }
+  ].map(x => ({ state, sec: '01', block: 'p11', mt: x.from.startsWith(M2.title) ? 'm2' : 'm1', ...x }));
+  return { domain: dom, meetings, drafts };
+}
+const roomMeetPending = r => r && r.meet ? r.meet.drafts.filter(x => x.state === 'pending').length : 0;
+const roomDraft = id => { const r = roomCur(); return r && r.meet ? r.meet.drafts.find(x => x.id === id) : null; };
+function roomUseDraft(dr) { const t = dr.isQuote && dr.ok ? dr.quote : dr.text; roomAll(dr.sel).forEach(el => { el.textContent = t; }); dr.state = 'used'; }
+function roomMeetHTML() {
+  const r = roomCur(); if (!r.meet) { r.meet = makeMeet(r, r.example ? 'used' : 'pending'); roomPut(r); }
+  const mt = r.meet, pend = roomMeetPending(r), sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:12px;height:12px"');
+  const card = dr => { const off = dr.state !== 'pending'; return `<div class="dr-draft ${dr.state}">
+    <div class="top"><span>${dr.sec} · ${esc(dr.label)}</span><span class="ai">AI draft</span></div>
+    ${dr.isQuote ? `<label class="okq"><input type="checkbox" data-dr-draft-ok="${dr.id}" ${dr.ok ? 'checked' : ''} ${off ? 'disabled' : ''}>The customer said OK to quote this</label>` : ''}
+    <textarea data-dr-draft-text="${dr.id}" rows="2" ${off ? 'disabled' : ''} aria-label="${esc(dr.label)}">${esc(dr.isQuote && dr.ok ? dr.quote : dr.text)}</textarea>
+    <div class="src">${sm('i-msg')} ${esc(dr.from)}</div>
+    <div class="acts">${off ? `<span class="st">${dr.state === 'used' ? 'In the room' : 'Skipped'}</span><button class="lnk" data-dr-draft-undo="${dr.id}">Undo</button>` : `<button class="btn btn-primary btn-sm" style="background:#9773FF" data-dr-draft-use="${dr.id}">Use</button><button class="btn btn-ghost-n btn-sm" data-dr-draft-skip="${dr.id}">Skip</button>`}</div></div>`; };
+  return `<div class="dr-hint">${ico('i-msg')}<span>Fyr reads your meetings with @${esc(mt.domain)} in tl;dv and drafts the personal parts. You approve every line before the room can be published. Quotes go in only with the customer's OK.</span></div>
+  <span class="pill n sample" style="justify-self:start;white-space:normal;height:auto;padding:5px 10px;line-height:1.35">Example data · tl;dv isn't connected in the prototype</span>
+  <div><span class="dr-lbl">Meetings in tl;dv</span><div class="dr-items">${mt.meetings.map(x => `<label style="align-items:flex-start"><input type="checkbox" data-dr-meet="${x.id}" ${x.on ? 'checked' : ''} style="margin-top:3px"><span>${esc(x.title)} · ${esc(x.date)} · ${x.mins} min<small style="display:block;color:#9E98C4">${esc(x.who)}</small></span></label>`).join('')}</div></div>
+  <div><span class="dr-lbl">Drafts · ${pend ? `${pend} waiting for you` : 'all reviewed'}</span><div class="dr-drafts">${mt.drafts.map(card).join('')}</div>
+  ${pend ? `<button class="btn btn-ghost-n btn-sm" style="margin-top:10px" data-dr="useall">Use all ${pend}</button>` : ''}</div>`;
+}
+function roomMeetRefresh() { const el = $('#dr-insp'), y = el ? el.scrollTop : 0; roomInspector(); roomOutline(); if (el) el.scrollTop = y; }
 const roomBlock = id => ROOM_OUTLINE.flatMap(x => x.blocks).find(b => b.id === id);
 const roomSec = id => ROOM_OUTLINE.find(x => x.blocks.some(b => b.id === id));
 const roomDoc = () => { const f = $('#dr-frame iframe'); try { return f && f.contentDocument; } catch (_) { return null; } };
@@ -2744,11 +2821,12 @@ function vRoom() {
 function roomOutline() {
   const r = roomCur(), el = $('#dr-outline'); if (!r || !el) return; const hid = new Set(r.hidden || []), ed = new Set(r.edited || []);
   el.innerHTML = ROOM_OUTLINE.map(sec => `<div class="dr-sec ${hid.has(sec.id) ? 'dr-off' : ''}">
-    <div class="dr-head"><span class="n">${sec.n}</span><span class="t">${sec.t}</span>${sec.id !== 'hero' ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${sec.id}" title="${hid.has(sec.id) ? 'Show' : 'Hide'} this section">${ico(hid.has(sec.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</div>
-    ${sec.blocks.map(b => `<button class="dr-blk ${S.roomBlock === b.id ? 'sel' : ''} ${hid.has(b.id) ? 'dr-off' : ''}" data-dr-block="${b.id}"><span class="t">${b.t}</span>${ed.has(b.id) ? '<span class="ed" title="Edited"></span>' : ''}${b.lock ? ico('i-lock', 'ico lk') : ''}${sec.blocks.length > 1 ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${b.id}" title="${hid.has(b.id) ? 'Show' : 'Hide'} this block">${ico(hid.has(b.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</button>`).join('')}
+    <div class="dr-head"><span class="n">${sec.n}</span><span class="t">${sec.t}</span>${!['hero', 'meet'].includes(sec.id) ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${sec.id}" title="${hid.has(sec.id) ? 'Show' : 'Hide'} this section">${ico(hid.has(sec.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</div>
+    ${sec.blocks.map(b => `<button class="dr-blk ${S.roomBlock === b.id ? 'sel' : ''} ${hid.has(b.id) ? 'dr-off' : ''}" data-dr-block="${b.id}"><span class="t">${b.t}</span>${b.id === 'meet' && roomMeetPending(roomCur()) ? `<span class="dr-cnt" title="Meeting drafts waiting">${roomMeetPending(roomCur())}</span>` : ''}${ed.has(b.id) ? '<span class="ed" title="Edited"></span>' : ''}${b.lock ? ico('i-lock', 'ico lk') : ''}${sec.blocks.length > 1 ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${b.id}" title="${hid.has(b.id) ? 'Show' : 'Hide'} this block">${ico(hid.has(b.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</button>`).join('')}
   </div>`).join('');
 }
 function roomFieldHTML(f, i) {
+  if (f.type === 'meeting') return roomMeetHTML();
   const sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"');
   if (f.type === 'pic') { const cur = (roomAll(f.s)[0] || { getAttribute: () => '' }).getAttribute('src') || ''; return `<div class="dr-f"><label>${sm('i-image')}${f.l} <span style="font-weight:400;color:#9E98C4">· Simployer image bank</span></label><div class="dr-pics">${ROOM_PICS.map(p => `<button type="button" data-dr-pic="${i}" data-src="assets/img/${p}.jpg" class="${cur.includes(p) ? 'on' : ''}" title="${p}"><img src="deal-room/assets/img/${p}.jpg" alt=""></button>`).join('')}</div></div>`; }
   if (f.type === 'video') return `<div class="dr-f"><label>${f.l}</label><div class="dr-hint">${ico('i-play')}<span>Upload a short video for the customer. It plays in the welcome.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-dr="video">Upload a video</button></div>`;
@@ -2763,6 +2841,7 @@ function roomChecksHTML() {
   const d = roomDoc(), r = roomCur(); if (!d || !d.querySelector('.main') || !r) return '<div id="dr-checks"></div>';
   const text = d.querySelector('.main').innerText, hits = MF.avoid.filter(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(text)).map(a => a.why), ph = roomPlaceholders(), rows = [];
   rows.push(hits.length ? ['wa', `Off the Messaging Framework: ${hits.join('. ')}`] : ['ok', 'On the Messaging Framework: no avoid-list words or competitor names']);
+  { const mp = roomMeetPending(r); if (r.meet) rows.push(mp ? ['wa', `${mp} meeting draft${mp === 1 ? '' : 's'} from tl;dv waiting for your OK`] : ['ok', 'Meeting drafts reviewed']); }
   rows.push(ph ? ['wa', `${ph} placeholder${ph === 1 ? '' : 's'} in curly brackets still to fill`] : ['ok', 'No placeholders left']);
   rows.push(['ok', 'Framework lines, approved claims and quotes are locked']);
   if (S.roomBlock === 'p51') rows.push(['wa', 'The 4 to 8 month payback and 1,600 hours need finance approval before the room goes out']);
@@ -2901,10 +2980,17 @@ function roomCopy(url) { try { navigator.clipboard.writeText(url); } catch (_) {
 document.addEventListener('click', e => {
   const mk = e.target.closest('[data-mkroom]'); if (mk) { S.roomNew = mk.dataset.mkroom; S.roomModal = true; S.view = 'rooms'; render(); window.scrollTo({ top: 0 }); return; }
   if (!['rooms', 'room'].includes(S.view)) return;
-  const t = e.target.closest('[data-dr],[data-ropen],[data-rcopy],[data-rdel],[data-dr-tab],[data-dr-dev],[data-dr-hide],[data-dr-block],[data-dr-pic],[data-dr-popen],[data-dr-panel]');
+  const t = e.target.closest('[data-dr],[data-ropen],[data-rcopy],[data-rdel],[data-dr-tab],[data-dr-dev],[data-dr-hide],[data-dr-block],[data-dr-pic],[data-dr-popen],[data-dr-panel],[data-dr-draft-use],[data-dr-draft-skip],[data-dr-draft-undo]');
   if (!t) return;
   const r = roomCur(), a = t.dataset.dr;
   if (t.dataset.drPanel) { roomPanels(t.dataset.drPanel); return; }
+  if (t.dataset.drDraftUse || t.dataset.drDraftSkip || t.dataset.drDraftUndo || a === 'useall') {
+    if (a === 'useall') { r.meet.drafts.filter(x => x.state === 'pending').forEach(roomUseDraft); roomSave('p11'); roomSave('p51'); toast('All drafts are in the room. Check them in the preview.'); }
+    else { const dr = roomDraft(t.dataset.drDraftUse || t.dataset.drDraftSkip || t.dataset.drDraftUndo); if (!dr) return;
+      if (t.dataset.drDraftUse) { roomUseDraft(dr); roomSave(dr.block); roomScrollTo(dr.block); }
+      else { dr.state = t.dataset.drDraftSkip ? 'skipped' : 'pending'; roomPut(r); } }
+    roomMeetRefresh(); roomRefreshChecks(); return;
+  }
   if (a === 'new') { S.roomNew = (DECKS[0] || {}).id || ''; S.roomModal = true; render(); return; }
   if (a === 'cancel') { if (t.classList.contains('dr-scrim') && e.target !== t) return; S.roomModal = false; render(); return; }
   if (t.dataset.ropen) { S.room = t.dataset.ropen; S.roomTab = 'edit'; S.roomBlock = 'details'; S.view = 'room'; render(); window.scrollTo({ top: 0 }); return; }
@@ -2921,6 +3007,7 @@ document.addEventListener('click', e => {
   if (t.dataset.drPopen) { const p = (r.people || []).find(x => x.token === t.dataset.drPopen); if (p) window.open(roomLink(r, p), '_blank', 'noopener'); return; }
   if (a === 'open') { const p = (r.people || []).find(x => x.by === 'rep') || (r.people || [])[0]; if (!p) { toast('Add a person in Share and track first. Each person gets their own link.'); return; } window.open(roomLink(r, p), '_blank', 'noopener'); return; }
   if (a === 'publish') {
+    const mp = roomMeetPending(r); if (mp) { S.roomBlock = 'meet'; roomMeetRefresh(); toast(`Review the ${mp} meeting draft${mp === 1 ? '' : 's'} first. Every personal line from tl;dv needs your OK.`); return; }
     const ph = roomPlaceholders(); if (ph) { toast(`Fill the ${ph} placeholder${ph === 1 ? '' : 's'} in curly brackets first. The message check lists them.`); return; }
     const first = r.status === 'draft'; if (r.status !== 'signed') r.status = 'live'; roomSave(); render();
     toast(first ? 'Published. Share the personal links from Share and track.' : 'Published. Everyone with a link sees the new version.'); return;
@@ -2929,13 +3016,17 @@ document.addEventListener('click', e => {
   if (a === 'video') { toast('Video upload comes with the app (Vercel Blob). The prototype keeps the placeholder.'); return; }
 });
 document.addEventListener('input', e => {
-  if (S.view !== 'room') return; const f = e.target.closest('[data-dr-f]'); if (!f) return;
+  if (S.view !== 'room') return;
+  const dt = e.target.closest('[data-dr-draft-text]'); if (dt) { const dr = roomDraft(dt.dataset.drDraftText); if (dr) { if (dr.isQuote && dr.ok) dr.quote = dt.value; else dr.text = dt.value; roomPut(roomCur()); } return; }
+  const f = e.target.closest('[data-dr-f]'); if (!f) return;
   const def = ROOM_FIELDS[S.roomBlock][+f.dataset.drF]; roomAll(def.s).forEach(el => { el.textContent = f.value; });
   const r = roomCur(); if (def.company) { r.company = f.value; const h = $('.studio-bar h2'); if (h) h.textContent = 'Deal room for ' + f.value; const cb = $('#crumbs b'); if (cb) cb.textContent = f.value; }
   roomSave(S.roomBlock); roomOutline(); roomRefreshChecks();
 });
 document.addEventListener('change', e => {
   if (S.view !== 'room') return; const r = roomCur(); if (!r) return;
+  const ok = e.target.closest('[data-dr-draft-ok]'); if (ok) { const dr = roomDraft(ok.dataset.drDraftOk); if (dr) { dr.ok = ok.checked; roomPut(r); roomMeetRefresh(); } return; }
+  const mt = e.target.closest('[data-dr-meet]'); if (mt && r.meet) { const m = r.meet.meetings.find(x => x.id === mt.dataset.drMeet); if (m) { m.on = mt.checked; r.meet.drafts.forEach(x => { if (x.mt === m.id && x.state !== 'used') x.state = m.on ? 'pending' : 'skipped'; }); roomPut(r); roomMeetRefresh(); roomRefreshChecks(); } return; }
   const it = e.target.closest('[data-dr-item]'); if (it) { const def = ROOM_FIELDS[S.roomBlock][+it.dataset.drItem], el = roomAll(def.s)[+it.dataset.j]; if (el) el.style.display = it.checked ? '' : 'none'; roomSave(S.roomBlock); roomOutline(); return; }
   if (e.target.name === 'dr-acc') { r.access = e.target.value; roomPut(r); toast(r.access === 'invited' ? 'Only invited people can open the room now.' : 'Forwarded links now ask for a work email.'); return; }
   const al = e.target.closest('[data-dr-alert]'); if (al) { r.alerts = { ...(r.alerts || {}), [al.dataset.drAlert]: al.checked }; roomPut(r); return; }
@@ -2945,8 +3036,8 @@ document.addEventListener('submit', e => {
   if (e.target.id === 'dr-new') {
     e.preventDefault(); const co = $('#drn-co').value.trim(); if (!co) { $('#drn-co').focus(); return; }
     const r = createRoom($('#drn-from').value, co, $('#drn-c').value.trim(), $('#drn-e').value.trim(), $('#drn-p').value);
-    S.roomModal = false; S.room = r.id; S.roomTab = 'edit'; S.roomBlock = 'details'; S.view = 'room'; render(); window.scrollTo({ top: 0 });
-    toast(`Room for ${co} made from your presentation. Fill in what's in curly brackets, then publish.`); return;
+    S.roomModal = false; S.room = r.id; S.roomTab = 'edit'; S.roomBlock = 'meet'; S.view = 'room'; render(); window.scrollTo({ top: 0 });
+    toast(`Room for ${co} made. Review the meeting drafts from tl;dv, fill what's in curly brackets, then publish.`); return;
   }
   if (e.target.id === 'dr-add') {
     e.preventDefault(); const r = roomCur(), fd = new FormData(e.target), n = String(fd.get('n') || '').trim(); if (!r || !n) return;
