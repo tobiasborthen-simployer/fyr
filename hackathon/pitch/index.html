@@ -1,0 +1,745 @@
+<title>Deal rooms in Fyr</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a fixed 1920x1080 stage, scaled to the window, one idea per slide. Ink-heavy launch film in the Simployer brand: Fraunces display, Hanken text, plum as the one accent, Himmel only behind product windows. */
+:root {
+  color-scheme: dark;
+  --ink: #1f1b2e;
+  --ink-2: #29253a;
+  --ink-3: #332e46;
+  --night: #0e0722;
+  --cream: #f1efe9;
+  --paper: #fbfaf7;
+  --tint: #f6f2ff;
+  --plum: #2d0c69;
+  --lav-ink: #6b45c9;
+  --lav: #9773ff;
+  --head-on-ink: #f6f2ff;
+  --text-on-ink: #cfc9da;
+  --mute-on-ink: #a9a2bc;
+  --line-on-ink: rgba(255,255,255,.1);
+  --text: #1f1b2e;
+  --body: #4a4458;
+  --meta: #6a6377;
+  --slot: #fbefc4;
+  --green: #8ed3b0;
+  --himmel: linear-gradient(160deg, #ffd8ba 0%, #f7d5e4 38%, #e3d5f3 68%, #cdc0ea 100%);
+  --shadow-window: 0 0 0 1px rgba(45,12,105,.08), 0 2px 6px rgba(45,12,105,.06), 0 40px 80px -40px rgba(45,12,105,.45), 0 60px 120px -60px rgba(0,0,0,.6);
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --ui: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --arrive: cubic-bezier(.16, 1, .3, 1);
+  --leave: cubic-bezier(.7, 0, .84, 0);
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+  --wipe: cubic-bezier(.77, 0, .18, 1);
+  --t-arrive: 500ms;
+  --t-state: 200ms;
+}
+html, body { height: 100%; }
+body { margin: 0; background: var(--night); color: var(--text-on-ink); font-family: var(--ui); overflow: hidden; -webkit-font-smoothing: antialiased; }
+
+/* ---------- the viewport and the stage ---------- */
+.deck { position: fixed; inset: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px; display: grid; place-items: center; background: var(--night); }
+.stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 50% 50%; overflow: hidden; background: var(--ink); border-radius: 6px; box-shadow: 0 40px 120px rgba(0,0,0,.5); }
+:fullscreen .stage { border-radius: 0; box-shadow: none; }
+
+/* ---------- slides ---------- */
+/* slides wipe in from the side; the slide underneath slides away a little (same as the offsite deck) */
+.slide { position: absolute; inset: 0; overflow: hidden; background: var(--ink); color: var(--text-on-ink); visibility: hidden; clip-path: inset(0 0 0 100%); }
+.stage[data-dir="back"] .slide { clip-path: inset(0 100% 0 0); }
+.slide.cur { visibility: visible; z-index: 2; clip-path: inset(0 0 0 0) !important; transition: clip-path 1150ms var(--wipe); }
+.slide.leaving { visibility: visible; z-index: 1; clip-path: inset(0) !important; transform: translateX(-6%); transition: transform 1150ms var(--wipe); }
+.stage[data-dir="back"] .slide.leaving { transform: translateX(6%); }
+.slide.cream { background: var(--cream); color: var(--body); }
+/* safe area: the top bar sits above 100px, the controls below 960px */
+.pad { position: absolute; inset: 0; padding: 150px 160px 200px; }
+.logo { position: absolute; left: 144px; bottom: 60px; width: 150px; height: 33px; }
+.num { position: absolute; right: 144px; bottom: 62px; font: 600 22px/1 var(--ui); letter-spacing: .08em; font-variant-numeric: tabular-nums; color: var(--mute-on-ink); }
+.cream .num { color: var(--meta); }
+
+/* type */
+.display, h1, h2 { font-family: var(--display); font-weight: 400; margin: 0; font-optical-sizing: none; font-variation-settings: "opsz" 72; text-wrap: balance; }
+h1 { font-size: 190px; line-height: .98; letter-spacing: -.035em; color: var(--head-on-ink); }
+h2 { font-size: 104px; line-height: 1.04; letter-spacing: -.028em; color: var(--head-on-ink); }
+.cream h2 { color: var(--text); }
+h3 { font-family: var(--display); font-weight: 400; font-size: 52px; line-height: 1.05; letter-spacing: -.015em; margin: 0; color: var(--head-on-ink); font-optical-sizing: none; font-variation-settings: "opsz" 48; }
+.cream h3 { color: var(--text); }
+p { margin: 0; }
+.lede { font-size: 40px; line-height: 1.35; color: var(--text-on-ink); max-width: 1100px; }
+.cream .lede { color: var(--body); }
+.eyebrow { font: 600 24px/1 var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--mute-on-ink); }
+.cream .eyebrow { color: var(--meta); }
+.small { font-size: 28px; line-height: 1.4; color: var(--text-on-ink); }
+.cream .small { color: var(--body); }
+/* photo credits sit top right, under the top bar, clear of the controls */
+.caption { position: absolute; top: 112px !important; right: 64px !important; bottom: auto !important; left: auto !important; font: 500 18px/1.3 var(--ui); letter-spacing: .04em; color: rgba(246,242,255,.72); z-index: 3; }
+
+/* ---------- builds: elements with data-s appear at that step ---------- */
+.b { opacity: 0; transition: opacity var(--t-arrive) var(--arrive) var(--d, 0ms), transform 700ms var(--arrive) var(--d, 0ms); }
+.b.rise { transform: translateY(40px); }
+.b.left { transform: translateX(-48px); }
+.b.pop { transform: scale(.9); }
+.b.on { opacity: 1; transform: none; }
+.b.wipe { opacity: 1; }
+/* the mask leaves room for descenders (the y in Fyr), and the hidden line starts far enough down not to peek */
+.ln { display: block; overflow: hidden; padding-bottom: .24em; margin-bottom: -.24em; }
+.ln > span { display: inline-block; transform: translateY(135%); transition: transform 1000ms var(--arrive) var(--d, 0ms); will-change: transform; }
+.wipe.on .ln > span { transform: none; }
+.instant, .instant * { transition: none !important; }
+
+/* photos: full bleed, slow Ken Burns while the slide is on screen */
+.photo { position: absolute; inset: 0; overflow: hidden; }
+.photo img { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; transform: scale(1.04); }
+.slide.cur .photo img { animation: kenburns 26s cubic-bezier(.4,0,.2,1) both; }
+@keyframes kenburns { from { transform: scale(1.04) translate3d(0,0,0); } to { transform: scale(1.14) translate3d(-1.8%, -1.2%, 0); } }
+.scrim-left { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31,27,46,.96) 0%, rgba(31,27,46,.86) 36%, rgba(31,27,46,.2) 70%, rgba(31,27,46,0) 100%); }
+.scrim-bottom { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(31,27,46,.95) 0%, rgba(31,27,46,.55) 42%, rgba(31,27,46,0) 75%); }
+
+/* product windows: on the Himmel mat, in light 2.5D */
+.cam { position: absolute; perspective: 2600px; }
+.mat { background: var(--himmel); border-radius: 28px; padding: 32px; transform-origin: 50% 60%; transform: rotateY(-16deg) rotateX(7deg) translate3d(80px, 60px, -160px); opacity: 0; transition: transform 1400ms var(--arrive) var(--d, 0ms), opacity 700ms var(--arrive) var(--d, 0ms); }
+.mat.on { transform: rotateY(-5deg) rotateX(2deg) translate3d(0,0,0); opacity: 1; }
+.float { animation: drift 9s ease-in-out infinite; }
+@keyframes drift { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-10px,0); } }
+.win { position: relative; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: var(--shadow-window); line-height: 0; }
+.win img { display: block; width: 100%; height: auto; }
+.mk { position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: var(--plum); color: #fff; font: 700 26px/56px var(--ui); text-align: center; box-shadow: 0 0 0 6px rgba(246,242,255,.9), 0 12px 24px rgba(45,12,105,.45); opacity: 0; transform: scale(.4); transition: transform 500ms var(--spring) var(--d, 0ms), opacity 200ms var(--arrive) var(--d, 0ms); }
+.mk.on { opacity: 1; transform: none; }
+.legend { display: grid; gap: 34px; }
+.legend .row { display: grid; grid-template-columns: 56px 1fr; gap: 22px; align-items: start; }
+.legend .dot { width: 56px; height: 56px; border-radius: 50%; background: var(--plum); color: #fff; font: 700 26px/56px var(--ui); text-align: center; box-shadow: inset 0 0 0 2px rgba(246,242,255,.25); }
+.legend b { display: block; font: 600 32px/1.2 var(--ui); color: var(--head-on-ink); }
+.legend span { display: block; font-size: 26px; line-height: 1.4; color: var(--text-on-ink); margin-top: 6px; }
+
+/* hairline columns */
+.cols { position: absolute; left: 144px; right: 144px; display: grid; gap: 48px; }
+.col { border-top: 2px solid var(--head-on-ink); padding-top: 32px; display: grid; gap: 18px; align-content: start; }
+.cream .col { border-top-color: var(--text); }
+.big { font-family: var(--display); font-size: 104px; line-height: .95; letter-spacing: -.03em; color: var(--head-on-ink); font-optical-sizing: none; font-variation-settings: "opsz" 72; }
+.cream .big { color: var(--text); }
+
+/* ---------- slide 3: hours to a month ---------- */
+.hrs-wrap { position: absolute; left: 144px; top: 250px; }
+.hrs { font-family: var(--display); font-size: 400px; line-height: .9; letter-spacing: -.045em; color: var(--head-on-ink); font-variation-settings: "opsz" 72; transform-origin: 0 0; transition: transform 1100ms var(--arrive); white-space: nowrap; }
+.s-hours.st1 .hrs { transform: translate(612px, 166px) scale(.4); }
+.hrs-cap { position: absolute; left: 150px; top: 680px; transition: opacity var(--t-state) ease, transform var(--t-state) ease; }
+.s-hours.st1 .hrs-cap { opacity: 0; transform: translateY(-12px); }
+.op { position: absolute; top: 432px; font-family: var(--display); font-size: 120px; line-height: 1; color: var(--mute-on-ink); font-variation-settings: "opsz" 72; }
+.slot { position: absolute; box-sizing: border-box; display: grid; gap: 10px; align-content: center; padding: 28px 32px 26px; background: var(--slot); color: var(--text); border: 3px dashed var(--text); border-radius: 24px; cursor: text; }
+.slot .tag { justify-self: start; font: 700 18px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; background: var(--text); color: var(--slot); padding: 8px 12px; border-radius: 99px; }
+.slot input { width: 100%; box-sizing: border-box; border: 0; background: transparent; font: 400 108px/1 var(--display); font-variation-settings: "opsz" 72; letter-spacing: -.03em; color: var(--text); outline: none; padding: 0; font-variant-numeric: tabular-nums; }
+.slot input::placeholder { color: rgba(31,27,46,.38); }
+.slot .cap { font: 500 26px/1.2 var(--ui); color: var(--text); }
+.slot:focus-within { border-style: solid; box-shadow: 0 0 0 6px rgba(151,115,255,.45); }
+.slot.filled { border-style: solid; }
+.res { position: absolute; left: 1236px; top: 392px; width: 540px; display: grid; gap: 14px; }
+.odo { display: inline-flex; font-family: var(--display); font-size: 150px; line-height: 1; letter-spacing: -.04em; color: var(--head-on-ink); font-variation-settings: "opsz" 72; font-variant-numeric: tabular-nums; }
+.odo .d { display: inline-block; height: 1em; overflow: hidden; }
+.odo .reel { display: flex; flex-direction: column; transition: transform 1400ms var(--arrive) var(--d, 0ms); }
+.odo .reel span { height: 1em; }
+.odo .sep { padding: 0 .04em; }
+.res .unit { font: 500 30px/1.2 var(--ui); color: var(--text-on-ink); }
+.year { position: absolute; left: 144px; top: 720px; width: 1632px; font-size: 40px; line-height: 1.5; color: var(--text-on-ink); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 16px; }
+.year .odo { font-size: 72px; }
+.slot.inline { position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; border-radius: 16px; }
+.slot.inline input { width: 230px; font-size: 56px; }
+.slot.inline .cur-sym { font: 400 56px/1 var(--display); }
+
+/* ---------- slide 4: two ways ---------- */
+.split { position: absolute; left: 160px; right: 160px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.side { border-radius: 28px; padding: 40px 48px 44px; display: grid; gap: 18px; align-content: start; transition: opacity 900ms var(--arrive), transform 900ms var(--arrive); }
+.side .head { margin-bottom: 8px; }
+.side.ga { background: var(--ink-2); }
+.side.fy { background: var(--cream); color: var(--body); }
+.side .head { display: flex; justify-content: space-between; align-items: baseline; }
+.side .head b { font: 600 30px/1.2 var(--ui); color: var(--head-on-ink); }
+.side.fy .head b { color: var(--text); }
+.side .head span { font: 600 22px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--mute-on-ink); }
+.side.fy .head span { color: var(--lav-ink); }
+.step { display: flex; justify-content: space-between; gap: 20px; align-items: center; font-size: 28px; line-height: 1.3; padding-bottom: 14px; border-bottom: 1px solid var(--line-on-ink); color: var(--text-on-ink); }
+.side.fy .step { color: var(--text); border-bottom-color: rgba(31,27,46,.12); }
+.step i { font-style: normal; font: 600 20px/1 var(--ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mute-on-ink); white-space: nowrap; }
+.side.fy .step i { color: var(--lav-ink); }
+.side .foot { font: 400 56px/1.1 var(--display); color: var(--head-on-ink); margin-top: 14px; font-variation-settings: "opsz" 72; }
+.side.fy .foot { font: 500 28px/1.35 var(--ui); color: var(--meta); }
+.s-split.st1 .side.ga { opacity: .3; transform: scale(.965); }
+.fy-empty { font: 500 28px/1.4 var(--ui); color: var(--meta); transition: opacity var(--t-state) ease; }
+.s-split.st1 .fy-empty { opacity: 0; }
+
+/* ---------- slide 7: a room assembles ---------- */
+.brief { position: absolute; left: 144px; top: 330px; width: 380px; background: var(--ink-2); border-radius: 24px; padding: 34px; display: grid; gap: 14px; }
+.brief b { font: 400 44px/1.05 var(--display); color: var(--head-on-ink); font-variation-settings: "opsz" 48; }
+.brief .meta { font: 600 20px/1.2 var(--ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mute-on-ink); }
+.brief li { font-size: 24px; line-height: 1.35; color: var(--text-on-ink); }
+.brief ul { margin: 6px 0 0; padding-left: 26px; display: grid; gap: 8px; }
+.roomwin { position: absolute; left: 570px; top: 300px; width: 760px; }
+.roomwin .mat { padding: 26px; }
+.tiles { position: relative; border-radius: 16px; overflow: hidden; background: #f1efe9; box-shadow: var(--shadow-window); aspect-ratio: 1600 / 1000; }
+.tiles img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--arrive) var(--d, 0ms), transform 900ms var(--arrive) var(--d, 0ms); }
+.tiles img.on { opacity: 1; transform: none; }
+.side-col { position: absolute; left: 1372px; top: 300px; width: 404px; display: grid; gap: 22px; }
+.chip { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--ink-2); border-radius: 16px; padding: 16px 20px; font-size: 24px; color: var(--head-on-ink); transform: translate(var(--fx, -500px), var(--fy, 0)) scale(.8); opacity: 0; transition: transform 900ms var(--arrive) var(--d, 0ms), opacity 400ms var(--arrive) var(--d, 0ms); }
+.chip.on { transform: none; opacity: 1; }
+.chip small { font: 600 18px/1 var(--ui); letter-spacing: .06em; color: var(--mute-on-ink); }
+.chip small.fwd { color: #f2b866; }
+.reads { display: grid; gap: 12px; }
+.read { display: grid; grid-template-columns: 54px 1fr 70px; gap: 12px; align-items: center; font: 600 20px/1 var(--ui); color: var(--mute-on-ink); font-variant-numeric: tabular-nums; }
+.read .track { height: 12px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+.read .track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #6b45c9, #cbb9ff); transform: scaleX(0); transform-origin: left; transition: transform 1200ms var(--arrive) var(--d, 0ms); }
+.reads.on .track i { transform: scaleX(var(--v)); }
+.reads .label { font: 600 20px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--mute-on-ink); margin-bottom: 4px; }
+.stamp { position: absolute; left: 860px; top: 676px; display: inline-flex; align-items: center; gap: 16px; padding: 22px 34px; background: var(--cream); color: var(--plum); border-radius: 99px; font: 600 40px/1 var(--ui); box-shadow: 0 30px 60px rgba(0,0,0,.45); opacity: 0; transform: scale(.4) rotate(-10deg); transition: transform 800ms var(--spring) var(--d, 0ms), opacity 200ms var(--arrive) var(--d, 0ms); }
+.stamp.on { opacity: 1; transform: rotate(-4deg); }
+.stamp svg { width: 44px; height: 44px; }
+.flowline { position: absolute; left: 144px; right: 144px; top: 266px; height: 2px; background: var(--line-on-ink); }
+.flowline i { position: absolute; inset: 0; background: var(--lav); transform-origin: left; transform: scaleX(0); transition: transform 900ms var(--arrive); }
+.s-build.st0 .flowline i { transform: scaleX(.2); }
+.s-build.st1 .flowline i { transform: scaleX(.45); }
+.s-build.st2 .flowline i { transform: scaleX(.65); }
+.s-build.st3 .flowline i { transform: scaleX(.85); }
+.s-build.st4 .flowline i { transform: scaleX(1); }
+.example { position: absolute; right: 144px; top: 236px; font: 600 18px/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: #f2b866; }
+
+/* ---------- guardrails ---------- */
+.rails { position: absolute; left: 144px; top: 400px; width: 1632px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px 80px; }
+.rail { display: grid; grid-template-columns: 48px 1fr; gap: 22px; align-items: start; border-top: 1px solid var(--line-on-ink); padding-top: 26px; }
+.rail svg { width: 44px; height: 44px; }
+.rail svg path { stroke-dasharray: 40; stroke-dashoffset: 40; transition: stroke-dashoffset 600ms var(--arrive) calc(var(--d, 0ms) + 250ms); }
+.rail.on svg path { stroke-dashoffset: 0; }
+.rail b { display: block; font: 600 34px/1.2 var(--ui); color: var(--head-on-ink); }
+.rail span { display: block; font-size: 27px; line-height: 1.4; color: var(--text-on-ink); margin-top: 6px; }
+
+/* ---------- plan ---------- */
+.tl { position: absolute; left: 144px; right: 144px; top: 420px; height: 2px; background: rgba(31,27,46,.14); }
+.tl i { position: absolute; inset: 0; background: var(--plum); transform-origin: left; transform: scaleX(0); transition: transform 1600ms var(--arrive); }
+.s-plan.st1 .tl i { transform: scaleX(.17); } .s-plan.st2 .tl i { transform: scaleX(.5); } .s-plan.st3 .tl i { transform: scaleX(1); }
+.nodes { position: absolute; left: 144px; right: 144px; top: 404px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.node { display: grid; gap: 16px; align-content: start; }
+.node .pt { width: 34px; height: 34px; border-radius: 50%; background: var(--cream); box-shadow: inset 0 0 0 3px var(--plum); transition: background var(--t-state) ease; }
+.node.on .pt { background: var(--plum); }
+.node .when { font: 600 22px/1 var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--meta); margin-top: 10px; }
+.node h3 { font-size: 56px; }
+.node p { font-size: 30px; line-height: 1.4; color: var(--body); max-width: 470px; }
+.ask { position: absolute; left: 144px; right: 144px; top: 760px; background: var(--ink); border-radius: 28px; padding: 38px 48px; display: grid; gap: 22px; }
+.ask .eyebrow { color: var(--mute-on-ink); }
+.ask .chips { display: flex; flex-wrap: wrap; gap: 14px; }
+.ask .chips span { font: 500 30px/1 var(--ui); color: var(--head-on-ink); background: var(--ink-3); border-radius: 99px; padding: 16px 26px; }
+
+/* ---------- navigation, inside the stage (same setup as the offsite deck) ---------- */
+.chrome { position: absolute; left: 0; right: 0; top: 0; z-index: 20; padding: 36px 64px 0; display: flex; align-items: center; gap: 24px; pointer-events: none; color: var(--head-on-ink); transition: color 600ms var(--arrive); }
+.chrome > * { pointer-events: auto; }
+.chrome .logo-w, .chrome .logo-b { height: 30px; width: auto; display: block; transition: opacity 500ms; }
+.chrome .logos { position: relative; height: 30px; }
+.chrome .logo-b { position: absolute; left: 0; top: 0; opacity: 0; }
+.stage.light .chrome .logo-b { opacity: 1; } .stage.light .chrome .logo-w { opacity: 0; }
+.chrome .ttl { margin: 0 auto; font: 500 20px/1 var(--ui); letter-spacing: .01em; opacity: .8; }
+.chrome .pill { display: flex; align-items: center; gap: 14px; background: rgba(14,7,34,.62); color: #f6f2ff; border-radius: 10px; padding: 9px 10px 9px 18px; font: 500 20px/1 var(--ui); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.chrome .count { font-variant-numeric: tabular-nums; min-width: 72px; text-align: right; letter-spacing: .04em; }
+.chrome .pill button { border: 0; background: rgba(255,255,255,.14); color: inherit; border-radius: 6px; padding: 8px 16px; font: 600 17px/1 var(--ui); cursor: pointer; transition: background var(--t-state) ease; }
+.chrome .pill button:hover { background: rgba(255,255,255,.26); }
+.stage.light .chrome { color: var(--text); }
+.navb { position: absolute; right: 64px; bottom: 40px; z-index: 20; display: flex; gap: 12px; color: var(--head-on-ink); transition: color 600ms var(--arrive); }
+.navb button { width: 64px; height: 64px; border-radius: 50%; border: 1.5px solid currentColor; background: transparent; color: inherit; cursor: pointer; display: grid; place-items: center; transition: background 300ms, color 300ms; }
+.navb button:hover { background: currentColor; }
+.navb button:hover svg { stroke: var(--lav); }
+.navb svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.stage.light .navb { color: var(--text); }
+.hint { position: absolute; left: 64px; bottom: 60px; z-index: 20; font: 500 19px/1 var(--ui); color: var(--head-on-ink); opacity: .62; transition: color 600ms var(--arrive); }
+.stage.light .hint { color: var(--text); }
+.sbar { position: absolute; left: 0; bottom: 0; height: 4px; z-index: 21; width: 100%; background: var(--lav); transform-origin: left; transform: scaleX(0); transition: transform 1000ms var(--wipe); }
+.ring { position: absolute; left: 0; bottom: 0; height: 4px; z-index: 22; width: 0; background: #cbb9ff; }
+.notes { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 30; max-height: 42vh; overflow: auto; background: rgba(31,27,46,.96); border: 1px solid rgba(246,242,255,.12); border-radius: 18px; padding: 20px 24px; color: var(--text-on-ink); box-shadow: 0 30px 80px rgba(0,0,0,.5); backdrop-filter: blur(8px); }
+.notes header { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font: 600 13px/1.4 var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--mute-on-ink); font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+.notes header b { color: var(--head-on-ink); }
+.notes p { font: 400 17px/1.55 var(--ui); white-space: pre-line; max-width: 90ch; }
+.notes .next { margin-top: 12px; font: 500 14px/1.4 var(--ui); color: var(--mute-on-ink); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--lav); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .b, .ln > span, .mat, .mk, .tiles img, .chip, .stamp, .read .track i, .odo .reel, .tl i, .flowline i, .sbar, .side, .hrs, .rail svg path { transition-duration: 1ms !important; transition-delay: 0ms !important; }
+  .slide { clip-path: none !important; } .slide.leaving { visibility: hidden; transform: none; }
+  .slide.cur .photo img, .float { animation: none !important; }
+}
+</style>
+
+<div class="deck" id="deck">
+<div class="stage" id="stage" aria-live="polite">
+
+<!-- 1 · cover -->
+<section class="slide" data-title="Deal rooms in Fyr" data-time="30" data-notes="Today our deal rooms live in GetAccept, and every one is built and updated by hand.
+In ten minutes: what that costs us, what changes when the room is made in Fyr, who gains, and what we need for a pilot. Then I build one live.">
+  <div class="photo" style="left:auto;width:820px"><img src="assets/photo-desk.jpg" alt="A desk on the floor with a laptop, coffee, notebooks and Simployer cards" style="object-position:50% 45%"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg, #1f1b2e 0%, #1f1b2e 55%, rgba(31,27,46,.6) 64%, rgba(31,27,46,0) 80%)"></div>
+  <div class="pad">
+    <p class="eyebrow b rise" data-s="0" style="position:absolute;left:160px;top:290px">PMM hackathon · 10 November 2026</p>
+    <h1 class="b wipe" data-s="0" style="position:absolute;left:160px;top:350px;width:1100px"><span class="ln"><span>Deal rooms</span></span><span class="ln"><span>in Fyr.</span></span></h1>
+    <p class="lede b rise" data-s="0" data-d="700" style="position:absolute;left:166px;top:800px;width:900px">One page per deal. Made from the presentation, read by the customer.</p>
+  </div>
+  <p class="caption" style="right:40px;bottom:30px">Photo: Simployer, Stockholm 2026</p>
+</section>
+
+<!-- 2 · today -->
+<section class="slide" data-title="Today" data-time="60" data-notes="Four things, one per click.
+One to two hours: that is what sales spends updating each deal room, on every deal.
+Manual: PMM keeps the template by hand, and sales copies and pastes into it.
+Locked: the design choices are strictly limited. We can’t make it look like the new Simployer.
+Licence: and we pay for a tool that does one job.
+Ask the room: who built a room this week?">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0"><span class="ln"><span>Today, every room</span></span><span class="ln"><span>is built by hand.</span></span></h2>
+    <div class="cols" style="top:560px;grid-template-columns:repeat(4,1fr)">
+      <div class="col b rise" data-s="1"><p class="big">1–2 h</p><p class="small">for sales, per room, on every deal</p></div>
+      <div class="col b rise" data-s="2"><p class="big">Manual</p><p class="small">updates for PMM and for sales</p></div>
+      <div class="col b rise" data-s="3"><p class="big">Locked</p><p class="small">design, with few choices</p></div>
+      <div class="col b rise" data-s="4"><p class="big">Licence</p><p class="small">on top, for one job</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · the hours add up -->
+<section class="slide s-hours" data-title="What it adds up to" data-time="75" data-steps="2" data-notes="Let the number land first. One to two hours of a rep’s time, every room, every deal.
+Click: it becomes a month. Three deals a month per seller, and 20 sellers: 60 deals a month. That is 60 to 120 hours of sales time, every month, and 720 to 1,440 hours a year. The slot stays editable if the room has a better figure.
+Click: the year, and the licence. Type the licence cost into its slot. If we don’t have the figures yet, say so and ask the room. Never guess them on stage.">
+  <div class="pad">
+    <p class="eyebrow b rise" data-s="0" style="position:absolute;left:144px;top:150px">Every room, every deal</p>
+    <div class="hrs-wrap b rise" data-s="0"><div class="hrs">1–2 h</div></div>
+    <p class="lede hrs-cap b rise" data-s="0" data-d="300">of a rep’s time, to update one deal room.</p>
+
+    <label class="slot b pop" data-s="1" style="left:144px;top:378px;width:470px" for="deals"><span class="tag">3 a seller × 20 sellers</span><input id="deals" inputmode="numeric" autocomplete="off" placeholder="60" aria-label="Deals a month"><span class="cap">deals a month</span></label>
+    <p class="op b fade" data-s="1" style="left:650px">×</p>
+    <p class="op b fade" data-s="1" style="left:1130px">=</p>
+    <div class="res b rise" data-s="1"><div class="odo" id="odoMonth"></div><span class="unit">hours of sales time a month</span></div>
+
+    <div class="year b rise" data-s="2"><span>That is</span><span class="odo" id="odoYear"></span><span>hours a year. Plus the licence:</span><label class="slot inline" for="lic"><span class="cur-sym">€</span><input id="lic" inputmode="numeric" autocomplete="off" placeholder="fill in" aria-label="GetAccept licence cost a year"></label><span>a year.</span></div>
+  </div>
+</section>
+
+<!-- 4 · two ways -->
+<section class="slide s-split" data-title="Two ways to build a room" data-time="60" data-steps="1" data-notes="Same deal, two ways.
+Left, today: PMM updates the template by hand, sales copies it, pastes in the deck, rewrites the challenges, works around the locked design and sends the link. One to two hours.
+Click: in Fyr, the room starts from the presentation the rep already made. Approved content fills itself in. The rep edits in a live preview and shares a personal link.
+We don’t claim a time for the Fyr side yet. We measure it in the pilot.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0"><span class="ln"><span>Same deal.</span></span><span class="ln"><span>Two ways to build it.</span></span></h2>
+    <div class="split">
+      <div class="side ga b rise" data-s="0" data-d="400">
+        <div class="head"><b>GetAccept today</b><span>By hand</span></div>
+        <div class="step">PMM updates the template<i>by hand</i></div>
+        <div class="step">Sales copies it, pastes the deck<i>by hand</i></div>
+        <div class="step">Rewrites the challenges<i>by hand</i></div>
+        <div class="step">Works around a locked design<i>by hand</i></div>
+        <p class="foot">1–2 h per room</p>
+      </div>
+      <div class="side fy b rise" data-s="0" data-d="520">
+        <div class="head"><b>Deal rooms in Fyr</b><span>Built in</span></div>
+        <p class="fy-empty">The same room, made in Fyr.</p>
+        <div class="step b rise" data-s="1" data-d="300">Starts from the presentation<i>built in</i></div>
+        <div class="step b rise" data-s="1">Approved content fills itself in<i>built in</i></div>
+        <div class="step b rise" data-s="1">Edit anything, see it live<i>built in</i></div>
+        <div class="step b rise" data-s="1">A personal link per person<i>built in</i></div>
+        <p class="foot b rise" data-s="1">Time per room: measured in the pilot</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · what if -->
+<section class="slide" data-title="What if" data-time="20" data-notes="Fyr already has the rep’s presentation and brief: the company, the language, the challenges. It already has approved Product truth and the Messaging Framework.
+So the room shouldn’t be a second copy. It should be made from the first.">
+  <div class="photo"><img src="assets/photo-team.jpg" alt="Five colleagues laughing together in a lift, coffee cups in hand" style="object-position:50% 58%"></div>
+  <div class="scrim-left"></div>
+  <div class="pad">
+    <h2 class="b wipe" data-s="0" style="position:absolute;left:144px;top:330px;width:1100px"><span class="ln"><span>What if the room</span></span><span class="ln"><span>built itself?</span></span></h2>
+    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:640px;width:860px">From what Fyr already knows: the presentation, Product truth and the Messaging Framework.</p>
+  </div>
+  <p class="caption" style="right:144px;bottom:98px">Photo: Simployer, Stockholm 2026</p>
+</section>
+
+<!-- 6 · what changes -->
+<section class="slide cream" data-title="One room per deal" data-time="50" data-notes="Four things change. One per click.
+It starts from the presentation in My presentations, so company, language and challenges carry over.
+The content is approved: Product truth and the Messaging Framework, which PMM already keeps current. No second template.
+It looks like the new simployer.com: our design system, our own photos.
+And the rep can change every part of it. Only the framework lines stay locked.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0"><span class="ln"><span>One room per deal,</span></span><span class="ln"><span>made in Fyr.</span></span></h2>
+    <div class="cols" style="top:560px;grid-template-columns:repeat(4,1fr)">
+      <div class="col b rise" data-s="1"><h3>From the presentation</h3><p class="small">Company, language and challenges carry over.</p></div>
+      <div class="col b rise" data-s="2"><h3>Approved content</h3><p class="small">Product truth and the framework, kept current.</p></div>
+      <div class="col b rise" data-s="3"><h3>Our own look</h3><p class="small">The brand design system and our photos.</p></div>
+      <div class="col b rise" data-s="4"><h3>The rep edits it all</h3><p class="small">Every block. Framework lines stay locked.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · a room assembles -->
+<section class="slide s-build" data-title="A room assembles" data-time="60" data-steps="4" data-notes="Watch one room come together. One stage per click.
+The brief: Vantera Group, a Discovery meeting, three challenges the rep typed in. All of this is example data.
+Click: the room assembles from the brief and approved content.
+Click: links fan out, one per person. Erik got it by forward, so he gave a work email first.
+Click: reading fills in, section by section, once each person says OK to the notice.
+Click: Anna signs. Name, title and a tick.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0" style="font-size:96px"><span class="ln"><span>Watch a room assemble.</span></span></h2>
+    <p class="example b fade" data-s="0">Example data</p>
+    <div class="flowline"><i></i></div>
+    <div class="brief b left" data-s="0" data-d="300">
+      <p class="meta">The brief · EN</p>
+      <b>Vantera Group</b>
+      <p class="meta" style="letter-spacing:.06em;text-transform:none;font-weight:500;font-size:22px">Discovery meeting, 5 August</p>
+      <ul><li>Onboarding runs through one person</li><li>No absence picture across 22 sites</li><li>Managers send everything to HR</li></ul>
+    </div>
+    <div class="roomwin cam">
+      <div class="mat" data-s="1"><div class="tiles">
+        <img src="assets/room-cards.jpg" alt="" style="clip-path:inset(0 0 72% 0)" data-s="1" data-d="200">
+        <img src="assets/room-cards.jpg" alt="" style="clip-path:inset(27% 0 44% 18%)" data-s="1" data-d="420">
+        <img src="assets/room-cards.jpg" alt="" style="clip-path:inset(56% 0 14% 18%)" data-s="1" data-d="620">
+        <img src="assets/room-cards.jpg" alt="The Vantera Group deal room: the challenges you told us, and two dates that matter" style="clip-path:inset(0 82% 0 0)" data-s="1" data-d="300">
+        <img src="assets/room-cards.jpg" alt="" style="clip-path:inset(85% 0 0 18%)" data-s="1" data-d="800">
+      </div></div>
+    </div>
+    <div class="side-col">
+      <div class="chip" data-s="2" style="--fx:-520px;--fy:120px">Anna Lindqvist<small>?r=anna-x3f</small></div>
+      <div class="chip" data-s="2" style="--fx:-520px;--fy:40px">Tomas Berg<small>?r=tomas-p8d</small></div>
+      <div class="chip" data-s="2" style="--fx:-520px;--fy:-40px">Erik Sand<small class="fwd">Forwarded</small></div>
+      <div class="reads" data-s="3" id="reads">
+        <p class="label">Read, by section</p>
+        <div class="read">01<span class="track"><i style="--v:1"></i></span><span data-to="100">0%</span></div>
+        <div class="read">02<span class="track"><i style="--v:1"></i></span><span data-to="100">0%</span></div>
+        <div class="read">03<span class="track"><i style="--v:.92"></i></span><span data-to="92">0%</span></div>
+        <div class="read">04<span class="track"><i style="--v:.75"></i></span><span data-to="75">0%</span></div>
+        <div class="read">05<span class="track"><i style="--v:.68"></i></span><span data-to="68">0%</span></div>
+        <div class="read">06<span class="track"><i style="--v:.5"></i></span><span data-to="50">0%</span></div>
+        <div class="read">07<span class="track"><i style="--v:.42"></i></span><span data-to="42">0%</span></div>
+      </div>
+    </div>
+    <div class="stamp" data-s="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-7"/></svg>Signed by Anna</div>
+  </div>
+</section>
+
+<!-- 8 · the editor -->
+<section class="slide" data-title="The editor" data-time="45" data-notes="This is the real editor in Fyr, in the same studio as the deck editor.
+1: the sections. Any block can be hidden from the customer, and framework blocks carry a lock.
+2: the room itself, live. Click any text and type. The customer page changes as you write.
+3: the fields for the selected block, photos from our image bank, and the message check. Type a word like ‘replaces’ and it flags it at once.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0" style="position:absolute;left:160px;top:150px;width:660px;font-size:88px"><span class="ln"><span>Edit every</span></span><span class="ln"><span>part. See it</span></span><span class="ln"><span>live.</span></span></h2>
+    <div class="legend" style="position:absolute;left:160px;top:520px;width:560px">
+      <div class="row b rise" data-s="1"><span class="dot">1</span><div><b>Sections</b><span>Hide any block. Locks on framework lines.</span></div></div>
+      <div class="row b rise" data-s="2"><span class="dot">2</span><div><b>The room, live</b><span>Click any text and type.</span></div></div>
+      <div class="row b rise" data-s="3"><span class="dot">3</span><div><b>Fields and checks</b><span>Prices, photos, a live message check.</span></div></div>
+    </div>
+    <div class="cam" style="left:780px;top:170px;width:1000px">
+      <div class="float"><div class="mat" data-s="0" data-d="200"><div class="win"><img src="assets/fyr-editor.jpg" alt="The deal room editor in Fyr: sections on the left, the live room in the middle, fields and the message check on the right">
+        <span class="mk" data-s="1" style="left:25%;top:42%">1</span><span class="mk" data-s="2" style="left:56%;top:45%">2</span><span class="mk" data-s="3" style="left:88%;top:38%">3</span>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · share and track -->
+<section class="slide" data-title="Share and track" data-time="45" data-notes="Share and track, also real.
+1: one link per room, and a personal link per person. A forward asks for a work email first.
+2: who has it, how many views, and how far they read.
+3: the activity. Tomas opened the Trust Center, Anna clicked Review and sign.
+4: alerts, so the rep follows up at the right moment.
+Tracking starts only after the viewer says OK. Legal and the DPO approve that notice before a real room goes out.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0" style="position:absolute;left:160px;top:150px;width:660px;font-size:88px"><span class="ln"><span>One link per</span></span><span class="ln"><span>person. See who</span></span><span class="ln"><span>reads what.</span></span></h2>
+    <div class="legend" style="position:absolute;left:160px;top:520px;width:560px;gap:26px">
+      <div class="row b rise" data-s="1"><span class="dot">1</span><div><b>Personal links</b></div></div>
+      <div class="row b rise" data-s="2"><span class="dot">2</span><div><b>Views and % read</b></div></div>
+      <div class="row b rise" data-s="3"><span class="dot">3</span><div><b>Activity</b></div></div>
+      <div class="row b rise" data-s="4"><span class="dot">4</span><div><b>Alerts</b></div></div>
+    </div>
+    <div class="cam" style="left:780px;top:170px;width:1000px">
+      <div class="float"><div class="mat" data-s="0" data-d="200"><div class="win"><img src="assets/fyr-share.jpg" alt="Share and track in Fyr: the room link, people with views and percent read, activity and alerts">
+        <span class="mk" data-s="1" style="left:41%;top:33%">1</span><span class="mk" data-s="2" style="left:41%;top:72%">2</span><span class="mk" data-s="3" style="left:81%;top:62%">3</span><span class="mk" data-s="4" style="left:81%;top:88%">4</span>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · who gains -->
+<section class="slide" data-title="Who gains" data-time="45" data-notes="One per click.
+Sales: one to two hours back on every deal, and the deck and the room in one place.
+PMM: one source. The rooms read from Product truth and the framework, so nothing drifts and there is no template to update.
+Customers: one page they can pass around inside their company.
+Leadership: a view of who reads, and the licence. The figure comes from the slot on slide 3.">
+  <div class="photo" style="left:auto;width:700px"><img src="assets/photo-pair.jpg" alt="Two colleagues on a sofa, working through a plan together" style="object-position:50% 40%"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg, #1f1b2e 0%, #1f1b2e 60%, rgba(31,27,46,.5) 66%, rgba(31,27,46,0) 80%)"></div>
+  <div class="pad">
+    <h2 class="b wipe" data-s="0"><span class="ln"><span>Who gains.</span></span></h2>
+    <div style="position:absolute;left:144px;top:400px;width:1060px;display:grid;grid-template-columns:1fr 1fr;gap:56px 64px">
+      <div class="col b rise" data-s="1"><h3>Sales</h3><p class="small">60–120 h a month back, across 20 sellers. Deck and room in one place.</p></div>
+      <div class="col b rise" data-s="2"><h3>PMM</h3><p class="small">One source for every room. No drift.</p></div>
+      <div class="col b rise" data-s="3"><h3>Customers</h3><p class="small">One page to share inside their company.</p></div>
+      <div class="col b rise" data-s="4"><h3>Leadership</h3><p class="small">A view of who reads. And the licence: <b id="licOut" style="color:#f6f2ff;font-weight:600">€ fill in on slide 3</b></p></div>
+    </div>
+  </div>
+  <p class="caption" style="right:40px;top:30px">Photo: Simployer, Stockholm 2026</p>
+</section>
+
+<!-- 11 · guardrails -->
+<section class="slide" data-title="Guardrails" data-time="35" data-notes="Five guardrails.
+The framework lines are locked, and every edit runs the same message check as the rest of Fyr.
+Tracking starts only when the viewer says OK.
+Legal and the DPO approve that notice before a real room.
+Only approved figures, and written OK from customers on their quotes.
+No new systems: tl;dv and Salesforce stay parked. Fyr still depends only on Linear and OpenAI.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0"><span class="ln"><span>Built with guardrails.</span></span></h2>
+    <div class="rails">
+      <div class="rail b rise" data-s="1"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Framework lines locked</b><span>A live message check on every edit.</span></div></div>
+      <div class="rail b rise" data-s="1"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Tracking after OK</b><span>The viewer accepts a short notice first.</span></div></div>
+      <div class="rail b rise" data-s="2"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Legal and the DPO</b><span>Approve the notice before the first real room.</span></div></div>
+      <div class="rail b rise" data-s="2"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Approved figures only</b><span>Finance and customers sign off first.</span></div></div>
+      <div class="rail b rise" data-s="3" style="grid-column:1 / -1"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>No new systems</b><span>tl;dv and Salesforce stay parked. Only Linear and OpenAI (D-031, D-036).</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · plan and ask -->
+<section class="slide cream s-plan" data-title="Plan and ask" data-time="60" data-steps="4" data-notes="Today: it is built into the Fyr prototype, with rooms, the editor, personal links and tracking. D-036 is accepted.
+Next: a pilot with two or three reps on real deals, timed against the one to two hours today.
+Then: the real app version, in M4, or as v0.4 if it would put the 27 November go-live at risk.
+Click: what we need. Legal and the DPO on tracking, the licence cost, a signing decision (simple e-signature now, BankID later needs a provider), and two or three pilot reps.">
+  <div class="pad">
+    <h2 class="b wipe" data-s="0"><span class="ln"><span>Built today.</span></span><span class="ln"><span>Ready for a pilot.</span></span></h2>
+    <div class="tl"><i></i></div>
+    <div class="nodes">
+      <div class="node b rise" data-s="1"><span class="pt"></span><p class="when">Today</p><h3>In the prototype</h3><p>Rooms, editor, links and tracking. D-036 accepted.</p></div>
+      <div class="node b rise" data-s="2"><span class="pt"></span><p class="when">Next</p><h3>A pilot, 2–3 reps</h3><p>Real deals, timed against today.</p></div>
+      <div class="node b rise" data-s="3"><span class="pt"></span><p class="when">Then</p><h3>The app version</h3><p>In M4, or as v0.4 after the go-live on 27 Nov.</p></div>
+    </div>
+    <div class="ask b rise" data-s="4">
+      <p class="eyebrow">What we need to finish</p>
+      <div class="chips"><span>Legal and the DPO on tracking</span><span>The licence cost</span><span>A signing decision</span><span>2–3 pilot reps</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · close -->
+<section class="slide" data-title="Live demo" data-time="15" data-notes="Hand over to the live demo, about two minutes.
+1. In My presentations, click Deal room on a deck. The company and challenges carry over.
+2. In the editor, click a challenge in the preview and type. Type ‘replaces’ and show the check flag it.
+3. Hide a section and swap a photo from the image bank.
+4. Publish, open Share and track, add a person and open their link in a new tab. Say OK to the notice and scroll.
+5. Back in Fyr, show the view and % read arrive. Sign in the room and show Signed in the list.
+Say what is faked: in the prototype, rooms and tracking live in this browser, and the example room’s people and numbers are made up.">
+  <div class="photo"><img src="assets/photo-laptop.jpg" alt="A colleague smiling on a sofa with a laptop and Simployer cards" style="object-position:50% 34%"></div>
+  <div class="scrim-left"></div>
+  <div class="pad">
+    <h2 class="b wipe" data-s="0" style="position:absolute;left:144px;top:330px;width:1200px;font-size:150px"><span class="ln"><span>Let’s build</span></span><span class="ln"><span>a room, live.</span></span></h2>
+    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:690px;width:900px">From a presentation in Fyr to a shared, tracked deal room.</p>
+  </div>
+  <p class="caption" style="right:144px;bottom:98px">Photo: Simployer, Stockholm 2026</p>
+</section>
+
+<header class="chrome" id="chrome">
+  <span class="logos" aria-label="Simployer"><img class="logo-w" src="assets/logo-white.svg" alt=""><img class="logo-b" src="assets/logo.svg" alt=""></span>
+  <span class="ttl">Deal rooms in Fyr · PMM hackathon</span>
+  <div class="pill"><span class="count" id="counter">01 / 13</span><button type="button" id="play" aria-pressed="false">Play</button></div>
+</header>
+<p class="hint" id="hint">← → or click to move · P notes · F full screen</p>
+<nav class="navb" aria-label="Slides">
+  <button type="button" id="prevb" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" id="nextb" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+</nav>
+<div class="sbar" id="bar" aria-hidden="true"></div>
+<div class="ring" id="ring" aria-hidden="true"></div>
+</div>
+</div>
+<aside class="notes" id="notes" hidden></aside>
+
+<script>
+(function () {
+  'use strict';
+  var stage = document.getElementById('stage');
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur = -1, step = 0, started = 0;
+
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  /* the stage scales to fit the window, inside the side gutter */
+  function fit() {
+    var gx = Math.max(16, 0) * 2, gy = 32;
+    var k = Math.min((innerWidth - gx) / 1920, (innerHeight - gy) / 1080);
+    if (document.fullscreenElement) k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(-50%, -50%) scale(' + k + ')';
+  }
+  addEventListener('resize', fit); document.addEventListener('fullscreenchange', fit); fit();
+
+  /* builds */
+  function stepsOf(s) {
+    if (s.dataset.steps) return +s.dataset.steps;
+    var m = 0; s.querySelectorAll('[data-s]').forEach(function (e) { m = Math.max(m, +e.dataset.s); }); return m;
+  }
+  function apply(s, n, animate) {
+    s.classList.toggle('instant', !animate);
+    for (var k = 0; k <= 8; k++) s.classList.toggle('st' + k, k <= n && n >= 0);
+    var fresh = [];
+    s.querySelectorAll('[data-s]').forEach(function (e) {
+      var on = n >= 0 && +e.dataset.s <= n, was = e.classList.contains('on');
+      if (on && !was) fresh.push(e);
+      e.classList.toggle('on', on);
+      if (!on && e.classList.contains('reads')) e.querySelectorAll('[data-to]').forEach(function (x) { x.textContent = '0%'; });
+    });
+    var i = 0;
+    fresh.forEach(function (e) {
+      var base = e.dataset.d != null ? +e.dataset.d : Math.min(i++ * 110, 480);
+      e.style.setProperty('--d', (animate ? base : 0) + 'ms');
+      if (e.classList.contains('wipe')) e.querySelectorAll('.ln > span').forEach(function (l, j) { l.style.setProperty('--d', (animate ? base + j * 120 : 0) + 'ms'); });
+      if (e.classList.contains('reads')) e.querySelectorAll('.track i').forEach(function (t, j) { t.style.setProperty('--d', (animate ? j * 90 : 0) + 'ms'); });
+      if (e.classList.contains('reads')) e.querySelectorAll('[data-to]').forEach(function (x, j) { countTo(x, +x.dataset.to, animate ? 1200 : 0, animate ? j * 90 : 0, '%'); });
+    });
+    if (!animate) { void s.offsetWidth; requestAnimationFrame(function () { s.classList.remove('instant'); }); }
+    var hook = HOOKS[s.className.match(/s-[a-z]+/) ? s.className.match(/s-[a-z]+/)[0] : ''];
+    if (hook) hook(s, n, animate);
+  }
+  function countTo(el, to, ms, delay, suffix) {
+    if (reduce || !ms) { el.textContent = to + suffix; return; }
+    var t0 = 0;
+    setTimeout(function () {
+      function f(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(to * e) + suffix; if (p < 1) requestAnimationFrame(f); }
+      requestAnimationFrame(f);
+    }, delay);
+  }
+
+  /* odometer: digits roll up one by one */
+  function odo(el, text, animate) {
+    el.innerHTML = '';
+    var digits = [];
+    String(text).split('').forEach(function (ch) {
+      if (/\d/.test(ch)) {
+        var d = document.createElement('span'); d.className = 'd';
+        var r = document.createElement('span'); r.className = 'reel';
+        for (var k = 0; k <= 9; k++) { var c = document.createElement('span'); c.textContent = k; r.appendChild(c); }
+        d.appendChild(r); el.appendChild(d); digits.push([r, +ch]);
+      } else { var s = document.createElement('span'); s.className = 'sep'; s.textContent = ch; el.appendChild(s); }
+    });
+    if (!animate || reduce) { digits.forEach(function (x) { x[0].style.transition = 'none'; x[0].style.transform = 'translateY(' + (-x[1]) + 'em)'; }); return; }
+    void el.offsetWidth;
+    digits.forEach(function (x, i) { x[0].style.setProperty('--d', (i * 90) + 'ms'); requestAnimationFrame(function () { x[0].style.transform = 'translateY(' + (-x[1]) + 'em)'; }); });
+  }
+  var deals = document.getElementById('deals'), lic = document.getElementById('lic');
+  function fmt(n) { return Number(n).toLocaleString('en-GB'); }
+  function hoursText(mult) { var d = parseInt(deals.value, 10); return d > 0 ? fmt(d * mult) + '–' + fmt(d * mult * 2) : '__'; }
+  function renderHours(animate) {
+    var on = slides[cur] && slides[cur].classList.contains('s-hours');
+    odo(document.getElementById('odoMonth'), hoursText(1), animate && on && step >= 1);
+    odo(document.getElementById('odoYear'), hoursText(12), animate && on && step >= 2);
+    deals.closest('.slot').classList.toggle('filled', !!deals.value);
+    lic.closest('.slot').classList.toggle('filled', !!lic.value);
+    var v = parseInt(lic.value, 10);
+    document.getElementById('licOut').textContent = v > 0 ? '€' + fmt(v) + ' a year' : '€ fill in on slide 3';
+  }
+  // 3 deals a month per seller × 20 sellers (Tobias, 10 Nov 2026); still editable on the slide
+  deals.value = store('pitch.deals') || '60'; lic.value = store('pitch.licence') || '';
+  deals.addEventListener('input', function () { deals.value = deals.value.replace(/\D/g, '').slice(0, 4); store('pitch.deals', deals.value); renderHours(true); });
+  lic.addEventListener('input', function () { lic.value = lic.value.replace(/\D/g, '').slice(0, 9); store('pitch.licence', lic.value); renderHours(false); });
+
+  var HOOKS = {
+    's-hours': function (s, n, animate) {
+      if (n >= 1) odo(document.getElementById('odoMonth'), hoursText(1), animate);
+      if (n >= 2) odo(document.getElementById('odoYear'), hoursText(12), animate);
+      if (n < 1) odo(document.getElementById('odoMonth'), hoursText(1).replace(/\d/g, '0'), false);
+      if (n < 2) odo(document.getElementById('odoYear'), hoursText(12).replace(/\d/g, '0'), false);
+    }
+  };
+
+  /* navigation */
+  function go(i, n, animate) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    var s = slides[i], max = stepsOf(s);
+    n = Math.max(0, Math.min(max, n));
+    if (i !== cur) {
+      stage.dataset.dir = i < cur ? 'back' : 'fwd';
+      var old = cur >= 0 ? slides[cur] : null;
+      slides.forEach(function (x) { x.classList.remove('leaving'); });
+      if (old) { old.classList.remove('cur'); old.classList.add('leaving'); }
+      apply(s, -1, false);
+      if (!animate || cur < 0) s.style.transition = 'none';
+      void s.offsetWidth;
+      s.classList.add('cur');
+      if (!animate || cur < 0) { void s.offsetWidth; s.style.transition = ''; }
+      clearTimeout(go.t); go.t = setTimeout(function () { if (old) old.classList.remove('leaving'); }, reduce ? 20 : 1150);
+      stage.classList.toggle('light', s.classList.contains('cream'));
+      cur = i;
+      apply(s, n, animate);
+    } else if (n !== step) {
+      apply(s, n, animate);
+    }
+    step = n;
+    var total = slides.length;
+    document.getElementById('bar').style.transform = 'scaleX(' + ((cur + (max ? step / max : 1)) / total) + ')';
+    document.getElementById('counter').textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    try { history.replaceState(null, '', '#s' + (cur + 1)); } catch (e) {}
+    renderNotes();
+    if (playing) schedule();
+  }
+
+  /* Play: moves on one click every 7 seconds, with a light line along the bottom */
+  var playing = false, playT = null, ringA = null, PLAY_MS = 7000;
+  var playBtn = document.getElementById('play'), ring = document.getElementById('ring');
+  function schedule() {
+    clearTimeout(playT); if (ringA) ringA.cancel();
+    ringA = ring.animate([{ width: '0%' }, { width: '100%' }], { duration: PLAY_MS, easing: 'linear', fill: 'forwards' });
+    playT = setTimeout(function () { var last = cur === slides.length - 1 && step >= stepsOf(slides[cur]); if (last) stopPlay(); else next(); }, PLAY_MS);
+  }
+  function stopPlay() { playing = false; clearTimeout(playT); if (ringA) { ringA.cancel(); ringA = null; } playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed', 'false'); }
+  playBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (playing) { stopPlay(); return; }
+    playing = true; playBtn.textContent = 'Pause'; playBtn.setAttribute('aria-pressed', 'true');
+    if (!started) started = Date.now();
+    if (cur === slides.length - 1 && step >= stepsOf(slides[cur])) go(0, 0, true); else schedule();
+  });
+  document.getElementById('nextb').addEventListener('click', function (e) { e.stopPropagation(); next(); });
+  document.getElementById('prevb').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+  function next() { if (!started) started = Date.now(); var max = stepsOf(slides[cur]); if (step < max) go(cur, step + 1, true); else if (cur < slides.length - 1) go(cur + 1, 0, true); }
+  function prev() { if (step > 0) go(cur, step - 1, true); else if (cur > 0) go(cur - 1, stepsOf(slides[cur - 1]), false); }
+
+  /* speaker notes with timing */
+  var notes = document.getElementById('notes');
+  function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  function renderNotes() {
+    if (notes.hidden) return;
+    var s = slides[cur], target = 0;
+    for (var k = 0; k <= cur; k++) target += +slides[k].dataset.time || 0;
+    var el = started ? (Date.now() - started) / 1000 : 0;
+    var nx = slides[cur + 1];
+    notes.innerHTML = '<header><span><b>' + (cur + 1) + ' · ' + s.dataset.title + '</b> · step ' + step + ' of ' + stepsOf(s) + '</span><span>This slide ' + mmss(+s.dataset.time) + ' · on plan by ' + mmss(target) + ' · elapsed <b>' + mmss(el) + '</b></span></header><p></p>' + (nx ? '<p class="next">Next: ' + nx.dataset.title + '</p>' : '');
+    notes.querySelector('p').textContent = s.dataset.notes || '';
+  }
+  setInterval(function () { if (!notes.hidden) renderNotes(); }, 1000);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) { if (e.key === 'Escape' || e.key === 'Enter') e.target.blur(); return; }
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'PageDown' || k === 'Enter') { e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); prev(); }
+    else if (k === 'Home') go(0, 0, true);
+    else if (k === 'End') go(slides.length - 1, 0, true);
+    else if (k === 'p' || k === 'P') { notes.hidden = !notes.hidden; renderNotes(); }
+    else if (k === 'f' || k === 'F') { try { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(function () {}); } catch (x) {} }
+  });
+  document.getElementById('deck').addEventListener('click', function (e) {
+    if (e.target.closest('input, label, button, a, .notes, .chrome, .navb')) return;
+    if (window.getSelection && String(getSelection()).length) return;
+    if (e.clientX < innerWidth * 0.28) prev(); else next();
+  });
+  var tx = null;
+  addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') tx = e.clientX; });
+  addEventListener('pointerup', function (e) { if (tx == null) return; var dx = e.clientX - tx; tx = null; if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); } });
+
+  renderHours(false);
+  var m = /^#s(\d+)$/.exec(location.hash || ''), start = m ? +m[1] - 1 : 0;
+  go(start, 0, true);
+  addEventListener('hashchange', function () { var h = /^#s(\d+)$/.exec(location.hash || ''); if (h && +h[1] - 1 !== cur) go(+h[1] - 1, 0, true); });
+})();
+</script>

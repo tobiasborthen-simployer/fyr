@@ -63,7 +63,8 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
   - Collapsible Fyr menu everywhere. The room editor can hide the sections and fields, and *Focus* does both.
   - `sync-framework.mjs --check` covers the room page: 0 errors.
   - Tested in the browser: room made from the Fjellheim deck, Kari's link opened with the notice accepted, sections read, signed. Fyr showed the view, 57% read and *Signed* straight away.
-- **Next:** 10-minute pitch deck for the demo. Fill the business case figures (licence cost, deals per month). Legal and DPO on tracking.
+- **Pitch:** a 10-minute motion pitch, [Deal rooms in Fyr](https://claude.ai/artifact/X9MadzzBHYdgDhoCZShePi) (`hackathon/pitch/`), with the offsite deck's navigation. Business case: 3 deals a month × 20 sellers = 60 deals, 60–120 hours of sales time a month.
+- **Next:** fill the licence cost in the pitch. Legal and DPO on tracking.
 - **Published:** the prototype artifact [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) is version 3, with the `deal-room/` folder. Room links point at `deal-room/index.html` so they work on the artifact.
 - **Blockers:** none for the prototype. Real rooms wait for legal, finance (CFO figures) and customer OK on quotes.
 - **Decisions:** D-036 (accepted).
