@@ -4,14 +4,52 @@
     {
       "name": "prototype-v0.3",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs", "prototype/v0.3", "8765"],
+      "runtimeArgs": [
+        "/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs",
+        "prototype/v0.3",
+        "8765"
+      ],
       "port": 8765
     },
     {
       "name": "reference-v0.2",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs", "reference/v0.2", "8766"],
+      "runtimeArgs": [
+        "/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs",
+        "reference/v0.2",
+        "8766"
+      ],
       "port": 8766
+    },
+    {
+      "name": "fyr-blueprint",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs",
+        "presentation/fyr-blueprint/dist",
+        "8767"
+      ],
+      "port": 8767
+    },
+    {
+      "name": "deal-room",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs",
+        "hackathon/deal-room",
+        "8768"
+      ],
+      "port": 8768
+    },
+    {
+      "name": "hackathon",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs",
+        "hackathon",
+        "8769"
+      ],
+      "port": 8769
     }
   ]
 }

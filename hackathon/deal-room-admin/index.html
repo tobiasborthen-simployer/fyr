@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fyr · Deal rooms</title>
+<!-- MOCK-UP for the hackathon, 10 Nov 2026. Shows how a Deal rooms area could look inside Fyr. Not in v0.3 scope: needs D-036 first. All data is example data. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<style>
+/* Fyr v0.3 tokens and shell, copied from prototype/v0.3/index.html */
+:root{
+  --page:#F1EFE9; --card:#FBFAF7; --warm:#FBFAF7;
+  --ink:#1F1B2E; --text:#1F1B2E; --sub:#4A4458; --muted:#6A6377; --faint:#8F889C;
+  --line:#E2DDD2; --line-2:#D3CDC0;
+  --lav:#6B45C9; --lav-hover:#7C56DA; --lav-ink:#6B45C9; --lav-50:#F6F2FF; --lav-100:#E9E4F4; --lav-500:#9773FF;
+  --plum:#2D0C69; --plum-950:#1F0850;
+  --night:#1B1038; --night-2:#221646; --night-3:#2A1A55; --night-line:rgba(233,228,244,.12); --night-text:#F6F2FF; --night-sub:#B7AECF;
+  --nightg:linear-gradient(170deg,#2A1A55 0%,#221646 36%,#1B1038 70%,#0E0722 100%);
+  --green:#2EB27A; --green-ink:#23794F; --green-50:#E4F5EC;
+  --amber-ink:#9A5A00; --amber-50:#FFF2DE; --red-ink:#B42626; --red-50:#FBE9E9;
+  --ring:0 0 0 4px rgba(151,115,255,.28);
+  --shadow-sm:0 1px 2px rgba(31,27,46,.05),0 2px 6px rgba(31,27,46,.04);
+  --shadow-md:0 4px 14px rgba(31,27,46,.07),0 2px 4px rgba(31,27,46,.04);
+  --shadow-lg:0 18px 44px rgba(31,27,46,.10),0 4px 12px rgba(31,27,46,.05);
+  --sans:"Hanken Grotesk",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display:"Fraunces",Georgia,serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html,body{height:100%}
+body{margin:0;background:var(--page);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+input[type=checkbox],input[type=radio]{accent-color:var(--lav)}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:8px}
+h1,h2,h3{margin:0;color:var(--ink);text-wrap:balance}
+h1,h2{font-family:var(--display);font-weight:400;letter-spacing:-.024em}
+h3{font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--lav-ink);text-decoration:none}
+.ico{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.muted{color:var(--muted)}
+
+/* shell */
+.app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100%}
+.rail{background:var(--nightg);color:var(--night-text);padding:22px 14px 18px;display:flex;flex-direction:column;gap:20px;position:sticky;top:0;height:100vh;box-sizing:border-box;border-right:1px solid #000}
+.logo{padding:0 10px}
+.fyr-rail-wm{display:flex;align-items:flex-end;gap:1px}
+.fyr-word{font-family:'Source Serif 4',Georgia,serif;font-weight:600;letter-spacing:-.045em;line-height:.9;font-size:26px;color:#fff}
+.logo small{display:block;margin-top:5px;font-size:11.5px;line-height:1.35;color:#CFC5FF;font-weight:500;max-width:170px}
+.nav{display:grid;gap:14px;align-content:start;flex:1 1 auto;min-height:0;overflow-y:auto}
+.nav-group{display:grid;gap:2px}
+.nav-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#B7AECF;padding:0 12px 6px}
+.nav button{display:flex;align-items:center;gap:11px;width:100%;padding:7px 12px;border-radius:10px;color:#C9C6DC;font-weight:500;text-align:left;transition:background .15s var(--ease),color .15s}
+.nav button .ico{width:17px;height:17px;color:#807C9E}
+.nav button:hover{background:rgba(255,255,255,.05);color:#fff}
+.nav button[aria-current="page"]{background:rgba(151,115,255,.2);color:#fff;box-shadow:inset 0 0 0 1px rgba(185,168,255,.18)}
+.nav button[aria-current="page"] .ico{color:#CDC0EA}
+.nav .badge{margin-left:auto;font-size:11px;font-weight:600;min-width:20px;height:20px;padding:0 6px;box-sizing:border-box;border-radius:99px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#C9C6DC}
+.nav .badge.new{background:#9773FF;color:#fff}
+.rail-foot{margin-top:auto;display:grid;gap:10px}
+.role{background:var(--night-2);border:1px solid var(--night-line);border-radius:14px;padding:12px;display:grid;gap:10px}
+.me{display:flex;gap:10px;align-items:center}
+.av{width:32px;height:32px;border-radius:99px;display:grid;place-items:center;font-weight:600;font-size:12px;flex:none;background:linear-gradient(135deg,#A98CFF,#5A36B5);color:#fff}
+.me b{display:block;font-weight:600;font-size:13px;color:#fff;line-height:1.25}
+.me small{color:var(--night-sub);font-size:12px}
+.main{min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 28px}
+.crumbs{display:flex;gap:8px;align-items:center;color:var(--muted);font-weight:500;min-width:0}
+.crumbs .ico{width:14px;height:14px}
+.crumbs b{color:var(--ink);font-weight:600;white-space:nowrap}
+.crumbs button{color:var(--muted);font-weight:500}
+.crumbs button:hover{color:var(--ink)}
+.top-actions{display:flex;gap:10px;align-items:center}
+.search{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 10px 7px 12px;color:var(--muted);min-width:240px;box-shadow:var(--shadow-sm)}
+.search .ico{width:16px;height:16px}
+.search kbd{margin-left:auto;font-family:var(--sans);font-size:11px;background:var(--page);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.content{padding:4px 28px 72px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.wrap.wide{max-width:1520px}
+
+/* atoms */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:10px;font-weight:600;font-size:14px;white-space:nowrap;transition:background .15s var(--ease),border-color .15s,color .15s}
+.btn .ico{width:16px;height:16px}
+.btn-primary{background:var(--plum);color:#fff}
+.btn-primary:hover{background:var(--plum-950)}
+.btn-line{background:var(--card);border:1px solid var(--line-2);color:var(--text)}
+.btn-line:hover{background:var(--lav-50);border-color:#D3C8FF}
+.btn-ghost-n{color:var(--night-text);border:1px solid rgba(201,189,255,.2);background:rgba(255,255,255,.04)}
+.btn-ghost-n:hover{background:rgba(255,255,255,.1)}
+.btn-lav{background:var(--lav-500);color:#fff}
+.btn-lav:hover{background:#8A63F5}
+.btn-sm{height:32px;padding:0 12px;font-size:13px;border-radius:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:99px;font-size:12px;font-weight:500;white-space:nowrap;background:#F0EFF5;color:var(--sub)}
+.pill .d{width:6px;height:6px;border-radius:99px;background:currentColor}
+.pill.live{background:var(--lav-100);color:var(--plum)}
+.pill.ok{background:var(--green-50);color:var(--green-ink)}
+.pill.warn{background:var(--amber-50);color:var(--amber-ink)}
+.pill.n{background:rgba(255,255,255,.08);color:var(--night-text)}
+.pill.n.live{background:rgba(46,178,122,.16);color:#7FDDB0}
+.pill.n.sample{background:rgba(242,184,102,.16);color:#F2B866}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm)}
+.seg{display:inline-flex;background:#EFEDF5;border-radius:11px;padding:3px;gap:2px}
+.seg button{height:30px;padding:0 12px;border-radius:8px;font-weight:500;color:var(--sub);font-size:12.5px}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:var(--shadow-md);font-weight:600}
+.seg.n{background:rgba(255,255,255,.06)}
+.seg.n button{color:var(--night-sub);height:34px;font-size:13.5px;padding:0 14px}
+.seg.n button[aria-pressed="true"]{background:var(--lav-500);color:#fff;box-shadow:0 8px 24px rgba(151,115,255,.35)}
+.page-title{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+.page-title h1{font-size:clamp(32px,3.6vw,42px);line-height:1.1}
+.page-title p{color:var(--sub);margin-top:6px;font-size:15px;max-width:64ch}
+.tag-new{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--lav-ink);background:var(--lav-100);border-radius:99px;padding:3px 9px;vertical-align:6px;margin-left:10px;font-family:var(--sans)}
+
+/* tables */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:12px;font-weight:500;color:var(--muted);padding:12px 18px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--warm)}
+td{padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#FAF9FD}
+td b{font-weight:600;color:var(--ink)}
+td small{display:block;color:var(--muted);font-size:12.5px}
+.acts{display:flex;gap:6px;justify-content:flex-end}
+.bar{height:6px;border-radius:99px;background:#ECE8F4;overflow:hidden;width:90px;display:inline-block;vertical-align:middle;margin-right:8px}
+.bar i{display:block;height:100%;background:var(--lav-500);border-radius:99px}
+
+/* list hero */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--nightg);border-radius:16px;padding:18px 20px;color:var(--night-text)}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:34px;line-height:1;letter-spacing:-.02em;color:#fff}
+.stat span{display:block;color:var(--night-sub);font-size:13px;margin-top:8px}
+.foot-note{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px}
+
+/* studio (dark editor), same pattern as the deck studio */
+.studio{background:var(--nightg);border-radius:24px;padding:18px;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;color:var(--night-text)}
+.studio-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:4px 6px 0}
+.studio-bar h2{color:#fff;font-size:22px}
+.studio-bar .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px;color:var(--night-sub);font-size:13px}
+.studio-bar .acts{display:flex;flex-wrap:wrap;gap:8px}
+.studio-tabs{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:0 6px}
+.studio-body{display:grid;grid-template-columns:232px minmax(0,1fr) 300px;gap:16px;align-items:start}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9E98C4;margin-bottom:8px;display:block}
+
+/* left: sections and blocks */
+.outline{display:grid;gap:4px;max-height:calc(100vh - 250px);overflow-y:auto;padding-right:4px;scrollbar-width:thin}
+.o-sec{border-radius:12px;padding:6px 0}
+.o-sec + .o-sec{border-top:1px solid var(--night-line)}
+.o-head{display:flex;align-items:center;gap:8px;padding:4px 6px;color:#fff;font-weight:600;font-size:13px}
+.o-head .n{font-size:11px;color:#9E98C4;width:18px;font-variant-numeric:tabular-nums}
+.o-head .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.o-blk{display:flex;align-items:center;gap:6px;width:100%;padding:6px 6px 6px 32px;border-radius:9px;color:var(--night-sub);font-size:13px;text-align:left}
+.o-blk:hover{background:rgba(255,255,255,.05);color:#fff}
+.o-blk.sel{background:rgba(151,115,255,.22);color:#fff;box-shadow:inset 0 0 0 1px rgba(185,168,255,.2)}
+.o-blk .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.o-blk .ed{width:7px;height:7px;border-radius:99px;background:#F2B866;flex:none}
+.o-blk .lk{width:13px;height:13px;color:#9E98C4}
+.eye{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;color:#B7AECF;flex:none}
+.eye:hover{background:rgba(255,255,255,.08);color:#fff}
+.eye .ico{width:14px;height:14px}
+.hidden-item{opacity:.45}
+.hidden-item .t{text-decoration:line-through}
+
+/* middle: live preview */
+.stage{display:grid;gap:10px;min-width:0}
+.stage-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#B7AECF;font-size:12.5px;flex-wrap:wrap}
+.frame-wrap{position:relative;height:calc(100vh - 262px);min-height:520px;border-radius:14px;overflow:hidden;background:#F1EFE9;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.frame-wrap iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#F1EFE9}
+.frame-wrap.phone{background:rgba(255,255,255,.04);box-shadow:none}
+.frame-wrap.phone iframe{left:50%;border-radius:26px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.urlbar{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid var(--night-line);border-radius:99px;padding:4px 6px 4px 12px;color:#E9E4F4;font-size:12.5px;max-width:100%}
+.urlbar .ico{width:13px;height:13px;color:#7FDDB0}
+.urlbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* right: inspector */
+.insp{background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:16px;padding:16px;display:grid;gap:18px;max-height:calc(100vh - 250px);overflow-y:auto;scrollbar-width:thin}
+.insp h3{color:#fff;font-size:15px}
+.insp .sub{color:var(--night-sub);font-size:13px;margin-top:4px}
+.f{display:grid;gap:5px}
+.f label{font-size:12.5px;font-weight:600;color:#E9E4F4}
+.f input,.f textarea,.f select{width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);border:1px solid var(--night-line);border-radius:10px;padding:9px 11px;color:#fff;outline:none;resize:vertical;line-height:1.45}
+.f select option{background:#221646}
+.f input:focus,.f textarea:focus,.f select:focus{border-color:#9773FF;box-shadow:var(--ring)}
+.fields{display:grid;gap:12px}
+.hint{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--night-sub);background:rgba(255,255,255,.03);border:1px solid var(--night-line);border-radius:10px;padding:9px 11px}
+.hint .ico{width:15px;height:15px;margin-top:1px;color:#CDC0EA}
+.checks{display:grid;gap:8px}
+.checks div{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#E9E4F4}
+.checks .ico{width:15px;height:15px;margin-top:2px}
+.checks .ok .ico{color:#6FD3A5}
+.checks .wa .ico{color:#F2B866}
+.items{display:grid;gap:4px}
+.items label{display:flex;gap:9px;align-items:center;font-size:13px;color:#E9E4F4;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)}
+.pics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pics button{aspect-ratio:3/4;border-radius:8px;overflow:hidden;outline:2px solid transparent;outline-offset:1px}
+.pics button.on{outline-color:#9773FF}
+.pics img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* share and track */
+.share{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;align-items:start}
+.panel{background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:16px;padding:18px}
+.panel h3{color:#fff;font-size:15px;margin-bottom:4px}
+.panel .sub{color:var(--night-sub);font-size:13px}
+.col{display:grid;gap:16px}
+.link-row{display:flex;gap:8px;align-items:center;margin-top:14px}
+.link-row .urlbar{flex:1;min-width:0;padding:8px 12px;border-radius:10px}
+.radio{display:grid;gap:8px;margin-top:14px}
+.radio label{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#E9E4F4;padding:10px 12px;border-radius:10px;border:1px solid var(--night-line);cursor:pointer}
+.radio label small{display:block;color:var(--night-sub);font-size:12.5px}
+.radio input{margin-top:3px}
+.dt{width:100%;border-collapse:collapse;margin-top:12px}
+.dt th{background:transparent;color:#9E98C4;border-bottom:1px solid var(--night-line);padding:10px 10px;font-size:11.5px}
+.dt td{border-bottom:1px solid var(--night-line);padding:11px 10px;color:#E9E4F4;font-size:13px}
+.dt tbody tr:hover{background:rgba(255,255,255,.03)}
+.dt td b{color:#fff}
+.dt td small{color:var(--night-sub)}
+.dt .bar{background:rgba(255,255,255,.1);width:60px}
+.addp{display:grid;grid-template-columns:1fr 1.3fr 1fr auto;gap:8px;margin-top:12px}
+.addp input{background:rgba(255,255,255,.06);border:1px solid var(--night-line);border-radius:9px;padding:8px 10px;color:#fff;outline:none;min-width:0}
+.addp input::placeholder{color:#8F88AE}
+.depth{display:grid;gap:10px;margin-top:14px}
+.depth div{display:grid;grid-template-columns:150px 1fr 74px;gap:10px;align-items:center;font-size:13px;color:#E9E4F4}
+.depth .track{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.depth .track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#9773FF,#CDC0EA)}
+.depth small{color:var(--night-sub);text-align:right}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.kpis div{background:rgba(255,255,255,.04);border-radius:12px;padding:12px}
+.kpis b{display:block;font-family:var(--display);font-weight:400;font-size:28px;color:#fff;line-height:1}
+.kpis span{display:block;color:var(--night-sub);font-size:12.5px;margin-top:6px}
+.feed{display:grid;gap:12px;margin-top:12px}
+.feed div{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:13px;color:#E9E4F4}
+.feed .dot{width:28px;height:28px;border-radius:99px;display:grid;place-items:center;background:rgba(151,115,255,.2);color:#CDC0EA}
+.feed .dot .ico{width:14px;height:14px}
+.feed .dot.hot{background:rgba(242,184,102,.18);color:#F2B866}
+.feed small{display:block;color:var(--night-sub);font-size:12px}
+.toggles{display:grid;gap:10px;margin-top:12px}
+.toggles label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:13px;color:#E9E4F4}
+.sw{appearance:none;width:34px;height:20px;border-radius:99px;background:rgba(255,255,255,.15);position:relative;cursor:pointer;flex:none;transition:background .15s}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:99px;background:#fff;transition:transform .15s var(--ease)}
+.sw:checked{background:#9773FF}
+.sw:checked::after{transform:translateX(14px)}
+
+/* modal and toast */
+.scrim{position:fixed;inset:0;background:rgba(14,7,34,.55);display:none;place-items:center;z-index:40;padding:20px}
+.scrim.on{display:grid}
+.modal{background:var(--card);border-radius:20px;box-shadow:var(--shadow-lg);width:min(560px,100%);padding:26px;display:grid;gap:16px}
+.modal h2{font-size:28px}
+.modal .f label{color:var(--ink)}
+.modal .f input,.modal .f select{background:#fff;border:1px solid var(--line-2);color:var(--ink)}
+.modal .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal .note{font-size:13px;color:var(--muted);background:var(--lav-50);border-radius:10px;padding:10px 12px}
+.modal .end{display:flex;justify-content:flex-end;gap:8px}
+.toast{position:fixed;z-index:60;left:50%;bottom:24px;transform:translate(-50%,16px);background:var(--night);color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 16px 40px rgba(18,17,31,.3);font-size:13.5px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);max-width:min(560px,calc(100vw - 32px))}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+[hidden]{display:none!important}
+@media(max-width:1280px){.studio-body{grid-template-columns:200px minmax(0,1fr)}.insp{grid-column:1/-1;max-height:none}.share{grid-template-columns:1fr}}
+@media(max-width:900px){.app{grid-template-columns:1fr}.rail{display:none}.studio-body{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.search{display:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-deck" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-room" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4.2M6.6 6.6C3.8 8.3 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-check-c" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.5v.01"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M4 4l7 17 2.5-7.5L21 11z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
+</svg>
+
+<div class="app">
+  <aside class="rail">
+    <div class="logo"><span class="fyr-rail-wm"><span class="fyr-word">Fyr</span><svg width="9" height="9" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="#FF9573" fill-opacity=".3"/><circle cx="15" cy="15" r="7" fill="#FF9573"/></svg></span><small>Everything you need to talk about Simployer</small></div>
+    <nav class="nav" id="nav">
+      <div class="nav-group"><span class="nav-label">Create</span>
+        <button data-go="none"><svg class="ico"><use href="#i-deck"/></svg><span>Presentations</span></button>
+        <button data-go="none"><svg class="ico"><use href="#i-brief"/></svg><span>My presentations</span><span class="badge">3</span></button>
+        <button data-go="list" aria-current="page"><svg class="ico"><use href="#i-room"/></svg><span>Deal rooms</span><span class="badge new">New</span></button>
+      </div>
+      <div class="nav-group"><span class="nav-label">Knowledge</span>
+        <button data-go="none"><svg class="ico"><use href="#i-book"/></svg><span>Product truth</span></button>
+        <button data-go="none"><svg class="ico"><use href="#i-flag"/></svg><span>Roadmap</span></button>
+        <button data-go="none"><svg class="ico"><use href="#i-shield"/></svg><span>Battlecards</span></button>
+        <button data-go="none"><svg class="ico"><use href="#i-grid"/></svg><span>Library</span></button>
+      </div>
+    </nav>
+    <div class="rail-foot">
+      <div class="role"><div class="me"><span class="av">NU</span><div><b>Nicole Udd</b><small>Sales · Account Executive</small></div></div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-actions">
+        <div class="seg" role="group" aria-label="Content language"><button aria-pressed="true">EN</button><button>NO</button><button>SV</button></div>
+        <div class="search"><svg class="ico"><use href="#i-search"/></svg><span>Search truth, assets</span><kbd>⌘K</kbd></div>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- ========== LIST ========== -->
+      <section class="wrap" id="v-list">
+        <div class="page-title">
+          <div>
+            <h1>Deal rooms<span class="tag-new">Mock-up</span></h1>
+            <p>One page per deal, built from your presentation and Fyr's approved content. Share a personal link with each person, and see who reads what.</p>
+          </div>
+          <button class="btn btn-primary" id="new-room"><svg class="ico"><use href="#i-plus"/></svg>New deal room</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b>3</b><span>Live rooms</span></div>
+          <div class="stat"><b>17</b><span>Views this week</span></div>
+          <div class="stat"><b>2</b><span>New people reading, via forwards</span></div>
+          <div class="stat"><b>1</b><span>Waiting for a signature</span></div>
+        </div>
+
+        <div class="card" style="overflow:hidden">
+          <table>
+            <thead><tr><th>Customer</th><th>Built from</th><th>Status</th><th>People</th><th>Read</th><th>Latest</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>Vantera Group</b><small>Anna Lindqvist · HR Manager</small></td>
+                <td>Sales · Discovery meeting<small>EN · 5 Aug</small></td>
+                <td><span class="pill live"><span class="d"></span>Live</span></td>
+                <td>4 people<small>14 views</small></td>
+                <td><span class="bar"><i style="width:68%"></i></span>68%</td>
+                <td>Tomas read 06 Security<small>2 h ago</small></td>
+                <td><div class="acts"><button class="btn btn-primary btn-sm" data-open="vantera">Open</button><button class="btn btn-line btn-sm" data-copy="https://rom.simployer.com/vantera-group-7k2p9x">Copy link</button></div></td>
+              </tr>
+              <tr>
+                <td><b>Strand Helse</b><small>Ingrid Holm · HR Director</small></td>
+                <td>Sales · Discovery meeting<small>NO · 1 Oct</small></td>
+                <td><span class="pill live"><span class="d"></span>Live</span></td>
+                <td>2 people<small>3 views</small></td>
+                <td><span class="bar"><i style="width:22%"></i></span>22%</td>
+                <td><span class="pill warn">Not opened in 6 days</span></td>
+                <td><div class="acts"><button class="btn btn-primary btn-sm" data-open="vantera">Open</button><button class="btn btn-line btn-sm" data-copy="https://rom.simployer.com/strand-helse-q8w3mz">Copy link</button></div></td>
+              </tr>
+              <tr>
+                <td><b>Fjellheim Transport</b><small>Kari Nes · CEO</small></td>
+                <td>Sales · Demo<small>NO · 4 Nov</small></td>
+                <td><span class="pill">Draft</span></td>
+                <td>Not shared yet<small>&nbsp;</small></td>
+                <td class="muted">–</td>
+                <td>Edited by you<small>Today 11:06</small></td>
+                <td><div class="acts"><button class="btn btn-primary btn-sm" data-open="vantera">Open</button></div></td>
+              </tr>
+              <tr>
+                <td><b>Lindqvist Revision AB</b><small>Sara Lindqvist · CFO</small></td>
+                <td>Sales · Follow-up<small>SV · 8 Oct</small></td>
+                <td><span class="pill ok"><span class="d"></span>Signed</span></td>
+                <td>3 people<small>9 views</small></td>
+                <td><span class="bar"><i style="width:100%"></i></span>100%</td>
+                <td>Signed by Sara Lindqvist<small>12 Oct</small></td>
+                <td><div class="acts"><button class="btn btn-line btn-sm" data-open="vantera">View</button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="foot-note"><span class="pill warn">Example data</span>Mock-up: rooms, views and people are made up. In Fyr, rooms are saved to your account and tracked on the server.</p>
+      </section>
+
+      <!-- ========== EDITOR ========== -->
+      <section class="wrap wide" id="v-edit" hidden>
+        <div class="studio">
+          <div class="studio-bar">
+            <div>
+              <h2>Deal room for <span class="bind-company">Vantera Group</span></h2>
+              <div class="meta">
+                <span class="pill n live"><span class="d"></span>Live</span>
+                <span>Built from Sales · Discovery meeting</span><span>·</span><span>EN</span><span>·</span><span id="saved">Saved 11:06</span>
+              </div>
+            </div>
+            <div class="acts">
+              <a class="btn btn-ghost-n" href="../deal-room/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ext"/></svg>Open as customer</a>
+              <button class="btn btn-ghost-n" id="publish"><svg class="ico"><use href="#i-check-c"/></svg>Publish changes</button>
+              <button class="btn btn-lav" data-tab-go="share"><svg class="ico"><use href="#i-send"/></svg>Share</button>
+            </div>
+          </div>
+
+          <div class="studio-tabs">
+            <div class="seg n" role="tablist">
+              <button aria-pressed="true" data-tab="edit"><svg class="ico" style="width:15px;height:15px;vertical-align:-3px;margin-right:6px"><use href="#i-pen"/></svg>Edit</button>
+              <button aria-pressed="false" data-tab="share"><svg class="ico" style="width:15px;height:15px;vertical-align:-3px;margin-right:6px"><use href="#i-link"/></svg>Share and track</button>
+            </div>
+            <span class="pill n sample">Example data</span>
+          </div>
+
+          <!-- Edit tab -->
+          <div class="studio-body" id="t-edit">
+            <div>
+              <span class="lbl">Sections</span>
+              <div class="outline" id="outline"></div>
+            </div>
+            <div class="stage">
+              <div class="stage-bar">
+                <div class="urlbar"><svg class="ico"><use href="#i-lock"/></svg><span>rom.simployer.com/vantera-group-7k2p9x</span></div>
+                <div class="seg n" role="group" aria-label="Preview size">
+                  <button aria-pressed="true" data-dev="desktop" style="height:30px;font-size:12.5px"><svg class="ico" style="width:14px;height:14px;vertical-align:-2px"><use href="#i-monitor"/></svg></button>
+                  <button aria-pressed="false" data-dev="phone" style="height:30px;font-size:12.5px"><svg class="ico" style="width:14px;height:14px;vertical-align:-2px"><use href="#i-phone"/></svg></button>
+                </div>
+              </div>
+              <div class="frame-wrap" id="fw"><iframe id="room" src="../deal-room/" title="Live preview of the deal room"></iframe></div>
+              <div class="stage-bar" style="justify-content:center"><span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-cursor"/></svg> Click any text in the preview to change it. Lines with a lock come from the Messaging Framework.</span></div>
+            </div>
+            <aside class="insp" id="insp"></aside>
+          </div>
+
+          <!-- Share tab -->
+          <div class="share" id="t-share" hidden>
+            <div class="col">
+              <div class="panel">
+                <h3>Room link</h3>
+                <p class="sub">One room, one link. Each person also gets a personal link, so you can see who is reading.</p>
+                <div class="link-row">
+                  <div class="urlbar"><svg class="ico"><use href="#i-lock"/></svg><span>https://rom.simployer.com/vantera-group-7k2p9x</span></div>
+                  <button class="btn btn-ghost-n btn-sm" data-copy="https://rom.simployer.com/vantera-group-7k2p9x"><svg class="ico" style="width:14px;height:14px"><use href="#i-copy"/></svg>Copy</button>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="acc" checked><span>Personal links, and a work email for anyone else<small>People you invite open it straight away. A forwarded link asks for a work email at @vantera.se first, and you get a notice.</small></span></label>
+                  <label><input type="radio" name="acc"><span>Only the people you invite<small>Forwarded links don't open. Use this for pricing you don't want passed on.</small></span></label>
+                </div>
+              </div>
+
+              <div class="panel">
+                <h3>People</h3>
+                <p class="sub">Who has the room, and how far they've read.</p>
+                <table class="dt">
+                  <thead><tr><th>Person</th><th>Views</th><th>Read</th><th>Time</th><th>Last seen</th><th></th></tr></thead>
+                  <tbody id="people"></tbody>
+                </table>
+                <form class="addp" id="addp">
+                  <input name="n" placeholder="Name" required>
+                  <input name="e" type="email" placeholder="Work email" required>
+                  <input name="r" placeholder="Role">
+                  <button class="btn btn-lav btn-sm" type="submit"><svg class="ico" style="width:14px;height:14px"><use href="#i-plus"/></svg>Add</button>
+                </form>
+              </div>
+
+              <div class="panel">
+                <h3>How far they read</h3>
+                <p class="sub">Share of people who reached each section, and the average time spent there.</p>
+                <div class="depth" id="depth"></div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="panel">
+                <h3>This week</h3>
+                <div class="kpis">
+                  <div><b>14</b><span>Views</span></div>
+                  <div><b>4</b><span>People</span></div>
+                  <div><b>68%</b><span>Read on average</span></div>
+                  <div><b>23 min</b><span>Time in the room</span></div>
+                </div>
+              </div>
+              <div class="panel">
+                <h3>Activity</h3>
+                <div class="feed">
+                  <div><span class="dot hot"><svg class="ico"><use href="#i-eye"/></svg></span><p>Erik Sand opened the room for the first time. Anna forwarded it.<small>Today 10:42 · New person</small></p></div>
+                  <div><span class="dot"><svg class="ico"><use href="#i-shield"/></svg></span><p>Tomas Berg spent 6 min in 06 Safe to implement and opened the Trust Center.<small>Today 09:12</small></p></div>
+                  <div><span class="dot hot"><svg class="ico"><use href="#i-pen"/></svg></span><p>Anna Lindqvist clicked Review and sign, then left without signing.<small>Yesterday 16:20</small></p></div>
+                  <div><span class="dot"><svg class="ico"><use href="#i-eye"/></svg></span><p>Anna Lindqvist watched your video to the end.<small>Mon 08:55</small></p></div>
+                </div>
+              </div>
+              <div class="panel">
+                <h3>Tell me when</h3>
+                <div class="toggles">
+                  <label>Someone new opens the room<input type="checkbox" class="sw" checked></label>
+                  <label>Someone reaches 07 Your proposal<input type="checkbox" class="sw" checked></label>
+                  <label>Someone clicks Review and sign<input type="checkbox" class="sw" checked></label>
+                  <label>Nobody has opened it for 5 days<input type="checkbox" class="sw"></label>
+                </div>
+              </div>
+              <div class="panel">
+                <h3>What viewers are told</h3>
+                <p class="sub" style="margin-top:6px">The room shows a short notice: "Simployer sees when this page is opened and which parts are read, so Nicole can follow up." Tracking starts only after the viewer accepts. Legal and the DPO need to approve this wording.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- New deal room -->
+<div class="scrim" id="scrim">
+  <form class="modal" id="new-form">
+    <h2>New deal room</h2>
+    <div class="f"><label for="nf-from">Start from</label>
+      <select id="nf-from">
+        <option>Vantera Group · Sales · Discovery meeting · 5 Aug</option>
+        <option>Fjellheim Transport · Sales · Demo · 4 Nov</option>
+        <option>Strand Helse · Sales · Discovery meeting · 1 Oct</option>
+        <option>A blank room</option>
+      </select></div>
+    <div class="row">
+      <div class="f"><label for="nf-c">Contact</label><input id="nf-c" value="Anna Lindqvist"></div>
+      <div class="f"><label for="nf-e">Work email</label><input id="nf-e" value="anna.lindqvist@vantera.se"></div>
+    </div>
+    <div class="row">
+      <div class="f"><label for="nf-l">Language</label><select id="nf-l"><option>EN</option><option>NO</option><option>SV</option></select></div>
+      <div class="f"><label for="nf-p">Package</label><select id="nf-p"><option>Complete</option><option>Essential</option></select></div>
+    </div>
+    <p class="note">The challenges, language and company come from your presentation brief. Fyr fills the rest from Product truth, the Roadmap and the Messaging Framework, in the room's language.</p>
+    <div class="end"><button type="button" class="btn btn-line" id="nf-cancel">Cancel</button><button class="btn btn-primary" type="submit">Create room</button></div>
+  </form>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const ico = id => `<svg class="ico"><use href="#${id}"/></svg>`;
+const IMG = '../deal-room/assets/img/';
+const S = { view: 'list', tab: 'edit', block: 'details', dev: 'desktop', hidden: new Set(), edited: new Set() };
+
+/* ---------- Room structure: sections and blocks, matching the page's ids ---------- */
+const OUTLINE = [
+  { id: 'hero', n: '', t: 'Welcome', blocks: [{ id: 'details', t: 'Customer, contact and you', el: '.hero' }] },
+  { id: 's1', n: '01', t: 'Where you are today', blocks: [{ id: 'p11', t: 'What you told us' }, { id: 'p12', t: 'What happens next' }] },
+  { id: 's2', n: '02', t: 'Why do anything at all', blocks: [{ id: 'p21', t: 'The cost of doing nothing' }] },
+  { id: 's3', n: '03', t: 'What becomes possible', blocks: [{ id: 'p31', t: 'What changes for you', lock: true }, { id: 'p32', t: 'Who does the work', lock: true }] },
+  { id: 's4', n: '04', t: 'What you get', blocks: [{ id: 'p41', t: 'Your scope' }, { id: 'p42', t: 'Core HR and Sia' }, { id: 'p43', t: 'In the spotlight' }, { id: 'p44', t: 'Also available' }] },
+  { id: 's5', n: '05', t: 'Value and proof', blocks: [{ id: 'p51', t: 'Return on investment' }, { id: 'p52', t: 'Customer stories' }] },
+  { id: 's6', n: '06', t: 'Safe to implement', blocks: [{ id: 'p61', t: 'How you get live' }, { id: 'p62', t: 'Security and your systems', lock: true }] },
+  { id: 's7', n: '07', t: 'Your proposal', blocks: [{ id: 'p71', t: 'What it costs' }, { id: 'p72', t: 'Questions' }, { id: 'p73', t: 'Review and sign' }] }
+];
+
+/* Fields the rep fills per block. s: CSS selector(s) in the room; the first match is read, all matches are written. */
+const T = n => `#${n} table tr:nth-child`;
+const FIELDS = {
+  details: [
+    { l: 'Company', s: '.v[data-t="{Company}"], .v[data-t="{Company name}"]', bind: '.bind-company' },
+    { l: 'Contact, full name', s: '.nav-for .v[data-t="{Contact}"]' },
+    { l: 'First name in the greeting', s: '.hero .lede .v[data-t="{name}"]' },
+    { l: 'Meeting date', s: '.hero .lede .v[data-t="{date}"]' },
+    { l: 'Your name', s: '.v[data-t="{Your name}"]' },
+    { l: 'Video message', type: 'video' },
+    { l: 'Hero photo', type: 'pic', s: '.hero-photo img' }
+  ],
+  p11: [
+    { l: 'Challenge 1', s: '#p11 .cards.of .c:nth-child(1) h4' },
+    { l: 'In their words', s: '#p11 .cards.of .c:nth-child(1) .q', type: 'area' },
+    { l: 'Who said it', s: '#p11 .cards.of .c:nth-child(1) .who' },
+    { l: 'Challenge 2', s: '#p11 .cards.of .c:nth-child(2) h4' },
+    { l: 'What it costs them', s: '#p11 .cards.of .c:nth-child(2) p:not(.k)', type: 'area' },
+    { l: 'Challenge 3', s: '#p11 .cards.of .c:nth-child(3) h4' },
+    { l: 'What it costs them', s: '#p11 .cards.of .c:nth-child(3) p:not(.k)', type: 'area' },
+    { l: 'Date that matters, 1', s: '#p11 .cards.two.of .c:nth-child(1) h4' },
+    { l: 'Date that matters, 2', s: '#p11 .cards.two.of .c:nth-child(2) h4' }
+  ],
+  p12: [{ type: 'addstep' }],
+  p21: [
+    { l: 'Hours a week on HR admin', s: '#p21 .cards .c:nth-child(1) .big .v' },
+    { l: 'Size of the HR team', s: '#p21 .cards .c:nth-child(1) p:not(.big) .v' },
+    { l: 'Photo', type: 'pic', s: '#p21 .photo-wide img' }
+  ],
+  p31: [
+    { l: 'Leave the admin: their example', s: '#p31 .pillar:nth-child(1) p.of', type: 'area' },
+    { l: 'Skip the worry: their example', s: '#p31 .pillar:nth-child(2) p.of', type: 'area' },
+    { l: 'Get the signal: their example', s: '#p31 .pillar:nth-child(3) p.of', type: 'area' }
+  ],
+  p32: [
+    { l: 'Site or team in the Sia example', s: '#p32 .v[data-t="{a site or team}"]' },
+    { l: 'Photo', type: 'pic', s: '#p32 .duo figure:nth-child(2) img' }
+  ],
+  p41: [
+    { l: 'Package', s: `${T('p41')}(1) td:last-child .v` },
+    { l: 'Users', s: `${T('p41')}(2) td:last-child .v` },
+    { l: 'Sites', s: `${T('p41')}(3) td:last-child .v` },
+    { l: 'Onboarding starts', s: `${T('p41')}(4) td:last-child .v, #p73 .sr:nth-child(4) > span:last-child .v` },
+    { l: 'Not in scope now', s: `${T('p41')}(5) td:last-child .v` }
+  ],
+  p42: [{ type: 'items', s: '#p42 .cards .c', note: 'Module cards come from Product truth. Hide the ones that don\'t matter to this customer.' }],
+  p43: [{ type: 'items', s: '#p43 .cards .c', note: 'From Product truth. Hide what doesn\'t fit.' }],
+  p44: [{ type: 'items', s: '#p44 .cards .c' }, { l: 'Your note on what to add later', s: '#p44 p.small.of', type: 'area' }],
+  p51: [
+    { l: 'Headcount', s: `${T('p51')}(1) td:last-child .v` },
+    { l: 'HR team', s: `${T('p51')}(2) td:last-child .v` },
+    { l: 'Hours on HR admin a week', s: `${T('p51')}(3) td:last-child .v` },
+    { l: 'Hours back each year', s: `${T('p51')}(4) td:last-child .v` },
+    { l: 'Tools they can retire', s: `${T('p51')}(5) td:last-child .v`, type: 'area' },
+    { l: 'Annual investment', s: `${T('p51')}(6) td:last-child .v` },
+    { l: 'Payback', s: `${T('p51')}(8) td:last-child .v` }
+  ],
+  p52: [{ type: 'items', s: '#p52 .story', label: el => el.querySelector('.k').textContent.split('·')[0].trim(), note: 'Approved customer stories. Pick the ones closest to this customer.' }],
+  p61: [
+    { l: 'Kick-off date', s: '#p61 tbody tr:nth-child(1) .v' },
+    { l: 'First process to go live', s: '#p61 tbody tr:nth-child(5) .v, #p61 .cards .c:nth-child(2) .k .v' },
+    { l: 'Photo', type: 'pic', s: '#p61 .split .photo img' }
+  ],
+  p62: [{ l: 'IT contact', s: '#p62 .v[data-t="{IT contact} and your IT team"]' }, { l: 'Their systems', s: '#p62 .v[data-t="{their payroll, chat and identity tools}"]', type: 'area' }],
+  p71: [
+    { l: 'Package', s: `${T('p71')}(1) td:last-child .v, #p73 .sr:nth-child(1) .v[data-t="{Essential or Complete}"]` },
+    { l: 'Users', s: `${T('p71')}(2) td:last-child .v, #p73 .sr:nth-child(1) .v[data-t="{X}"]` },
+    { l: 'Term', s: `${T('p71')}(3) td:last-child .v, #p73 .sr:nth-child(3) .v` },
+    { l: 'Annual investment', s: `${T('p71')}(4) td:last-child .v, #p73 .sr:nth-child(1) > span:last-child .v` },
+    { l: 'One-off implementation', s: `${T('p71')}(5) td:last-child .v, #p73 .sr:nth-child(2) > span:last-child .v` },
+    { l: 'Valid until', s: `${T('p71')}(6) td:last-child .v` }
+  ],
+  p72: [{ type: 'items', s: '#p72 details', label: el => el.querySelector('summary').textContent, note: 'Add your own question by clicking an answer in the preview and typing.' }],
+  p73: [{ type: 'sign' }]
+};
+
+/* Lines the rep can't change: they come from the Messaging Framework, approved claims or approved quotes. */
+const LOCKED = ['#p31 > h3', '#p31 > .lede', '#p31 > .how', '#p32 > h3', '#p32 .callout.tint .d4', '#p32 .callout.tint p', '.trustline', '.chips span', '#p51 .cards.two .c .d5', '#p52 blockquote p', '.foot b', '#p21 > h3', '#p21 > .lede'];
+/* Same avoid list as docs/messaging-framework.json */
+const AVOID = [
+  [/\breplac(es|ing|ement)\b|\berstatt(er|ning)\b|\bersätt(er|ning)\b/i, 'Never "replaces"'],
+  [/instead of your HR team/i, 'Never "instead of your HR team"'],
+  [/\breal people\b|\bhuman experts?\b/i, 'Call them "HR experts"'],
+  [/\bhard calls?\b/i, 'Never "hard calls"'],
+  [/\bAI-powered\b|\bAI-driven\b/i, 'Name the task, not "AI-powered"'],
+  [/\bAI (will|does|helps|answers|writes)\b/i, 'Simployer or Sia is the actor, never "AI"'],
+  [/\b(personio|hibob|sympa|workday|huma|4human|hailey ?hr|catalystone|dottie|visma)\b/i, 'No competitor names']
+];
+const PICS = ['photo-desk', 'photo-team', 'photo-side-by-side', 'photo-pair', 'photo-laptop', 'photo-floor', 'photo-table'];
+
+/* ---------- helpers ---------- */
+const toast = m => { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2600); };
+const now = () => new Date().toTimeString().slice(0, 5);
+const saved = () => { $('#saved').textContent = 'Saved ' + now(); };
+const copy = txt => { try { navigator.clipboard.writeText(txt); } catch (_) {} toast('Link copied: ' + txt.replace('https://', '')); };
+const D = () => { try { return $('#room').contentDocument; } catch (_) { return null; } };
+const roomAll = s => { const d = D(); return d ? [...d.querySelectorAll(s)] : []; };
+const blockOf = id => OUTLINE.flatMap(x => x.blocks).find(b => b.id === id);
+const secOf = id => OUTLINE.find(x => x.blocks.some(b => b.id === id));
+const blkEl = id => { const b = blockOf(id); return roomAll(b && b.el ? b.el : '#' + id)[0]; };
+
+/* ---------- views ---------- */
+function crumbs() {
+  $('#crumbs').innerHTML = S.view === 'list'
+    ? `<span>Create</span>${ico('i-arrow')}<b>Deal rooms</b>`
+    : `<span>Create</span>${ico('i-arrow')}<button data-go="list">Deal rooms</button>${ico('i-arrow')}<b class="bind-company">${$('.bind-company').textContent}</b>`;
+}
+function show(v) {
+  S.view = v;
+  $('#v-list').hidden = v !== 'list';
+  $('#v-edit').hidden = v !== 'edit';
+  crumbs();
+  if (v === 'edit') { requestAnimationFrame(fit); }
+  window.scrollTo({ top: 0 });
+}
+function tab(t) {
+  S.tab = t;
+  $$('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === t));
+  $('#t-edit').hidden = t !== 'edit';
+  $('#t-share').hidden = t !== 'share';
+  if (t === 'edit') requestAnimationFrame(fit);
+}
+
+/* ---------- left: outline ---------- */
+function outline() {
+  $('#outline').innerHTML = OUTLINE.map(sec => `
+    <div class="o-sec ${S.hidden.has(sec.id) ? 'hidden-item' : ''}">
+      <div class="o-head"><span class="n">${sec.n}</span><span class="t">${sec.t}</span>${sec.id !== 'hero' ? `<button class="eye" data-hide="${sec.id}" title="${S.hidden.has(sec.id) ? 'Show' : 'Hide'} this section">${ico(S.hidden.has(sec.id) ? 'i-eye-off' : 'i-eye')}</button>` : ''}</div>
+      ${sec.blocks.map(b => `<button class="o-blk ${S.block === b.id ? 'sel' : ''} ${S.hidden.has(b.id) ? 'hidden-item' : ''}" data-block="${b.id}">
+        <span class="t">${b.t}</span>${S.edited.has(b.id) ? '<span class="ed" title="Edited"></span>' : ''}${b.lock ? `<svg class="ico lk"><use href="#i-lock"/></svg>` : ''}
+        ${sec.blocks.length > 1 ? `<span class="eye" data-hide="${b.id}" role="button" tabindex="0" title="${S.hidden.has(b.id) ? 'Show' : 'Hide'} this block">${ico(S.hidden.has(b.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}
+      </button>`).join('')}
+    </div>`).join('');
+}
+
+/* ---------- right: inspector ---------- */
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+function fieldHTML(f, i) {
+  if (f.type === 'pic') {
+    const cur = (roomAll(f.s)[0] || {}).getAttribute ? roomAll(f.s)[0].getAttribute('src') : '';
+    return `<div class="f"><label>${ico('i-image').replace('class="ico"', 'class="ico" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"')}${f.l} <span style="font-weight:400;color:#9E98C4">· Simployer image bank</span></label><div class="pics">${PICS.map(p => `<button type="button" data-pic="${i}" data-src="${IMG + p}.jpg" class="${cur && cur.includes(p) ? 'on' : ''}" title="${p}"><img src="${IMG + p}.jpg" alt=""></button>`).join('')}</div></div>`;
+  }
+  if (f.type === 'video') return `<div class="f"><label>${f.l}</label><div class="hint">${ico('i-image')}<span>Record or upload a minute for the customer. It plays in the welcome. Your current one is 0:58.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-act="video">Record a new one</button></div>`;
+  if (f.type === 'addstep') return `<div class="hint">${ico('i-cursor')}<span>Edit steps, owners and dates straight in the table. Mark a step done, and the customer sees the status change.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-act="addstep">${ico('i-plus')}Add a step</button>`;
+  if (f.type === 'sign') return `<div class="f"><label>How the customer signs</label><select data-act="signhow"><option>Simple e-signature: name, title and a tick</option><option>BankID (needs a signing provider)</option></select></div><div class="hint">${ico('i-alert')}<span>The agreement is built from 07 Your proposal. When it's signed, you get a copy as PDF and the room shows "Signed".</span></div>`;
+  if (f.type === 'items') {
+    const els = roomAll(f.s);
+    return `${f.note ? `<div class="hint">${ico('i-eye')}<span>${f.note}</span></div>` : ''}<div class="items">${els.map((el, j) => `<label><input type="checkbox" data-item="${i}" data-j="${j}" ${el.style.display === 'none' ? '' : 'checked'}>${esc(f.label ? f.label(el) : (el.querySelector('h4') || el).textContent.trim())}</label>`).join('')}</div>`;
+  }
+  const el = roomAll(f.s)[0];
+  const val = el ? el.textContent.trim() : '';
+  return `<div class="f"><label for="fld-${i}">${f.l}</label>${f.type === 'area' ? `<textarea id="fld-${i}" data-f="${i}" rows="3">${esc(val)}</textarea>` : `<input id="fld-${i}" data-f="${i}" value="${esc(val)}">`}</div>`;
+}
+function checks() {
+  const d = D(); if (!d) return '';
+  const text = (d.querySelector('.main') || d.body).innerText;
+  const hits = AVOID.filter(([re]) => re.test(text)).map(([, why]) => why);
+  const rows = [];
+  rows.push(hits.length ? ['wa', `Off the Messaging Framework: ${hits.join(', ')}`] : ['ok', 'On the Messaging Framework: no banned words or competitor names']);
+  rows.push(['ok', 'Framework lines, approved claims and quotes are locked']);
+  if (S.block === 'p51') rows.push(['wa', 'The 4 to 8 month payback and 1,600 hours need finance approval before the room goes out']);
+  if (S.block === 'p52') rows.push(['wa', 'Customer quotes and figures need the customer\'s written OK']);
+  if (['p42', 'p43', 'p44'].some(b => S.edited.has(b))) rows.push(['wa', 'You changed Product truth wording in 04. PMM gets a copy to check.']);
+  if (S.hidden.size) rows.push(['ok', `${S.hidden.size} hidden from the customer`]);
+  return `<div><span class="lbl">Message check</span><div class="checks">${rows.map(([c, t]) => `<div class="${c === 'ok' ? 'ok' : 'wa'}">${ico(c === 'ok' ? 'i-check-c' : 'i-alert')}<span>${t}</span></div>`).join('')}</div></div>`;
+}
+function inspector() {
+  const b = blockOf(S.block), sec = secOf(S.block), fs = FIELDS[S.block] || [];
+  $('#insp').innerHTML = `
+    <div><span class="lbl">${sec.n ? 'Section ' + sec.n + ' · ' : ''}${sec.t}</span><h3>${b.t}</h3>
+      ${b.lock ? `<p class="sub">${ico('i-lock').replace('class="ico"', 'class="ico" style="width:13px;height:13px;vertical-align:-2px"')} The headline lines come from the Messaging Framework. Fill in the parts that are about this customer.</p>` : ''}</div>
+    <div class="fields">${fs.map(fieldHTML).join('') || `<div class="hint">${ico('i-cursor')}<span>Click any text in the preview to change it.</span></div>`}</div>
+    ${checks()}`;
+}
+
+/* ---------- the live preview ---------- */
+function fit() {
+  const fw = $('#fw'), fr = $('#room'); if (!fw || !fr || $('#t-edit').hidden) return;
+  const W = fw.clientWidth, H = fw.clientHeight;
+  fw.classList.toggle('phone', S.dev === 'phone');
+  if (S.dev === 'phone') { fr.style.width = '390px'; fr.style.height = (H - 24) + 'px'; fr.style.top = '12px'; fr.style.transform = 'translateX(-50%)'; }
+  else { const k = W / 1280; fr.style.width = '1280px'; fr.style.height = (H / k) + 'px'; fr.style.top = '0'; fr.style.transform = `scale(${k})`; }
+}
+function setText(sel, v) { roomAll(sel).forEach(el => { el.textContent = v; }); }
+function scrollRoomTo(id) {
+  const el = blkEl(id), d = D(); if (!el || !d) return;
+  const w = d.defaultView; w.scrollTo({ top: el.getBoundingClientRect().top + w.scrollY - 24, behavior: 'smooth' });
+  el.animate([{ boxShadow: '0 0 0 3px rgba(151,115,255,.7)' }, { boxShadow: '0 0 0 3px rgba(151,115,255,0)' }], { duration: 1400 });
+}
+function applyHidden() {
+  const d = D(); if (!d) return;
+  OUTLINE.forEach(sec => {
+    const se = d.getElementById(sec.id); if (se && sec.id !== 'hero') se.style.display = S.hidden.has(sec.id) ? 'none' : '';
+    const nl = d.querySelector(`.nav-sec > a[href="#${sec.id}"]`); if (nl) nl.parentElement.style.display = S.hidden.has(sec.id) ? 'none' : '';
+    sec.blocks.forEach(b => {
+      const be = d.getElementById(b.id); if (be && !b.el) be.style.display = S.hidden.has(b.id) ? 'none' : '';
+      const bl = d.querySelector(`.nav-pages a[href="#${b.id}"]`); if (bl) bl.parentElement.style.display = S.hidden.has(b.id) ? 'none' : '';
+    });
+  });
+}
+function prepRoom() {
+  const d = D(); if (!d) return;
+  const st = d.createElement('style');
+  st.textContent = `.modes{display:none!important}
+  html{scroll-behavior:smooth}
+  [contenteditable="true"]{outline:none;border-radius:4px;transition:box-shadow .15s}
+  [contenteditable="true"]:hover{box-shadow:0 0 0 2px rgba(151,115,255,.55);cursor:text}
+  [contenteditable="true"]:focus{box-shadow:0 0 0 2px #9773FF;background:rgba(151,115,255,.06)}
+  .fyr-lock{position:relative}
+  .fyr-lock:hover{box-shadow:0 0 0 2px rgba(242,184,102,.8);border-radius:4px;cursor:not-allowed}
+  .fyr-lock:hover::after{content:"Locked: from the Messaging Framework";position:absolute;left:0;top:-30px;white-space:nowrap;font:600 12px/1 'Hanken Grotesk',sans-serif;letter-spacing:0;text-transform:none;background:#1B1038;color:#F6F2FF;padding:7px 9px;border-radius:7px;z-index:5}`;
+  d.head.appendChild(st);
+  const lockedEls = new Set(LOCKED.flatMap(s => [...d.querySelectorAll(s)]));
+  lockedEls.forEach(el => { el.classList.add('fyr-lock'); el.setAttribute('title', 'From the Messaging Framework. PMM owns this line.'); });
+  const main = d.querySelector('.main');
+  main.querySelectorAll('h1,h3,h4,p,li,td,summary,blockquote span,.k,.big,.d4,.d5,.sr > span').forEach(el => {
+    if (lockedEls.has(el) || el.closest('.fyr-lock') || el.querySelector('.fyr-lock')) return;
+    if (el.closest('[contenteditable="true"]')) return;
+    if (el.querySelector('p,h4,td,li')) return;
+    el.setAttribute('contenteditable', 'true'); el.spellcheck = false;
+  });
+  main.querySelectorAll('summary[contenteditable]').forEach(s => s.addEventListener('keydown', e => { if (e.key === ' ') e.stopPropagation(); }));
+  d.addEventListener('click', e => { const a = e.target.closest('a'); if (a && a.getAttribute('href') && !a.getAttribute('href').startsWith('#')) e.preventDefault(); if (e.target.closest('summary[contenteditable]')) e.preventDefault(); }, true);
+  d.addEventListener('input', e => {
+    const blk = e.target.closest('.blk, .hero'); if (!blk) return;
+    const id = blk.classList.contains('hero') ? 'details' : blk.id;
+    S.edited.add(id); saved(); outline();
+    if (id === S.block) { $('#insp .checks') && ($('#insp').lastElementChild.outerHTML = checks()); }
+  });
+  d.addEventListener('focusin', e => {
+    const blk = e.target.closest('.blk, .hero'); if (!blk) return;
+    const id = blk.classList.contains('hero') ? 'details' : blk.id;
+    if (id !== S.block && blockOf(id)) { S.block = id; outline(); inspector(); }
+  });
+  applyHidden(); inspector();
+}
+
+/* ---------- people and reading depth (example data) ---------- */
+const PEOPLE = [
+  { n: 'Anna Lindqvist', r: 'HR Manager', v: 6, p: 92, t: '14 min', l: '2 h ago', k: 'anna-x3f' },
+  { n: 'Tomas Berg', r: 'IT Manager', v: 3, p: 48, t: '6 min', l: 'Today 09:12', k: 'tomas-p8d' },
+  { n: 'Erik Sand', r: 'CFO', v: 1, p: 35, t: '3 min', l: 'Today 10:42', k: 'erik-m2q', fwd: true },
+  { n: 'Maria Kvist', r: 'COO', v: 0, p: 0, t: '–', l: 'Not opened', k: 'maria-t6v' }
+];
+function people() {
+  $('#people').innerHTML = PEOPLE.map((x, i) => `<tr>
+    <td><b>${esc(x.n)}</b>${x.fwd ? ' <span class="pill n sample" style="height:20px;font-size:11px">Forwarded</span>' : ''}<small>${esc(x.r || '')}</small></td>
+    <td>${x.v}</td>
+    <td>${x.v ? `<span class="bar"><i style="width:${x.p}%"></i></span>${x.p}%` : '<small>–</small>'}</td>
+    <td>${x.t}</td>
+    <td><small style="color:#E9E4F4">${x.l}</small></td>
+    <td><button class="btn btn-ghost-n btn-sm" data-copy="https://rom.simployer.com/vantera-group-7k2p9x?r=${x.k}" title="Copy ${esc(x.n.split(' ')[0])}'s personal link">${ico('i-copy').replace('class="ico"', 'class="ico" style="width:14px;height:14px"')}Link</button></td>
+  </tr>`).join('');
+}
+const DEPTH = [['01 Where you are today', 100, '3 min'], ['02 Why do anything', 100, '2 min'], ['03 What becomes possible', 92, '4 min'], ['04 What you get', 75, '3 min'], ['05 Value and proof', 68, '5 min'], ['06 Safe to implement', 50, '6 min'], ['07 Your proposal', 42, '2 min']];
+function depth() { $('#depth').innerHTML = DEPTH.map(([t, p, m]) => `<div><span>${t}</span><span class="track"><i style="width:${p}%"></i></span><small>${p}% · ${m}</small></div>`).join(''); }
+
+/* ---------- events ---------- */
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]');
+  if (go) { if (go.dataset.go === 'none') { toast('Only Deal rooms works in this mock-up.'); return; } show(go.dataset.go); return; }
+  const op = e.target.closest('[data-open]'); if (op) { show('edit'); tab('edit'); return; }
+  const cp = e.target.closest('[data-copy]'); if (cp) { copy(cp.dataset.copy); return; }
+  const tb = e.target.closest('[data-tab]'); if (tb) { tab(tb.dataset.tab); return; }
+  const tg = e.target.closest('[data-tab-go]'); if (tg) { tab(tg.dataset.tabGo); return; }
+  const dv = e.target.closest('[data-dev]'); if (dv) { S.dev = dv.dataset.dev; $$('[data-dev]').forEach(b => b.setAttribute('aria-pressed', b === dv)); fit(); return; }
+  const hd = e.target.closest('[data-hide]');
+  if (hd) { e.stopPropagation(); const id = hd.dataset.hide; S.hidden.has(id) ? S.hidden.delete(id) : S.hidden.add(id); applyHidden(); outline(); inspector(); saved(); return; }
+  const bk = e.target.closest('[data-block]'); if (bk) { S.block = bk.dataset.block; outline(); inspector(); scrollRoomTo(S.block); return; }
+  const pc = e.target.closest('[data-pic]');
+  if (pc) { const f = FIELDS[S.block][+pc.dataset.pic]; roomAll(f.s).forEach(img => { img.src = pc.dataset.src; img.removeAttribute('srcset'); }); $$('[data-pic]').forEach(b => b.classList.toggle('on', b === pc)); S.edited.add(S.block); saved(); outline(); return; }
+  const ac = e.target.closest('[data-act]');
+  if (ac && ac.dataset.act === 'addstep') {
+    const tb2 = roomAll('#p12 tbody')[0]; if (!tb2) return;
+    const n = tb2.children.length + 1, tr = D().createElement('tr');
+    tr.innerHTML = `<td>${n}</td><td contenteditable="true">New step</td><td contenteditable="true">Both</td><td contenteditable="true">Date</td><td></td>`;
+    tb2.appendChild(tr); S.edited.add('p12'); saved(); outline(); scrollRoomTo('p12'); toast('Step added. Type in the table to fill it in.'); return;
+  }
+  if (ac && ac.dataset.act === 'video') { toast('Recording opens in the full app. This mock-up keeps the current video.'); return; }
+  if (e.target.closest('#publish')) { toast('Published. Everyone with a link sees the new version, and Anna gets a short note that the room changed.'); return; }
+  if (e.target.closest('#new-room')) { $('#scrim').classList.add('on'); return; }
+  if (e.target.closest('#nf-cancel') || e.target === $('#scrim')) { $('#scrim').classList.remove('on'); return; }
+});
+document.addEventListener('input', e => {
+  const f = e.target.closest('[data-f]');
+  if (f) { const def = FIELDS[S.block][+f.dataset.f]; setText(def.s, f.value); if (def.bind) $$(def.bind).forEach(x => { x.textContent = f.value; }); S.edited.add(S.block); saved(); outline(); return; }
+});
+document.addEventListener('change', e => {
+  const it = e.target.closest('[data-item]');
+  if (it) { const def = FIELDS[S.block][+it.dataset.item]; const el = roomAll(def.s)[+it.dataset.j]; if (el) el.style.display = it.checked ? '' : 'none'; saved(); return; }
+  if (e.target.closest('[data-act="signhow"]') && e.target.value.startsWith('BankID')) toast('BankID needs a signing provider. That is a new external dependency (D-031).');
+});
+$('#new-form').addEventListener('submit', e => { e.preventDefault(); $('#scrim').classList.remove('on'); show('edit'); tab('edit'); toast('Room created from your Discovery deck. Challenges, language and scope came from the brief.'); });
+$('#addp').addEventListener('submit', e => {
+  e.preventDefault(); const fd = new FormData(e.target);
+  const n = fd.get('n').trim(); if (!n) return;
+  const k = n.split(' ')[0].toLowerCase().replace(/[^a-z]/g, '') + '-' + Math.random().toString(36).slice(2, 5);
+  PEOPLE.push({ n, r: fd.get('r') || '', v: 0, p: 0, t: '–', l: 'Not opened', k }); people(); e.target.reset();
+  toast(`${n.split(' ')[0]} added. Their personal link: rom.simployer.com/vantera-group-7k2p9x?r=${k}`);
+});
+/* The preview may finish loading before this script runs, so try now, on load, and once more shortly after. */
+function tryPrep() { const d = D(); if (d && d.readyState === 'complete' && d.querySelector('.main') && !d.documentElement.dataset.fyr) { d.documentElement.dataset.fyr = '1'; prepRoom(); } }
+$('#room').addEventListener('load', tryPrep);
+tryPrep(); setTimeout(tryPrep, 400);
+window.addEventListener('resize', fit);
+
+/* ---------- start ---------- */
+outline(); people(); depth(); show('list');
+})();
+</script>
+</body>
+</html>
