@@ -50,6 +50,27 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-10 — Deal room editor rebuilt as a full-window studio (D-038)
+- **Done:**
+  - Measured the old editor at 1440×900. The room got 544×638 px at 0.43 scale, with three menus side by side and 277 px of header above it.
+  - Studio mode: Fyr's top bar is hidden and its menu collapses, so the editor fills the window. There is now one top bar.
+  - The sections are a slim number strip that opens on hover and can be pinned.
+  - The room shows at real size while editing (960×809 px at 1440×900), with its own menu hidden. *Preview* shows the full customer page.
+  - Meeting drafts are reviewed in place in the room: Use / Skip under the draft, a review queue in the panel, and Enter, S and ← → keys. Typing over a draft approves it with your words, and drafts are never saved into the room before they're used.
+  - The context panel shows only the selected block's fields. It can be closed, and under 1180 px it's a drawer.
+  - The message check is one chip, *Ready* or *N to fix*. Each item jumps to the right place in the room (it selects the next placeholder or avoid-list word). *Publish and share* opens the list while anything is left, then goes to Share and track.
+  - One first-time tip replaces the hint texts.
+- **Verified in the browser** at 1440×900, 1100×760 and 375×812:
+  - no page scroll or sideways overflow
+  - drafts: use, skip, undo, keys in Fyr and in the room, and field typing
+  - saved rooms hold no draft markers or edit attributes
+  - an avoid-list word bumps the chip at once
+  - the publish gate, publishing to Share, the menu and Back
+  - copy check: 0 errors
+- **Next:** republish the prototype artifact (same link) so Tobias can try it. The walkthrough and M1 sign-off are still open.
+- **Blockers:** none.
+- **Decisions:** D-038 (accepted, from Tobias's "Build all of it").
+
 ### 2026-11-10 — Deal rooms built into the prototype (D-036), PMM hackathon
 - **Done:**
   - Hackathon (`hackathon/`, committed):

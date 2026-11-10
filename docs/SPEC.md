@@ -593,12 +593,15 @@ v0.2 had none of these. Every deck followed one fixed order.
 - Figures on top: live rooms, views this week, new people via forwards, rooms waiting for a signature.
 - *New deal room* starts from a deck in My presentations (company, language, contact and challenges from its brief) or blank. The rep picks the package.
 
-**Room editor** (the same dark studio as the deck editor)
-- **Left:** the seven sections and their blocks. Each can be hidden. Framework blocks show a lock, and edited blocks a dot.
-- **Middle:** the room itself, live, in a desktop or phone preview. Any text can be changed by clicking it.
-- **Right:** fields for the selected block (challenges, figures, prices, dates, contacts), a photo picker limited to the Simployer image bank, show/hide lists for module cards, stories and questions, and the signing method. Then the message check.
+**Room editor** (a full-window studio, [D-038](DECISIONS.md))
+- **Studio mode:** Fyr's top bar is hidden and its menu collapses to icons, so the editor fills the window.
+- **Top bar:** back, company, status, Edit / Share and track, the readiness chip, desktop or phone, *Preview*, a ⋯ menu (Open as, Copy the room link, Publish changes) and one primary button (*Publish and share* for a draft, *Share* once live).
+- **Left:** a slim strip with one number per section, which opens on hover to show the blocks and can be pinned. Each section and block can be hidden. Framework blocks show a lock, edited blocks a dot, and *From the meeting* the number of drafts waiting.
+- **Middle:** the room itself, live and readable. While editing, the content column shows at real size and the room's own menu is hidden. *Preview* shows the full customer page with its menu. Desktop or phone. Any text can be changed by clicking it.
+- **Right:** only the selected block's fields (challenges, figures, prices, dates, contacts), a photo picker limited to the Simployer image bank, show/hide lists for module cards, stories and questions, and the signing method. It can be closed; under 1180 px it is a drawer.
 - **Locked:** Messaging Framework lines (line, reason, how, trust line, "A classic HR system stores the work. Simployer does it.", the CFO line), approved claims and approved customer quotes.
-- **Message check:** the framework's avoid list on every edit, plus warnings for unapproved CFO figures, customer quotes without written OK, and changed Product Truth wording (sent to PMM).
+- **Message check:** one chip in the top bar: green *Ready* or amber *N to fix*. It runs the framework's avoid list on every edit and counts meeting drafts waiting and placeholders. Each item has a button that goes to it in the room. Notes cover unapproved CFO figures, customer quotes without written OK, and changed Product Truth wording (sent to PMM). *Publish and share* opens the list while anything is left to fix.
+- **A first-time tip** explains click-to-edit and the locks once.
 
 **Share and track**
 - One unguessable room link, plus a personal link per person (`?r=<token>`). Adding a person creates their link.
@@ -622,6 +625,7 @@ v0.2 had none of these. Every deck followed one fixed order.
   - the agreed next steps (01)
   - the figures for the ROI block, where they said them (05)
 - Each drafted block is labelled as an AI draft and approved by the rep before the room can be published.
+- Pending drafts show in the room where they will go, highlighted, with *Use* and *Skip*; the panel is a review queue (Enter uses, S skips, ← → move). Typing your own text over a draft approves that line. A draft is never saved into the room until it is used ([D-038](DECISIONS.md)).
 - Quotes appear only with the customer's OK. Otherwise the block is a summary.
 - Transcripts are never shown or stored in the room. Fyr keeps the approved text and a reference to the meeting.
 

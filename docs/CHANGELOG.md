@@ -7,6 +7,12 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Added**
+- **Deal room studio (D-038):** the room editor now fills the window.
+  - One top bar instead of four rows, and a slim section strip that opens on hover.
+  - At 1440×900 the room shows at real size: 960×809 px, up from 544×638 px at 0.43 scale.
+  - Meeting drafts from tl;dv show in the room where they will go, with *Use* and *Skip* under each. The panel is a review queue: Enter uses, S skips, ← → move.
+  - The message check is one chip, *Ready* or *N to fix*. Each item jumps to the right place in the room. *Publish and share* opens the list while anything is left.
+  - *Preview* shows the full customer page with its own menu.
 - **Deal rooms (D-036):** a new item under Create. One customer page per deal, made from a presentation in My presentations or blank.
   - The list shows status (Draft, Live, Signed), people, views, how much has been read, and the latest activity.
   - The editor has a live preview, on desktop or phone. Any text can be changed by clicking it, and sections, blocks, cards, stories and questions can be hidden.
@@ -15,7 +21,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
   - *Share and track*: a personal link per person, access for forwarded links, views, % read and time per person, reading depth per section, activity and alerts.
   - The customer page asks before it tracks anything, asks forwarded readers for a work email, and has a simple e-signature (name, title and a tick).
   - My presentations gets a *Deal room* button on each row. The prototype keeps rooms and reading in the browser, so opening a personal link in the same browser shows up in Fyr.
-- **Collapsible menu:** the Fyr menu collapses to icons from the button next to the breadcrumbs, everywhere in Fyr, and Fyr remembers the choice. The room editor can also hide the sections and the fields, and *Focus* does both and collapses the menu.
+- **Collapsible menu:** the Fyr menu collapses to icons from the button next to the breadcrumbs, everywhere in Fyr, and Fyr remembers the choice. The room editor collapses it on its own (D-038).
 - `tools/sync-framework.mjs --check` also checks the deal room page.
 - **tl;dv is back for deal rooms (D-037)**, in the spec. The prospect's meetings make each room personal, as drafts the rep approves.
 - **From the meeting:** a new first step in the room editor. Fyr lists the prospect's meetings in tl;dv, matched by email domain, and drafts the personal parts: the challenges, a quote, who said it, the dates that matter and the hours for the ROI block.
@@ -34,6 +40,8 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - **PDF export works in the prototype.** *PDF* opens the deck with the print dialog: one 16:9 page per visible slide, hidden slides left out. The shared deck page also has *Save as PDF*.
 
 **Changed**
+- Deal room editor (D-038): the right panel shows only the selected block's fields and can be closed. Hint paragraphs became one first-time tip, and the example-data notices became one *Example data* tag.
+- Typing your own text over a meeting draft, in the room or in a field, approves that line with your words.
 - **Roadmap is now one simple page (D-033):** "Tell customers this month" (3 sentences to copy), then New | Coming soon as two short lists, with the 2027 pillars folded away at the bottom. Pillar cards, filters and before/after are gone.
 - Planned AI drafting runs on OpenAI instead of the Claude API (D-031). There is no change in the prototype.
 - No more picture bar: the signed-in user is the rep. Their name, photo, title, email and phone come from Profile, and the deck panel shows them, with *Edit profile* (D-030).
@@ -73,6 +81,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 - Marketing Remix cards no longer overflow into the next card when a draft links to a launch pack with a long name.
 
 **Removed**
+- From the deal room editor: the *Sections*, *Fields* and *Focus* buttons, the decorative URL bar and the click-to-edit bar under the preview. The room link stays in Share and track.
 - Feature-count limits and the coming-soon cap from Presentation rules (D-018).
 - 362 CSS rules (about 28 KB) that only styled cut modules. No visible change.
 - Views: Insights, Adoption, Signals, Training, Calls/coach, Pipeline, Adoption plays, Launch readiness, Requests, Team, Rituals, Localisation, Connections, Run log, the Slack drawer, the persona switch, and every non-deck Create type.

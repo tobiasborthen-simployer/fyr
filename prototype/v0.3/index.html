@@ -1313,7 +1313,7 @@ select.fl-in option { background: #221646; color: #fff; }
   --hand: "Caveat", "Segoe Print", cursive;
 }
 body { font-feature-settings: normal; background: var(--page); }
-h1, h2, .page-title h1, .hero h1, .ink h1, .studio-bar h2 { font-family: var(--display); font-weight: 400; letter-spacing: -.024em; font-variation-settings: "SOFT" 30, "WONK" 0; }
+h1, h2, .page-title h1, .hero h1, .ink h1, .studio-bar h2, .dr-name h2 { font-family: var(--display); font-weight: 400; letter-spacing: -.024em; font-variation-settings: "SOFT" 30, "WONK" 0; }
 h3 { letter-spacing: -.01em; }
 h1 em, h2 em { font-style: italic; color: var(--lav); }
 .page-title h1 { font-size: clamp(32px, 3.6vw, 42px); }
@@ -1577,35 +1577,9 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .dr-stats span { display: block; color: var(--night-sub); font-size: 13px; margin-top: 8px; }
 .dr-bar { height: 6px; border-radius: 99px; background: #ECE8F4; overflow: hidden; width: 80px; display: inline-block; vertical-align: middle; margin-right: 8px; }
 .dr-bar i { display: block; height: 100%; background: var(--lav-500); border-radius: 99px; }
-.dr-tabs { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 0 6px; }
-.dr-body { display: grid; grid-template-columns: 224px minmax(0,1fr) 300px; gap: 16px; align-items: start; }
-.dr-outline { display: grid; gap: 4px; max-height: calc(100vh - 250px); overflow-y: auto; padding-right: 4px; scrollbar-width: thin; }
-.dr-sec { padding: 6px 0; }
-.dr-sec + .dr-sec { border-top: 1px solid var(--night-line); }
-.dr-head { display: flex; align-items: center; gap: 8px; padding: 4px 6px; color: #fff; font-weight: 600; font-size: 13px; }
-.dr-head .n { font-size: 11px; color: #9E98C4; width: 18px; font-variant-numeric: tabular-nums; }
-.dr-head .t, .dr-blk .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dr-blk { display: flex; align-items: center; gap: 6px; width: 100%; padding: 6px 6px 6px 32px; border-radius: 9px; color: var(--night-sub); font-size: 13px; text-align: left; }
-.dr-blk:hover { background: rgba(255,255,255,.05); color: #fff; }
-.dr-blk.sel { background: rgba(151,115,255,.22); color: #fff; box-shadow: inset 0 0 0 1px rgba(185,168,255,.2); }
-.dr-blk .ed { width: 7px; height: 7px; border-radius: 99px; background: #F2B866; flex: none; }
-.dr-blk .lk { width: 13px; height: 13px; color: #9E98C4; }
-.dr-eye { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; color: #B7AECF; flex: none; cursor: pointer; }
-.dr-eye:hover { background: rgba(255,255,255,.08); color: #fff; }
-.dr-eye .ico { width: 14px; height: 14px; }
-.dr-off { opacity: .45; }
-.dr-off .t { text-decoration: line-through; }
-.dr-stage { display: grid; gap: 10px; min-width: 0; }
-.dr-stage-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: #B7AECF; font-size: 12.5px; flex-wrap: wrap; }
-.dr-frame { position: relative; height: calc(100vh - 262px); min-height: 520px; border-radius: 14px; overflow: hidden; background: #F1EFE9; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
-.dr-frame iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #F1EFE9; }
-.dr-frame.phone { background: rgba(255,255,255,.04); box-shadow: none; }
-.dr-frame.phone iframe { left: 50%; border-radius: 26px; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
 .dr-url { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.06); border: 1px solid var(--night-line); border-radius: 99px; padding: 5px 12px; color: #E9E4F4; font-size: 12.5px; min-width: 0; max-width: 100%; }
 .dr-url .ico { width: 13px; height: 13px; color: #7FDDB0; }
 .dr-url span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dr-insp { background: rgba(255,255,255,.04); border: 1px solid var(--night-line); border-radius: 16px; padding: 16px; display: grid; gap: 18px; max-height: calc(100vh - 250px); overflow-y: auto; scrollbar-width: thin; }
-.dr-insp h3 { color: #fff; font-size: 15px; }
 .dr-insp .sub, .dr-panel .sub { color: var(--night-sub); font-size: 13px; margin-top: 4px; }
 .dr-lbl { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #9E98C4; margin-bottom: 8px; display: block; }
 .dr-f { display: grid; gap: 5px; }
@@ -1690,43 +1664,171 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .dr-draft .okq { display: flex; gap: 8px; align-items: center; font-size: 12px; color: #F2B866; }
 .dr-cnt { min-width: 18px; height: 18px; border-radius: 99px; background: #F2B866; color: #2A1B05; font-size: 11px; font-weight: 700; display: grid; place-items: center; padding: 0 5px; flex: none; }
 .pill.n.live { background: rgba(46,178,122,.16); color: #7FDDB0; }
-/* collapsible editor panels: hide the sections list, the fields, or both, so the preview gets the room */
-.dr-body.no-left > .dr-left, .dr-body.no-right > .dr-insp { display: none; }
-.dr-body.no-left { grid-template-columns: minmax(0,1fr) 300px; }
-.dr-body.no-right { grid-template-columns: 224px minmax(0,1fr); }
-.dr-body.no-left.no-right { grid-template-columns: minmax(0,1fr); }
-.dr-tools { display: flex; gap: 6px; align-items: center; flex: none; }
-/* the toolbar wraps rather than spilling over the fields panel when the window is narrow */
-.dr-stage > .dr-stage-bar:first-child { flex-wrap: wrap; row-gap: 8px; }
-.dr-stage > .dr-stage-bar:first-child .dr-url { flex: 1 1 160px; }
-.dr-stage { overflow: hidden; }
-.dr-tools .seg.n button { height: 32px; padding: 0 10px; }
-.dr-tools button { height: 32px; padding: 0 10px; border-radius: 8px; display: inline-flex; gap: 6px; align-items: center; color: var(--night-sub); font-size: 12.5px; font-weight: 500; border: 1px solid var(--night-line); background: rgba(255,255,255,.04); }
-.dr-tools button:hover { color: #fff; background: rgba(255,255,255,.08); }
-.dr-tools button[aria-pressed="true"] { color: #fff; background: rgba(151,115,255,.22); border-color: rgba(185,168,255,.3); }
-.dr-tools .ico { width: 15px; height: 15px; }
-@media (max-width: 1280px) { .dr-body { grid-template-columns: 200px minmax(0,1fr); } .dr-insp { grid-column: 1 / -1; max-height: none; } .dr-share { grid-template-columns: 1fr; } .dr-body.no-left, .dr-body.no-left.no-right { grid-template-columns: minmax(0,1fr); } }
+/* Deal room studio (D-038): the editor takes the whole window, one top bar, a slim section strip, the room at a readable size */
+.app.room-studio { transition: none !important; }
+.app.room-studio .topbar { display: none; }
+.app.room-studio .content { padding: 8px; }
+.app.room-studio .wrap { max-width: none; gap: 8px; }
+.dr-studio { height: calc(100vh - 16px); min-height: 560px; box-sizing: border-box; padding: 10px; gap: 10px; border-radius: 18px; grid-template-rows: auto minmax(0,1fr); }
+.dr-studio kbd { font: 600 10.5px/1 var(--ui, inherit); padding: 3px 5px; border-radius: 5px; background: rgba(255,255,255,.16); color: inherit; margin-left: 2px; }
+.dr-top { display: flex; align-items: center; gap: 10px; min-width: 0; flex-wrap: wrap; row-gap: 8px; padding: 0 2px; }
+.dr-id { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 220px; }
+.dr-name { min-width: 0; }
+.dr-name h2 { color: #fff; font-size: 19px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dr-name .meta { display: flex; gap: 6px; align-items: center; margin-top: 3px; color: var(--night-sub); font-size: 12px; white-space: nowrap; }
+.dr-name .meta .pill { height: 20px; font-size: 11px; padding: 0 8px; }
+.dr-acts { display: flex; gap: 8px; align-items: center; flex: none; flex-wrap: wrap; }
+.dr-top .seg.n button { height: 34px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; }
+.dr-top .seg.n .ico { width: 15px; height: 15px; }
+.dr-top .btn { height: 34px; }
+.dr-ib { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; flex: none; color: #CDC0EA; border: 1px solid var(--night-line); background: rgba(255,255,255,.04); font-size: 18px; line-height: 1; }
+.dr-ib:hover { color: #fff; background: rgba(255,255,255,.1); }
+.dr-ib .ico { width: 16px; height: 16px; }
+.dr-ib.sm { width: 28px; height: 28px; border-color: transparent; background: transparent; }
+.dr-ib[aria-pressed="true"] { color: #fff; background: rgba(151,115,255,.25); border-color: rgba(185,168,255,.35); }
+.dr-tb { height: 34px; padding: 0 12px; border-radius: 9px; display: inline-flex; gap: 7px; align-items: center; font-size: 13px; font-weight: 600; color: #E9E4F4; border: 1px solid var(--night-line); background: rgba(255,255,255,.04); white-space: nowrap; }
+.dr-tb:hover { background: rgba(255,255,255,.1); color: #fff; }
+.dr-tb .ico { width: 15px; height: 15px; }
+.dr-tb[aria-pressed="true"] { background: rgba(151,115,255,.25); color: #fff; border-color: rgba(185,168,255,.35); }
+.dr-ready.wa { color: #F2B866; border-color: rgba(242,184,102,.4); background: rgba(242,184,102,.1); }
+.dr-ready.ok { color: #7FDDB0; border-color: rgba(127,221,176,.3); background: rgba(46,178,122,.1); }
+.dr-ready.bump { animation: dr-bump .5s var(--ease); }
+@keyframes dr-bump { 40% { transform: scale(1.08); } }
+.dr-popw { position: relative; }
+.dr-pop { position: absolute; top: calc(100% + 8px); right: 0; width: 380px; max-width: calc(100vw - 32px); background: #24184A; border: 1px solid var(--night-line); border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.5); padding: 14px; z-index: 30; display: grid; gap: 12px; }
+.dr-pop .dr-lbl { margin: 0; }
+.dr-pop .checks .wa, .dr-pop .checks .nt { align-items: flex-start; }
+.dr-pop .checks .lnk { margin-left: auto; flex: none; }
+.dr-pop .checks .nt .ico { color: #9E98C4; }
+.dr-menu { width: 230px; padding: 6px; gap: 2px; }
+.dr-menu button { display: flex; gap: 9px; align-items: center; width: 100%; padding: 9px 10px; border-radius: 8px; color: #E9E4F4; font-size: 13px; text-align: left; }
+.dr-menu button:hover { background: rgba(255,255,255,.08); color: #fff; }
+.dr-menu .ico { width: 15px; height: 15px; color: #CDC0EA; }
+.dr-studio .lnk { font-size: 12.5px; font-weight: 600; color: #CDC0EA; text-decoration: underline; text-underline-offset: 2px; }
+.dr-studio .lnk:hover { color: #fff; }
+.dr-studio.tab-share .dr-edit-only { display: none; }
+.dr-share { min-height: 0; overflow-y: auto; scrollbar-width: thin; padding-right: 2px; }
+/* three columns: section strip, the room, the context panel */
+.dr-body { position: relative; display: grid; grid-template-columns: auto minmax(0,1fr) 300px; gap: 10px; min-height: 0; }
+.dr-body > * { min-height: 0; }
+.dr-body.no-right { grid-template-columns: auto minmax(0,1fr); }
+.dr-body.no-right > .dr-insp, .dr-body.preview > .dr-insp, .dr-body.preview > .dr-strip { display: none; }
+.dr-body.preview { grid-template-columns: minmax(0,1fr); }
+.dr-strip { position: relative; width: 52px; z-index: 8; }
+.dr-strip.pin { width: 248px; }
+.dr-outline { position: absolute; top: 0; left: 0; bottom: 0; width: 52px; box-sizing: border-box; padding: 6px; overflow: hidden auto; background: #1E1342; border: 1px solid var(--night-line); border-radius: 14px; transition: width .18s var(--ease), box-shadow .18s; scrollbar-width: none; }
+.dr-strip:hover .dr-outline, .dr-strip:focus-within .dr-outline, .dr-strip.pin .dr-outline { width: 248px; scrollbar-width: thin; }
+.dr-strip:not(.pin):hover .dr-outline, .dr-strip:not(.pin):focus-within .dr-outline { box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+.dr-ol-top { display: flex; justify-content: space-between; align-items: center; padding: 2px 2px 4px 8px; }
+.dr-ol-top .dr-lbl { margin: 0; }
+.dr-sec { padding: 4px 0; }
+.dr-sec + .dr-sec { border-top: 1px solid var(--night-line); }
+.dr-head { display: flex; align-items: center; gap: 2px; }
+.dr-hb { position: relative; display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; padding: 4px; border-radius: 9px; color: #fff; font-weight: 600; font-size: 13px; text-align: left; }
+.dr-hb:hover { background: rgba(255,255,255,.06); }
+.dr-hb .n { width: 30px; height: 30px; flex: none; border-radius: 8px; display: grid; place-items: center; font-size: 11.5px; color: #B7AECF; font-variant-numeric: tabular-nums; }
+.dr-hb .n .ico { width: 15px; height: 15px; }
+.dr-sec.on .dr-hb .n { background: rgba(151,115,255,.3); color: #fff; box-shadow: inset 0 0 0 1px rgba(185,168,255,.3); }
+.dr-hb .t, .dr-blk .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dr-hb .dr-cnt { margin-left: auto; }
+.dr-hb .ed, .dr-blk .ed { width: 7px; height: 7px; border-radius: 99px; background: #F2B866; flex: none; }
+.dr-blk { display: flex; align-items: center; gap: 6px; width: 100%; padding: 6px 6px 6px 43px; border-radius: 9px; color: var(--night-sub); font-size: 13px; text-align: left; }
+.dr-blk:hover { background: rgba(255,255,255,.05); color: #fff; }
+.dr-blk.sel { background: rgba(151,115,255,.22); color: #fff; box-shadow: inset 0 0 0 1px rgba(185,168,255,.2); }
+.dr-blk .lk { width: 13px; height: 13px; color: #9E98C4; }
+.dr-eye { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; color: #B7AECF; flex: none; cursor: pointer; }
+.dr-eye:hover { background: rgba(255,255,255,.08); color: #fff; }
+.dr-eye .ico { width: 14px; height: 14px; }
+.dr-off { opacity: .45; }
+.dr-off .t { text-decoration: line-through; }
+/* collapsed strip: one number per section, the badge and nothing else */
+.dr-strip:not(.pin):not(:hover):not(:focus-within) :is(.dr-ol-top, .dr-blk, .dr-eye, .dr-hb .t, .dr-hb .ed) { display: none; }
+.dr-strip:not(.pin):not(:hover):not(:focus-within) .dr-sec { padding: 2px 0; border: 0; }
+.dr-strip:not(.pin):not(:hover):not(:focus-within) .dr-hb { padding: 3px 4px; }
+.dr-strip:not(.pin):not(:hover):not(:focus-within) .dr-hb .dr-cnt { position: absolute; top: 0; right: 0; min-width: 16px; height: 16px; font-size: 10px; padding: 0 4px; }
+/* the room */
+.dr-stage { position: relative; display: grid; min-width: 0; }
+.dr-frame { position: relative; height: 100%; min-height: 0; border-radius: 12px; overflow: hidden; background: #F1EFE9; box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+.dr-frame iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #F1EFE9; }
+.dr-frame.phone { background: rgba(255,255,255,.04); box-shadow: none; }
+.dr-frame.phone iframe { left: 50%; border-radius: 26px; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.dr-tip { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); box-sizing: border-box; display: flex; gap: 10px; align-items: center; background: #1B1038; color: #F6F2FF; border-radius: 12px; padding: 10px 14px; font-size: 13px; box-shadow: 0 16px 40px rgba(0,0,0,.45); z-index: 5; }
+.dr-tip .ico { width: 15px; height: 15px; color: #CDC0EA; flex: none; }
+.dr-body.preview .dr-tip { display: none; }
+/* the context panel: only what the selected block needs */
+.dr-insp { background: rgba(255,255,255,.04); border: 1px solid var(--night-line); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; scrollbar-width: thin; }
+.dr-insp > * { flex: none; min-width: 0; }
+.dr-ih { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.dr-ih h3 { color: #fff; font-size: 15px; }
+.dr-ih .dr-lbl { margin-bottom: 4px; }
+.dr-note { font-size: 12.5px; color: var(--night-sub); margin: 0; line-height: 1.45; }
+.dr-note .ico { width: 13px; height: 13px; vertical-align: -2px; margin-right: 3px; }
+.dr-prog { display: grid; gap: 6px; font-size: 12.5px; color: var(--night-sub); }
+.dr-prog b { color: #fff; font-weight: 600; }
+.dr-prog .track { height: 6px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+.dr-prog .track i { display: block; height: 100%; border-radius: 99px; background: #7FDDB0; transition: width .25s var(--ease); }
+.dr-draft.cur { border-color: rgba(242,184,102,.45); background: rgba(242,184,102,.06); }
+.dr-draft.cur .top > span:first-child { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dr-draft .top .dnav small { white-space: nowrap; }
+.dr-draft .acts kbd { font-size: 10px; padding: 2px 4px; }
+.dr-draft .top .dnav { display: flex; gap: 2px; align-items: center; color: #9E98C4; font-weight: 500; }
+.dr-draft .top .dnav button { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; color: #CDC0EA; }
+.dr-draft .top .dnav button:hover { background: rgba(255,255,255,.08); color: #fff; }
+.dr-draft .top .dnav .ico { width: 13px; height: 13px; }
+.dr-draft .acts .lnk { margin-left: auto; }
+.dr-aitag { margin-left: 8px; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #F2B866; background: rgba(242,184,102,.14); border-radius: 99px; padding: 2px 7px; vertical-align: 1px; }
+.dr-f .is-draft { border-color: rgba(242,184,102,.45); background: rgba(242,184,102,.07); }
+.dr-done { display: flex; gap: 8px; align-items: center; font-size: 13px; color: #7FDDB0; background: rgba(46,178,122,.1); border-radius: 10px; padding: 10px 12px; }
+.dr-done .ico { width: 15px; height: 15px; }
+.dr-qlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.dr-qlist li { display: flex; align-items: center; gap: 6px; border-radius: 8px; }
+.dr-qlist li.on { background: rgba(242,184,102,.1); }
+.dr-qlist li > button:first-child { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; padding: 6px 8px; font-size: 12.5px; color: #E9E4F4; text-align: left; border-radius: 8px; }
+.dr-qlist li > button:first-child:hover { background: rgba(255,255,255,.05); }
+.dr-qlist .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dr-qlist .st-dot { width: 8px; height: 8px; border-radius: 99px; flex: none; background: #F2B866; }
+.dr-qlist .used .st-dot { background: #7FDDB0; }
+.dr-qlist .skipped .st-dot { background: transparent; box-shadow: inset 0 0 0 1.5px #9E98C4; }
+.dr-qlist .skipped .t { color: #9E98C4; text-decoration: line-through; }
+.dr-qlist .lnk { padding: 0 8px; font-size: 12px; }
+.dr-meets summary { cursor: pointer; font-size: 12.5px; color: var(--night-sub); padding: 4px 0; }
+.dr-meets .dr-items { margin-top: 8px; }
+@media (max-width: 1180px) {
+  .dr-body { grid-template-columns: auto minmax(0,1fr); }
+  .dr-insp { position: absolute; top: 0; right: 0; bottom: 0; width: 300px; z-index: 7; background: #24184A; box-shadow: -20px 0 50px rgba(0,0,0,.4); }
+  .dr-share { grid-template-columns: 1fr; }
+  .dr-tb.dr-pv span { display: none; }
+}
+@media (max-width: 760px) {
+  .dr-studio { height: auto; min-height: 0; }
+  .dr-acts { flex: 1 1 100%; }
+  .dr-acts .btn-primary { margin-left: auto; }
+  .dr-body, .dr-body.no-right { grid-template-columns: minmax(0,1fr); }
+  .dr-strip { display: none; }
+  .dr-stage { height: 72vh; }
+  .dr-insp { position: static; width: auto; box-shadow: none; }
+}
 /* collapsible Fyr menu: icons only, labels as tooltips */
 .top-left { display: flex; gap: 12px; align-items: center; min-width: 0; }
 .rail-tg { width: 34px; height: 34px; flex: none; }
 .rail-tg .ico { width: 17px; height: 17px; }
 @media (min-width: 761px) {
   .app { transition: grid-template-columns .2s var(--ease); }
-  .app.mini { grid-template-columns: 72px minmax(0,1fr); }
-  .app.mini .rail { padding: 22px 10px 18px; align-items: center; }
-  .app.mini .rail .logo { padding: 0; justify-content: center; }
-  .app.mini .rail .logo small { display: none; }
-  .app.mini .nav { margin: 0; padding: 0; width: 100%; }
-  .app.mini .nav-group { gap: 4px; }
-  .app.mini .nav-group + .nav-group { border-top: 1px solid var(--night-line); padding-top: 12px; }
-  .app.mini .nav-label { display: none; }
-  .app.mini .nav button { justify-content: center; padding: 9px 0; position: relative; }
-  .app.mini .nav button > span:not(.badge) { display: none; }
-  .app.mini .nav .badge { position: absolute; top: 2px; right: 6px; min-width: 16px; height: 16px; font-size: 10px; padding: 0 4px; }
-  .app.mini .role { padding: 8px; justify-items: center; }
-  .app.mini .me > div, .app.mini .me-acts { display: none; }
+  .app:is(.mini, .room-studio) { grid-template-columns: 72px minmax(0,1fr); }
+  .app:is(.mini, .room-studio) .rail { padding: 22px 10px 18px; align-items: center; }
+  .app:is(.mini, .room-studio) .rail .logo { padding: 0; justify-content: center; }
+  .app:is(.mini, .room-studio) .rail .logo small { display: none; }
+  .app:is(.mini, .room-studio) .nav { margin: 0; padding: 0; width: 100%; }
+  .app:is(.mini, .room-studio) .nav-group { gap: 4px; }
+  .app:is(.mini, .room-studio) .nav-group + .nav-group { border-top: 1px solid var(--night-line); padding-top: 12px; }
+  .app:is(.mini, .room-studio) .nav-label { display: none; }
+  .app:is(.mini, .room-studio) .nav button { justify-content: center; padding: 9px 0; position: relative; }
+  .app:is(.mini, .room-studio) .nav button > span:not(.badge) { display: none; }
+  .app:is(.mini, .room-studio) .nav .badge { position: absolute; top: 2px; right: 6px; min-width: 16px; height: 16px; font-size: 10px; padding: 0 4px; }
+  .app:is(.mini, .room-studio) .role { padding: 8px; justify-items: center; }
+  .app:is(.mini, .room-studio) .me > div, .app:is(.mini, .room-studio) .me-acts { display: none; }
 }
-@media (max-width: 900px) { .dr-body { grid-template-columns: 1fr; } .dr-stats { grid-template-columns: 1fr 1fr; } .dr-add { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .dr-stats { grid-template-columns: 1fr 1fr; } .dr-add { grid-template-columns: 1fr; } }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2768,105 +2870,248 @@ function makeMeet(r, state = 'pending') {
 }
 const roomMeetPending = r => r && r.meet ? r.meet.drafts.filter(x => x.state === 'pending').length : 0;
 const roomDraft = id => { const r = roomCur(); return r && r.meet ? r.meet.drafts.find(x => x.id === id) : null; };
-function roomUseDraft(dr) { const t = dr.isQuote && dr.ok ? dr.quote : dr.text; roomAll(dr.sel).forEach(el => { el.textContent = t; }); dr.state = 'used'; }
+function roomUseDraft(dr) {
+  const t = dr.isQuote && dr.ok ? dr.quote : dr.text;
+  roomAll(dr.sel).forEach((el, i) => { roomUnmark(el, true); if (!i) dr.prev = el.innerHTML; el.textContent = t; });
+  dr.state = 'used';
+}
+/* Pending drafts show in the room where they will go, marked as AI drafts (D-038). The saved room never holds them until the rep uses one. */
+function roomUnmark(el, restore) {
+  if (!el.classList.contains('fyr-draft')) return;
+  if (restore && el.dataset.fyrOrig != null) el.innerHTML = el.dataset.fyrOrig;
+  el.classList.remove('fyr-draft', 'cur'); delete el.dataset.fyrDraft; delete el.dataset.fyrOrig;
+}
+function roomMarkDrafts() {
+  const r = roomCur(), d = roomDoc(); if (!r || !d || !d.querySelector('.main')) return;
+  const live = !S.roomPreview && !!r.meet;
+  (r.meet ? r.meet.drafts : []).forEach(dr => roomAll(dr.sel).forEach(el => {
+    if (live && dr.state === 'pending') {
+      if (!el.classList.contains('fyr-draft')) { el.dataset.fyrOrig = el.innerHTML; el.classList.add('fyr-draft'); el.dataset.fyrDraft = dr.id; }
+      const t = dr.isQuote && dr.ok ? dr.quote : dr.text; if (el.textContent !== t && d.activeElement !== el) el.textContent = t;
+      el.classList.toggle('cur', dr.id === S.roomDraftCur);
+    } else roomUnmark(el, true);
+  }));
+  roomDraftBar();
+}
+const roomPending = r => r && r.meet ? r.meet.drafts.filter(x => x.state === 'pending') : [];
+function roomDraftEl(dr) { const d = roomDoc(); return d && dr ? d.querySelector(`.fyr-draft[data-fyr-draft="${dr.id}"]`) : null; }
+// The bar under the current draft, inside the room: use or skip it where the customer will read it
+function roomDraftBar() {
+  const d = roomDoc(); if (!d || !d.body) return;
+  let bar = d.getElementById('fyr-dbar');
+  const dr = !S.roomPreview && S.roomTab !== 'share' && S.roomBlock === 'meet' ? roomDraft(S.roomDraftCur) : null, el = dr && dr.state === 'pending' ? roomDraftEl(dr) : null;
+  if (!el || !el.getClientRects().length) { if (bar) bar.hidden = true; return; }
+  if (!bar) { bar = d.createElement('div'); bar.id = 'fyr-dbar'; bar.className = 'fyr-dbar'; d.body.appendChild(bar); }
+  bar.innerHTML = `<span class="ai">AI draft</span><span class="src">${esc(dr.from)}</span>${dr.isQuote ? `<label><input type="checkbox" data-fyr-ok ${dr.ok ? 'checked' : ''}>Customer OK to quote</label>` : ''}<button type="button" class="use" data-fyr-act="use">Use <kbd>↵</kbd></button><button type="button" data-fyr-act="skip">Skip <kbd>S</kbd></button>`;
+  bar.hidden = false;
+  const rc = el.getBoundingClientRect(), w = d.defaultView;
+  bar.style.top = (rc.bottom + w.scrollY + 10) + 'px';
+  bar.style.left = Math.max(12, Math.min(rc.left + w.scrollX, d.documentElement.clientWidth - bar.offsetWidth - 12)) + 'px';
+}
+function roomDraftShow() {
+  const d = roomDoc(), dr = roomDraft(S.roomDraftCur); if (!d || !dr) return;
+  const el = roomDraftEl(dr) || roomAll(dr.sel)[0]; if (!el || !el.getClientRects().length) return;
+  const w = d.defaultView; w.scrollTo({ top: el.getBoundingClientRect().top + w.scrollY - w.innerHeight * 0.3, behavior: 'smooth' });
+  roomDraftBar();
+}
+function roomDraftMove(step) {
+  const p = roomPending(roomCur()); if (!p.length) return;
+  const i = p.findIndex(x => x.id === S.roomDraftCur); S.roomDraftCur = p[((i < 0 ? 0 : i + step) + p.length) % p.length].id;
+  roomMeetRefresh(); roomDraftShow();
+}
+function roomDraftAct(act, id) {
+  const r = roomCur(), dr = roomDraft(id || S.roomDraftCur); if (!r || !dr) return;
+  const p = roomPending(r), i = p.indexOf(dr);
+  if (act === 'use') { roomUseDraft(dr); roomSave(dr.block); }
+  else if (act === 'skip') dr.state = 'skipped';
+  else if (act === 'undo') { if (dr.state === 'used' && dr.prev != null) { roomAll(dr.sel).forEach(el => { el.innerHTML = dr.prev; }); dr.state = 'pending'; roomSave(dr.block); } else dr.state = 'pending'; }
+  roomPut(r);
+  if (act === 'undo') S.roomDraftCur = dr.id;
+  else { const left = roomPending(r); S.roomDraftCur = left.length ? left[Math.min(Math.max(i, 0), left.length - 1)].id : null; }
+  S.roomBlock = 'meet'; roomMeetRefresh(); roomDraftShow();
+  if (!roomPending(r).length && act !== 'undo') toast('Every meeting draft is reviewed. Fill what\'s left in curly brackets, then publish.');
+}
+// Enter uses the draft, S skips it, ← → move between drafts. Works in Fyr and inside the room preview.
+function roomKeys(e) {
+  if (S.view !== 'room') return;
+  if (e.key === 'Escape' && (S.roomReady || S.roomMenu)) { S.roomReady = S.roomMenu = false; roomPopRefresh(); return; }
+  if (S.roomTab === 'share' || S.roomPreview || S.roomBlock !== 'meet' || e.metaKey || e.ctrlKey || e.altKey) return;
+  const cur = roomDraft(S.roomDraftCur); if (!cur || cur.state !== 'pending') return;
+  const t = e.target && e.target.nodeType === 1 ? e.target : null;
+  const typing = !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)), onDraft = !!t && !!t.closest('.fyr-draft, [data-dr-draft-text]');
+  if (e.key === 'Enter' && !e.shiftKey && (!typing || onDraft) && !(t && t.closest('button, a, summary'))) { e.preventDefault(); roomDraftAct('use'); return; }
+  if (typing) return;
+  if (e.key === 's' || e.key === 'S') { e.preventDefault(); roomDraftAct('skip'); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); roomDraftMove(1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); roomDraftMove(-1); }
+}
+document.addEventListener('keydown', roomKeys);
+
 function roomMeetHTML() {
   const r = roomCur(); if (!r.meet) { r.meet = makeMeet(r, r.example ? 'used' : 'pending'); roomPut(r); }
-  const mt = r.meet, pend = roomMeetPending(r), sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:12px;height:12px"');
-  const card = dr => { const off = dr.state !== 'pending'; return `<div class="dr-draft ${dr.state}">
-    <div class="top"><span>${dr.sec} · ${esc(dr.label)}</span><span class="ai">AI draft</span></div>
-    ${dr.isQuote ? `<label class="okq"><input type="checkbox" data-dr-draft-ok="${dr.id}" ${dr.ok ? 'checked' : ''} ${off ? 'disabled' : ''}>The customer said OK to quote this</label>` : ''}
-    <textarea data-dr-draft-text="${dr.id}" rows="2" ${off ? 'disabled' : ''} aria-label="${esc(dr.label)}">${esc(dr.isQuote && dr.ok ? dr.quote : dr.text)}</textarea>
-    <div class="src">${sm('i-msg')} ${esc(dr.from)}</div>
-    <div class="acts">${off ? `<span class="st">${dr.state === 'used' ? 'In the room' : 'Skipped'}</span><button class="lnk" data-dr-draft-undo="${dr.id}">Undo</button>` : `<button class="btn btn-primary btn-sm" style="background:#9773FF" data-dr-draft-use="${dr.id}">Use</button><button class="btn btn-ghost-n btn-sm" data-dr-draft-skip="${dr.id}">Skip</button>`}</div></div>`; };
-  return `<div class="dr-hint">${ico('i-msg')}<span>Fyr reads your meetings with @${esc(mt.domain)} in tl;dv and drafts the personal parts. You approve every line before the room can be published. Quotes go in only with the customer's OK.</span></div>
-  <span class="pill n sample" style="justify-self:start;white-space:normal;height:auto;padding:5px 10px;line-height:1.35">Example data · tl;dv isn't connected in the prototype</span>
-  <div><span class="dr-lbl">Meetings in tl;dv</span><div class="dr-items">${mt.meetings.map(x => `<label style="align-items:flex-start"><input type="checkbox" data-dr-meet="${x.id}" ${x.on ? 'checked' : ''} style="margin-top:3px"><span>${esc(x.title)} · ${esc(x.date)} · ${x.mins} min<small style="display:block;color:#9E98C4">${esc(x.who)}</small></span></label>`).join('')}</div></div>
-  <div><span class="dr-lbl">Drafts · ${pend ? `${pend} waiting for you` : 'all reviewed'}</span><div class="dr-drafts">${mt.drafts.map(card).join('')}</div>
-  ${pend ? `<button class="btn btn-ghost-n btn-sm" style="margin-top:10px" data-dr="useall">Use all ${pend}</button>` : ''}</div>`;
+  const mt = r.meet, all = mt.drafts, pend = all.filter(x => x.state === 'pending'), done = all.length - pend.length;
+  if (!pend.some(x => x.id === S.roomDraftCur)) S.roomDraftCur = (pend[0] || {}).id || null;
+  const cur = roomDraft(S.roomDraftCur), i = cur ? pend.indexOf(cur) : -1, sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:12px;height:12px"');
+  const row = dr => `<li class="${dr.state} ${cur && dr.id === cur.id ? 'on' : ''}"><button type="button" data-dr-draft-go="${dr.id}"><span class="st-dot"></span><span class="t">${dr.sec} · ${esc(dr.label)}</span></button>${dr.state !== 'pending' ? `<button type="button" class="lnk" data-dr-draft-undo="${dr.id}">Undo</button>` : ''}</li>`;
+  return `<div class="dr-prog"><span><b>${done} of ${all.length}</b> reviewed</span><span class="track"><i style="width:${all.length ? Math.round(done / all.length * 100) : 100}%"></i></span></div>
+  ${cur ? `<div class="dr-draft cur">
+    <div class="top"><span>${cur.sec} · ${esc(cur.label)}</span><span class="dnav"><button type="button" data-dr-draft-move="-1" aria-label="Previous draft">${ico('i-left')}</button><small>${i + 1} / ${pend.length}</small><button type="button" data-dr-draft-move="1" aria-label="Next draft">${ico('i-arrow')}</button></span></div>
+    ${cur.isQuote ? `<label class="okq"><input type="checkbox" data-dr-draft-ok="${cur.id}" ${cur.ok ? 'checked' : ''}>The customer said OK to quote this</label>` : ''}
+    <textarea data-dr-draft-text="${cur.id}" rows="3" aria-label="${esc(cur.label)}">${esc(cur.isQuote && cur.ok ? cur.quote : cur.text)}</textarea>
+    <div class="src">${sm('i-msg')} ${esc(cur.from)}</div>
+    <div class="acts"><button type="button" class="btn btn-primary btn-sm" style="background:#9773FF" data-dr-draft-use="${cur.id}">Use <kbd>↵</kbd></button><button type="button" class="btn btn-ghost-n btn-sm" data-dr-draft-skip="${cur.id}">Skip <kbd>S</kbd></button>${pend.length > 1 ? `<button type="button" class="lnk" data-dr="useall">Use all ${pend.length}</button>` : ''}</div>
+  </div>` : `<div class="dr-done">${ico('i-check-c')}<span>All ${all.length} drafts reviewed.</span></div>`}
+  <ol class="dr-qlist">${all.map(row).join('')}</ol>
+  <details class="dr-meets"><summary>Meetings in tl;dv · ${mt.meetings.filter(x => x.on).length} of ${mt.meetings.length} · @${esc(mt.domain)}</summary><div class="dr-items">${mt.meetings.map(x => `<label style="align-items:flex-start"><input type="checkbox" data-dr-meet="${x.id}" ${x.on ? 'checked' : ''} style="margin-top:3px"><span>${esc(x.title)} · ${esc(x.date)} · ${x.mins} min<small style="display:block;color:#9E98C4">${esc(x.who)}</small></span></label>`).join('')}</div></details>`;
 }
-function roomMeetRefresh() { const el = $('#dr-insp'), y = el ? el.scrollTop : 0; roomInspector(); roomOutline(); if (el) el.scrollTop = y; }
+function roomMeetRefresh() { const el = $('#dr-insp'), y = el ? el.scrollTop : 0; roomInspector(); roomOutline(); roomMarkDrafts(); roomRefreshChecks(); if (el) el.scrollTop = y; }
 const roomBlock = id => ROOM_OUTLINE.flatMap(x => x.blocks).find(b => b.id === id);
 const roomSec = id => ROOM_OUTLINE.find(x => x.blocks.some(b => b.id === id));
 const roomDoc = () => { const f = $('#dr-frame iframe'); try { return f && f.contentDocument; } catch (_) { return null; } };
 const roomAll = s => { const d = roomDoc(); return d ? [...d.querySelectorAll(s)] : []; };
 const roomCur = () => roomById(S.room);
+const ROOM_TIP = 'fyr-v03-room-tip';
+const roomTipSeen = () => { try { return !!localStorage.getItem(ROOM_TIP); } catch (_) { return true; } };
 
+// The studio (D-038): one top bar, a slim section strip, the room at a readable size, and a panel only for the selected block
 function vRoom() {
-  const r = roomCur(), tab = S.roomTab || 'edit', st = roomStats(r), p0 = (r.people || []).find(p => p.by === 'rep') || (r.people || [])[0];
-  return `<section class="studio">
-    <div class="studio-bar">
-      <div><h2>Deal room for ${esc(r.company)}</h2><div class="meta">${roomPill(r, true)}<span>Built from ${esc(r.from)}</span><span>·</span><span>${r.lang}</span><span>·</span><span id="dr-saved">Saved ${esc(String(r.updated).split(' ').pop())}</span></div></div>
-      <div class="acts">
-        <button class="btn btn-ghost-n" data-dr="open">${ico('i-ext')}${p0 ? `Open as ${esc(firstName(p0.name))}` : 'Open as customer'}</button>
-        <button class="btn btn-ghost-n" data-dr="publish">${ico('i-check-c')}${r.status === 'draft' ? 'Publish' : 'Publish changes'}</button>
-        <button class="btn btn-primary" style="background:#9773FF" data-dr-tab="share">${ico('i-send')}Share</button>
+  const r = roomCur(), tab = S.roomTab || 'edit', draft = r.status === 'draft';
+  return `<section class="studio dr-studio ${tab === 'share' ? 'tab-share' : ''}">
+    <div class="dr-top">
+      <div class="dr-id"><button type="button" class="dr-ib" data-dr="back" title="All deal rooms" aria-label="Back to all deal rooms">${ico('i-left')}</button>
+        <div class="dr-name"><h2 title="Deal room for ${esc(r.company)}, built from ${esc(r.from)}">${esc(r.company)}</h2><div class="meta">${roomPill(r, true)}<span class="pill n sample" title="The tl;dv meetings and the reading figures are example data. tl;dv isn't connected in the prototype.">Example data</span><span>${r.lang}</span><span>·</span><span id="dr-saved">Saved ${esc(String(r.updated).split(' ').pop())}</span></div></div></div>
+      <div class="seg n" role="group" aria-label="Room tabs"><button type="button" data-dr-tab="edit" aria-pressed="${tab === 'edit'}">${ico('i-edit')}Edit</button><button type="button" data-dr-tab="share" aria-pressed="${tab === 'share'}">${ico('i-link')}Share and track</button></div>
+      <div class="dr-acts">
+        <div class="dr-popw dr-edit-only" id="dr-readyw">${roomReadyHTML()}</div>
+        <div class="seg n dr-edit-only" role="group" aria-label="Preview size"><button type="button" data-dr-dev="desktop" aria-pressed="${(S.roomDev || 'desktop') === 'desktop'}" title="Desktop" aria-label="Desktop">${ico('i-monitor')}</button><button type="button" data-dr-dev="phone" aria-pressed="${S.roomDev === 'phone'}" title="Phone" aria-label="Phone">${ico('i-phone')}</button></div>
+        <button type="button" class="dr-tb dr-pv dr-edit-only" data-dr="preview" aria-pressed="${!!S.roomPreview}" title="See the room as the customer does, with its own menu">${ico('i-eye')}<span>${S.roomPreview ? 'Exit preview' : 'Preview'}</span></button>
+        <div class="dr-popw" id="dr-morew">${roomMenuHTML()}</div>
+        <button type="button" class="btn btn-primary ${draft ? '' : 'dr-edit-only'}" style="background:#9773FF" ${draft ? 'data-dr="publish"' : 'data-dr-tab="share"'}>${ico('i-send')}${draft ? 'Publish and share' : 'Share'}</button>
       </div>
     </div>
-    <div class="dr-tabs"><div class="seg n" role="group" aria-label="Room tabs"><button data-dr-tab="edit" aria-pressed="${tab === 'edit'}">${ico('i-edit')} Edit</button><button data-dr-tab="share" aria-pressed="${tab === 'share'}">${ico('i-link')} Share and track</button></div>${st.sample ? '<span class="pill n sample">Includes example data</span>' : ''}</div>
-    <div class="dr-body ${S.roomNoLeft ? 'no-left' : ''} ${S.roomNoRight ? 'no-right' : ''}" ${tab === 'edit' ? '' : 'hidden'}>
-      <div class="dr-left"><span class="dr-lbl">Sections</span><div class="dr-outline" id="dr-outline"></div></div>
+    <div class="dr-body ${S.roomNoRight ? 'no-right' : ''} ${S.roomPreview ? 'preview' : ''}" ${tab === 'edit' ? '' : 'hidden'}>
+      <nav class="dr-strip ${S.roomPin ? 'pin' : ''}" aria-label="Sections"><div class="dr-outline" id="dr-outline"></div></nav>
       <div class="dr-stage">
-        <div class="dr-stage-bar">
-          <div class="dr-tools"><button data-dr-panel="left" aria-pressed="${!S.roomNoLeft}" title="Show or hide the sections">${ico('i-panel-left')}Sections</button><button data-dr-panel="focus" aria-pressed="${!!S.roomFocus}" title="Hide the menu and both panels, so the preview gets the whole width">${ico(S.roomFocus ? 'i-shrink' : 'i-expand')}${S.roomFocus ? 'Exit focus' : 'Focus'}</button></div>
-          <div class="dr-url">${ico('i-lock')}<span>${esc(roomShown(r))}</span></div>
-          <div class="dr-tools"><div class="seg n" role="group" aria-label="Preview size"><button data-dr-dev="desktop" aria-pressed="${(S.roomDev || 'desktop') === 'desktop'}" title="Desktop">${ico('i-monitor')}</button><button data-dr-dev="phone" aria-pressed="${S.roomDev === 'phone'}" title="Phone">${ico('i-phone')}</button></div><button data-dr-panel="right" aria-pressed="${!S.roomNoRight}" title="Show or hide the fields">Fields${ico('i-panel-right')}</button></div></div>
         <div class="dr-frame" id="dr-frame"><iframe src="deal-room/index.html?room=${encodeURIComponent(r.id)}&edit=1" title="Live preview of the deal room"></iframe></div>
-        <div class="dr-stage-bar" style="justify-content:center"><span>${ico('i-cursor')} Click any text in the preview to change it. Lines with a lock come from the Messaging Framework.</span></div>
+        ${roomTipSeen() ? '' : `<div class="dr-tip" id="dr-tip">${ico('i-cursor')}<span>Click any text in the room to change it. Lines with a lock come from the Messaging Framework.</span><button type="button" class="lnk" data-dr="tipok">Got it</button></div>`}
       </div>
-      <aside class="dr-insp" id="dr-insp"></aside>
+      <aside class="dr-insp" id="dr-insp" aria-label="Fields for the selected block"></aside>
     </div>
     <div class="dr-share" id="dr-share" ${tab === 'share' ? '' : 'hidden'}>${roomShareHTML(r)}</div>
   </section>`;
 }
+function roomMenuHTML() {
+  const r = roomCur(); if (!r) return ''; const p0 = (r.people || []).find(p => p.by === 'rep') || (r.people || [])[0];
+  return `<button type="button" class="dr-ib" data-dr="more" aria-expanded="${!!S.roomMenu}" aria-haspopup="menu" aria-label="More" title="More">⋯</button>${S.roomMenu ? `<div class="dr-pop dr-menu" role="menu">
+    <button type="button" role="menuitem" data-dr="open">${ico('i-ext')}${p0 ? `Open as ${esc(firstName(p0.name))}` : 'Open as the customer'}</button>
+    <button type="button" role="menuitem" data-rcopy="${esc(roomLink(r))}">${ico('i-copy')}Copy the room link</button>
+    ${r.status === 'draft' ? '' : `<button type="button" role="menuitem" data-dr="publish">${ico('i-check-c')}Publish changes</button>`}
+  </div>` : ''}`;
+}
+function roomPopRefresh() { const a = $('#dr-readyw'), b = $('#dr-morew'); if (a) a.innerHTML = roomReadyHTML(); if (b) b.innerHTML = roomMenuHTML(); }
 function roomOutline() {
-  const r = roomCur(), el = $('#dr-outline'); if (!r || !el) return; const hid = new Set(r.hidden || []), ed = new Set(r.edited || []);
-  el.innerHTML = ROOM_OUTLINE.map(sec => `<div class="dr-sec ${hid.has(sec.id) ? 'dr-off' : ''}">
-    <div class="dr-head"><span class="n">${sec.n}</span><span class="t">${sec.t}</span>${!['hero', 'meet'].includes(sec.id) ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${sec.id}" title="${hid.has(sec.id) ? 'Show' : 'Hide'} this section">${ico(hid.has(sec.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</div>
-    ${sec.blocks.map(b => `<button class="dr-blk ${S.roomBlock === b.id ? 'sel' : ''} ${hid.has(b.id) ? 'dr-off' : ''}" data-dr-block="${b.id}"><span class="t">${b.t}</span>${b.id === 'meet' && roomMeetPending(roomCur()) ? `<span class="dr-cnt" title="Meeting drafts waiting">${roomMeetPending(roomCur())}</span>` : ''}${ed.has(b.id) ? '<span class="ed" title="Edited"></span>' : ''}${b.lock ? ico('i-lock', 'ico lk') : ''}${sec.blocks.length > 1 ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${b.id}" title="${hid.has(b.id) ? 'Show' : 'Hide'} this block">${ico(hid.has(b.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</button>`).join('')}
+  const r = roomCur(), el = $('#dr-outline'); if (!r || !el) return; const hid = new Set(r.hidden || []), ed = new Set(r.edited || []), pend = roomMeetPending(r), cs = roomSec(S.roomBlock);
+  const eye = (id, what) => `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${id}" title="${hid.has(id) ? 'Show' : 'Hide'} this ${what}" aria-label="${hid.has(id) ? 'Show' : 'Hide'} this ${what}">${ico(hid.has(id) ? 'i-eye-off' : 'i-eye')}</span>`;
+  el.innerHTML = `<div class="dr-ol-top"><span class="dr-lbl">Sections</span><button type="button" class="dr-ib sm" data-dr-panel="pin" aria-pressed="${!!S.roomPin}" title="${S.roomPin ? 'Let the list fold away' : 'Keep the list open'}" aria-label="${S.roomPin ? 'Let the list fold away' : 'Keep the list open'}">${ico('i-panel-left')}</button></div>` + ROOM_OUTLINE.map(sec => `<div class="dr-sec ${hid.has(sec.id) ? 'dr-off' : ''} ${cs && cs.id === sec.id ? 'on' : ''}">
+    <div class="dr-head"><button type="button" class="dr-hb" data-dr-block="${sec.blocks[0].id}" title="${esc(sec.t)}"><span class="n">${sec.n || ico(sec.id === 'meet' ? 'i-msg' : 'i-home')}</span><span class="t">${sec.t}</span>${sec.id === 'meet' && pend ? `<span class="dr-cnt" title="Meeting drafts waiting">${pend}</span>` : ''}${sec.blocks.some(b => ed.has(b.id)) ? '<span class="ed" title="Edited"></span>' : ''}</button>${!['hero', 'meet'].includes(sec.id) ? eye(sec.id, 'section') : ''}</div>
+    ${sec.blocks.length > 1 || sec.id === 's1' ? sec.blocks.map(b => `<button type="button" class="dr-blk ${S.roomBlock === b.id ? 'sel' : ''} ${hid.has(b.id) ? 'dr-off' : ''}" data-dr-block="${b.id}"><span class="t">${b.t}</span>${ed.has(b.id) ? '<span class="ed" title="Edited"></span>' : ''}${b.lock ? ico('i-lock', 'ico lk') : ''}${sec.blocks.length > 1 ? eye(b.id, 'block') : ''}</button>`).join('') : ''}
   </div>`).join('');
 }
 function roomFieldHTML(f, i) {
   if (f.type === 'meeting') return roomMeetHTML();
   const sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"');
   if (f.type === 'pic') { const cur = (roomAll(f.s)[0] || { getAttribute: () => '' }).getAttribute('src') || ''; return `<div class="dr-f"><label>${sm('i-image')}${f.l} <span style="font-weight:400;color:#9E98C4">· Simployer image bank</span></label><div class="dr-pics">${ROOM_PICS.map(p => `<button type="button" data-dr-pic="${i}" data-src="assets/img/${p}.jpg" class="${cur.includes(p) ? 'on' : ''}" title="${p}"><img src="deal-room/assets/img/${p}.jpg" alt=""></button>`).join('')}</div></div>`; }
-  if (f.type === 'video') return `<div class="dr-f"><label>${f.l}</label><div class="dr-hint">${ico('i-play')}<span>Upload a short video for the customer. It plays in the welcome.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-dr="video">Upload a video</button></div>`;
-  if (f.type === 'addstep') return `<div class="dr-hint">${ico('i-cursor')}<span>Change steps, owners and dates straight in the table.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-dr="addstep">${ico('i-plus')}Add a step</button>`;
-  if (f.type === 'sign') return `<div class="dr-f"><label>How the customer signs</label><select data-dr="signhow"><option>Simple e-signature: name, title and a tick</option><option>BankID (needs a signing provider)</option></select></div><div class="dr-hint">${ico('i-alert')}<span>The agreement is built from 07 Your proposal. When it's signed, the room shows Signed and you get the receipt.</span></div>`;
-  if (f.type === 'items') return `${f.note ? `<div class="dr-hint">${ico('i-eye')}<span>${f.note}</span></div>` : ''}<div class="dr-items">${roomAll(f.s).map((el, j) => `<label><input type="checkbox" data-dr-item="${i}" data-j="${j}" ${el.style.display === 'none' ? '' : 'checked'}>${esc(f.label ? f.label(el) : (el.querySelector('h4') || el).textContent.trim())}</label>`).join('')}</div>`;
-  const el = roomAll(f.s)[0], val = el ? el.textContent.trim() : '';
-  return `<div class="dr-f"><label for="drf-${i}">${f.l}</label>${f.type === 'area' ? `<textarea id="drf-${i}" data-dr-f="${i}" rows="3">${esc(val)}</textarea>` : `<input id="drf-${i}" data-dr-f="${i}" value="${esc(val)}">`}</div>`;
+  if (f.type === 'video') return `<div class="dr-f"><label>${f.l}</label><button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="video">${sm('i-play')}Upload a video</button><p class="dr-note">It plays in the welcome.</p></div>`;
+  if (f.type === 'addstep') return `<button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="addstep">${ico('i-plus')}Add a step</button><p class="dr-note">Change steps, owners and dates straight in the table.</p>`;
+  if (f.type === 'sign') return `<div class="dr-f"><label>How the customer signs</label><select data-dr="signhow"><option>Simple e-signature: name, title and a tick</option><option>BankID (needs a signing provider)</option></select></div><p class="dr-note">The agreement is built from 07 Your proposal. When it's signed, the room shows Signed and you get the receipt.</p>`;
+  if (f.type === 'items') return `${f.note ? `<p class="dr-note">${f.note}</p>` : ''}<div class="dr-items">${roomAll(f.s).map((el, j) => `<label><input type="checkbox" data-dr-item="${i}" data-j="${j}" ${el.style.display === 'none' ? '' : 'checked'}>${esc(f.label ? f.label(el) : (el.querySelector('h4') || el).textContent.trim())}</label>`).join('')}</div>`;
+  const el = roomAll(f.s)[0], val = el ? el.textContent.trim() : '', ai = !!el && el.classList.contains('fyr-draft'), cls = ai ? 'class="is-draft"' : '';
+  return `<div class="dr-f"><label for="drf-${i}">${f.l}${ai ? '<span class="dr-aitag" title="From tl;dv, waiting for your OK. Type your own text to replace it.">AI draft</span>' : ''}</label>${f.type === 'area' ? `<textarea id="drf-${i}" data-dr-f="${i}" rows="3" ${cls}>${esc(val)}</textarea>` : `<input id="drf-${i}" data-dr-f="${i}" value="${esc(val)}" ${cls}>`}</div>`;
 }
-function roomPlaceholders() { const d = roomDoc(); if (!d || !d.querySelector('.main')) return 0; return ((d.querySelector('.main').innerText + ' ' + (d.querySelector('.nav-for') || {}).innerText).match(/\{[^}]{1,80}\}/g) || []).length; }
-function roomChecksHTML() {
-  const d = roomDoc(), r = roomCur(); if (!d || !d.querySelector('.main') || !r) return '<div id="dr-checks"></div>';
-  const text = d.querySelector('.main').innerText, hits = MF.avoid.filter(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(text)).map(a => a.why), ph = roomPlaceholders(), rows = [];
-  rows.push(hits.length ? ['wa', `Off the Messaging Framework: ${hits.join('. ')}`] : ['ok', 'On the Messaging Framework: no avoid-list words or competitor names']);
-  { const mp = roomMeetPending(r); if (r.meet) rows.push(mp ? ['wa', `${mp} meeting draft${mp === 1 ? '' : 's'} from tl;dv waiting for your OK`] : ['ok', 'Meeting drafts reviewed']); }
-  rows.push(ph ? ['wa', `${ph} placeholder${ph === 1 ? '' : 's'} in curly brackets still to fill`] : ['ok', 'No placeholders left']);
-  rows.push(['ok', 'Framework lines, approved claims and quotes are locked']);
-  if (S.roomBlock === 'p51') rows.push(['wa', 'The 4 to 8 month payback and 1,600 hours need finance approval before the room goes out']);
-  if (S.roomBlock === 'p52') rows.push(['wa', 'Customer stories and quotes need the customer\'s written OK']);
-  if (['p42', 'p43', 'p44'].some(b => (r.edited || []).includes(b))) rows.push(['wa', 'You changed Product truth wording in 04. PMM gets a copy to check.']);
-  if (r.lang !== 'EN') rows.push(['wa', `The room text is English in this prototype. ${r.lang} comes from Product truth in the app.`]);
-  return `<div id="dr-checks"><span class="dr-lbl">Message check</span><div class="checks">${rows.map(([c, t]) => `<div class="${c === 'ok' ? 'ok' : 'wa'}">${ico(c === 'ok' ? 'i-check-c' : 'i-alert')}<span>${t}</span></div>`).join('')}</div></div>`;
+// The room's visible text, for the placeholder count and the message check. Draft text is checked against the framework too.
+function roomTextNodes(skipDrafts) {
+  const d = roomDoc(), out = []; if (!d || !d.querySelector('.main')) return out;
+  [d.querySelector('.main'), d.querySelector('.nav-for')].forEach((root, k) => { if (!root) return; const w = d.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n;
+    while ((n = w.nextNode())) { const p = n.parentElement; if (!p || (skipDrafts && p.closest('.fyr-draft')) || (!k && !p.getClientRects().length)) continue; out.push(n); } });
+  return out;
 }
+const PH_RE = /\{[^}]{1,80}\}/;
+function roomPlaceholders() { return (roomTextNodes(true).map(n => n.nodeValue).join('').match(new RegExp(PH_RE.source, 'g')) || []).length; }
+// Find the next match in the room, scroll to it and select it, so the rep can type over it
+function roomFind(re) {
+  const d = roomDoc(); if (!d) return false; const hits = [];
+  roomTextNodes(true).forEach(n => { const m = n.nodeValue.match(re); if (m) hits.push([n, m.index, m[0].length]); });
+  if (!hits.length) return false;
+  S.roomFindIdx = ((S.roomFindIdx || 0) + 1) % hits.length; const [n, at, len] = hits[S.roomFindIdx], p = n.parentElement, w = d.defaultView;
+  const blk = p.closest('.blk'); if (blk && roomBlock(blk.id) && S.roomBlock !== blk.id) { S.roomBlock = blk.id; S.roomNoRight = false; roomLayout(); roomOutline(); roomInspector(); }
+  w.scrollTo({ top: p.getBoundingClientRect().top + w.scrollY - w.innerHeight * 0.3, behavior: 'smooth' });
+  const ed = p.closest('[contenteditable="true"]'); if (ed) { w.focus(); ed.focus({ preventScroll: true }); const rg = d.createRange(); rg.setStart(n, at); rg.setEnd(n, at + len); const s = w.getSelection(); s.removeAllRanges(); s.addRange(rg); }
+  p.animate([{ boxShadow: '0 0 0 3px rgba(242,184,102,.9)' }, { boxShadow: '0 0 0 3px rgba(242,184,102,0)' }], { duration: 1600 });
+  return true;
+}
+function roomIssues() {
+  const d = roomDoc(), r = roomCur(); if (!d || !d.querySelector('.main') || !r) return null;
+  const text = roomTextNodes(false).map(n => n.nodeValue).join(' '), hid = new Set(r.hidden || []), ph = roomPlaceholders(), mp = roomMeetPending(r), s = n => n === 1 ? '' : 's';
+  const avoid = MF.avoid.map((a, i) => [a, i]).filter(([a]) => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(text));
+  const fix = [], ok = [], notes = [];
+  if (mp) fix.push(['drafts', `${mp} meeting draft${s(mp)} from tl;dv waiting for your OK`, 'Review']);
+  if (ph) fix.push(['ph', `${ph} placeholder${s(ph)} in curly brackets to fill`, 'Show next']);
+  avoid.forEach(([a, i]) => fix.push(['avoid', `Off the Messaging Framework: ${a.why}`, 'Show', i]));
+  if (!avoid.length) ok.push('On the Messaging Framework: no avoid-list words or competitor names');
+  if (r.meet && !mp) ok.push('Meeting drafts reviewed');
+  if (!ph) ok.push('No placeholders left');
+  ok.push('Framework lines, approved claims and quotes are locked');
+  if (!hid.has('s5') && !hid.has('p51')) notes.push('The 4 to 8 month payback and 1,600 hours need finance approval before the room goes out');
+  if (!hid.has('s5') && !hid.has('p52')) notes.push('Customer stories and quotes need the customer\'s written OK');
+  if (['p42', 'p43', 'p44'].some(b => (r.edited || []).includes(b))) notes.push('You changed Product truth wording in 04. PMM gets a copy to check.');
+  if (r.lang !== 'EN') notes.push(`The room text is English in this prototype. ${r.lang} comes from Product truth in the app.`);
+  return { fix, ok, notes };
+}
+// The message check as one chip in the top bar: green when the room is ready, amber with a count when something needs fixing
+function roomReadyHTML() {
+  const is = roomIssues(); if (!is) return `<button type="button" class="dr-tb dr-ready" data-dr="ready" aria-expanded="false">${ico('i-clock')}Checking</button>`;
+  const n = is.fix.length, bump = n > (S.roomFixN == null ? n : S.roomFixN); S.roomFixN = n;
+  const row = (c, ic, t, act = '') => `<div class="${c}">${ico(ic)}<span>${t}</span>${act}</div>`;
+  return `<button type="button" class="dr-tb dr-ready ${n ? 'wa' : 'ok'} ${bump ? 'bump' : ''}" data-dr="ready" aria-expanded="${!!S.roomReady}" aria-haspopup="dialog" title="Message check">${ico(n ? 'i-alert' : 'i-check-c')}${n ? `${n} to fix` : 'Ready'}</button>${S.roomReady ? `<div class="dr-pop" role="dialog" aria-label="Before you publish">
+    <span class="dr-lbl">${n ? 'Before you publish' : 'Ready to publish'}</span>
+    ${n ? `<div class="checks">${is.fix.map(([k, t, b, i]) => row('wa', 'i-alert', t, `<button type="button" class="lnk" data-dr-fix="${k}" ${i != null ? `data-i="${i}"` : ''}>${b}</button>`)).join('')}</div>` : ''}
+    <div class="checks">${is.ok.map(t => row('ok', 'i-check-c', t)).join('')}</div>
+    ${is.notes.length ? `<span class="dr-lbl">Good to know</span><div class="checks">${is.notes.map(t => row('nt', 'i-clock', t)).join('')}</div>` : ''}
+  </div>` : ''}`;
+}
+function roomRefreshChecks() { const a = $('#dr-readyw'); if (a) a.innerHTML = roomReadyHTML(); }
 function roomInspector() {
   const el = $('#dr-insp'); if (!el) return; const b = roomBlock(S.roomBlock) || roomBlock('details'), sec = roomSec(b.id), fs = ROOM_FIELDS[b.id] || [];
-  el.innerHTML = `<div><span class="dr-lbl">${sec.n ? 'Section ' + sec.n + ' · ' : ''}${sec.t}</span><h3>${b.t}</h3>${b.lock ? `<p class="sub">${ico('i-lock').replace('class="ico"', 'class="ico" style="width:13px;height:13px;vertical-align:-2px"')} The headline lines come from the Messaging Framework. Fill in the parts about this customer.</p>` : ''}</div>
-    <div class="dr-fields">${fs.map(roomFieldHTML).join('') || `<div class="dr-hint">${ico('i-cursor')}<span>Click any text in the preview to change it.</span></div>`}</div>
-    ${roomChecksHTML()}`;
+  el.innerHTML = `<div class="dr-ih"><div><span class="dr-lbl">${sec.n ? sec.n + ' · ' : ''}${sec.t}</span><h3>${b.t}</h3></div><button type="button" class="dr-ib sm" data-dr-panel="right" aria-label="Close the panel" title="Close. Pick a section to open it again.">${ico('i-x')}</button></div>
+    ${b.lock ? `<p class="dr-note">${ico('i-lock')}Framework lines are locked. Fill in the parts about this customer.</p>` : ''}
+    ${fs.length ? `<div class="dr-fields">${fs.map(roomFieldHTML).join('')}</div>` : '<p class="dr-note">Click any text in the room to change it.</p>'}`;
 }
-function roomRefreshChecks() { const c = $('#dr-checks'); if (c) c.outerHTML = roomChecksHTML(); }
+// Edit view: the room's own menu is hidden and the content column fills the stage, so the room shows at (or close to) real size.
+// Preview: the full 1280 px customer page with its menu.
 function roomFit() {
   const fw = $('#dr-frame'), fr = fw && fw.querySelector('iframe'); if (!fr || fw.closest('[hidden]')) return;
   const W = fw.clientWidth, H = fw.clientHeight, phone = S.roomDev === 'phone'; fw.classList.toggle('phone', phone);
   if (phone) Object.assign(fr.style, { width: '390px', height: (H - 24) + 'px', top: '12px', transform: 'translateX(-50%)' });
-  else { const k = W / 1280; Object.assign(fr.style, { width: '1280px', height: (H / k) + 'px', top: '0', transform: `scale(${k})` }); }
+  else { const k = W < 700 ? 1 : Math.min(1, W / (S.roomPreview ? 1280 : 960)); /* a narrow stage shows the room's own phone layout at real size */ Object.assign(fr.style, { width: (W / k) + 'px', height: (H / k) + 'px', top: '0', transform: `scale(${k})` }); }
+  requestAnimationFrame(roomDraftBar);
+}
+function roomLayout() {
+  const body = $('.dr-body'); if (body) { body.classList.toggle('no-right', !!S.roomNoRight); body.classList.toggle('preview', !!S.roomPreview); }
+  const st = $('.dr-strip'); if (st) st.classList.toggle('pin', !!S.roomPin);
+  const pv = $('[data-dr="preview"]'); if (pv) { pv.setAttribute('aria-pressed', !!S.roomPreview); pv.querySelector('span').textContent = S.roomPreview ? 'Exit preview' : 'Preview'; }
+  requestAnimationFrame(roomFit); setTimeout(roomFit, 220);
+}
+function roomApplyPreview() {
+  const d = roomDoc(); if (!d || !d.documentElement) return; const on = !!S.roomPreview;
+  d.documentElement.classList.toggle('fyr-preview', on);
+  d.querySelectorAll('[data-fyr-ce]').forEach(el => el.setAttribute('contenteditable', on ? 'false' : 'true'));
+  roomMarkDrafts();
 }
 function roomSave(blockId) {
   const r = roomCur(), d = roomDoc(); if (!r || !d || !d.querySelector('.main')) return;
   const m = d.querySelector('.main').cloneNode(true);
-  m.querySelectorAll('[contenteditable]').forEach(e => { e.removeAttribute('contenteditable'); e.removeAttribute('spellcheck'); });
+  m.querySelectorAll('.fyr-draft').forEach(e => { e.innerHTML = e.dataset.fyrOrig || ''; e.classList.remove('fyr-draft', 'cur'); e.removeAttribute('data-fyr-draft'); e.removeAttribute('data-fyr-orig'); });
+  m.querySelectorAll('[contenteditable], [data-fyr-ce]').forEach(e => { e.removeAttribute('contenteditable'); e.removeAttribute('spellcheck'); e.removeAttribute('data-fyr-ce'); });
   m.querySelectorAll('.fyr-lock').forEach(e => { e.classList.remove('fyr-lock'); e.removeAttribute('title'); });
   r.html = { main: m.innerHTML, navFor: (d.querySelector('.nav-for') || {}).innerHTML || '', rep: (d.querySelector('.repcard') || {}).innerHTML || '' };
   if (blockId) r.edited = [...new Set([...(r.edited || []), blockId])];
@@ -2904,24 +3149,50 @@ function roomPrep() {
   if (r.init && !r.html) roomApplyInit(d, r);
   const st = d.createElement('style');
   st.textContent = `.modes{display:none!important} html{scroll-behavior:smooth}
-  [contenteditable="true"]{outline:none;border-radius:4px;transition:box-shadow .15s}
-  [contenteditable="true"]:hover{box-shadow:0 0 0 2px rgba(151,115,255,.55);cursor:text}
-  [contenteditable="true"]:focus{box-shadow:0 0 0 2px #9773FF;background:rgba(151,115,255,.06)}
-  .fyr-lock{position:relative} .fyr-lock:hover{box-shadow:0 0 0 2px rgba(242,184,102,.8);border-radius:4px;cursor:not-allowed}
-  .fyr-lock:hover::after{content:"Locked: from the Messaging Framework";position:absolute;left:0;top:-30px;white-space:nowrap;font:600 12px/1 'Hanken Grotesk',sans-serif;letter-spacing:0;text-transform:none;background:#1B1038;color:#F6F2FF;padding:7px 9px;border-radius:7px;z-index:5}`;
+  html:not(.fyr-preview) .nav, html:not(.fyr-preview) .navtoggle{display:none!important}
+  html:not(.fyr-preview) .main{margin:0 auto}
+  html:not(.fyr-preview) [contenteditable="true"]{outline:none;border-radius:4px;transition:box-shadow .15s}
+  html:not(.fyr-preview) [contenteditable="true"]:hover{box-shadow:0 0 0 2px rgba(151,115,255,.55);cursor:text}
+  html:not(.fyr-preview) [contenteditable="true"]:focus{box-shadow:0 0 0 2px #9773FF;background:rgba(151,115,255,.06)}
+  .fyr-lock{position:relative} html:not(.fyr-preview) .fyr-lock:hover{box-shadow:0 0 0 2px rgba(242,184,102,.8);border-radius:4px;cursor:not-allowed}
+  html:not(.fyr-preview) .fyr-lock:hover::after{content:"Locked: from the Messaging Framework";position:absolute;left:0;top:-30px;white-space:nowrap;font:600 12px/1 'Hanken Grotesk',sans-serif;letter-spacing:0;text-transform:none;background:#1B1038;color:#F6F2FF;padding:7px 9px;border-radius:7px;z-index:5}
+  .fyr-draft{background:rgba(242,184,102,.2)!important;box-shadow:0 0 0 2px rgba(242,184,102,.5)!important;border-radius:4px;cursor:pointer}
+  .fyr-draft.cur{background:rgba(242,184,102,.32)!important;box-shadow:0 0 0 3px #F2B866!important}
+  .fyr-dbar{position:absolute;z-index:60;display:flex;flex-wrap:wrap;gap:6px;align-items:center;max-width:620px;background:#1B1038;color:#F6F2FF;border-radius:12px;padding:6px;font:500 14px/1.2 'Hanken Grotesk',sans-serif;letter-spacing:0;text-transform:none;box-shadow:0 14px 34px rgba(20,10,50,.35)}
+  .fyr-dbar[hidden]{display:none}
+  .fyr-dbar .ai{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#F2B866;padding:0 4px 0 8px}
+  .fyr-dbar .src{color:#B7AECF;font-size:13px;padding:0 6px}
+  .fyr-dbar label{display:flex;gap:6px;align-items:center;font-size:13px;color:#F2B866;padding:0 6px;cursor:pointer}
+  .fyr-dbar button{font:600 14px/1 'Hanken Grotesk',sans-serif;border:0;border-radius:8px;padding:9px 12px;cursor:pointer;background:rgba(255,255,255,.1);color:#fff}
+  .fyr-dbar button:hover{background:rgba(255,255,255,.18)} .fyr-dbar button.use{background:#9773FF} .fyr-dbar button.use:hover{background:#8660F5}
+  .fyr-dbar kbd{font:600 11px/1 'Hanken Grotesk',sans-serif;padding:2px 5px;border-radius:5px;background:rgba(255,255,255,.18);margin-left:4px}`;
   d.head.appendChild(st);
   const locked = new Set(ROOM_LOCKED.flatMap(s => [...d.querySelectorAll(s)]));
   locked.forEach(el => { el.classList.add('fyr-lock'); el.title = 'From the Messaging Framework. PMM owns this line.'; });
   d.querySelector('.main').querySelectorAll('h1,h3,h4,p,li,td,summary,blockquote span,.k,.big,.d4,.d5,.sr > span').forEach(el => {
     if (locked.has(el) || el.closest('.fyr-lock') || el.querySelector('.fyr-lock') || el.closest('[contenteditable="true"]') || el.querySelector('p,h4,td,li')) return;
-    el.setAttribute('contenteditable', 'true'); el.spellcheck = false;
+    el.setAttribute('contenteditable', 'true'); el.dataset.fyrCe = '1'; el.spellcheck = false;
   });
   d.querySelectorAll('summary[contenteditable]').forEach(s => s.addEventListener('keydown', e => { if (e.key === ' ') e.stopPropagation(); }));
-  d.addEventListener('click', e => { const a = e.target.closest('a'); if (a && !String(a.getAttribute('href') || '').startsWith('#')) e.preventDefault(); if (e.target.closest('summary[contenteditable]')) e.preventDefault(); }, true);
+  d.addEventListener('click', e => {
+    const a = e.target.closest('a'); if (a && !String(a.getAttribute('href') || '').startsWith('#')) e.preventDefault(); if (e.target.closest('summary[contenteditable]') && !S.roomPreview) e.preventDefault();
+    if (S.roomReady || S.roomMenu) { S.roomReady = S.roomMenu = false; roomPopRefresh(); }
+    const act = e.target.closest('[data-fyr-act]'); if (act) { e.preventDefault(); roomDraftAct(act.dataset.fyrAct); }
+  }, true);
+  d.addEventListener('change', e => { if (e.target.matches('[data-fyr-ok]')) { const dr = roomDraft(S.roomDraftCur); if (dr) { dr.ok = e.target.checked; roomPut(roomCur()); roomMeetRefresh(); } } });
+  d.addEventListener('keydown', roomKeys);
   const blockFrom = t => { const b = t.closest && t.closest('.blk, .hero'); return b ? (b.classList.contains('hero') ? 'details' : b.id) : null; };
-  d.addEventListener('input', e => { const id = blockFrom(e.target); roomSave(id); roomOutline(); roomRefreshChecks(); });
-  d.addEventListener('focusin', e => { const id = blockFrom(e.target); if (id && id !== S.roomBlock && roomBlock(id)) { S.roomBlock = id; roomOutline(); roomInspector(); } });
-  roomApplyHidden(); roomInspector();
+  d.addEventListener('input', e => {
+    const fd = e.target.closest && e.target.closest('.fyr-draft');
+    if (fd) { const dr = roomDraft(fd.dataset.fyrDraft); if (dr) { if (dr.isQuote && dr.ok) dr.quote = fd.textContent; else dr.text = fd.textContent; roomPut(roomCur()); const ta = $(`[data-dr-draft-text="${dr.id}"]`); if (ta) ta.value = fd.textContent; roomRefreshChecks(); } return; }
+    const id = blockFrom(e.target); roomSave(id); roomOutline(); roomRefreshChecks();
+  });
+  d.addEventListener('focusin', e => {
+    const fd = e.target.closest && e.target.closest('.fyr-draft');
+    if (fd) { if (S.roomDraftCur !== fd.dataset.fyrDraft || S.roomBlock !== 'meet') { S.roomDraftCur = fd.dataset.fyrDraft; S.roomBlock = 'meet'; S.roomNoRight = false; roomLayout(); roomMeetRefresh(); } return; }
+    const id = blockFrom(e.target); if (id && id !== S.roomBlock && roomBlock(id)) { S.roomBlock = id; roomOutline(); roomInspector(); roomDraftBar(); }
+  });
+  roomApplyHidden(); roomApplyPreview(); roomInspector(); roomRefreshChecks();
 }
 function roomScrollTo(id) {
   const b = roomBlock(id), d = roomDoc(); if (!d) return; const el = d.querySelector(b && b.el ? b.el : '#' + id); if (!el) return;
@@ -2930,10 +3201,12 @@ function roomScrollTo(id) {
 }
 function bindRoom() {
   if (!S.roomBlock) S.roomBlock = 'details';
+  S.roomReady = S.roomMenu = false; S.roomFixN = null;
   roomOutline(); roomInspector();
   const fr = $('#dr-frame iframe'); if (!fr) return;
-  fr.addEventListener('load', () => { roomPrep(); roomFit(); });
+  fr.addEventListener('load', () => { roomPrep(); roomFit(); if (S.roomBlock === 'meet') setTimeout(roomDraftShow, 150); });
   roomPrep(); setTimeout(() => { roomPrep(); roomFit(); }, 400);
+  if (window.ResizeObserver) new ResizeObserver(() => roomFit()).observe($('#dr-frame')); // refit whenever the stage changes size: menu, panels, window
   requestAnimationFrame(roomFit);
 }
 
@@ -2964,33 +3237,32 @@ function roomShareHTML(r) {
     <div class="dr-panel"><h3>What viewers are told</h3><p class="sub" style="margin-top:6px">The room asks first: "Simployer sees when this page is opened and which parts are read, so ${esc(firstName(r.rep))} can follow up." Nothing is tracked unless they say OK. Legal and the DPO approve this wording before the first real room.</p></div>
   </div>`;
 }
-// Collapse the sections, the fields, or everything (focus also collapses Fyr's menu), so the preview gets the room
-function roomPanels(which) {
-  if (which === 'left') S.roomNoLeft = !S.roomNoLeft;
-  if (which === 'right') S.roomNoRight = !S.roomNoRight;
-  if (which === 'focus') { S.roomFocus = !S.roomFocus; S.roomNoLeft = S.roomNoRight = S.roomFocus; if (S.roomFocus) { S.roomRailWas = railMini(); setRailMini(true); } else setRailMini(!!S.roomRailWas); }
-  else S.roomFocus = S.roomNoLeft && S.roomNoRight;
-  const body = $('.dr-body'); if (body) { body.classList.toggle('no-left', !!S.roomNoLeft); body.classList.toggle('no-right', !!S.roomNoRight); }
-  $$('[data-dr-panel]').forEach(b => { const k = b.dataset.drPanel; b.setAttribute('aria-pressed', k === 'left' ? !S.roomNoLeft : k === 'right' ? !S.roomNoRight : !!S.roomFocus); if (k === 'focus') b.innerHTML = ico(S.roomFocus ? 'i-shrink' : 'i-expand') + (S.roomFocus ? 'Exit focus' : 'Focus'); });
-  requestAnimationFrame(roomFit); setTimeout(roomFit, 260);
-}
 function roomRefreshShare() { const el = $('#dr-share'); const r = roomCur(); if (el && r) el.innerHTML = roomShareHTML(r); }
 function roomCopy(url) { try { navigator.clipboard.writeText(url); } catch (_) {} toast('Link copied. In Fyr it reads ' + url.replace(/^.*\/deal-room\/(index\.html)?\?room=[^&]+/, (roomCur() ? roomShown(roomCur()) : 'rom.simployer.com/…')).replace('&r=', '?r=') + '.'); }
 
 document.addEventListener('click', e => {
   const mk = e.target.closest('[data-mkroom]'); if (mk) { S.roomNew = mk.dataset.mkroom; S.roomModal = true; S.view = 'rooms'; render(); window.scrollTo({ top: 0 }); return; }
   if (!['rooms', 'room'].includes(S.view)) return;
-  const t = e.target.closest('[data-dr],[data-ropen],[data-rcopy],[data-rdel],[data-dr-tab],[data-dr-dev],[data-dr-hide],[data-dr-block],[data-dr-pic],[data-dr-popen],[data-dr-panel],[data-dr-draft-use],[data-dr-draft-skip],[data-dr-draft-undo]');
+  if (S.view === 'room' && (S.roomReady || S.roomMenu) && !e.target.closest('.dr-popw')) { S.roomReady = S.roomMenu = false; roomPopRefresh(); }
+  const t = e.target.closest('[data-dr],[data-ropen],[data-rcopy],[data-rdel],[data-dr-tab],[data-dr-dev],[data-dr-hide],[data-dr-block],[data-dr-pic],[data-dr-popen],[data-dr-panel],[data-dr-draft-use],[data-dr-draft-skip],[data-dr-draft-undo],[data-dr-draft-go],[data-dr-draft-move],[data-dr-fix]');
   if (!t) return;
   const r = roomCur(), a = t.dataset.dr;
-  if (t.dataset.drPanel) { roomPanels(t.dataset.drPanel); return; }
-  if (t.dataset.drDraftUse || t.dataset.drDraftSkip || t.dataset.drDraftUndo || a === 'useall') {
-    if (a === 'useall') { r.meet.drafts.filter(x => x.state === 'pending').forEach(roomUseDraft); roomSave('p11'); roomSave('p51'); toast('All drafts are in the room. Check them in the preview.'); }
-    else { const dr = roomDraft(t.dataset.drDraftUse || t.dataset.drDraftSkip || t.dataset.drDraftUndo); if (!dr) return;
-      if (t.dataset.drDraftUse) { roomUseDraft(dr); roomSave(dr.block); roomScrollTo(dr.block); }
-      else { dr.state = t.dataset.drDraftSkip ? 'skipped' : 'pending'; roomPut(r); } }
-    roomMeetRefresh(); roomRefreshChecks(); return;
+  if (t.dataset.drPanel) { if (t.dataset.drPanel === 'pin') { S.roomPin = !S.roomPin; roomOutline(); } else S.roomNoRight = true; roomLayout(); return; }
+  if (a === 'ready') { S.roomReady = !S.roomReady; S.roomMenu = false; roomPopRefresh(); return; }
+  if (a === 'more') { S.roomMenu = !S.roomMenu; S.roomReady = false; roomPopRefresh(); return; }
+  if (t.dataset.drFix) {
+    S.roomReady = false; roomPopRefresh(); const k = t.dataset.drFix;
+    if (k === 'drafts') { S.roomBlock = 'meet'; S.roomNoRight = false; S.roomPreview = false; roomLayout(); roomApplyPreview(); roomMeetRefresh(); roomDraftShow(); }
+    else { if (S.roomPreview) { S.roomPreview = false; roomLayout(); roomApplyPreview(); } roomFind(k === 'ph' ? PH_RE : new RegExp(MF.avoid[+t.dataset.i].pattern, 'i')); }
+    return;
   }
+  if (a === 'back') { S.view = 'rooms'; S.roomPreview = false; render(); window.scrollTo({ top: 0 }); return; }
+  if (a === 'tipok') { try { localStorage.setItem(ROOM_TIP, '1'); } catch (_) {} const tp = $('#dr-tip'); if (tp) tp.remove(); return; }
+  if (a === 'preview') { S.roomPreview = !S.roomPreview; roomLayout(); roomApplyPreview(); return; }
+  if (t.dataset.drDraftGo) { const dr = roomDraft(t.dataset.drDraftGo); if (!dr) return; if (dr.state === 'pending') { S.roomDraftCur = dr.id; roomMeetRefresh(); roomDraftShow(); } else roomScrollTo(dr.block); return; }
+  if (t.dataset.drDraftMove) { roomDraftMove(+t.dataset.drDraftMove); return; }
+  if (t.dataset.drDraftUse || t.dataset.drDraftSkip || t.dataset.drDraftUndo) { roomDraftAct(t.dataset.drDraftUse ? 'use' : t.dataset.drDraftSkip ? 'skip' : 'undo', t.dataset.drDraftUse || t.dataset.drDraftSkip || t.dataset.drDraftUndo); return; }
+  if (a === 'useall') { roomPending(r).forEach(roomUseDraft); roomSave('p11'); roomSave('p51'); roomPut(r); S.roomDraftCur = null; roomMeetRefresh(); toast('All drafts are in the room. Check them in the preview.'); return; }
   if (a === 'new') { S.roomNew = (DECKS[0] || {}).id || ''; S.roomModal = true; render(); return; }
   if (a === 'cancel') { if (t.classList.contains('dr-scrim') && e.target !== t) return; S.roomModal = false; render(); return; }
   if (t.dataset.ropen) { S.room = t.dataset.ropen; S.roomTab = 'edit'; S.roomBlock = 'details'; S.view = 'room'; render(); window.scrollTo({ top: 0 }); return; }
@@ -2999,28 +3271,34 @@ document.addEventListener('click', e => {
     if (t.dataset.armed !== '1') { t.dataset.armed = '1'; t.textContent = 'Delete?'; t.style.color = 'var(--red-ink)'; setTimeout(() => { if (t.isConnected && t.dataset.armed === '1') render(); }, 3000); return; }
     const x = roomById(t.dataset.rdel); ROOMS = (roomsLoad() || ROOMS).filter(y => y.id !== t.dataset.rdel); roomsStore(); render(); toast(`Deleted the deal room for ${x ? x.company : 'that customer'}. Its links stop working.`); return;
   }
-  if (t.dataset.drTab) { S.roomTab = t.dataset.drTab; $$('[data-dr-tab][aria-pressed]').forEach(b => b.setAttribute('aria-pressed', b.dataset.drTab === S.roomTab)); const body = $('.dr-body'), sh = $('#dr-share'); if (body) body.hidden = S.roomTab !== 'edit'; if (sh) { sh.hidden = S.roomTab !== 'share'; if (!sh.hidden) roomRefreshShare(); } requestAnimationFrame(roomFit); return; }
+  if (t.dataset.drTab) { S.roomTab = t.dataset.drTab; $$('[data-dr-tab][aria-pressed]').forEach(b => b.setAttribute('aria-pressed', b.dataset.drTab === S.roomTab)); const st = $('.dr-studio'), body = $('.dr-body'), sh = $('#dr-share'); if (st) st.classList.toggle('tab-share', S.roomTab === 'share'); if (body) body.hidden = S.roomTab !== 'edit'; if (sh) { sh.hidden = S.roomTab !== 'share'; if (!sh.hidden) roomRefreshShare(); } requestAnimationFrame(roomFit); roomDraftBar(); return; }
   if (t.dataset.drDev) { S.roomDev = t.dataset.drDev; $$('[data-dr-dev]').forEach(b => b.setAttribute('aria-pressed', b === t)); roomFit(); return; }
   if (t.dataset.drHide) { e.stopPropagation(); const h = new Set(r.hidden || []); h.has(t.dataset.drHide) ? h.delete(t.dataset.drHide) : h.add(t.dataset.drHide); r.hidden = [...h]; roomApplyHidden(); roomSave(); roomOutline(); roomRefreshChecks(); return; }
-  if (t.dataset.drBlock) { S.roomBlock = t.dataset.drBlock; roomOutline(); roomInspector(); roomScrollTo(S.roomBlock); return; }
+  if (t.dataset.drBlock) { S.roomBlock = t.dataset.drBlock; S.roomNoRight = false; roomLayout(); if (e.detail && document.activeElement) document.activeElement.blur(); roomMeetRefresh(); if (S.roomBlock === 'meet') roomDraftShow(); else roomScrollTo(S.roomBlock); return; }
   if (t.dataset.drPic) { const f = ROOM_FIELDS[S.roomBlock][+t.dataset.drPic]; roomAll(f.s).forEach(img => { img.src = t.dataset.src; }); $$('[data-dr-pic]').forEach(b => b.classList.toggle('on', b === t)); roomSave(S.roomBlock); roomOutline(); return; }
   if (t.dataset.drPopen) { const p = (r.people || []).find(x => x.token === t.dataset.drPopen); if (p) window.open(roomLink(r, p), '_blank', 'noopener'); return; }
   if (a === 'open') { const p = (r.people || []).find(x => x.by === 'rep') || (r.people || [])[0]; if (!p) { toast('Add a person in Share and track first. Each person gets their own link.'); return; } window.open(roomLink(r, p), '_blank', 'noopener'); return; }
   if (a === 'publish') {
-    const mp = roomMeetPending(r); if (mp) { S.roomBlock = 'meet'; roomMeetRefresh(); toast(`Review the ${mp} meeting draft${mp === 1 ? '' : 's'} first. Every personal line from tl;dv needs your OK.`); return; }
-    const ph = roomPlaceholders(); if (ph) { toast(`Fill the ${ph} placeholder${ph === 1 ? '' : 's'} in curly brackets first. The message check lists them.`); return; }
-    const first = r.status === 'draft'; if (r.status !== 'signed') r.status = 'live'; roomSave(); render();
-    toast(first ? 'Published. Share the personal links from Share and track.' : 'Published. Everyone with a link sees the new version.'); return;
+    const is = roomIssues(), n = is ? is.fix.length : 0;
+    if (n) {
+      S.roomMenu = false; S.roomPreview = false;
+      if (S.roomTab !== 'edit') { S.roomTab = 'edit'; render(); } else { roomLayout(); roomApplyPreview(); }
+      S.roomReady = true; roomPopRefresh();
+      toast(`Fix ${n === 1 ? 'one thing' : n + ' things'} first. Every personal line from tl;dv needs your OK, and nothing in curly brackets can go out.`); return;
+    }
+    const first = r.status === 'draft'; if (r.status !== 'signed') r.status = 'live'; roomSave(); if (first) S.roomTab = 'share'; S.roomMenu = false; render();
+    toast(first ? 'Published. Add the people and copy their personal links.' : 'Published. Everyone with a link sees the new version.'); return;
   }
   if (a === 'addstep') { const tb = roomAll('#p12 tbody')[0]; if (!tb) return; const n = tb.children.length + 1, tr = roomDoc().createElement('tr'); tr.innerHTML = `<td>${n}</td><td contenteditable="true">New step</td><td contenteditable="true">Both</td><td contenteditable="true">Date</td><td></td>`; tb.appendChild(tr); roomSave('p12'); roomOutline(); roomScrollTo('p12'); toast('Step added. Type in the table to fill it in.'); return; }
   if (a === 'video') { toast('Video upload comes with the app (Vercel Blob). The prototype keeps the placeholder.'); return; }
 });
 document.addEventListener('input', e => {
   if (S.view !== 'room') return;
-  const dt = e.target.closest('[data-dr-draft-text]'); if (dt) { const dr = roomDraft(dt.dataset.drDraftText); if (dr) { if (dr.isQuote && dr.ok) dr.quote = dt.value; else dr.text = dt.value; roomPut(roomCur()); } return; }
+  const dt = e.target.closest('[data-dr-draft-text]'); if (dt) { const dr = roomDraft(dt.dataset.drDraftText); if (dr) { if (dr.isQuote && dr.ok) dr.quote = dt.value; else dr.text = dt.value; roomPut(roomCur()); roomMarkDrafts(); roomRefreshChecks(); } return; }
   const f = e.target.closest('[data-dr-f]'); if (!f) return;
-  const def = ROOM_FIELDS[S.roomBlock][+f.dataset.drF]; roomAll(def.s).forEach(el => { el.textContent = f.value; });
-  const r = roomCur(); if (def.company) { r.company = f.value; const h = $('.studio-bar h2'); if (h) h.textContent = 'Deal room for ' + f.value; const cb = $('#crumbs b'); if (cb) cb.textContent = f.value; }
+  const def = ROOM_FIELDS[S.roomBlock][+f.dataset.drF];
+  // Writing your own text over a pending AI draft approves that line: the draft counts as used, with your words
+  roomAll(def.s).forEach(el => { if (el.classList.contains('fyr-draft')) { const dr = roomDraft(el.dataset.fyrDraft); roomUnmark(el, true); if (dr) { dr.prev = el.innerHTML; dr.text = f.value; dr.state = 'used'; } f.classList.remove('is-draft'); const tg = f.parentElement.querySelector('.dr-aitag'); if (tg) tg.remove(); } el.textContent = f.value; });  const r = roomCur(); if (def.company) { r.company = f.value; const h = $('.dr-name h2'); if (h) h.textContent = f.value; const cb = $('#crumbs b'); if (cb) cb.textContent = f.value; }
   roomSave(S.roomBlock); roomOutline(); roomRefreshChecks();
 });
 document.addEventListener('change', e => {
@@ -3062,7 +3340,7 @@ try { if (localStorage.getItem(RAIL_KEY) === 'mini') setRailMini(true); } catch 
 window.addEventListener('storage', e => {
   if (![ROOM_KEY, ROOM_EV_KEY].includes(e.key)) return; roomsSync();
   if (S.view === 'rooms' && !S.roomModal) render();
-  if (S.view === 'room') { if (S.roomTab === 'share') roomRefreshShare(); const r = roomCur(), p = $('.studio-bar .meta .pill'); if (r && p) p.outerHTML = roomPill(r, true); }
+  if (S.view === 'room') { if (S.roomTab === 'share') roomRefreshShare(); const r = roomCur(), p = $('.dr-name .meta .pill'); if (r && p) p.outerHTML = roomPill(r, true); }
 });
 
 /* ---------- Library ---------- */
@@ -5068,6 +5346,7 @@ function render() {
   if (['people', 'usage'].includes(S.view) && !(CUR && CUR.admin)) S.view = S.role === 'pmm' ? 'office' : 'create';
   if (['truth', 'roadmap', 'battle', 'library'].includes(S.view) && LAST_VIEW !== S.view) track('view', { area: S.view });
   LAST_VIEW = S.view;
+  document.querySelector('.app').classList.toggle('room-studio', S.view === 'room'); // the deal room editor takes the whole window (D-038)
   renderNav();
   const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, rooms: vRooms, room: vRoom, library: vLibrary, truth: vTruth, roadmap: vRoadmap, rmed: vRmEd, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
   const thumbsEl = $('.thumbs'), thumbsTop = thumbsEl && S.deck && S.__deckId === S.deck.id ? thumbsEl.scrollTop : 0;

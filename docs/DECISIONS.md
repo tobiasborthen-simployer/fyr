@@ -833,3 +833,38 @@ Details are in PARKED.md.
   - Legal and the DPO on processing transcripts. Do the meeting participants' recording notices cover this use?
 
 **Revisit if:** tl;dv's API isn't available on our plan, legal blocks transcript processing, or reps would rather pick and edit than get drafts.
+
+## D-038 — The deal room editor is a full-window studio
+`2026-11-10` · **Status:** Accepted · **Owner:** Tobias
+**Extends:** D-036 (room editor) and D-037 (From the meeting). Changes the editor's layout only. What a room holds, the locks, the checks and the publish rules stay the same.
+
+**Context:**
+- Tobias, 10 Nov 2026: the editor "still reads bad" and uses too much space on the wrong things. He asked for a best-practice studio.
+- Measured at 1440×900, the room preview got 544×638 px, 38% of the screen, and rendered at 0.43 scale. Body text was about 6 px.
+- There were three menus side by side (Fyr's, the section list and the room's own), four rows of header (277 px) above the room, and a right panel that was mostly explanation.
+- Meeting drafts were reviewed in a list, away from where they appear in the room.
+
+**Decision:**
+- **Studio mode.** Opening a room hides Fyr's top bar and collapses Fyr's menu to icons. The editor fills the window.
+- **One top bar.** It holds: back, the company, status, Edit / Share and track, the readiness chip, desktop or phone, Preview, a ⋯ menu (Open as, Copy the room link, Publish changes) and one primary button (*Publish and share* for a draft, *Share* once live). "Built from" moves to a tooltip.
+- **One menu.** The sections become a 52 px strip of numbers that opens on hover, and can be pinned open. The room's own customer menu is hidden while editing and shows in *Preview*.
+- **A readable room.** While editing, the room shows its content column at real size, scaled only when the stage is narrower than 960 px. *Preview* shows the full 1280 px customer page with its menu. A stage under 700 px shows the room's phone layout.
+- **Drafts in place.** Pending tl;dv drafts appear in the room where they will go, highlighted, with *Use* and *Skip* under the current one. The panel is a review queue: progress, the current draft, a list with *Undo*, and the meetings.
+  - Keys: Enter uses the draft, S skips it, and ← → move between drafts.
+  - Typing your own text over a draft, in the room or in a field, approves that line with your words.
+  - A draft is never saved into the room until it's used.
+- **A context panel.** The right panel shows only the selected block's fields. It can be closed, and picking a section opens it again. Under 1180 px it becomes a drawer over the room.
+- **The message check is one chip.** It shows "Ready" in green, or "N to fix" in amber, and bumps when a new problem appears. It opens a list:
+  - things to fix, each with a button that goes to it: drafts, placeholders (selects the next one), avoid-list words (selects the word)
+  - what's fine
+  - good-to-know notes (finance, customer OK on quotes, PMM copy, language)
+
+  *Publish and share* opens this list instead of publishing while anything is left to fix. After the first publish it goes to Share and track.
+- **Less text.** The hint paragraphs and the click-to-edit bar become one first-time tip with *Got it*. The example-data notices become one *Example data* tag.
+- The *Sections*, *Fields* and *Focus* buttons and the decorative URL bar are removed from the editor. The room link stays in Share and track.
+
+**Consequences:**
+- SPEC §4.12 *Room editor* is rewritten to match.
+- Prototype only for now. The app builds the same layout in M4 (or v0.4, see the open item on deal rooms).
+
+**Revisit if:** reps miss the always-visible section list, or the hover strip is hard to use on touch screens.
