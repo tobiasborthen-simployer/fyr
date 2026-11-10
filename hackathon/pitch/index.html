@@ -146,8 +146,8 @@ p { margin: 0; }
 .year { position: absolute; left: 144px; top: 720px; width: 1632px; font-size: 40px; line-height: 1.5; color: var(--text-on-ink); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 16px; }
 .year .odo { font-size: 72px; }
 .slot.inline { position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; border-radius: 16px; }
-.slot.inline input { width: 230px; font-size: 56px; }
-.slot.inline .cur-sym { font: 400 56px/1 var(--display); color: var(--mute-on-ink); }
+.slot.inline input { width: 250px; font-size: 56px; }
+.slot.inline .cur-sym { font: 600 26px/1 var(--ui); letter-spacing: .08em; color: var(--mute-on-ink); }
 
 /* ---------- slide 4: two ways ---------- */
 .split { position: absolute; left: 160px; right: 160px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
@@ -277,7 +277,7 @@ In ten minutes: what that costs us, what changes when the room is made in Fyr, w
   <div class="pad">
     <p class="eyebrow b rise" data-s="0" style="position:absolute;left:160px;top:290px">PMM hackathon · 10 November 2026</p>
     <h1 class="b wipe" data-s="0" style="position:absolute;left:160px;top:350px;width:1100px"><span class="ln"><span>Deal rooms</span></span><span class="ln"><span>in Fyr.</span></span></h1>
-    <p class="lede b rise" data-s="0" data-d="700" style="position:absolute;left:166px;top:800px;width:900px">One page per deal. Made from the presentation, read by the customer.</p>
+    <p class="lede b rise" data-s="0" data-d="700" style="position:absolute;left:166px;top:800px;width:900px">One page per deal. Built on Product truth, shaped by the meeting.</p>
   </div>
   <p class="caption" style="right:40px;bottom:30px">Photo: Simployer, Stockholm 2026</p>
 </section>
@@ -303,7 +303,7 @@ Ask the room: who built a room this week?">
 <!-- 3 · the hours add up -->
 <section class="slide s-hours" data-title="What it adds up to" data-time="75" data-steps="2" data-notes="Let the number land first. One to two hours of a rep’s time, every room, every deal.
 Click: it becomes a month. Three deals a month per seller, and 20 sellers: 60 deals a month. That is 60 to 120 hours of sales time, every month, and 720 to 1,440 hours a year. The slot stays editable if the room has a better figure.
-Click: the year, and the licence. Type the licence cost into its slot. If we don’t have the figures yet, say so and ask the room. Never guess them on stage.">
+Click: the year, and the licence. GetAccept costs us SEK 360,000 a year, on top of the hours.">
   <div class="pad">
     <p class="eyebrow b rise" data-s="0" style="position:absolute;left:144px;top:150px">Every room, every deal</p>
     <div class="hrs-wrap b rise" data-s="0"><div class="hrs">1–2 h</div></div>
@@ -314,14 +314,14 @@ Click: the year, and the licence. Type the licence cost into its slot. If we don
     <p class="op b fade" data-s="1" style="left:1130px">=</p>
     <div class="res b rise" data-s="1"><div class="odo" id="odoMonth"></div><span class="unit">hours of sales time a month</span></div>
 
-    <div class="year b rise" data-s="2"><span>That is</span><span class="odo" id="odoYear"></span><span>hours a year. Plus the licence:</span><label class="slot inline" for="lic"><span class="cur-sym">€</span><input id="lic" inputmode="numeric" autocomplete="off" placeholder="fill in" aria-label="GetAccept licence cost a year"></label><span>a year.</span></div>
+    <div class="year b rise" data-s="2"><span>That is</span><span class="odo" id="odoYear"></span><span>hours a year. Plus the licence:</span><label class="slot inline" for="lic"><span class="cur-sym">SEK</span><input id="lic" inputmode="numeric" autocomplete="off" placeholder="360,000" aria-label="GetAccept licence cost a year, in SEK"></label><span>a year.</span></div>
   </div>
 </section>
 
 <!-- 4 · two ways -->
 <section class="slide s-split" data-title="Two ways to build a room" data-time="60" data-steps="1" data-notes="Same deal, two ways.
 Left, today: PMM updates the template by hand, sales copies it, pastes in the deck, rewrites the challenges, works around the locked design and sends the link. One to two hours.
-Click: in Fyr, the room starts from the presentation the rep already made. Approved content fills itself in. The rep edits in a live preview and shares a personal link.
+Click: in Fyr, the room is built on approved Product truth and the Messaging Framework, then shaped by the meeting: the rep’s presentation today, tl;dv notes next. The rep edits in a live preview and shares a personal link.
 We don’t claim a time for the Fyr side yet. We measure it in the pilot.">
   <div class="pad">
     <h2 class="b wipe" data-s="0"><span class="ln"><span>Same deal.</span></span><span class="ln"><span>Two ways to build it.</span></span></h2>
@@ -337,8 +337,8 @@ We don’t claim a time for the Fyr side yet. We measure it in the pilot.">
       <div class="side fy b rise" data-s="0" data-d="520">
         <div class="head"><b>Deal rooms in Fyr</b><span>Built in</span></div>
         <p class="fy-empty">The same room, made in Fyr.</p>
-        <div class="step b rise" data-s="1" data-d="300">Starts from the presentation<i>built in</i></div>
-        <div class="step b rise" data-s="1">Approved content fills itself in<i>built in</i></div>
+        <div class="step b rise" data-s="1" data-d="300">Built on Product truth<i>built in</i></div>
+        <div class="step b rise" data-s="1">Shaped by the meeting<i>built in</i></div>
         <div class="step b rise" data-s="1">Edit anything, see it live<i>built in</i></div>
         <div class="step b rise" data-s="1">A personal link per person<i>built in</i></div>
         <p class="foot b rise" data-s="1">Time per room: measured in the pilot</p>
@@ -348,28 +348,28 @@ We don’t claim a time for the Fyr side yet. We measure it in the pilot.">
 </section>
 
 <!-- 5 · what if -->
-<section class="slide" data-title="What if" data-time="20" data-notes="Fyr already has the rep’s presentation and brief: the company, the language, the challenges. It already has approved Product truth and the Messaging Framework.
+<section class="slide" data-title="What if" data-time="20" data-notes="Fyr already keeps approved Product truth and the Messaging Framework current. It already has the rep’s presentation and brief: the company, the language, the challenges. Next, tl;dv adds what the customer actually said in the meeting.
 So the room shouldn’t be a second copy. It should be made from the first.">
   <div class="photo"><img src="assets/photo-team.jpg" alt="Five colleagues laughing together in a lift, coffee cups in hand" style="object-position:50% 58%"></div>
   <div class="scrim-left"></div>
   <div class="pad">
     <h2 class="b wipe" data-s="0" style="position:absolute;left:144px;top:330px;width:1100px"><span class="ln"><span>What if the room</span></span><span class="ln"><span>built itself?</span></span></h2>
-    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:640px;width:860px">From what Fyr already knows: the presentation, Product truth and the Messaging Framework.</p>
+    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:640px;width:860px">Built on Product truth and the Messaging Framework. Shaped by the meeting: the presentation, and tl;dv notes next.</p>
   </div>
   <p class="caption" style="right:144px;bottom:98px">Photo: Simployer, Stockholm 2026</p>
 </section>
 
 <!-- 6 · what changes -->
 <section class="slide cream" data-title="One room per deal" data-time="50" data-notes="Four things change. One per click.
-It starts from the presentation in My presentations, so company, language and challenges carry over.
-The content is approved: Product truth and the Messaging Framework, which PMM already keeps current. No second template.
+It is built on Product truth and the Messaging Framework, which PMM already keeps current. No second template.
+Then it is shaped by the meeting. The presentation carries over the company, language and challenges. Next, tl;dv adds what the customer said, in their words. That part needs a new decision first, because tl;dv is parked in Fyr today.
 It looks like the new simployer.com: our design system, our own photos.
 And the rep can change every part of it. Only the framework lines stay locked.">
   <div class="pad">
     <h2 class="b wipe" data-s="0"><span class="ln"><span>One room per deal,</span></span><span class="ln"><span>made in Fyr.</span></span></h2>
     <div class="cols" style="top:560px;grid-template-columns:repeat(4,1fr)">
-      <div class="col b rise" data-s="1"><h3>From the presentation</h3><p class="small">Company, language and challenges carry over.</p></div>
-      <div class="col b rise" data-s="2"><h3>Approved content</h3><p class="small">Product truth and the framework, kept current.</p></div>
+      <div class="col b rise" data-s="1"><h3>Built on Product truth</h3><p class="small">Approved and current, with the Messaging Framework.</p></div>
+      <div class="col b rise" data-s="2"><h3>Shaped by the meeting</h3><p class="small">The presentation today. tl;dv notes next.</p></div>
       <div class="col b rise" data-s="3"><h3>Our own look</h3><p class="small">The brand design system and our photos.</p></div>
       <div class="col b rise" data-s="4"><h3>The rep edits it all</h3><p class="small">Every block. Framework lines stay locked.</p></div>
     </div>
@@ -478,7 +478,7 @@ Leadership: a view of who reads, and the licence. The figure comes from the slot
       <div class="col b rise" data-s="1"><h3>Sales</h3><p class="small">60–120 h a month back, across 20 sellers. Deck and room in one place.</p></div>
       <div class="col b rise" data-s="2"><h3>PMM</h3><p class="small">One source for every room. No drift.</p></div>
       <div class="col b rise" data-s="3"><h3>Customers</h3><p class="small">One page to share inside their company.</p></div>
-      <div class="col b rise" data-s="4"><h3>Leadership</h3><p class="small">A view of who reads. And the licence: <b id="licOut" style="color:#f6f2ff;font-weight:600">€ fill in on slide 3</b></p></div>
+      <div class="col b rise" data-s="4"><h3>Leadership</h3><p class="small">A view of who reads. And the licence: <b id="licOut" style="color:#f6f2ff;font-weight:600">SEK 360,000 a year</b></p></div>
     </div>
   </div>
   <p class="caption" style="right:40px;top:30px">Photo: Simployer, Stockholm 2026</p>
@@ -490,7 +490,7 @@ The framework lines are locked, and every edit runs the same message check as th
 Tracking starts only when the viewer says OK.
 Legal and the DPO approve that notice before a real room.
 Only approved figures, and written OK from customers on their quotes.
-No new systems: tl;dv and Salesforce stay parked. Fyr still depends only on Linear and OpenAI.">
+New systems only by decision: tl;dv comes back with D-037 before it shapes a room. Salesforce stays parked. Today Fyr depends only on Linear and OpenAI.">
   <div class="pad">
     <h2 class="b wipe" data-s="0"><span class="ln"><span>Built with guardrails.</span></span></h2>
     <div class="rails">
@@ -498,7 +498,7 @@ No new systems: tl;dv and Salesforce stay parked. Fyr still depends only on Line
       <div class="rail b rise" data-s="1"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Tracking after OK</b><span>The viewer accepts a short notice first.</span></div></div>
       <div class="rail b rise" data-s="2"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Legal and the DPO</b><span>Approve the notice before the first real room.</span></div></div>
       <div class="rail b rise" data-s="2"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>Approved figures only</b><span>Finance and customers sign off first.</span></div></div>
-      <div class="rail b rise" data-s="3" style="grid-column:1 / -1"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>No new systems</b><span>tl;dv and Salesforce stay parked. Only Linear and OpenAI (D-031, D-036).</span></div></div>
+      <div class="rail b rise" data-s="3" style="grid-column:1 / -1"><svg viewBox="0 0 24 24" fill="none" stroke="#cbb9ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5 11-11"/></svg><div><b>New systems only by decision</b><span>tl;dv returns with D-037. Salesforce stays parked. Today only Linear and OpenAI.</span></div></div>
     </div>
   </div>
 </section>
@@ -507,7 +507,7 @@ No new systems: tl;dv and Salesforce stay parked. Fyr still depends only on Line
 <section class="slide cream s-plan" data-title="Plan and ask" data-time="60" data-steps="4" data-notes="Today: it is built into the Fyr prototype, with rooms, the editor, personal links and tracking. D-036 is accepted.
 Next: a pilot with two or three reps on real deals, timed against the one to two hours today.
 Then: the real app version, in M4, or as v0.4 if it would put the 27 November go-live at risk.
-Click: what we need. Legal and the DPO on tracking, the licence cost, a signing decision (simple e-signature now, BankID later needs a provider), and two or three pilot reps.">
+Click: what we need. Legal and the DPO on tracking, D-037 to bring tl;dv back so meeting notes can shape the room, a signing decision (simple e-signature now, BankID later needs a provider), and two or three pilot reps.">
   <div class="pad">
     <h2 class="b wipe" data-s="0"><span class="ln"><span>Built today.</span></span><span class="ln"><span>Ready for a pilot.</span></span></h2>
     <div class="tl"><i></i></div>
@@ -518,7 +518,7 @@ Click: what we need. Legal and the DPO on tracking, the licence cost, a signing 
     </div>
     <div class="ask b rise" data-s="4">
       <p class="eyebrow">What we need to finish</p>
-      <div class="chips"><span>Legal and the DPO on tracking</span><span>The licence cost</span><span>A signing decision</span><span>2–3 pilot reps</span></div>
+      <div class="chips"><span>Legal and the DPO on tracking</span><span>D-037: tl;dv back in Fyr</span><span>A signing decision</span><span>2–3 pilot reps</span></div>
     </div>
   </div>
 </section>
@@ -535,7 +535,7 @@ Say what is faked: in the prototype, rooms and tracking live in this browser, an
   <div class="scrim-left"></div>
   <div class="pad">
     <h2 class="b wipe" data-s="0" style="position:absolute;left:144px;top:330px;width:1200px;font-size:150px"><span class="ln"><span>Let’s build</span></span><span class="ln"><span>a room, live.</span></span></h2>
-    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:690px;width:900px">From a presentation in Fyr to a shared, tracked deal room.</p>
+    <p class="lede b rise" data-s="0" data-d="600" style="position:absolute;left:150px;top:690px;width:900px">From Product truth and a presentation in Fyr to a shared, tracked deal room.</p>
   </div>
   <p class="caption" style="right:144px;bottom:98px">Photo: Simployer, Stockholm 2026</p>
 </section>
@@ -638,13 +638,14 @@ Say what is faked: in the prototype, rooms and tracking live in this browser, an
     odo(document.getElementById('odoYear'), hoursText(12), animate && on && step >= 2);
     deals.closest('.slot').classList.toggle('filled', !!deals.value);
     lic.closest('.slot').classList.toggle('filled', !!lic.value);
-    var v = parseInt(lic.value, 10);
-    document.getElementById('licOut').textContent = v > 0 ? '€' + fmt(v) + ' a year' : '€ fill in on slide 3';
+    var v = parseInt(String(lic.value).replace(/\D/g, ''), 10);
+    document.getElementById('licOut').textContent = v > 0 ? 'SEK ' + fmt(v) + ' a year' : 'SEK, fill in on slide 3';
   }
   // 3 deals a month per seller × 20 sellers (Tobias, 10 Nov 2026); still editable on the slide
-  deals.value = store('pitch.deals') || '60'; lic.value = store('pitch.licence') || '';
+  deals.value = store('pitch.deals') || '60'; // GetAccept licence: SEK 360,000 a year (Tobias, 10 Nov 2026)
+  lic.value = fmt(store('pitch.licence') || '360000');
   deals.addEventListener('input', function () { deals.value = deals.value.replace(/\D/g, '').slice(0, 4); store('pitch.deals', deals.value); renderHours(true); });
-  lic.addEventListener('input', function () { lic.value = lic.value.replace(/\D/g, '').slice(0, 9); store('pitch.licence', lic.value); renderHours(false); });
+  lic.addEventListener('input', function () { var dg = lic.value.replace(/\D/g, '').slice(0, 9); lic.value = dg ? fmt(dg) : ''; store('pitch.licence', dg); renderHours(false); });
 
   var HOOKS = {
     's-hours': function (s, n, animate) {
