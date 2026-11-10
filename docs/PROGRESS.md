@@ -57,7 +57,8 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
   - Decks without a timeline slide, and blank rooms, get the presentation type's usual plan.
   - The phone preview button shows a smartphone, not a handset.
 - **Verified in the browser:** a room from the Fjellheim deck (NO) shows its 5 steps with a done demo and a dated proposal. After changing the deck, *Update from the presentation* refreshes the table, keeps it editable and saves it. The fallbacks work for Lindqvist (no timeline) and a blank room. Every inline script parses.
-- **Next:** republish the prototype artifact (same link).
+- **Published:** [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) is now version 5, with the studio editor (D-038) and next steps from the presentation (D-039). Only `index.html` changed; the `deal-room/` files were already current.
+- **Next:** Tobias tries the room editor in the published prototype. The walkthrough and M1 sign-off are still open.
 - **Blockers:** none.
 - **Decisions:** D-039 (accepted, from Tobias's question).
 
