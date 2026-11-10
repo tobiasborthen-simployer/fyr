@@ -34,7 +34,11 @@
     '.fyr-notice .fyr-btn{height:40px;padding:0 16px;font-size:14px;background:#f6f2ff;color:#2d0c69;flex:none}' +
     '.fyr-notice .fyr-btn.line{background:transparent;color:#cfc9da;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}' +
     '.fyr-signed{margin-top:22px;padding:16px 18px;border-radius:14px;background:rgba(246,242,255,.08);color:#f6f2ff;font-size:15px}' +
-    '@media(max-width:600px){.fyr-notice{flex-direction:column;align-items:stretch}}';
+    '.fyr-player{background:rgba(15,10,30,.86)}' +
+    '.fyr-vbox{position:relative;width:min(960px,100%)}' +
+    '.fyr-vbox video{display:block;width:100%;max-height:80vh;border-radius:18px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}' +
+    '.fyr-x{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;border:0;background:#f6f2ff;color:#2d0c69;font:600 22px/1 "Hanken Grotesk",sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}' +
+    '@media(max-width:600px){.fyr-notice{flex-direction:column;align-items:stretch}.fyr-x{top:-52px;right:0}}';
   document.head.appendChild(css);
 
   function gate(html) { var g = document.createElement('div'); g.className = 'fyr-gate'; g.innerHTML = '<div class="fyr-box">' + html + '</div>'; document.body.appendChild(g); return g; }
@@ -51,6 +55,66 @@
     var a = document.querySelector('.nav a[href="#' + h + '"]'); if (a) a.parentElement.style.display = 'none';
   });
   document.title = 'Simployer and ' + room.company;
+
+  /* 1b. The welcome video (D-041). Prototype: Fyr's editor keeps the file in this browser's IndexedDB.
+     In the app it is a Vercel Blob URL on the room. Without a video the card is hidden for the customer. */
+  function vidGet(key, done) {
+    try {
+      var q = indexedDB.open('fyr-v03-media', 1);
+      q.onupgradeneeded = function () { q.result.createObjectStore('videos'); };
+      q.onsuccess = function () {
+        var db = q.result, g;
+        try { g = db.transaction('videos', 'readonly').objectStore('videos').get(key); } catch (_) { db.close(); return done(null); }
+        g.onsuccess = function () { db.close(); done(g.result || null); };
+        g.onerror = function () { db.close(); done(null); };
+      };
+      q.onerror = function () { done(null); };
+    } catch (_) { done(null); }
+  }
+  function clock(s) { var t = Math.max(1, Math.round(s || 0)); return Math.floor(t / 60) + ':' + ('0' + t % 60).slice(-2); }
+  function applyVideo() {
+    var all = read(ROOMS, []), cur = room;
+    for (var k = 0; k < all.length; k++) if (all[k].id === id) cur = all[k];
+    var v = cur.video || null, card = $('.video'); room.video = v;
+    if (!card) return;
+    var meta = card.querySelector('b + span'), who = meta && meta.querySelector('.v');
+    if (meta) {
+      var txt = ' · ' + (v ? clock(v.secs) : edit ? 'no video yet' : '0:58'), last = meta.lastChild;
+      if (last && last.nodeType === 3) last.nodeValue = txt; else meta.appendChild(document.createTextNode(txt));
+    }
+    card.setAttribute('aria-label', 'Play video message from ' + (who ? who.textContent : 'Simployer') + (v ? ', ' + clock(v.secs) : ''));
+    card.style.display = v || edit || cur.example ? '' : 'none';
+  }
+  function playVideo() {
+    if (!room.video) return;
+    vidGet(room.video.key, function (blob) {
+      if (!blob) {
+        var g0 = gate('<h2>The video isn\'t in this browser</h2><p>In the prototype, a video stays in the browser it was uploaded in. Open the room there to watch it.</p><div class="row"><button class="fyr-btn" type="button" data-x>Close</button></div>');
+        g0.querySelector('[data-x]').addEventListener('click', function () { g0.remove(); });
+        return;
+      }
+      var u = URL.createObjectURL(blob), g = document.createElement('div');
+      g.className = 'fyr-gate fyr-player';
+      g.innerHTML = '<div class="fyr-vbox"><video controls autoplay playsinline></video><button class="fyr-x" type="button" aria-label="Close the video">×</button></div>';
+      var vd = g.querySelector('video'); vd.src = u;
+      function onKey(e) { if (e.key === 'Escape') close(); }
+      function close() { vd.pause(); URL.revokeObjectURL(u); g.remove(); document.removeEventListener('keydown', onKey); }
+      g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.fyr-x')) close(); });
+      document.addEventListener('keydown', onKey);
+      document.body.appendChild(g); g.querySelector('.fyr-x').focus();
+    });
+  }
+  // The customer clicks anywhere on the card. In Fyr's editor the text is editable, so only the play button plays.
+  document.addEventListener('click', function (e) {
+    if (!room.video || !e.target.closest('.video') || (edit && !e.target.closest('.play'))) return;
+    playVideo();
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('video') && room.video) { e.preventDefault(); playVideo(); }
+  });
+  window.fyrRoomVideo = applyVideo; // Fyr's editor calls this after an upload or removal
+  applyVideo();
+
   if (edit) return;
   if (room.status === 'draft') { gate('<h2>This page isn\'t ready yet</h2><p>Simployer is still preparing it. You\'ll get a link when it\'s ready.</p>'); return; }
 

@@ -51,6 +51,29 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-10 — Deal rooms: upload a welcome video (D-041)
+- **Done:**
+  - *Upload a video* in the room editor now works.
+    - MP4, WebM or MOV, up to 3 minutes and 200 MB.
+    - The panel shows the first frame, name, length and size, with *Replace* and *Remove*.
+    - The welcome's card shows the real length.
+  - On the customer page, clicking the card plays the video in a player over the page. A room without a video hides the card, and example rooms keep their placeholder.
+  - Prototype: the file stays in the browser it was uploaded in (IndexedDB). The app uses Vercel Blob.
+  - **Verified in the browser** with a 12-second MP4:
+    - In the editor: upload, preview, the 0:12 length on the card, and playing from the editor.
+    - Through Maria's personal link: the notice, playing (tracked as a video click), and Escape to close.
+    - In another browser, the room says the video isn't there.
+    - A real room without a video hides the card.
+    - A PNG, a 3:20 video and a broken file are refused with the right message, and the existing video is kept.
+    - *Remove* works.
+    - No console errors, and the copy check shows 0 errors.
+  - Not tested: a WebM that doesn't state its length (Fyr seeks to the end to read it), and a real phone.
+  - SPEC §4.12, PLAN (the upload moves from the v0.4 backlog into M4 Deal rooms) and DECISIONS updated.
+  - Republished [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) as version 7 (`index.html` and `deal-room/room.js`).
+- **Next:** Tobias tries an upload in the published prototype. The M1 walkthrough and sign-off are still open.
+- **Blockers:** none.
+- **Decisions:** D-041.
+
 ### 2026-11-10 — Fix: example deal rooms open in a new browser
 - **Done:**
   - Found during the tl;dv dry run. In a browser that had never opened Fyr, the editor's room preview and the room's personal links said "This room isn't available". The example rooms were only kept in memory until something in a room was saved, and the room page reads them from storage.

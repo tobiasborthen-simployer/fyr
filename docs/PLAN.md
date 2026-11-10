@@ -120,6 +120,7 @@
     - a viewer notice before any tracking
     - events (view, section, time, click, sign), the per-person and per-section views, and alerts by email
   - [ ] Simple e-signature: name, title and a tick, with a timestamp and a PDF receipt. The room shows *Signed*.
+  - [ ] Welcome video upload (D-041): to Vercel Blob, checked for type, length and size, and played from the room.
   - [ ] *From the meeting* (D-037):
     - a read-only tl;dv connection, with meetings matched by email domain
     - OpenAI drafts the rep approves
@@ -139,7 +140,6 @@
 
 - Deal rooms in the app, if the 13 Nov decision moves them out of v0.3 (see M4).
 - BankID signing, which needs a signing provider and a new decision.
-- Video upload for the room's welcome.
 - tl;dv beyond deal rooms (call coach, objection matching). Still parked.
 - Anything else from the M5 pilot that isn't a blocker.
 

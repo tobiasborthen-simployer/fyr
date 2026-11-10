@@ -929,3 +929,33 @@ Details are in PARKED.md.
 - The test was internal and in English. Quality on a real sales meeting in NO or SV is untested until the DPA is signed and legal and the DPO have approved (D-037).
 
 **Revisit if:** tl;dv's notes turn out to miss what sales meetings need, or legal asks for transcripts not to be sent to OpenAI at all.
+
+## D-041 — The rep uploads a welcome video to the deal room
+`2026-11-10` · **Status:** Accepted · **Owner:** Tobias
+**Extends:** D-036 (deal rooms) and D-038 (room editor). **Moves** "Video upload for the room's welcome" from the v0.4 backlog in PLAN into the deal room scope.
+
+**Context:**
+- Tobias, 10 Nov 2026: "We need to be able to upload a video."
+- The room's welcome has a video card ("A minute from me before you read on"), and *Share and track* already reports who played it. But the editor's *Upload a video* button only showed a message, and the card always said 0:58.
+- SPEC §4.12 already ruled out recording video in Fyr and allowed an uploaded file. PLAN had put the upload itself in the v0.4 backlog.
+
+**Decision:**
+- **Upload, not record.** The rep uploads a video file in the welcome's fields. Fyr doesn't record, trim or edit video.
+- **Limits:**
+  - MP4, WebM or MOV, up to 3 minutes and 200 MB.
+  - Fyr checks the type, size and length before saving. If a file doesn't fit, it says what to change.
+- **In the editor:** the panel shows the first frame, the file name, length and size, with *Replace* and *Remove*. The welcome's card shows the rep's name and the real length.
+- **For the customer:**
+  - Clicking the card plays the video in a player over the page, and the click is tracked as before (after the notice).
+  - A room without a video doesn't show the card. Example rooms keep their placeholder.
+- **Storage:**
+  - App: Vercel Blob, which is already in the stack (D-023). The room keeps the URL, name, length and size. No new external dependency.
+  - Prototype: the file stays in the browser it was uploaded in (IndexedDB), next to the rooms in localStorage (D-036). In another browser the room says the video isn't there.
+
+**Consequences:**
+- SPEC §4.12 gets the welcome video in the room editor and on the customer page, plus an acceptance criterion. `DealRoom` gains `video`.
+- PLAN: the upload moves from the v0.4 backlog into M4 Deal rooms. If deal rooms move to v0.4 on 13 Nov, the upload goes with them.
+- The message check notes a room that has no video yet. That doesn't block publishing.
+- Open: whether legal needs a line about the rep's own image and voice in the video. It is the rep's choice to upload one.
+
+**Revisit if:** reps want to record in the browser, or customers ask for captions.

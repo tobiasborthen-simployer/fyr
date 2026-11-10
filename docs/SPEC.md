@@ -598,10 +598,11 @@ v0.2 had none of these. Every deck followed one fixed order.
 - **Top bar:** back, company, status, Edit / Share and track, the readiness chip, desktop or phone, *Preview*, a ⋯ menu (Open as, Copy the room link, Publish changes) and one primary button (*Publish and share* for a draft, *Share* once live).
 - **Left:** a slim strip with one number per section, which opens on hover to show the blocks and can be pinned. Each section and block can be hidden. Framework blocks show a lock, edited blocks a dot, and *From the meeting* the number of drafts waiting.
 - **Middle:** the room itself, live and readable. While editing, the content column shows at real size and the room's own menu is hidden. *Preview* shows the full customer page with its menu. Desktop or phone. Any text can be changed by clicking it.
-- **Right:** only the selected block's fields (challenges, figures, prices, dates, contacts), a photo picker limited to the Simployer image bank, show/hide lists for module cards, stories and questions, and the signing method. It can be closed; under 1180 px it is a drawer.
+- **Right:** only the selected block's fields (challenges, figures, prices, dates, contacts), a photo picker limited to the Simployer image bank, the welcome video ([D-041](DECISIONS.md)), show/hide lists for module cards, stories and questions, and the signing method. It can be closed; under 1180 px it is a drawer.
 - **Locked:** Messaging Framework lines (line, reason, how, trust line, "A classic HR system stores the work. Simployer does it.", the CFO line), approved claims and approved customer quotes.
 - **Message check:** one chip in the top bar: green *Ready* or amber *N to fix*. It runs the framework's avoid list on every edit and counts meeting drafts waiting and placeholders. Each item has a button that goes to it in the room. Notes cover unapproved CFO figures, customer quotes without written OK, and changed Product Truth wording (sent to PMM). *Publish and share* opens the list while anything is left to fix.
 - **A first-time tip** explains click-to-edit and the locks once.
+- **Welcome video** ([D-041](DECISIONS.md)): the rep uploads a video file in the welcome's fields: MP4, WebM or MOV, up to 3 minutes and 200 MB. The panel shows the first frame, the name, length and size, with *Replace* and *Remove*. The welcome's video card shows the rep's name and the real length. Fyr checks the type, size and length before it saves, and says what to change if a file doesn't fit.
 - **What happens next** (01) is built from the presentation's timeline slide: the same steps, descriptions, dates and done ticks, the first open step marked *Next*, and *To agree* where there is no date yet. Owners start as a suggestion (the contact and the rep on the first step, the rep on the proposal, both on the rest). The panel says where the steps came from, and *Update from the presentation* takes them again. Without a timeline slide, or for a blank room, it uses the presentation type's usual plan ([D-039](DECISIONS.md)).
 
 **Share and track**
@@ -615,6 +616,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 **Customer page**
 - Seven sections in the Simployer brand design system, in the room's language. Content from approved Product Truth, the Messaging Framework, the Roadmap and the image bank.
 - *Review and sign*: simple e-signature (name, title, a tick), timestamp and PDF receipt. The room then shows *Signed*.
+- The welcome video plays in a player over the page when the card is clicked, and the click is tracked like any other. Without a video, the card isn't shown ([D-041](DECISIONS.md)).
 
 **Personal from the meeting** ([D-037](DECISIONS.md))
 - Product truth and the Messaging Framework are the substance. The prospect's meetings in tl;dv make the room personal.
@@ -630,13 +632,14 @@ v0.2 had none of these. Every deck followed one fixed order.
 - Quotes appear only with the customer's OK. Otherwise the block is a summary.
 - Transcripts are never shown or stored in the room. Fyr keeps the approved text and a reference to the meeting.
 
-**Not in this version:** BankID or another signing provider, Salesforce sync, video recording in Fyr (an uploaded file only).
+**Not in this version:** BankID or another signing provider, Salesforce sync, video recording or editing in Fyr (an uploaded file only, [D-041](DECISIONS.md)).
 
 **Acceptance criteria**
 - [ ] A rep makes a room from a deck in My presentations in under 2 minutes, with company, language, challenges and the timeline carried over.
 - [ ] Every text in the room can be changed in the editor except locked lines, and the change shows in the preview at once.
 - [ ] Hiding a section or block removes it from the customer page and its menu.
 - [ ] Photos can only be picked from the image bank.
+- [ ] A rep uploads a 1-minute MP4 as the welcome video, and the customer plays it from the room. A file that is the wrong type, over 3 minutes or over 200 MB is refused with a message that says why.
 - [ ] The message check flags an avoid-list word as soon as it is typed.
 - [ ] Each person gets a personal link. Opening it records a view for that person once they accept the notice.
 - [ ] The share tab shows views, reading depth per section and the latest activity per person.
@@ -667,7 +670,7 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `Asset` | featureId, title, type (`screenshot`/`animation`), lang, blobUrl, status, why |
 | `PresentationRule` | name, audience, recipe[], featureMin/Max, mustInclude[], mustAvoid[], tone, cta, notes |
 | `Deck` | ownerId, ruleId, company, pains[], lang, slides (JSON), createdAt |
-| `DealRoom` | ownerId, deckId, company, contact, lang, package, slug, access (`links_and_email`/`invited_only`), status (`draft`/`live`/`signed`), content (JSON: block texts, hidden blocks, photos), meetingRefs[] (tl;dv meeting ids, [D-037](DECISIONS.md)), publishedAt, signedBy/At ([D-036](DECISIONS.md)) |
+| `DealRoom` | ownerId, deckId, company, contact, lang, package, slug, access (`links_and_email`/`invited_only`), status (`draft`/`live`/`signed`), content (JSON: block texts, hidden blocks, photos), meetingRefs[] (tl;dv meeting ids, [D-037](DECISIONS.md)), video (Blob URL, name, length, size, [D-041](DECISIONS.md)), publishedAt, signedBy/At ([D-036](DECISIONS.md)) |
 | `RoomPerson` | roomId, name, email, role, token, invitedBy (`rep`/`forward`), createdAt |
 | `RoomEvent` | roomId, personId, type (`consent`/`view`/`section`/`click`/`sign`), section, seconds, at. Deleted 12 months after the room closes. |
 | `AutomationRun` | automation, at, trigger, result, outcome, minutesSaved |

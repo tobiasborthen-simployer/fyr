@@ -1763,6 +1763,13 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .dr-ih .dr-lbl { margin-bottom: 4px; }
 .dr-note { font-size: 12.5px; color: var(--night-sub); margin: 0; line-height: 1.45; }
 .dr-note .ico { width: 13px; height: 13px; vertical-align: -2px; margin-right: 3px; }
+.dr-vid { display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 12px; background: rgba(255,255,255,.05); border: 1px solid var(--night-line); }
+.dr-vid video { width: 104px; height: 58px; object-fit: cover; border-radius: 8px; background: #000; flex: none; }
+.dr-vid b { display: block; font-size: 13px; font-weight: 600; color: #fff; overflow-wrap: anywhere; }
+.dr-vid small { display: block; font-size: 12px; color: var(--night-sub); margin-top: 2px; }
+.dr-vacts { display: flex; gap: 14px; align-items: center; }
+.dr-vacts .lnk { color: #CDC0EA; }
+.dr-f.busy .btn { opacity: .6; pointer-events: none; }
 .dr-prog { display: grid; gap: 6px; font-size: 12.5px; color: var(--night-sub); }
 .dr-prog b { color: #fff; font-weight: 600; }
 .dr-prog .track { height: 6px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
@@ -3044,7 +3051,12 @@ function roomFieldHTML(f, i) {
   if (f.type === 'meeting') return roomMeetHTML();
   const sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"');
   if (f.type === 'pic') { const cur = (roomAll(f.s)[0] || { getAttribute: () => '' }).getAttribute('src') || ''; return `<div class="dr-f"><label>${sm('i-image')}${f.l} <span style="font-weight:400;color:#9E98C4">· Simployer image bank</span></label><div class="dr-pics">${ROOM_PICS.map(p => `<button type="button" data-dr-pic="${i}" data-src="assets/img/${p}.jpg" class="${cur.includes(p) ? 'on' : ''}" title="${p}"><img src="deal-room/assets/img/${p}.jpg" alt=""></button>`).join('')}</div></div>`; }
-  if (f.type === 'video') return `<div class="dr-f"><label>${f.l}</label><button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="video">${sm('i-play')}Upload a video</button><p class="dr-note">It plays in the welcome.</p></div>`;
+  if (f.type === 'video') { const v = roomCur().video;
+    return `<div class="dr-f" id="dr-vfield"><label>${f.l}</label>${v ? `<div class="dr-vid"><video data-dr-vidprev preload="metadata" muted playsinline></video><div><b>${esc(v.name)}</b><small>${vidClock(v.secs)} · ${(v.size / 1048576).toFixed(1)} MB</small></div></div>
+      <div class="dr-vacts"><button type="button" class="btn btn-ghost-n btn-sm" data-dr="video">${sm('i-video')}Replace</button><button type="button" class="lnk" data-dr="video-rm">Remove</button></div>`
+      : `<button type="button" class="btn btn-ghost-n btn-sm" style="justify-self:start" data-dr="video">${sm('i-video')}Upload a video</button>`}
+      <input type="file" id="dr-vfile" accept="${VID_TYPES.join(',')}" hidden>
+      <p class="dr-note">MP4, WebM or MOV, up to ${VID_MAX_S / 60} minutes and ${VID_MAX_MB} MB. It plays in the welcome${v ? '' : '. Until you upload one, the customer page doesn’t show the video card'}.</p></div>`; }
   if (f.type === 'steps') { const r = roomCur(), d = DECKS.find(x => x.id === r.deckId), tl = d && deckTimeline(d);
     if (!d) return `<p class="dr-note">${ico('i-deck')}Blank room: the steps are Simployer's usual plan. Rooms made from a presentation take the timeline you made there.</p>`;
     return `<div class="dr-hint">${ico('i-deck')}<span>${tl.own ? `From the timeline in your presentation for ${esc(d.company)}: ${tl.steps.length} steps, ${tl.steps.filter(x => x.done).length} done, ${tl.steps.filter(x => x.date).length} with a date.` : `Your presentation for ${esc(d.company)} has no timeline slide yet, so this is the usual plan for ${esc(ruleById(d.rule).name)}.`}</span></div>
@@ -3092,6 +3104,8 @@ function roomIssues() {
   if (!hid.has('s5') && !hid.has('p52')) notes.push('Customer stories and quotes need the customer\'s written OK');
   if (['p42', 'p43', 'p44'].some(b => (r.edited || []).includes(b))) notes.push('You changed Product truth wording in 04. PMM gets a copy to check.');
   if (r.lang !== 'EN') notes.push(`The room text is English in this prototype. ${r.lang} comes from Product truth in the app.`);
+  if (r.video) ok.push(`Welcome video added (${vidClock(r.video.secs)})`);
+  else if (!r.example) notes.push('No welcome video yet. The customer page hides the video card until you upload one.');
   return { fix, ok, notes };
 }
 // The message check as one chip in the top bar: green when the room is ready, amber with a count when something needs fixing
@@ -3112,6 +3126,50 @@ function roomInspector() {
   el.innerHTML = `<div class="dr-ih"><div><span class="dr-lbl">${sec.n ? sec.n + ' · ' : ''}${sec.t}</span><h3>${b.t}</h3></div><button type="button" class="dr-ib sm" data-dr-panel="right" aria-label="Close the panel" title="Close. Pick a section to open it again.">${ico('i-x')}</button></div>
     ${b.lock ? `<p class="dr-note">${ico('i-lock')}Framework lines are locked. Fill in the parts about this customer.</p>` : ''}
     ${fs.length ? `<div class="dr-fields">${fs.map(roomFieldHTML).join('')}</div>` : '<p class="dr-note">Click any text in the room to change it.</p>'}`;
+  roomVidPreview();
+}
+/* Welcome video. Prototype: the file stays in this browser (IndexedDB), next to the rooms in localStorage.
+   In the app it goes to Vercel Blob and the room keeps its URL (SPEC 4.12, D-041). Fyr never records video itself. */
+const VID_DB = 'fyr-v03-media', VID_MAX_MB = 200, VID_MAX_S = 180, VID_TYPES = ['video/mp4', 'video/webm', 'video/quicktime'];
+function vidDb() { return new Promise((ok, no) => { try { const q = indexedDB.open(VID_DB, 1); q.onupgradeneeded = () => q.result.createObjectStore('videos'); q.onsuccess = () => ok(q.result); q.onerror = () => no(q.error); } catch (e) { no(e); } }); }
+async function vidTx(mode, fn) { const db = await vidDb(); return new Promise((ok, no) => { const t = db.transaction('videos', mode), q = fn(t.objectStore('videos')); t.oncomplete = () => { db.close(); ok(q && q.result); }; t.onerror = t.onabort = () => { db.close(); no(t.error); }; }); }
+const vidPut = (key, blob) => vidTx('readwrite', s => s.put(blob, key));
+const vidGet = key => vidTx('readonly', s => s.get(key));
+const vidDel = key => vidTx('readwrite', s => s.delete(key)).catch(() => {});
+const vidClock = s => { const t = Math.max(1, Math.round(s || 0)); return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`; };
+function vidLength(file) {
+  return new Promise((ok, no) => { const v = document.createElement('video'), u = URL.createObjectURL(file); v.preload = 'metadata'; v.muted = true;
+    const done = d => { URL.revokeObjectURL(u); ok(d); };
+    // Some WebM files (screen and browser recordings) don't state their length until the player seeks to the end
+    v.onloadedmetadata = () => { if (isFinite(v.duration)) return done(v.duration); v.ondurationchange = () => { if (isFinite(v.duration)) { v.ondurationchange = null; done(v.duration); } }; v.currentTime = 1e9; };
+    v.onerror = () => { URL.revokeObjectURL(u); no(new Error('unreadable')); }; v.src = u; });
+}
+// Show the first frame of the uploaded video in the panel
+async function roomVidPreview() {
+  const el = $('[data-dr-vidprev]'), r = roomCur(); if (!el || !r || !r.video) return;
+  try { const b = await vidGet(r.video.key); if (!b || !el.isConnected) return; if (roomVidPreview.u) URL.revokeObjectURL(roomVidPreview.u); roomVidPreview.u = URL.createObjectURL(b); el.src = roomVidPreview.u + '#t=0.5'; } catch (_) {}
+}
+// Tell the room preview to show the new length on its video card
+function roomVidRefresh() { const d = roomDoc(), w = d && d.defaultView; try { if (w && w.fyrRoomVideo) w.fyrRoomVideo(); } catch (_) {} }
+async function roomVidUpload(file) {
+  const r = roomCur(); if (!r || !file) return;
+  if (!VID_TYPES.includes(file.type)) { toast('Use an MP4, WebM or MOV file. Most phones and screen recorders save MP4.'); return; }
+  if (file.size > VID_MAX_MB * 1048576) { toast(`That file is ${(file.size / 1048576).toFixed(0)} MB. The limit is ${VID_MAX_MB} MB, so export it at a lower quality and try again.`); return; }
+  const fld = $('#dr-vfield'); if (fld) fld.classList.add('busy');
+  let secs;
+  try { secs = await vidLength(file); } catch (_) { if (fld) fld.classList.remove('busy'); toast('Fyr can’t read that video. Export it as MP4 and try again.'); return; }
+  if (secs > VID_MAX_S + 0.5) { if (fld) fld.classList.remove('busy'); toast(`That video is ${vidClock(secs)}. Keep it under ${VID_MAX_S / 60} minutes: a short hello gets watched.`); return; }
+  const key = `${r.id}-${Date.now().toString(36)}`, old = r.video && r.video.key;
+  try { await vidPut(key, file); } catch (_) { if (fld) fld.classList.remove('busy'); toast('This browser won’t keep the video. Try another browser, or free up space and try again.'); return; }
+  if (old) vidDel(old);
+  r.video = { key, name: file.name, type: file.type, size: file.size, secs: Math.round(secs * 10) / 10, added: Date.now() };
+  r.updated = deckStamp(); roomPut(r); roomVidRefresh(); roomInspector(); roomRefreshChecks();
+  toast(old ? 'Video replaced. The welcome plays the new one.' : `Video added (${vidClock(secs)}). It plays in the welcome when someone clicks it.`);
+}
+function roomVidRemove() {
+  const r = roomCur(); if (!r || !r.video) return; vidDel(r.video.key); delete r.video;
+  r.updated = deckStamp(); roomPut(r); roomVidRefresh(); roomInspector(); roomRefreshChecks();
+  toast(r.example ? 'Video removed.' : 'Video removed. The customer page hides the video card until you add one.');
 }
 // Edit view: the room's own menu is hidden and the content column fills the stage, so the room shows at (or close to) real size.
 // Preview: the full 1280 px customer page with its menu.
@@ -3302,7 +3360,7 @@ document.addEventListener('click', e => {
   if (t.dataset.rcopy) { roomCopy(t.dataset.rcopy); return; }
   if (t.dataset.rdel) {
     if (t.dataset.armed !== '1') { t.dataset.armed = '1'; t.textContent = 'Delete?'; t.style.color = 'var(--red-ink)'; setTimeout(() => { if (t.isConnected && t.dataset.armed === '1') render(); }, 3000); return; }
-    const x = roomById(t.dataset.rdel); ROOMS = (roomsLoad() || ROOMS).filter(y => y.id !== t.dataset.rdel); roomsStore(); render(); toast(`Deleted the deal room for ${x ? x.company : 'that customer'}. Its links stop working.`); return;
+    const x = roomById(t.dataset.rdel); if (x && x.video) vidDel(x.video.key); ROOMS =(roomsLoad() || ROOMS).filter(y => y.id !== t.dataset.rdel); roomsStore(); render(); toast(`Deleted the deal room for ${x ? x.company : 'that customer'}. Its links stop working.`); return;
   }
   if (t.dataset.drTab) { S.roomTab = t.dataset.drTab; $$('[data-dr-tab][aria-pressed]').forEach(b => b.setAttribute('aria-pressed', b.dataset.drTab === S.roomTab)); const st = $('.dr-studio'), body = $('.dr-body'), sh = $('#dr-share'); if (st) st.classList.toggle('tab-share', S.roomTab === 'share'); if (body) body.hidden = S.roomTab !== 'edit'; if (sh) { sh.hidden = S.roomTab !== 'share'; if (!sh.hidden) roomRefreshShare(); } requestAnimationFrame(roomFit); roomDraftBar(); return; }
   if (t.dataset.drDev) { S.roomDev = t.dataset.drDev; $$('[data-dr-dev]').forEach(b => b.setAttribute('aria-pressed', b === t)); roomFit(); return; }
@@ -3324,7 +3382,8 @@ document.addEventListener('click', e => {
   }
   if (a === 'pullsteps') { const d = DECKS.find(x => x.id === r.deckId), doc = roomDoc(); if (!d || !doc) return; if (roomSetSteps(doc, r, deckTimeline(d).steps)) { roomPrepEditable(doc.querySelector('#p12')); roomSave('p12'); roomOutline(); roomInspector(); roomRefreshChecks(); roomScrollTo('p12'); toast('Steps, dates and ticks now match the timeline in your presentation. Owners are a starting point: change them in the table.'); } return; }
   if (a === 'addstep') { const tb = roomAll('#p12 tbody')[0]; if (!tb) return; const n = tb.children.length + 1, tr = roomDoc().createElement('tr'); tr.innerHTML = `<td>${n}</td><td contenteditable="true">New step</td><td contenteditable="true">Both</td><td contenteditable="true">Date</td><td></td>`; tb.appendChild(tr); roomSave('p12'); roomOutline(); roomScrollTo('p12'); toast('Step added. Type in the table to fill it in.'); return; }
-  if (a === 'video') { toast('Video upload comes with the app (Vercel Blob). The prototype keeps the placeholder.'); return; }
+  if (a === 'video') { const fi = $('#dr-vfile'); if (fi) fi.click(); return; }
+  if (a === 'video-rm') { roomVidRemove(); return; }
 });
 document.addEventListener('input', e => {
   if (S.view !== 'room') return;
@@ -3337,6 +3396,7 @@ document.addEventListener('input', e => {
 });
 document.addEventListener('change', e => {
   if (S.view !== 'room') return; const r = roomCur(); if (!r) return;
+  if (e.target.id === 'dr-vfile') { const f = e.target.files && e.target.files[0]; e.target.value = ''; roomVidUpload(f); return; }
   const ok = e.target.closest('[data-dr-draft-ok]'); if (ok) { const dr = roomDraft(ok.dataset.drDraftOk); if (dr) { dr.ok = ok.checked; roomPut(r); roomMeetRefresh(); } return; }
   const mt = e.target.closest('[data-dr-meet]'); if (mt && r.meet) { const m = r.meet.meetings.find(x => x.id === mt.dataset.drMeet); if (m) { m.on = mt.checked; r.meet.drafts.forEach(x => { if (x.mt === m.id && x.state !== 'used') x.state = m.on ? 'pending' : 'skipped'; }); roomPut(r); roomMeetRefresh(); roomRefreshChecks(); } return; }
   const it = e.target.closest('[data-dr-item]'); if (it) { const def = ROOM_FIELDS[S.roomBlock][+it.dataset.drItem], el = roomAll(def.s)[+it.dataset.j]; if (el) el.style.display = it.checked ? '' : 'none'; roomSave(S.roomBlock); roomOutline(); return; }
