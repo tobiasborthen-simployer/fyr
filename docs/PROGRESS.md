@@ -40,10 +40,35 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
 | Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) | Decision | Tobias | 11 Nov | Open |
 | Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea | Content | Tobias | 11 Nov | Open |
+| Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) | Admin | Tobias | Before the first real room | Open |
+| Deal rooms: get GetAccept's licence cost and deals per month for the business case | Content | Tobias | 13 Nov | Open |
+| Deal rooms: decide signing (simple e-signature only, or a BankID provider) and the room domain (`rom.simployer.com`?) | Decision | Tobias | 18 Nov | Open |
+| Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? | Decision | Tobias | 13 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-10 — Deal rooms built into the prototype (D-036), PMM hackathon
+- **Done:**
+  - Hackathon (`hackathon/`, committed):
+    - the deal room page rewritten to the Messaging Framework and the Simployer brand design system, with Stockholm shoot photos and card sections
+    - a clickable mock-up of the rep's side
+  - D-036 accepted: Deal rooms under Create. SPEC gets §4.12, `DealRoom`/`RoomPerson`/`RoomEvent`, and a privacy note in §7.
+  - Prototype:
+    - *Deal rooms* list and room editor: live preview, click-to-edit, hide blocks, image bank photos, locked framework lines, and a message check with placeholders.
+    - *Share and track*: personal links, forwarded-link access, per-person and per-section reading, activity, alerts.
+    - The customer page: `prototype/v0.3/deal-room/` with `room.js` for saved rooms, the notice, tracking and simple e-signing. A draft room doesn't open for customers.
+  - My presentations: a *Deal room* button per row.
+  - Collapsible Fyr menu everywhere. The room editor can hide the sections and fields, and *Focus* does both.
+  - `sync-framework.mjs --check` covers the room page: 0 errors.
+  - Tested in the browser: room made from the Fjellheim deck, Kari's link opened with the notice accepted, sections read, signed. Fyr showed the view, 57% read and *Signed* straight away.
+- **Next:** 10-minute pitch deck for the demo. Fill the business case figures (licence cost, deals per month). Legal and DPO on tracking. Re-publish the prototype artifact with the `deal-room/` folder.
+- **Blockers:** none for the prototype. Real rooms wait for legal, finance (CFO figures) and customer OK on quotes.
+- **Decisions:** D-036 (accepted).
+- **Known gaps:**
+  - The room text is English only. NO/SV should come from Product truth in the app.
+  - Video upload, BankID and server-side links come with the app.
 
 ### 2026-11-06 — D-035 accepted; SPEC updated for paid ad sets
 - **Done:**

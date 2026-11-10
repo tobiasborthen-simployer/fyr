@@ -757,3 +757,36 @@ Details are in PARKED.md.
 - Ties to the open item on the "HR-systemet for [bransje]" banner tag.
 
 **Revisit if:** ad results become reachable (an ads connector or HubSpot ads reporting) and leadership asks to see them in Fyr, or the engine doesn't use Fyr's export.
+
+## D-036 — Deal rooms: a customer page per deal, built and shared from Create
+`2026-11-10` · **Status:** Accepted · **Owner:** Tobias
+**Extends:** 4.7 Presentations (Create). **Supersedes:** "No customer personal data" in SPEC §7 (Privacy), for deal rooms only.
+
+**Context:**
+- PMM hackathon, 10 Nov 2026. Today sales builds deal rooms by hand in GetAccept. The content drifts from what PMM has approved, in all three languages.
+- The August deal room proof of concept was rewritten to the Messaging Framework and the Simployer brand design system, and a clickable mock-up of the rep's side was reviewed (`hackathon/`).
+- Tobias asked for it to be built into Fyr, with a rep backend where every part of the room can be changed, a personal link per person, and tracking of who reads what.
+
+**Decision:**
+- **Where.** *Deal rooms* sits under Create, next to My presentations. Everyone with Sales access can make one. It is not a new org area.
+- **Made from a presentation.** A room starts from a deck in My presentations, or blank. The company, language, contact and challenges come from the deck's brief. Everything else comes from approved Product Truth, the Messaging Framework and the image bank.
+- **Structure.** Seven fixed sections with blocks: where you are today, why act, what becomes possible, what you get, value and proof, safe to implement, proposal and signing.
+- **The rep edits every part.** Any text can be changed in the live preview. Blocks, cards, stories and questions can be hidden. Photos come only from the Simployer image bank.
+- **Locked lines.** Messaging Framework lines, approved claims and approved customer quotes are locked. The message check runs the framework's avoid list on every edit. Changed Product Truth wording is flagged for PMM.
+- **Links.** One unguessable link per room, plus a personal link per person (`?r=`). Forwarded links ask for a work email at the customer's domain, or don't open at all. The rep chooses.
+- **Tracking.** Per person: views, last seen, time, and how far they read each section. Per room: activity and alerts. Tracking starts only after the viewer accepts a short notice on the page.
+- **Signing.** Simple e-signature: name, title and a tick, with a timestamp and a PDF receipt. BankID needs a signing provider, which would be a new external dependency. It is not added.
+- **Still parked.** tl;dv and Salesforce stay parked (PARKED.md). The rep types or carries over the challenges, and the signed deal is entered in Salesforce by hand. The only external dependencies stay Linear and OpenAI (D-031).
+
+**Consequences:**
+- SPEC gets §4.12 Deal rooms, a `DealRoom`, `RoomPerson` and `RoomEvent` entity, and a privacy note in §7.
+- Prototype: Deal rooms is built into `prototype/v0.3`. Rooms, edits and tracking are saved in the browser (`localStorage`), so a personal link opened in the same browser records a real view. The room page is `prototype/v0.3/deal-room/`.
+- `tools/sync-framework.mjs --check` also checks the room page.
+- Open before real customers see a room:
+  - Legal and the DPO approve the viewer notice and the tracking. Tracking named people at a customer is personal data.
+  - Finance approves the CFO figures (4 to 8 month payback, 1,600 hours).
+  - Customers give written OK for the stories and quotes.
+  - Decide whether rooms are served from a Simployer subdomain (`rom.simployer.com` in the mock-up).
+- Adds work to M4 (Create) in the app. If it threatens the 27 Nov go-live, the app version moves to v0.4. The prototype version stays.
+
+**Revisit if:** sales keeps GetAccept for signing anyway, legal doesn't approve the tracking, or reps ask for meeting notes (tl;dv) or Salesforce sync to fill rooms.

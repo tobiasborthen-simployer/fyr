@@ -35,7 +35,7 @@ People register themselves in Fyr's own portal ([D-023](DECISIONS.md)): full nam
 
 | Role picked at registration | Access | Sees | Approval |
 |---|---|---|---|
-| Sales | **Viewer** | Presentations, My presentations, Product truth, Roadmap, Battlecards, Library | None |
+| Sales | **Viewer** | Presentations, My presentations, Deal rooms, Product truth, Roadmap, Battlecards, Library | None |
 | Management | **Viewer** | Same as Sales | None |
 | PM | **Viewer + Release plan** | Same as Sales, plus Releases (list and map), read-only, with no pack actions | Admin approves; viewer until then |
 | PMM | **Editor** | Everything, including the PMM workspace | Admin approves; viewer until then |
@@ -51,7 +51,8 @@ People register themselves in Fyr's own portal ([D-023](DECISIONS.md)): full nam
 ORG AREA (everyone)                  PMM WORKSPACE (editors + approvers)
 ├── Create                           ├── Home              (approval queue / needs action)
 │   ├── New presentation             ├── Releases          List | Map | Roadmap cards
-│   └── My presentations             ├── Launch packs      Packs | Tier playbooks
+│   ├── My presentations             ├── Launch packs      Packs | Tier playbooks
+│   └── Deal rooms (D-036)           │
 ├── Product Truth                    ├── Truth editor      Messaging framework | Feature wording  (EN/NO/SV)
 ├── Roadmap (D-032)                  ├── Battlecards       (editor)
 ├── Battlecards                      │
@@ -581,6 +582,49 @@ v0.2 had none of these. Every deck followed one fixed order.
 - [ ] Codes and links expire, work once and lock after 5 wrong attempts.
 - [ ] A turned-off user is signed out and can't sign in.
 
+### 4.12 Deal rooms (Create) ([D-036](DECISIONS.md))
+
+**Purpose.** One customer page per deal, built from the rep's presentation and Fyr's approved content. The rep edits it, shares a personal link with each person, and sees who reads what. It does the content part of what sales uses GetAccept for today.
+
+**Where.** Create → Deal rooms, for everyone with Sales access. The customer page is outside the Fyr sign-in and opens only through its link.
+
+**Rooms list**
+- One row per room: customer and contact, the presentation it was built from, status (Draft, Live, Signed), people and views, how much has been read, and the latest activity.
+- Figures on top: live rooms, views this week, new people via forwards, rooms waiting for a signature.
+- *New deal room* starts from a deck in My presentations (company, language, contact and challenges from its brief) or blank. The rep picks the package.
+
+**Room editor** (the same dark studio as the deck editor)
+- **Left:** the seven sections and their blocks. Each can be hidden. Framework blocks show a lock, and edited blocks a dot.
+- **Middle:** the room itself, live, in a desktop or phone preview. Any text can be changed by clicking it.
+- **Right:** fields for the selected block (challenges, figures, prices, dates, contacts), a photo picker limited to the Simployer image bank, show/hide lists for module cards, stories and questions, and the signing method. Then the message check.
+- **Locked:** Messaging Framework lines (line, reason, how, trust line, "A classic HR system stores the work. Simployer does it.", the CFO line), approved claims and approved customer quotes.
+- **Message check:** the framework's avoid list on every edit, plus warnings for unapproved CFO figures, customer quotes without written OK, and changed Product Truth wording (sent to PMM).
+
+**Share and track**
+- One unguessable room link, plus a personal link per person (`?r=<token>`). Adding a person creates their link.
+- Access: personal links plus a work email for anyone else (a forward asks for an email at the customer's domain and notifies the rep), or only the people invited.
+- Per person: views, how far they read, time, last seen, and whether they got the link by forward.
+- Per section: the share of people who reached it, and the average time there.
+- Activity feed and alerts: someone new opens it, someone reaches the proposal, someone clicks *Review and sign*, nobody has opened it for 5 days.
+- The page shows a short notice and tracks only after the viewer accepts it.
+
+**Customer page**
+- Seven sections in the Simployer brand design system, in the room's language. Content from approved Product Truth, the Messaging Framework, the Roadmap and the image bank.
+- *Review and sign*: simple e-signature (name, title, a tick), timestamp and PDF receipt. The room then shows *Signed*.
+
+**Not in this version:** BankID or another signing provider, tl;dv meeting notes, Salesforce sync, video recording in Fyr (an uploaded file only).
+
+**Acceptance criteria**
+- [ ] A rep makes a room from a deck in My presentations in under 2 minutes, with company, language and challenges carried over.
+- [ ] Every text in the room can be changed in the editor except locked lines, and the change shows in the preview at once.
+- [ ] Hiding a section or block removes it from the customer page and its menu.
+- [ ] Photos can only be picked from the image bank.
+- [ ] The message check flags an avoid-list word as soon as it is typed.
+- [ ] Each person gets a personal link. Opening it records a view for that person once they accept the notice.
+- [ ] The share tab shows views, reading depth per section and the latest activity per person.
+- [ ] A forwarded link asks for a work email at the customer's domain, or doesn't open, depending on the room's setting.
+- [ ] A signed room shows *Signed* in the list, and the rep gets the PDF receipt.
+
 ## 5. Data model (app)
 
 | Entity | Key fields |
@@ -604,6 +648,9 @@ v0.2 had none of these. Every deck followed one fixed order.
 | `Asset` | featureId, title, type (`screenshot`/`animation`), lang, blobUrl, status, why |
 | `PresentationRule` | name, audience, recipe[], featureMin/Max, mustInclude[], mustAvoid[], tone, cta, notes |
 | `Deck` | ownerId, ruleId, company, pains[], lang, slides (JSON), createdAt |
+| `DealRoom` | ownerId, deckId, company, contact, lang, package, slug, access (`links_and_email`/`invited_only`), status (`draft`/`live`/`signed`), content (JSON: block texts, hidden blocks, photos), publishedAt, signedBy/At ([D-036](DECISIONS.md)) |
+| `RoomPerson` | roomId, name, email, role, token, invitedBy (`rep`/`forward`), createdAt |
+| `RoomEvent` | roomId, personId, type (`consent`/`view`/`section`/`click`/`sign`), section, seconds, at. Deleted 12 months after the room closes. |
 | `AutomationRun` | automation, at, trigger, result, outcome, minutesSaved |
 | `EntryVersion` | entity, entityId, version, diff, by, at (version history for truth / framework / battlecards / playbooks / rules) |
 
@@ -620,7 +667,7 @@ Everything cut is listed in [PARKED.md](PARKED.md), with what it did in v0.2 and
 - **Data.** One Neon Postgres via Drizzle, with a `portal` schema (users, tokens, sessions) and a `fyr` schema (content). Every other table above lives in `fyr`.
 - **Stack.** Next.js (App Router, TypeScript) on Vercel; Postgres (Neon) via Drizzle; Vercel Blob for media; Linear API and webhooks; OpenAI for drafting, behind one drafting module, with the route (Azure OpenAI or the OpenAI API) to be confirmed with IT ([D-005](DECISIONS.md), [D-031](DECISIONS.md)).
 - **AI drafts.** Always labelled as drafts. Never shown in the org area before approval. The prompt includes Brand Rules plus approved truth only.
-- **Privacy.** No customer personal data. The only customer data in decks is the company name and pains a rep types in.
+- **Privacy.** No customer personal data in decks. The only customer data in decks is the company name and pains a rep types in. Deal rooms are the exception ([D-036](DECISIONS.md)): they hold the names and work emails of the people a room is shared with, and their reading events, only after they accept the notice on the page. Legal and the DPO approve the notice before the first real room.
 - **Languages.** EN, NO and SV for both UI and content.
 - **Design.** v0.2's design tokens (Hanken Grotesk / Fraunces, lavender on ink) are ported as-is.
 

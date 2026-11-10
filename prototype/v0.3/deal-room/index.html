@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Simployer deal room</title>
+<!-- DRAFT for review. Copy: Messaging Framework (Simployer One), read 10 Nov 2026. Look: Simployer brand design system (tokens, logos, product views). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens: subset of the Simployer brand design system (project/tokens.css) */
+:root{
+  --white:#ffffff;
+  --ink-900:#1f1b2e; --ink-700:#4a4458; --ink-600:#6a6377; --ink-450:#827b91; --ink-300:#a9a2bc; --ink-200:#cfc9da; --ink-100:#ddd6e6;
+  --ink-a08:rgba(31,27,46,.08); --ink-a12:rgba(31,27,46,.12); --ink-a24:rgba(31,27,46,.24);
+  --paper-50:#fbfaf7; --paper-100:#f1efe9; --paper-300:#ddd8cd;
+  --plum-950:#1f0850; --plum-900:#2d0c69; --plum-a08:rgba(45,12,105,.08);
+  --lav-600:#6b45c9; --lav-500:#9773ff; --lav-100:#e9e4f4; --lav-50:#f6f2ff;
+  --white-a04:rgba(255,255,255,.04); --white-a08:rgba(255,255,255,.08); --white-a12:rgba(255,255,255,.12);
+  --green-800:#10563a; --green-100:#ddefe3;
+
+  --surface-page:var(--paper-100); --surface-raised:var(--paper-50); --surface-card:var(--white);
+  --surface-tint:var(--lav-50); --surface-dark:var(--ink-900);
+  --text-strong:var(--ink-900); --text-body:var(--ink-700); --text-meta:var(--ink-600);
+  --text-brand:var(--plum-900); --text-accent:var(--lav-600); --text-on-accent:var(--lav-50);
+  --border-warm:var(--paper-300); --border-cool:var(--ink-100); --border-subtle:var(--plum-a08); --border-field:var(--ink-450);
+  --accent:var(--plum-900); --accent-hover:var(--plum-950);
+  --brand-lavender-ink:var(--lav-600);
+  --btn-bg:var(--plum-900); --btn-bg-hover:var(--plum-950); --btn-fg:var(--lav-50); --btn2-border:var(--ink-a24);
+  --band-dark-bg:var(--ink-900); --band-dark-text:var(--ink-200); --band-dark-mute:var(--ink-300);
+  --band-dark-heading:var(--lav-50); --band-dark-card:var(--white-a04); --band-dark-line:var(--white-a08);
+
+  --shadow-window:0 0 0 1px rgba(45,12,105,.08),0 2px 6px rgba(45,12,105,.06),0 40px 80px -40px rgba(45,12,105,.45);
+  --shadow-card-hover:0 0 0 1px rgba(45,12,105,.16),0 16px 32px -20px rgba(45,12,105,.45);
+  --shadow-lift:0 1px 2px rgba(31,27,46,.06),0 16px 36px -20px rgba(31,27,46,.24);
+  --shadow-ring:0 0 0 1px rgba(45,12,105,.08);
+  --shadow-btn-hover:0 12px 24px -14px rgba(45,12,105,.75);
+
+  --btn-height:48px; --btn-pad-x:24px; --btn-radius:12px;
+  --card-pad:36px; --card-radius:20px; --win-radius:18px; --band-dark-radius:28px; --radius-pill:999px;
+  --font-display:Fraunces,'Fraunces Fallback',Georgia,serif;
+  --font-ui:'Hanken Grotesk',system-ui,sans-serif;
+
+  --nav-w:296px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-ui);
+  font-size:16px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.shell{display:flex;align-items:flex-start}
+
+/* type scale (d1 to d5, lede, eyebrow) */
+h1,h2,h3,.d4,.d5{font-family:var(--font-display);font-weight:400;color:var(--text-strong);text-wrap:balance}
+h1{font-size:56px;line-height:1;letter-spacing:-.024em;margin:0 0 24px}
+h2{font-size:40px;line-height:1.08;letter-spacing:-.018em;margin:0}
+h3{font-size:32px;line-height:1.1;letter-spacing:-.015em;margin:0 0 16px;max-width:19em}
+.d4{font-size:28px;line-height:1.12;letter-spacing:-.015em}
+.d5{font-size:24px;line-height:1.2;letter-spacing:-.01em}
+h4{font-family:var(--font-ui);font-size:17px;font-weight:600;line-height:1.35;color:var(--text-strong);margin:28px 0 6px}
+h4:first-child{margin-top:0}
+.lede{font-size:20px;line-height:1.5;color:var(--text-body);max-width:30em;margin:0}
+.eyebrow{font-size:12px;line-height:1;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--brand-lavender-ink);margin:0 0 16px}
+p{margin:0 0 14px;max-width:38em}
+p:last-child{margin-bottom:0}
+strong{font-weight:600;color:var(--text-strong)}
+.small{font-size:14px;line-height:1.45;color:var(--text-meta)}
+.how{font-weight:600;color:var(--text-brand);font-size:17px}
+
+/* ---------- nav ---------- */
+/* the sidebar is ink */
+.nav{
+  width:var(--nav-w);flex:0 0 var(--nav-w);position:sticky;top:0;height:100vh;
+  overflow-y:auto;padding:32px 24px 24px 32px;color:var(--band-dark-text);
+  background:var(--band-dark-bg);display:flex;flex-direction:column;scrollbar-width:thin;
+}
+.nav::-webkit-scrollbar{width:6px}
+.nav::-webkit-scrollbar-thumb{background:var(--white-a12);border-radius:3px}
+.brandmark{display:flex;flex-direction:column;gap:12px;margin-bottom:6px}
+.brandmark img{display:block;width:104px;height:auto}
+.brandmark span{font-size:12px;line-height:1;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--band-dark-mute)}
+.nav-for{
+  font-size:13px;color:var(--band-dark-text);line-height:1.5;
+  padding-bottom:20px;border-bottom:1px solid var(--band-dark-line);margin:10px 0 20px;
+}
+.nav ol{list-style:none;margin:0;padding:0}
+.nav-sec{margin-bottom:14px}
+.nav-sec > a{
+  display:flex;gap:10px;align-items:baseline;text-decoration:none;
+  font-size:14px;font-weight:600;line-height:1.3;padding:2px 0;color:var(--band-dark-heading);
+}
+.nav-sec > a .n{font-size:12px;font-weight:600;color:var(--band-dark-mute);flex:0 0 18px;font-variant-numeric:tabular-nums}
+.nav-sec > a:hover{color:var(--white)}
+.nav-pages{margin:6px 0 0 28px!important;border-left:1px solid var(--band-dark-line)}
+.nav-pages a{
+  display:block;text-decoration:none;color:var(--band-dark-mute);font-size:13px;line-height:1.3;
+  padding:5px 0 5px 13px;margin-left:-1px;border-left:2px solid transparent;
+  transition:color .2s ease,border-color .2s ease;
+}
+.nav-pages a:hover{color:var(--band-dark-heading)}
+.nav-pages a.on{color:var(--band-dark-heading);font-weight:600;border-left-color:var(--lav-500)}
+
+.repcard{
+  margin-top:auto;padding:14px;border-radius:16px;background:var(--band-dark-card);box-shadow:inset 0 0 0 1px var(--band-dark-line);
+  display:flex;gap:12px;align-items:center;
+}
+.avatar{
+  width:40px;height:40px;border-radius:50%;flex:0 0 40px;overflow:hidden;background:var(--lav-100);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:600;color:var(--text-brand);letter-spacing:.02em;
+}
+.repcard div b{display:block;font-size:14px;font-weight:600;color:var(--band-dark-heading)}
+.repcard div span{display:block;font-size:13px;color:var(--band-dark-mute);line-height:1.4}
+.repcard a{color:var(--band-dark-heading);text-decoration:none}
+.repcard a:hover{text-decoration:underline}
+
+/* ---------- main ---------- */
+.main{flex:1 1 auto;min-width:0;padding:0 56px 128px;max-width:880px}
+
+/* the hero is an ink band, with a photo from the Stockholm shoot */
+.hero{
+  margin-top:72px;background:var(--band-dark-bg);border-radius:var(--band-dark-radius);
+  padding:48px 44px 44px;display:grid;grid-template-columns:1.25fr .75fr;gap:36px;align-items:stretch;
+}
+.hero .eyebrow{color:var(--band-dark-mute)}
+.hero h1{color:var(--band-dark-heading)}
+.hero .lede{color:var(--band-dark-text)}
+.hero-photo{margin:0;border-radius:var(--card-radius);overflow:hidden;line-height:0;min-height:320px}
+.hero-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+
+/* video */
+.video{
+  margin:32px 0 0;border-radius:var(--card-radius);background:var(--band-dark-card);box-shadow:inset 0 0 0 1px var(--band-dark-line);
+  padding:20px 22px;display:flex;align-items:center;gap:16px;cursor:pointer;
+  transition:background .2s ease;
+}
+.video:hover{background:var(--white-a08)}
+.play{
+  width:48px;height:48px;flex:0 0 48px;border-radius:50%;background:var(--lav-50);
+  display:flex;align-items:center;justify-content:center;
+}
+.play::after{content:"";border-left:13px solid var(--plum-900);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+.video b{display:block;font-size:16px;font-weight:600;color:var(--band-dark-heading)}
+.video span{display:block;font-size:13px;color:var(--band-dark-mute);margin-top:2px}
+
+/* sections */
+.sec{padding-top:88px}
+.sec-head{margin-bottom:8px}
+.sec-head .eyebrow{
+  display:inline-block;margin-bottom:14px;padding:6px 10px;border-radius:var(--radius-pill);
+  background:var(--band-dark-bg);color:var(--band-dark-heading);letter-spacing:.06em;
+}
+.sec.dark .sec-head .eyebrow{background:var(--lav-50);color:var(--text-strong)}
+
+.blk{padding:40px 0;border-bottom:1px solid var(--border-warm)}
+.blk:last-child{border-bottom:0;padding-bottom:4px}
+
+ul.pts{margin:0 0 14px;padding-left:20px;max-width:38em}
+ul.pts li{margin-bottom:8px}
+ul.pts li::marker{color:var(--text-meta)}
+
+.said{background:var(--surface-card);border-radius:16px;padding:18px 22px;margin:4px 0 24px;max-width:34em}
+.said p{font-family:var(--font-display);font-size:20px;line-height:1.35;letter-spacing:-.01em;color:var(--text-strong);margin:0}
+.said span{display:block;font-size:13px;color:var(--text-meta);margin-top:10px}
+
+blockquote{margin:28px 0;padding:28px 30px;background:var(--surface-tint);border-radius:var(--card-radius);max-width:36em}
+blockquote p{font-family:var(--font-display);font-size:24px;line-height:1.25;letter-spacing:-.01em;color:var(--text-strong);margin:0}
+blockquote span{display:block;font-size:13px;color:var(--text-meta);margin-top:14px}
+
+/* product views: renders on the Himmel mat, never cropped */
+.view{margin:0;line-height:0;border-radius:var(--card-radius);overflow:hidden}
+.view img{display:block;width:100%;height:auto}
+
+/* pillar cards */
+.pillars{display:grid;gap:16px;margin:30px 0 0}
+.pillar{background:var(--surface-card);border-radius:var(--card-radius);padding:var(--card-pad)}
+.pillar .eyebrow{margin-bottom:12px}
+.pillar .d5{margin:0 0 8px}
+.pillar p{margin:0}
+.pillar.media{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.pillar.media.wide{grid-template-columns:1fr 1.1fr}
+@media(max-width:900px){.pillar.media,.pillar.media.wide{grid-template-columns:1fr}}
+
+/* the one dark band */
+.sec.dark{
+  background:var(--band-dark-bg);color:var(--band-dark-text);border-radius:var(--band-dark-radius);
+  padding:56px 44px 48px;margin-top:88px;
+}
+.sec.dark h2,.sec.dark h3,.sec.dark h4{color:var(--band-dark-heading)}
+.sec.dark .blk{border-color:var(--band-dark-line);padding-bottom:0}
+.sec.dark p,.sec.dark li{color:var(--band-dark-text)}
+.sec.dark .lede{color:var(--band-dark-text)}
+.sec.dark .small{color:var(--band-dark-mute)}
+.sec.dark ul.pts li::marker{color:var(--band-dark-mute)}
+
+/* two-up fork */
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0 8px}
+.fork > div{border-radius:16px;padding:24px;background:var(--band-dark-card);box-shadow:inset 0 0 0 1px var(--band-dark-line)}
+.fork h4{margin:0 0 8px;font-size:16px}
+.fork p{font-size:15px;margin:0}
+.sec.dark .fork .win{background:var(--surface-tint);box-shadow:none}
+.sec.dark .fork .win h4{color:var(--text-strong)}
+.sec.dark .fork .win p{color:var(--text-body)}
+
+/* card grids: one card per item, wraps by width */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0 0}
+.cards.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.c{background:var(--surface-card);border-radius:var(--card-radius);padding:26px 26px 28px;display:flex;flex-direction:column;min-width:0}
+.c .k{font-size:12px;line-height:1;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text-meta);margin:0 0 14px}
+.c h4{margin:0 0 8px}
+.c p{margin:0 0 10px;font-size:15.5px;line-height:1.55}
+.c p:last-child{margin-bottom:0}
+.c .q{font-family:var(--font-display);font-size:20px;line-height:1.3;letter-spacing:-.01em;color:var(--text-strong)}
+.c .who{font-size:13px;color:var(--text-meta);margin-top:auto;padding-top:14px}
+.c .big{font-family:var(--font-display);font-size:36px;line-height:1;letter-spacing:-.018em;color:var(--text-strong);margin:0 0 12px}
+.c .d5{margin:0 0 8px}
+.c.tint{background:var(--surface-tint)}
+.c.ink{background:var(--band-dark-bg)}
+.c.ink .k{color:var(--band-dark-mute)}
+.c.ink h4,.c.ink .big,.c.ink .d5{color:var(--band-dark-heading)}
+.c.ink p{color:var(--band-dark-text)}
+.sec.dark .c{background:var(--band-dark-card);box-shadow:inset 0 0 0 1px var(--band-dark-line)}
+.sec.dark .c .big{color:var(--band-dark-heading)}
+.c .textlink{margin-top:auto;padding-top:12px;font-size:15px}
+.after{margin-top:26px}
+h4.after{margin-bottom:0}
+
+/* two pictures side by side */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 0;align-items:start}
+.duo figure{margin:0;border-radius:var(--card-radius);overflow:hidden;line-height:0}
+.duo img{display:block;width:100%;height:auto}
+@media(max-width:700px){.duo{grid-template-columns:1fr}}
+
+/* customer stories */
+.story{background:var(--surface-card);border-radius:var(--card-radius);padding:32px;margin:18px 0 0}
+.story > .k{font-size:12px;line-height:1;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text-meta);margin:0 0 12px}
+.story > .d4{margin:0 0 16px}
+.story blockquote{margin:20px 0 0;max-width:none}
+
+/* FAQ */
+.faq{margin-top:8px}
+.faq details{border-top:1px solid var(--border-warm)}
+.faq details:last-child{border-bottom:1px solid var(--border-warm)}
+.faq summary{
+  cursor:pointer;list-style:none;position:relative;padding:20px 44px 20px 0;
+  font-size:17px;font-weight:600;color:var(--text-strong);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:0;top:15px;width:30px;height:30px;border-radius:50%;
+  background:var(--band-dark-bg);color:var(--band-dark-heading);font-size:18px;line-height:30px;text-align:center;font-weight:500;
+}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:0;padding:0 44px 22px 0}
+.faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* tables */
+.card{background:var(--surface-card);border-radius:var(--card-radius);padding:8px 28px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:0}
+th,td{text-align:left;padding:14px 16px 14px 0;border-bottom:1px solid var(--border-cool);vertical-align:top;line-height:1.5}
+th{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text-meta);padding-top:18px;padding-bottom:12px}
+tr:last-child td{border-bottom:0}
+.spec td:first-child{width:42%;color:var(--text-meta)}
+.spec td:last-child{font-weight:600;color:var(--text-strong)}
+.feat td:first-child{width:32%;font-weight:600;color:var(--text-strong);padding-right:24px}
+.plan td:first-child{width:30px;color:var(--text-meta);font-weight:600;font-variant-numeric:tabular-nums}
+.plan td:nth-child(2){width:40%;font-weight:600;color:var(--text-strong)}
+.plan td{font-size:14.5px}
+
+.sia{width:18px;height:18px;vertical-align:-3px;margin-right:6px}
+
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:var(--radius-pill);white-space:nowrap;line-height:1.4}
+.tag.done{background:var(--lav-100);color:var(--text-meta)}
+.tag.now{background:var(--accent);color:var(--btn-fg)}
+.tag.next{background:var(--green-100);color:var(--green-800)}
+.tag.new{background:var(--lav-100);color:var(--text-accent);margin-left:8px;vertical-align:2px}
+
+/* numbers row */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 0}
+.nums div{background:var(--band-dark-bg);border-radius:16px;padding:22px}
+.nums div b{display:block;font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.018em;line-height:1;color:var(--band-dark-heading)}
+.nums div span{display:block;font-size:14px;color:var(--band-dark-text);margin-top:10px;line-height:1.45}
+
+.callout{background:var(--surface-card);border-radius:var(--card-radius);padding:28px 30px;margin:16px 0 0}
+.callout h4{margin:0 0 7px}
+.callout p{margin:0}
+.callout.tint{background:var(--surface-tint);margin-top:32px}
+.callout.tint .d4{margin:0 0 10px}
+
+.trustline{font-family:var(--font-display);font-size:28px;line-height:1.12;letter-spacing:-.015em;color:var(--text-strong);margin:0 0 18px;max-width:20em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.chips span{font-size:13px;color:var(--text-meta);background:var(--surface-card);box-shadow:var(--shadow-ring);border-radius:var(--radius-pill);padding:7px 14px}
+.chips b{color:var(--text-strong);font-weight:600}
+
+.qa{border-top:1px solid var(--border-warm);padding:20px 0}
+.qa:first-of-type{border-top:0;padding-top:0}
+.qa b{display:block;font-size:17px;font-weight:600;color:var(--text-strong);margin-bottom:6px}
+.qa p{margin:0}
+
+.signbox{background:var(--band-dark-bg);color:var(--band-dark-text);border-radius:24px;padding:32px;margin-top:26px}
+.signbox .sr{display:flex;justify-content:space-between;gap:20px;font-size:15px;padding:12px 0;border-bottom:1px solid var(--band-dark-line)}
+.signbox .sr > span:last-child{font-weight:600;color:var(--band-dark-heading);text-align:right}
+.signbox .btn{background:var(--lav-50);color:var(--plum-900)}
+.signbox .btn:hover{background:var(--white);box-shadow:0 12px 26px -14px rgba(0,0,0,.65)}
+.btn{
+  display:inline-flex;align-items:center;height:var(--btn-height);padding:0 var(--btn-pad-x);margin-top:26px;
+  background:var(--btn-bg);color:var(--btn-fg);border-radius:var(--btn-radius);
+  text-decoration:none;font-size:15px;font-weight:600;line-height:1;
+  transition:background .2s ease,box-shadow .2s ease;
+}
+.btn:hover{background:var(--btn-bg-hover);box-shadow:var(--shadow-btn-hover)}
+.textlink{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;margin:32px 0 4px}
+.split > figure.photo{margin:0;border-radius:var(--card-radius);overflow:hidden;background:var(--lav-100);line-height:0}
+.split > figure.photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 30%}
+.split .col > :first-child{margin-top:0}
+.split .col > :last-child{margin-bottom:0}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:22px;margin-top:24px}}
+.slot{
+  margin:28px 0 0;height:240px;border-radius:var(--card-radius);background:var(--surface-raised);
+  border:2px dashed var(--border-field);display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:14px;font-weight:500;color:var(--text-meta);padding:20px;
+}
+.photo-wide{margin:28px 0 0;border-radius:var(--card-radius);overflow:hidden;line-height:0}
+.photo-wide img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center 35%}
+
+.cmp{margin:22px 0 0;background:var(--surface-card);border-radius:var(--card-radius);overflow:hidden}
+.cmp .row{display:grid;grid-template-columns:1fr 150px 150px;border-top:1px solid var(--border-cool)}
+.cmp .row:first-child{border-top:0}
+.cmp .row > div{padding:12px 18px;font-size:14.5px}
+.cmp .row.hdr{background:var(--band-dark-bg)}
+.cmp .row.hdr > div{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--band-dark-text);padding-top:16px;padding-bottom:16px}
+.cmp .row.hdr > div:nth-child(3){background:var(--plum-900);color:var(--band-dark-heading)}
+.cmp .row.grp > div{font-size:13px;font-weight:600;color:var(--text-strong);background:var(--surface-raised);padding-top:10px;padding-bottom:10px}
+.cmp .row > div:nth-child(2),.cmp .row > div:nth-child(3){text-align:center}
+.cmp .row > div:nth-child(3){background:var(--surface-tint);font-weight:600;color:var(--text-strong)}
+.cmp .yes::after{content:"Included"}
+.cmp .no{color:var(--text-meta)}
+.cmp .no::after{content:"Not included"}
+.cmp .txt{font-size:13px}
+@media(max-width:900px){.cmp .row{grid-template-columns:1fr 92px 92px}.cmp .row > div{font-size:13px;padding:10px 10px}}
+
+.modes{
+  position:fixed;top:14px;right:18px;z-index:60;display:flex;gap:2px;padding:4px;
+  border-radius:var(--radius-pill);background:var(--surface-card);box-shadow:var(--shadow-lift);
+}
+.modes button{
+  font-family:var(--font-ui);font-size:13px;font-weight:600;
+  padding:8px 14px;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--text-meta);
+  cursor:pointer;transition:background .2s ease,color .2s ease;
+}
+.modes button:hover{color:var(--text-strong)}
+.modes button.on{background:var(--accent);color:var(--btn-fg)}
+@media(max-width:900px){.modes{top:auto;bottom:14px;right:14px}.modes button{padding:8px 12px;font-size:12px}}
+body.tpl .of{display:none}
+body:not(.tpl) .ot{display:none}
+.v{transition:background .2s ease}
+body.tpl .v{background:var(--lav-100);color:var(--text-accent);font-weight:600;padding:0 5px;border-radius:6px}
+body.tpl .avatar{background:var(--lav-100)}
+.foot{
+  margin-top:88px;padding:36px 44px;border-radius:var(--band-dark-radius);background:var(--band-dark-bg);
+  font-size:13px;color:var(--band-dark-mute);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+}
+.foot b{display:block;font-family:var(--font-display);font-weight:400;font-size:28px;line-height:1.12;color:var(--band-dark-heading);margin-bottom:10px;letter-spacing:-.015em}
+.foot img{display:block;width:100px;height:auto}
+.foot .v{color:var(--band-dark-text)}
+
+.navtoggle{display:none}
+@media(max-width:1080px){:root{--nav-w:260px}.main{padding:0 36px 112px}}
+@media(max-width:900px){
+  .shell{display:block}
+  .nav{position:fixed;inset:0 auto 0 0;z-index:40;width:290px;transform:translateX(-100%);transition:transform .2s ease}
+  .nav.open{transform:translateX(0);box-shadow:var(--shadow-lift)}
+  .navtoggle{
+    display:block;position:fixed;z-index:50;top:14px;left:14px;font-family:var(--font-ui);
+    font-size:13px;font-weight:600;padding:9px 16px;border-radius:var(--radius-pill);cursor:pointer;
+    background:var(--accent);color:var(--btn-fg);border:0;
+  }
+  .main{padding:0 16px 96px;max-width:none}
+  .hero{margin-top:64px;padding:32px 20px 24px;grid-template-columns:1fr;gap:24px;border-radius:22px}
+  .hero-photo{min-height:0;aspect-ratio:4/3}
+  .foot{padding:28px 20px;border-radius:22px}
+  h1{font-size:40px}
+  h2{font-size:32px}
+  h3{font-size:28px}
+  .lede{font-size:18px}
+  .sec.dark{padding:40px 20px 32px;border-radius:22px}
+  .pillar{padding:24px}
+  .fork{grid-template-columns:1fr}
+  .nums{grid-template-columns:1fr}
+  .card{padding:6px 18px}
+  table,tbody,tr,td{display:block}
+  thead{display:none}
+  tr{padding:14px 0;border-bottom:1px solid var(--border-cool)}
+  tr:last-child{border-bottom:0}
+  td{border:0;padding:2px 0;width:auto!important}
+  .video{padding:20px}
+  .signbox{padding:24px 20px}
+}
+a:focus-visible,button:focus-visible,.video:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+@media print{.nav,.navtoggle,.modes{display:none}.main{max-width:none;padding:0}.blk{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="nav">Contents</button>
+
+  <div class="modes" role="group" aria-label="View mode">
+    <button type="button" data-mode="deal" class="on">Example deal</button>
+    <button type="button" data-mode="tpl">Blank template</button>
+  </div>
+
+<div class="shell">
+<nav class="nav" id="nav" aria-label="Contents">
+  <div class="brandmark"><img src="assets/img/logo-white.svg" width="100" height="22" alt="Simployer"><span>Deal room</span></div>
+  <p class="nav-for">Prepared for <span class="v" data-t="{Company}">Vantera Group</span><br><span class="v" data-t="{Contact}">Anna Lindqvist</span> · <span class="v" data-t="{date}">5 August 2026</span></p>
+  <ol>
+    <li class="nav-sec"><a href="#s1"><span class="n">01</span>Where you are today</a>
+      <ol class="nav-pages">
+        <li><a href="#p11">What you told us</a></li>
+        <li><a href="#p12">What happens next</a></li>
+      </ol></li>
+    <li class="nav-sec"><a href="#s2"><span class="n">02</span>Why do anything at all</a>
+      <ol class="nav-pages"><li><a href="#p21">The cost of doing nothing</a></li></ol></li>
+    <li class="nav-sec"><a href="#s3"><span class="n">03</span>What becomes possible</a>
+      <ol class="nav-pages">
+        <li><a href="#p31">What changes for you</a></li>
+        <li><a href="#p32">Who does the work</a></li>
+      </ol></li>
+    <li class="nav-sec"><a href="#s4"><span class="n">04</span>What you get</a>
+      <ol class="nav-pages">
+        <li><a href="#p41">Your scope</a></li>
+        <li><a href="#p42">Core HR and Sia</a></li>
+        <li><a href="#p43">In the spotlight</a></li>
+        <li><a href="#p44">Also available</a></li>
+      </ol></li>
+    <li class="nav-sec"><a href="#s5"><span class="n">05</span>Value and proof</a>
+      <ol class="nav-pages">
+        <li><a href="#p51">Return on investment</a></li>
+        <li><a href="#p52">Examples from our customers</a></li>
+      </ol></li>
+    <li class="nav-sec"><a href="#s6"><span class="n">06</span>Safe to implement</a>
+      <ol class="nav-pages">
+        <li><a href="#p61">How you get live</a></li>
+        <li><a href="#p62">Security and your systems</a></li>
+      </ol></li>
+    <li class="nav-sec"><a href="#s7"><span class="n">07</span>Your proposal and next steps</a>
+      <ol class="nav-pages">
+        <li><a href="#p71">Your proposal</a></li>
+        <li><a href="#p72">Questions we get asked</a></li>
+        <li><a href="#p73">Ready when you are</a></li>
+      </ol></li>
+  </ol>
+  <div class="repcard">
+    <div class="avatar" aria-hidden="true"><span class="v" data-t="AB">NU</span></div>
+    <div>
+      <b><span class="v" data-t="{Your name}">Nicole Udd</span></b>
+      <span>Account Executive</span>
+      <span class="of"><a href="mailto:nicole.udd@simployer.com">nicole.udd@simployer.com</a></span><span class="ot">{your.name}@simployer.com</span>
+    </div>
+  </div>
+</nav>
+
+<main class="main">
+
+<header class="hero">
+  <div>
+  <p class="eyebrow">Simployer and <span class="v" data-t="{Company name}">Vantera Group</span></p>
+  <h1>Everything we discussed, in one place.</h1>
+  <p class="lede">Hi <span class="v" data-t="{name}">Anna</span>. Here's what we covered on <span class="v" data-t="{date}">5 August</span>, what we'd recommend, and what happens next. Share it with anyone at <span class="v" data-t="{Company}">Vantera</span>, so they can catch up without a meeting. Nothing here is final. If something's wrong, tell me and I'll change it.</p>
+
+  <div class="video" role="button" tabindex="0" aria-label="Play video message from Nicole Udd, 58 seconds">
+    <div class="play" aria-hidden="true"></div>
+    <div>
+      <b>A minute from me before you read on</b>
+      <span><span class="v" data-t="{Your name}">Nicole Udd</span> · 0:58</span>
+    </div>
+  </div>
+  </div>
+  <figure class="hero-photo"><img src="assets/img/photo-desk.jpg" width="1100" height="1649" alt="A desk with a laptop, coffee, a notebook and Simployer cards"></figure>
+</header>
+
+<!-- 01 -->
+<section class="sec" id="s1">
+  <div class="sec-head"><p class="eyebrow">01</p><h2>Where you are today</h2></div>
+
+  <div class="blk" id="p11">
+    <h3>Here's what you told us. Correct us where we're wrong.</h3>
+    <p>Three things came through clearly on our call.</p>
+
+    <div class="cards of">
+      <div class="c">
+        <p class="k">01</p>
+        <h4>Onboarding runs through one person</h4>
+        <p class="q">If Marie's on holiday, a new starter waits. That's a bottleneck with a name.</p>
+        <p class="who">Anna Lindqvist, 5 August</p>
+      </div>
+      <div class="c">
+        <p class="k">02</p>
+        <h4>No reliable absence picture across 22 sites</h4>
+        <p>Site managers keep their own records. You get a number at month end that nobody fully trusts, and you can't see a pattern until it has already cost you cover.</p>
+      </div>
+      <div class="c">
+        <p class="k">03</p>
+        <h4>Managers send everything to HR</h4>
+        <p>The HR module in your payroll system was never built for people on a shop floor, so managers don't open it. Every approval, every question, and every change of role lands with your team of three.</p>
+      </div>
+    </div>
+    <div class="cards ot">
+      <div class="c">
+        <p class="k">01</p>
+        <h4>{Their first challenge, in their words}</h4>
+        <p class="q">{The sentence they actually said. Quote them if you can.}</p>
+        <p class="who">{Name}, {date}</p>
+      </div>
+      <div class="c">
+        <p class="k">02</p>
+        <h4>{Their second challenge}</h4>
+        <p>{One or two sentences on what it costs them today, in their own words.}</p>
+      </div>
+      <div class="c">
+        <p class="k">03</p>
+        <h4>{Their third challenge}</h4>
+        <p>{One or two sentences.}</p>
+      </div>
+    </div>
+
+    <h4 class="after">Two dates that matter</h4>
+    <div class="cards two of">
+      <div class="c ink">
+        <p class="k">Next year</p>
+        <h4>Pay transparency reporting starts</h4>
+        <p>The pay mapping isn't done yet.</p>
+      </div>
+      <div class="c ink">
+        <p class="k">Q1</p>
+        <h4>Your payroll contract renews</h4>
+        <p>Anything that touches payroll needs deciding before then.</p>
+      </div>
+    </div>
+    <div class="cards two ot">
+      <div class="c ink">
+        <p class="k">{When}</p>
+        <h4>{A deadline or constraint they raised}</h4>
+        <p>{What it means for the timeline.}</p>
+      </div>
+      <div class="c ink">
+        <p class="k">{When}</p>
+        <h4>{A second date, if there is one}</h4>
+        <p>{What it means for the timeline.}</p>
+      </div>
+    </div>
+
+    <p class="after">If any of this is off, say so. It changes what we'd recommend.</p>
+  </div>
+
+  <div class="blk" id="p12">
+    <h3>What happens next, and who does what.</h3>
+    <p>Both sides have work here. Dates can move, but only when we both agree.</p>
+    <div class="card">
+    <table class="plan">
+        <thead><tr><th>#</th><th>Step</th><th>Owner</th><th>Date</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Discovery call</td><td><span class="v" data-t="{Contact}, {you}">Anna, Nicole</span></td><td><span class="v" data-t="{date}">5 Aug</span></td><td><span class="tag done of">Done</span></td></tr>
+          <tr><td>2</td><td>Walkthrough for the wider team</td><td><span class="v" data-t="{you}">Nicole</span></td><td><span class="v" data-t="{date}">12 Aug</span></td><td><span class="tag done of">Done</span></td></tr>
+          <tr><td>3</td><td>Confirm this recap is right</td><td><span class="v" data-t="{Contact}">Anna</span></td><td><span class="v" data-t="{date}">20 Aug</span></td><td><span class="tag now of">You</span></td></tr>
+          <tr><td>4</td><td>Security and integration review</td><td><span class="v" data-t="{IT contact}">Tomas, IT</span></td><td><span class="v" data-t="{date}">27 Aug</span></td><td><span class="tag next of">Booked</span></td></tr>
+          <tr><td>5</td><td>Business case with finance</td><td><span class="v" data-t="{Contact}, {you}">Anna, Nicole</span></td><td><span class="v" data-t="{date}">3 Sep</span></td><td><span class="tag next of">Booked</span></td></tr>
+          <tr><td>6</td><td>Scope and proposal agreed</td><td>Both</td><td><span class="v" data-t="{date}">11 Sep</span></td><td></td></tr>
+          <tr><td>7</td><td>Decision</td><td><span class="v" data-t="{decision makers}">Anna, Vantera board</span></td><td><span class="v" data-t="{date}">18 Sep</span></td><td></td></tr>
+          <tr><td>8</td><td>Kick-off</td><td>Both</td><td><span class="v" data-t="{date}">25 Sep</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="margin-top:18px"><span class="of">Two steps done, one waiting on you. </span>Tell me what's missing from this list. You know your process better than we do.</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="sec dark" id="s2">
+  <div class="sec-head"><p class="eyebrow">02</p><h2>Why do anything at all</h2></div>
+
+  <div class="blk" id="p21">
+    <h3>The role grew. The work never left.</h3>
+    <p class="lede">HR now carries culture, change, and the hard conversations. The contracts, reminders, and questions are all still there.</p>
+    <p style="margin-top:18px">Your HR team isn't growing, and the rules keep coming: pay transparency, working time, AI, and data. Every one of them lands on the same desk. In finance, sales, and support, the software started doing the work. In HR, it still mostly stores, reminds, and answers. From here, it goes one of two ways.</p>
+
+    <div class="fork">
+      <div class="win">
+        <h4>Teams where the software does the work</h4>
+        <p>The routine gets done, and HR confirms. Time goes to people, to change, and to the cases that need your judgement.</p>
+      </div>
+      <div>
+        <h4>Teams that keep the current way of working</h4>
+        <p>The routine wins. It always does, because it has deadlines and people notice when it slips. Everything else waits.</p>
+      </div>
+    </div>
+
+    <h4>There's no third option where the admin quietly shrinks</h4>
+    <p>The cost is already on your books, recorded as salary.</p>
+    <div class="cards">
+      <div class="c">
+        <p class="big"><span class="v" data-t="{X} hrs">26 hrs</span></p>
+        <p>A week across your team of <span class="v" data-t="{X}">three</span>, on tasks nobody would defend in a board meeting.</p>
+      </div>
+      <div class="c">
+        <p class="big">1 person</p>
+        <p>The answers depend on one person being in.</p>
+      </div>
+      <div class="c">
+        <p class="big">Week 3</p>
+        <p>Numbers that were right at month end, still used to make decisions three weeks later.</p>
+      </div>
+    </div>
+    <p class="after">For <span class="v" data-t="{X}">340</span> people, that's roughly <span class="v" data-t="{X}">1,300</span> hours a year before you count your managers' time. Your own version of that number is in section 05.</p>
+    <figure class="photo-wide"><img src="assets/img/photo-team.jpg" width="1100" height="1649" alt="A team laughing together by a lift, coffee cups in hand" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="sec" id="s3">
+  <div class="sec-head"><p class="eyebrow">03</p><h2>What becomes possible</h2></div>
+
+  <div class="blk" id="p31">
+    <h3>Simployer does the HR you shouldn't have to.</h3>
+    <p class="lede">So you can do the work you aspire to do.</p>
+    <p class="how" style="margin-top:16px">Sia, your AI HR employee, does the work. HR experts stand behind you.</p>
+    <p>For <span class="v" data-t="{Company}">Vantera</span>, three things change once you're live.</p>
+
+    <div class="pillars">
+      <div class="pillar media">
+        <div>
+          <p class="eyebrow">Leave the admin</p>
+          <p class="d5">The admin gets done, where you already work.</p>
+          <p class="of">A site manager reports sick leave from the phone and approves time off in Teams. A new starter's onboarding starts when the contract is signed, whether or not Marie is in.</p>
+          <p class="ot">{One real task from their day, done where they already work. Tie it to challenge 1.}</p>
+        </div>
+        <figure class="view"><img src="assets/img/phsick-mat.png" width="362" height="490" alt="Simployer on a phone: a sick leave request being filled in" loading="lazy"></figure>
+      </div>
+      <div class="pillar">
+        <p class="eyebrow">Skip the worry</p>
+        <p class="d5">Get it right before you decide.</p>
+        <p class="of">A question on Swedish employment law, answered with the source. An HR expert to talk a case through with, from a long sick leave to a role change on a site. Your managers follow the same steps on all 22 sites.</p>
+        <p class="ot">{One law question answered with the source, and one case they'd talk through with an HR expert.}</p>
+      </div>
+      <div class="pillar media wide">
+        <div>
+          <p class="eyebrow">Get the signal</p>
+          <p class="d5">Spot what's changing, while there's time to act.</p>
+          <p class="of">Absence for every site, the day you ask Sia. A reminder before a probation ends. Your pay gap report ready ahead of the reporting deadline.</p>
+          <p class="ot">{The number or trend they can't see today, and the deadline it helps them meet.}</p>
+        </div>
+        <figure class="view"><img src="assets/img/absencedept-mat.png" width="688" height="534" alt="Simployer people analytics: absence days by department over twelve months" loading="lazy"></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk" id="p32">
+    <h3>A classic HR system stores the work. Simployer does it.</h3>
+    <p>Most HR systems store information and wait for someone to act on it. Simployer does the task, and you confirm. That changes who ends up doing the work, so it's worth knowing before you look at the feature list.</p>
+    <div class="cards two">
+      <div class="c">
+        <p class="k">Sia</p>
+        <h4><img class="sia" src="assets/img/sia-mark.svg" alt="" width="18" height="18">Sia answers</h4>
+        <p>Ask Sia about a policy, the law, or your own numbers. You get the answer with the source, and a chart when you ask for one.</p>
+      </div>
+      <div class="c">
+        <p class="k">Sia</p>
+        <h4><img class="sia" src="assets/img/sia-mark.svg" alt="" width="18" height="18">Sia does the task</h4>
+        <p>Ask Sia to start onboarding for a new starter at <span class="v" data-t="{a site or team}">the Kungsgatan site</span>. Sia starts it, and you confirm.</p>
+      </div>
+      <div class="c">
+        <p class="k">Automation Studio</p>
+        <h4>Your routines run on their own</h4>
+        <p>Approvals, signatures, and reminders reach the right person, so nobody has to chase. Start from ready-made automations created by HR experts, or set up your own.</p>
+      </div>
+      <div class="c">
+        <p class="k">HR experts</p>
+        <h4>An HR expert by your side</h4>
+        <p>Call or write to Simployer's HR experts about employment law, payroll, and HR. Someone who's seen cases like yours, for everyday questions as well as the big ones.</p>
+      </div>
+    </div>
+    <div class="duo">
+      <figure class="view"><img src="assets/img/siafollowup-mat.png" width="528" height="868" alt="Sia answering the question: who needs a sick-leave follow-up?" loading="lazy"></figure>
+      <figure><img src="assets/img/photo-side-by-side.jpg" width="1100" height="1649" alt="Two colleagues on the floor with laptops, talking a question through" loading="lazy"></figure>
+    </div>
+    <div class="callout tint">
+      <p class="d4">Sia does the work. HR experts stand behind you.</p>
+      <p>HR always decides. Sia shows the source, and HR experts help you handle the case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="sec" id="s4">
+  <div class="sec-head"><p class="eyebrow">04</p><h2>What you get</h2></div>
+
+  <div class="blk" id="p41">
+    <h3>What we'd recommend for <span class="v" data-t="{Company}">Vantera</span>.</h3>
+    <p>Based on what you told us, here's the shape of it.</p>
+    <div class="card">
+    <table class="spec">
+      <tbody>
+        <tr><td>Package</td><td><span class="v" data-t="{Essential or Complete}">Complete: Core HR, Sia, and HR experts</span></td></tr>
+        <tr><td>Users</td><td><span class="v" data-t="{X} employees, {X} managers, {X} HR">340 employees, 24 managers, 3 in HR</span></td></tr>
+        <tr><td>Sites</td><td><span class="v" data-t="{X}">22, plus head office</span></td></tr>
+        <tr><td>Onboarding starts</td><td><span class="v" data-t="{date}">3 November 2026</span></td></tr>
+        <tr><td>Not in scope now</td><td><span class="v" data-t="{anything left out}">Learn courses and in-house training</span>. You can add it later.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="small" style="margin-top:18px">The next three pages cover what's in the package and what's available beside it. Read the parts that matter to you and skip the rest.</p>
+  </div>
+
+  <div class="blk" id="p42">
+    <h3>One people record. From hire to exit.</h3>
+    <p>Core HR keeps employee data, documents, processes, and reports on one record. Enter it once, and every routine runs on it. Sia and HR experts work from the same facts, so nothing needs patching together between tools.</p>
+    <figure class="view" style="margin:28px 0"><img src="assets/img/teamaway-mat.png" width="728" height="520" alt="A manager's team in Simployer: who is in today and who is away this week" loading="lazy"></figure>
+    <div class="cards">
+      <div class="c"><h4><img class="sia" src="assets/img/sia-mark.svg" alt="" width="18" height="18">Sia</h4><p>Answers employees and managers with the source, and does the routine work. You confirm. Sia works from your own handbook and Simployer's checked expert content.</p></div>
+      <div class="c"><h4>Documents and e-sign</h4><p>Contracts and addenda from an HR expert's template, sent for e-sign. No printing, scanning, or chasing a PDF through email.</p></div>
+      <div class="c"><h4>Time and absence</h4><p>Requests, approvals, and balances. Employees report in the app, and managers approve from their phone or in Teams.</p></div>
+      <div class="c"><h4>On- and offboarding</h4><p>Onboarding starts when the contract is signed. Every task, owner, and deadline up to the first day is set, and the right steps run when someone leaves.</p></div>
+      <div class="c"><h4>Employee directory</h4><p>One record per person, with every change logged. No competing spreadsheets across <span class="v" data-t="{X} sites">22 sites</span>.</p></div>
+      <div class="c"><h4>Reviews and competences</h4><p>Review cycles that run on schedule, with notes kept in Simployer. Certifications recorded, with a reminder before they expire.</p></div>
+      <div class="c"><h4>People analytics</h4><p>Absence, headcount, and leavers, ready when leadership asks. Payroll data reaches your payroll system automatically or with one click.</p></div>
+      <div class="c"><h4>Automation Studio <span class="tag new">Built in</span></h4><p>Set it up once. It runs every time. For the routines specific to how <span class="v" data-t="{Company}">Vantera</span> works, without waiting for us to build them.</p></div>
+      <div class="c"><h4>Whistleblowing</h4><p>A safe channel to report concerns, with a documented process behind it.</p></div>
+    </div>
+    <p class="small" style="margin-top:18px">It all works in the mobile app, and in Teams and Slack, so site managers handle tasks where they already are. None of it needs a full-time administrator to keep running.</p>
+  </div>
+
+  <div class="blk" id="p43">
+    <h3>Four things most HR systems leave you to solve elsewhere.</h3>
+    <p>These are part of Complete, and each one is also sold on its own.</p>
+
+    <div class="cards two">
+      <div class="c">
+        <p class="k">Essential: knowledge bank · Complete: HR experts</p>
+        <h4>Expert</h4>
+        <p>HR, employment law, and payroll experts, by phone or in writing. A long sick leave, a dismissal, or a pay gap question: talk it through with someone who's seen cases like yours, and get the answer in writing to save and share.</p>
+        <p>The knowledge bank is there when you'd rather look it up yourself, with legal updates before a change applies. It's also what Sia draws on, which is why Sia's answers hold up.</p>
+      </div>
+      <div class="c">
+        <p class="k">Essential: templates · Complete: full handbooks</p>
+        <h4>Handbooks</h4>
+        <p>Employee, manager, and work environment handbooks, kept up to date when the law changes. Ask Sia and get the answer from yours, so your people don't have to read it to find out.</p>
+      </div>
+      <div class="c">
+        <p class="k">Complete</p>
+        <h4>Employee Surveys</h4>
+        <p>Short, regular pulses that show which team has changed, so each manager knows where to start. Across <span class="v" data-t="{X} sites">22 sites</span>, it's how you see which one is struggling before it turns into resignations.</p>
+      </div>
+      <div class="c ink">
+        <p class="k">Complete<span class="of"> · The one with a date for you</span></p>
+        <h4>Equal Pay</h4>
+        <p>Know where you stand, and prove it. Equal Pay compares the work fairly, shows what's behind each pay difference, and keeps the reasoning in one report, ready for the pay transparency rules. Salary reviews run on the same data.</p>
+      </div>
+    </div>
+  </div>
+  <div class="blk" id="p44">
+    <h3>Two more things, when you're ready.</h3>
+    <div class="cards two">
+      <div class="c">
+        <p class="k">Included in Complete · Add-on on Essential</p>
+        <h4>Recruitment</h4>
+        <p>Hire straight into the employee record. Managers rate every candidate on the same scorecard, and when a candidate says yes, the new hire moves straight into Simployer. Nobody types the details in twice.</p>
+      </div>
+      <div class="c">
+        <p class="k">Sold separately</p>
+        <h4>Learn</h4>
+        <p>Courses, e-learning, and events in HR, employment law, payroll, leadership, tax, and health and safety. Webinars with our HR experts keep you ahead of law changes, and we build in-house courses around your team when the open catalogue doesn't fit.</p>
+      </div>
+    </div>
+    <p class="small after of">Recruitment is in your package. You mentioned hiring 40 seasonal staff each spring, so we'd switch it on once the core is live.</p>
+    <p class="small after ot">{Note here if either is worth turning on later, and why, based on something they said.}</p>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="sec" id="s5">
+  <div class="sec-head"><p class="eyebrow">05</p><h2>Value and proof</h2></div>
+
+  <div class="blk" id="p51">
+    <h3>The numbers, on your headcount.</h3>
+    <p>Built from what you told us on <span class="v" data-t="{date}">5 August</span>. Change any assumption and I'll rerun it.</p>
+    <div class="card">
+    <table class="spec">
+      <tbody>
+        <tr><td>Headcount</td><td><span class="v" data-t="{X}">340</span></td></tr>
+        <tr><td>HR team</td><td><span class="v" data-t="{X} people">3 people</span></td></tr>
+        <tr><td>Hours on HR admin today</td><td><span class="v" data-t="{X}">26</span> per week</td></tr>
+        <tr><td>Hours back each year</td><td>Around <span class="v" data-t="{X}">1,300</span></td></tr>
+        <tr><td>Tools you can retire</td><td><span class="v" data-t="{tools they stop paying for}">Absence spreadsheets, e-sign subscription, survey tool, and handbook PDFs</span></td></tr>
+        <tr><td>Annual investment</td><td><span class="v" data-t="{amount}">41,400 EUR</span></td></tr>
+        <tr><td>One-off implementation</td><td><span class="v" data-t="{amount}">8,500 EUR</span></td></tr>
+        <tr><td>Payback</td><td><span class="v" data-t="{X} months">7 months</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="split">
+      <div class="col">
+        <h4>What sits behind it</h4>
+        <!-- DRAFT: the 4 to 8 month payback and 1,600 hours figures need finance approval before this goes to a prospect (Messaging Framework, CFO surface). -->
+        <ul class="pts">
+          <li><strong>Payback.</strong> Typically 4 to 8 months across our customers, so Simployer usually pays for itself in the first year.</li>
+          <li><strong>Hours back.</strong> About 1,600 a year for a 115-person organisation, scaled here to your team structure.</li>
+          <li><strong>On top of that.</strong> Fewer separate tools to maintain, fewer compliance surprises, and lower absence costs.</li>
+        </ul>
+      </div>
+      <figure class="view"><img src="assets/img/patrend-mat.png" width="728" height="528" alt="Simployer people analytics: absence rate over twelve months, compared with last year" loading="lazy"></figure>
+    </div>
+
+    <div class="cards two">
+      <div class="c tint">
+        <p class="k">For your CFO</p>
+        <p class="d5">Compare it with a hire, not with another system.</p>
+        <p>One wrong termination, or a pay gap report that doesn't hold, costs more than Simployer.</p>
+      </div>
+      <div class="c tint">
+        <p class="k">For your board</p>
+        <p class="d5">Capacity without another hire.</p>
+        <p>Sia takes the work you'd give a new hire, and HR experts take the cases a new hire couldn't. Compliance is checked before it reaches the board as a surprise. 12,000 companies and 1.2 million people run their HR on Simployer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk" id="p52">
+    <h3>Three organisations that have already done this.</h3>
+    <p>Different sizes, different sectors, the same problem underneath: HR held together by whoever remembered.</p>
+
+    <div class="story">
+    <p class="k">Betao · 49 employees · Stockholm</p>
+    <p class="d4">One person running HR.</p>
+    <p>Julia Amin was the only HR person at Betao, a Stockholm tech company that helps entrepreneurs stay compliant abroad. Onboarding, reviews, and reporting lived in spreadsheets, and every manager ran their own version of each process. Two people in the same situation could get two different answers, and nobody found out unless they compared notes.</p>
+    <p>Simployer became the one place for onboarding, documents, reviews, surveys, and pay equity. All eight managers now follow the same process. When the CEO asks how many FTEs there are, it takes one lookup.</p>
+    <div class="nums">
+      <div><b>20 min</b><span>To produce a report, down from three days</span></div>
+      <div><b>6 hrs</b><span>A week back for Julia, off spreadsheets and onto people</span></div>
+      <div><b>75%</b><span>Survey participation, every survey tied to an action plan</span></div>
+    </div>
+    <blockquote>
+      <p>With Simployer, I spend less time putting out fires and more time with my people.</p>
+      <span>Julia Amin · HR Generalist, Betao</span>
+    </blockquote>
+    </div>
+
+    <div class="story">
+    <p class="k">Learnifier · 35 employees</p>
+    <p class="d4">HR ran through the CEO.</p>
+    <p>Learnifier doubled its revenue without ever raising outside money. For most of that growth there was no HR function, so when a manager hit a sick-leave case or a difficult conversation, it went to the CEO, on top of running a company growing that fast. Onboarding, offboarding, absence, and payroll admin ran differently depending on who handled it that week, and three managers could be solving the same problem separately without knowing.</p>
+    <p>Five processes now run the same way every time, for every manager. Long-term sick leave is the clearest example. A manager no longer has to spot a pattern and remember to act. Simployer flags the case. That matters legally, since a leave heading past 60 days gives the employer 30 days to put a return-to-work plan in place. It matters more for the person waiting on a way back.</p>
+    <div class="nums">
+      <div><b>5</b><span>Processes running the same way for every manager</span></div>
+      <div><b>2x</b><span>Revenue growth since 2021, with HR keeping pace</span></div>
+      <div><b>60%</b><span>Headcount growth over the same period</span></div>
+    </div>
+    <blockquote>
+      <p>If you want growth, people have to come first. For that, you need strong HR, and a system like Simployer to take care of the everyday HR processes.</p>
+      <span>Mattias Borg · CEO, Learnifier</span>
+    </blockquote>
+    </div>
+
+    <div class="story">
+    <p class="k">Hopsworks · 30 employees</p>
+    <p class="d4">An auditor twice a year.</p>
+    <p>Hopsworks builds the infrastructure other companies run their machine learning on, so ISO and SOC 2 audits are a condition of doing business. Task lists lived in different tools, documentation was manual, and only a few people knew where anything was. Onboarding and offboarding carry security steps that can't be skipped: closing access, collecting devices, and removing permissions. A missed one is exactly the gap an auditor is trained to find.</p>
+    <p>Onboarding, offboarding, policies, and the handbook now sit in one place, visible to managers and the security team. Each step has an owner and is tracked, so nothing waits on someone remembering whose job it was. Employees don't open Simployer to see who's out, either. It shows in the Slack channel they're already in, and they book time off from there.</p>
+    <div class="nums">
+      <div><b>2 weeks</b><span>From kick-off to running</span></div>
+      <div><b>3 to 1</b><span>Onboarding, e-signatures, and the handbook in one place</span></div>
+      <div><b>3x</b><span>Growth in a single year, with processes keeping up</span></div>
+    </div>
+    <blockquote>
+      <p>Before, we had to rely on memory and emails. Now we have structured processes that work even when someone is away.</p>
+      <span>Yaroslava Yatsuk · HR and Finance Manager, Hopsworks</span>
+    </blockquote>
+    </div>
+
+    <p class="small after of">None of these three is your size or your sector. What carries across is the pattern: processes that used to depend on one person now run the same way every time, and reports that took days take minutes.</p>
+    <p class="small after ot">{One honest line on what carries across from these to their situation, including where it doesn't.}</p>
+
+    <div class="cards two">
+      <div class="c ink">
+        <p class="k">References</p>
+        <h4>Talk to a customer like you</h4>
+        <p><span class="v" data-t="Two customers in {industry}, at your size,">Two retail customers of a similar size</span> have agreed to take calls from companies like yours. Ask me and I'll introduce you. No script, and nobody from Simployer on the line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="sec" id="s6">
+  <div class="sec-head"><p class="eyebrow">06</p><h2>Safe to implement</h2></div>
+
+  <div class="blk" id="p61">
+    <h3>From signature to your first live process.</h3>
+    <div class="card">
+    <table>
+      <thead><tr><th>When</th><th>What happens</th><th>Who</th></tr></thead>
+      <tbody>
+        <tr><td>Week 1<br><span class="small v" data-t="{date}">25 Sep</span></td><td>Kick-off with your onboarding specialist. We agree the scope, the data, and the order we set things up in.</td><td>Both</td></tr>
+        <tr><td>Weeks 2–3</td><td>Setup. Your onboarding specialist shapes Simployer around how <span class="v" data-t="{Company}">Vantera</span> works, including <span class="v" data-t="{their structure}">the 22-site structure</span>.</td><td>Simployer</td></tr>
+        <tr><td>Weeks 4–5</td><td>Data moves over from <span class="v" data-t="{their current system}">your payroll system</span>, and the integrations are connected.</td><td>Both</td></tr>
+        <tr><td>Week 6</td><td>Training. HR first, then a short session for <span class="v" data-t="{their managers}">site managers</span> on the mobile app.</td><td>Simployer</td></tr>
+        <tr><td>Week 7</td><td>Live with <span class="v" data-t="{first process}">absence and time</span>.</td><td>Both</td></tr>
+        <tr><td>From there</td><td><span class="v" data-t="{remaining processes, in their order of priority}">Onboarding, documents, and handbooks, then surveys and Equal Pay ahead of your reporting deadline</span>. Then your Customer Success Manager takes over.</td><td>Both</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="split">
+      <div class="col">
+        <h4>Two people who know you by name</h4>
+        <p>A named onboarding specialist takes you from kick-off to live. Then a named Customer Success Manager is your contact from there. Guided onboarding is why you see value early. You're never handed a login and left to work it out.</p>
+      </div>
+      <figure class="photo"><img src="assets/img/photo-pair.jpg" width="1100" height="1649" alt="Two colleagues on a sofa working through a plan together" loading="lazy"></figure>
+    </div>
+    <div class="cards two">
+      <div class="c ink">
+        <p class="k">Support</p>
+        <h4>Support you can phone</h4>
+        <p>A support line you can call, as well as a ticket form. When something blocks payroll on a Friday afternoon, you talk to someone who can sort it.</p>
+      </div>
+      <div class="c">
+        <p class="k">Why <span class="v" data-t="{first process}">absence and time</span> first</p>
+        <p class="of">It's the fastest win your site managers will see, and their buy-in decides everything after it.</p>
+        <p class="ot">{Say which process goes first and why, based on what they raised.}</p>
+      </div>
+    </div>
+    <p class="small after of">Dates after kick-off depend on how quickly data and approvals come back from your side, so we agree them together at kick-off.</p>
+    <p class="small after ot">{Dates after kick-off are agreed with the onboarding team, never promised here.}</p>
+  </div>
+
+  <div class="blk" id="p62">
+    <h3>Built for HR data. And for the systems you already run.</h3>
+    <p class="trustline">Nordic law built in. Real experts behind it.</p>
+    <div class="chips">
+      <span><b>ISO/IEC 27001:2022</b> certification in progress</span>
+      <span><b>Externally audited</b> security</span>
+      <span><b>GDPR</b> data kept in the EU</span>
+    </div>
+    <div class="cards two">
+      <div class="c">
+        <p class="k">Privacy</p>
+        <h4>Privacy first</h4>
+        <p>Built for HR data: GDPR-ready and stored in the EU. What you share with Sia or HR experts is covered by a data processing agreement.</p>
+      </div>
+      <div class="c">
+        <p class="k">AI</p>
+        <h4>Clear about AI</h4>
+        <p>Sia is always labelled as AI and shows the source with every answer. Sia prepares the work, and HR confirms and decides.</p>
+      </div>
+      <div class="c">
+        <p class="k">Integrations</p>
+        <h4>Fits what you run</h4>
+        <p>Ready-made connections to payroll, recruitment, chat, and calendar tools, plus an open API. Simployer joins your setup. For you, that means <span class="v" data-t="{their payroll, chat and identity tools}">your payroll system, Microsoft Teams, and Entra ID for sign-in</span>.</p>
+      </div>
+      <div class="c ink">
+        <p class="k">For IT</p>
+        <h4>For <span class="v" data-t="{IT contact} and your IT team">Tomas and your IT team</span></h4>
+        <p>Full documentation, the sub-processor list, the DPA, and the security architecture are in our Trust Center. Send them straight there. They don't need to go through me.</p>
+        <a href="#p62" class="textlink" style="color:var(--band-dark-heading)">Open the Trust Center</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="sec" id="s7">
+  <div class="sec-head"><p class="eyebrow">07</p><h2>Your proposal and next steps</h2></div>
+
+  <div class="blk" id="p71">
+    <h3>What it costs.</h3>
+    <div class="card">
+    <table class="spec">
+      <tbody>
+        <tr><td>Package</td><td><span class="v" data-t="{Essential or Complete}">Complete</span></td></tr>
+          <tr><td>Users</td><td><span class="v" data-t="{X}">340</span></td></tr>
+          <tr><td>Term</td><td><span class="v" data-t="{length}">36 months</span></td></tr>
+          <tr><td>Annual investment</td><td><span class="v" data-t="{amount}">41,400 EUR</span></td></tr>
+          <tr><td>One-off implementation</td><td><span class="v" data-t="{amount}">8,500 EUR</span></td></tr>
+          <tr><td>Valid until</td><td><span class="v" data-t="{date}">30 September 2026</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h4>Essential and Complete</h4>
+    <p>There are two packages, both priced per employee. Essential is Core HR and Sia. Complete is all of it, with HR experts behind you. We'd recommend Complete for you, because <span class="v" data-t="{the parts they raised}">Equal Pay, Employee Surveys, and Goals</span> are in Complete, and it's where Handbooks and Expert move from templates and the knowledge bank to the full versions.</p>
+    <div class="cmp">
+      <div class="row hdr"><div>Part</div><div>Essential</div><div>Complete</div></div>
+      <div class="row grp"><div>Core HR and Sia</div><div></div><div></div></div>
+      <div class="row"><div>Sia, your AI HR employee</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Documents and e-sign</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Time and absence</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>On- and offboarding</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Employee directory</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Whistleblowing</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Reviews and competences</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>People analytics</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Automation Studio</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row"><div>Mobile app and integrations</div><div class="yes"></div><div class="yes"></div></div>
+      <div class="row grp"><div>Also in Complete</div><div></div><div></div></div>
+      <div class="row"><div>Goals</div><div class="no"></div><div class="yes"></div></div>
+      <div class="row"><div>Salary reviews</div><div class="no"></div><div class="yes"></div></div>
+      <div class="row"><div>Employee Surveys</div><div class="no"></div><div class="yes"></div></div>
+      <div class="row"><div>Equal Pay</div><div class="no"></div><div class="yes"></div></div>
+      <div class="row"><div>Expert</div><div class="txt">Knowledge bank</div><div class="txt">Knowledge bank and HR experts</div></div>
+      <div class="row"><div>Handbooks</div><div class="txt">Templates</div><div class="txt">Full handbooks</div></div>
+      <div class="row"><div>Recruitment</div><div class="txt">Add-on</div><div class="yes"></div></div>
+    </div>
+    <h4>Included at no extra cost</h4>
+    <p>Guided onboarding, a named Customer Success Manager, handbook updates when the law changes, product releases, and support.</p>
+    <p>This is what we'd recommend for where <span class="v" data-t="{Company}">Vantera</span> is now. If the shape isn't right, tell me what's wrong with it and we'll do another version. I'd rather scope it properly than send you three options and leave you to guess.</p>
+  </div>
+
+  <div class="blk" id="p72">
+    <h3>The questions we get asked most.</h3>
+    <div class="faq">
+    <details open><summary>How long until we're using it?</summary><p>We agree the timeline with your onboarding specialist at kick-off. It depends on how quickly data and approvals come back from your side. <span class="v" data-t="{First process} first">Absence and time first</span>, then the rest in your order. Guided onboarding is included, so you're not setting it up alone.</p></details>
+    <details><summary>Will our managers use it?</summary><p>They approve from their phone or in Teams. That was the whole design brief. It's where most systems fall short, which is why the customers above had the same problem you do. Ask them about it.</p></details>
+    <details><summary>What happens to the data in our payroll system?</summary><p>We move it over. Mapping happens in weeks 2 and 3, and you approve it before anything goes live. Payroll stays where it is, and the integration keeps both sides up to date.</p></details>
+    <details><summary>Could we start on Essential and move up later?</summary><p>Yes. Moving to Complete keeps your data and setup, and adds the extra parts on top.<span class="of"> For you, it would mean going without Equal Pay, surveys, and goals in the meantime, and Expert would be the knowledge bank only. With your reporting deadline, that's the part I'd think hard about.</span></p></details>
+    <details><summary>Do we have to take everything at once?</summary><p>No. You start with <span class="v" data-t="{first process}">absence and time</span>, then add the rest in the order on the implementation plan. Nothing forces the pace.</p></details>
+    <details><summary>Who do we talk to with an HR question?</summary><p>Questions on the rules go to Sia, and you get the answer with the source. For input on your situation, you call or write to an HR expert employed by Simployer, someone who's seen cases like yours. It's included in Complete.</p></details>
+    <details class="of"><summary>Will pay mapping be done before our reporting deadline?</summary><p>We set the order so it's done before your deadline, and we confirm that at kick-off. If the deadline moves, tell me and we'll move it up the list.</p></details>
+    <details><summary>Who else needs to see this?</summary><p>Forward this page. The security and integration answers are in section 06, and the numbers are in section 05. Both stand on their own without me in the meeting.</p></details>
+    </div>
+  </div>
+
+  <div class="blk" id="p73">
+    <h3>Ready when you are.</h3>
+    <p>The agreement below matches the scope above. Nothing else has been added.</p>
+    <div class="signbox">
+      <div class="sr"><span>Simployer <span class="v" data-t="{Essential or Complete}">Complete</span>, <span class="v" data-t="{X}">340</span> users</span><span><span class="v" data-t="{amount} / year">41,400 EUR / year</span></span></div>
+      <div class="sr"><span>Implementation, one-off</span><span><span class="v" data-t="{amount}">8,500 EUR</span></span></div>
+      <div class="sr"><span>Term</span><span><span class="v" data-t="{length}">36 months</span></span></div>
+      <div class="sr"><span>Onboarding starts</span><span><span class="v" data-t="{date}">3 November 2026</span></span></div>
+      <a class="btn" href="#p73">Review and sign</a>
+    </div>
+    <p style="margin-top:24px">Questions before you sign? Ask them here and I'll answer today. If something needs changing first, that's fine too. A signature on the wrong scope helps neither of us.</p>
+  </div>
+</section>
+
+<div class="foot">
+  <div>
+    <b>Simployer does the HR you shouldn't have to.</b>
+    Prepared for <span class="v" data-t="{Company}">Vantera Group</span> by <span class="v" data-t="{Your name}">Nicole Udd</span> · <span class="v" data-t="{month}">August 2026</span>
+  </div>
+  <img src="assets/img/logo-white.svg" width="100" height="22" alt="Simployer">
+</div>
+
+</main>
+</div>
+
+<!-- Fyr deal room (D-036): restores the rep's saved room before the page script runs, then handles the notice, tracking and signing. -->
+<script src="room.js"></script>
+<script>
+(function(){
+  var t=document.getElementById('navtoggle'),n=document.getElementById('nav');
+  t.addEventListener('click',function(){
+    var o=n.classList.toggle('open');
+    t.setAttribute('aria-expanded',o?'true':'false');
+    t.textContent=o?'Close':'Contents';
+  });
+  n.addEventListener('click',function(e){
+    if(e.target.closest('a')&&window.innerWidth<=900){
+      n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='Contents';
+    }
+  });
+  var links=[].slice.call(n.querySelectorAll('.nav-pages a'));
+  var tg=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function mark(){
+    var y=window.scrollY+160,i,idx=0;
+    for(i=0;i<tg.length;i++){if(tg[i]&&tg[i].getBoundingClientRect().top+window.scrollY<=y)idx=i;}
+    links.forEach(function(a,j){a.classList.toggle('on',j===idx);});
+  }
+  var r=false;
+  window.addEventListener('scroll',function(){
+    if(r)return;r=true;requestAnimationFrame(function(){mark();r=false;});
+  },{passive:true});
+  mark();
+  // view mode: worked example vs blank template
+  var btns=[].slice.call(document.querySelectorAll('.modes button'));
+  var vars=[].slice.call(document.querySelectorAll('.v'));
+  vars.forEach(function(el){ el.dataset.d = el.textContent; });
+  function setMode(m){
+    var tpl = m === 'tpl';
+    document.body.classList.toggle('tpl', tpl);
+    vars.forEach(function(el){ el.textContent = tpl ? el.dataset.t : el.dataset.d; });
+    btns.forEach(function(b){ b.classList.toggle('on', b.dataset.mode === m); });
+    document.title = tpl ? 'Simployer deal room template' : 'Simployer and ' + (vars[0] ? vars[0].dataset.d : '');
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
+
+  var v=document.querySelector('.video');
+  v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();v.click();}});
+})();
+</script>
+</body>
+</html>

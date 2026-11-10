@@ -40,5 +40,16 @@ html.split('\n').forEach((line, i) => {
     }
   }
 });
+// The deal room page (D-036) is customer-facing copy too: check its visible text.
+const ROOM = new URL('prototype/v0.3/deal-room/index.html', root);
+try {
+  const text = (await readFile(ROOM, 'utf8')).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ');
+  for (const r of rules) {
+    for (const hit of text.matchAll(r.re)) {
+      const warn = r.level === 'warn'; warn ? warnings++ : errors++;
+      console.log(`${warn ? 'warn ' : 'ERROR'} [deal-room] ${r.why}\n      …${text.slice(Math.max(0, hit.index - 50), hit.index + hit[0].length + 40)}…`);
+    }
+  }
+} catch (e) { if (e.code !== 'ENOENT') throw e; }
 console.log(`Copy check: ${errors} error(s), ${warnings} warning(s) against Messaging Framework ${fw.source.version}.`);
 process.exit(errors ? 1 : 0);

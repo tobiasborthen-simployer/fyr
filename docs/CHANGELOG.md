@@ -7,6 +7,16 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Added**
+- **Deal rooms (D-036):** a new item under Create. One customer page per deal, made from a presentation in My presentations or blank.
+  - The list shows status (Draft, Live, Signed), people, views, how much has been read, and the latest activity.
+  - The editor has a live preview, on desktop or phone. Any text can be changed by clicking it, and sections, blocks, cards, stories and questions can be hidden.
+  - Photos come only from the Simployer image bank. Messaging Framework lines, approved claims and quotes are locked.
+  - The message check covers the avoid list, unfilled placeholders, CFO figures and customer quotes. A room can't be published while placeholders are left.
+  - *Share and track*: a personal link per person, access for forwarded links, views, % read and time per person, reading depth per section, activity and alerts.
+  - The customer page asks before it tracks anything, asks forwarded readers for a work email, and has a simple e-signature (name, title and a tick).
+  - My presentations gets a *Deal room* button on each row. The prototype keeps rooms and reading in the browser, so opening a personal link in the same browser shows up in Fyr.
+- **Collapsible menu:** the Fyr menu collapses to icons from the button next to the breadcrumbs, everywhere in Fyr, and Fyr remembers the choice. The room editor can also hide the sections and the fields, and *Focus* does both and collapses the menu.
+- `tools/sync-framework.mjs --check` also checks the deal room page.
 - **Add slide picker (D-034):** six layouts with placeholders (Headline and text, Three points, Today and with Simployer, One big number, Agenda, What they said) and four ready-made slides with approved text (Feature, Customer quote, Why Simployer, Next steps). Faded placeholders and a count of what's left.
 - The prototype is published as a claude.ai artifact, [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE), for walkthrough and sign-off.
 - **Roadmap for everyone (D-032).** A new org area that shows where Simployer is going, by the six product pillars of Product Strategy 2027, in plain words:

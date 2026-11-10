@@ -1570,6 +1570,143 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
 .slide.soon { background: var(--sky); }
 .ax-note, .ax-scr, .vb-scr { font-family: var(--hand); }
 .present { background: #0E0722; }
+/* ---------- Deal rooms (D-036) ---------- */
+.dr-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+.dr-stats div { background: var(--nightg); border-radius: 16px; padding: 18px 20px; }
+.dr-stats b { display: block; font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1; letter-spacing: -.02em; color: #fff; }
+.dr-stats span { display: block; color: var(--night-sub); font-size: 13px; margin-top: 8px; }
+.dr-bar { height: 6px; border-radius: 99px; background: #ECE8F4; overflow: hidden; width: 80px; display: inline-block; vertical-align: middle; margin-right: 8px; }
+.dr-bar i { display: block; height: 100%; background: var(--lav-500); border-radius: 99px; }
+.dr-tabs { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 0 6px; }
+.dr-body { display: grid; grid-template-columns: 224px minmax(0,1fr) 300px; gap: 16px; align-items: start; }
+.dr-outline { display: grid; gap: 4px; max-height: calc(100vh - 250px); overflow-y: auto; padding-right: 4px; scrollbar-width: thin; }
+.dr-sec { padding: 6px 0; }
+.dr-sec + .dr-sec { border-top: 1px solid var(--night-line); }
+.dr-head { display: flex; align-items: center; gap: 8px; padding: 4px 6px; color: #fff; font-weight: 600; font-size: 13px; }
+.dr-head .n { font-size: 11px; color: #9E98C4; width: 18px; font-variant-numeric: tabular-nums; }
+.dr-head .t, .dr-blk .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dr-blk { display: flex; align-items: center; gap: 6px; width: 100%; padding: 6px 6px 6px 32px; border-radius: 9px; color: var(--night-sub); font-size: 13px; text-align: left; }
+.dr-blk:hover { background: rgba(255,255,255,.05); color: #fff; }
+.dr-blk.sel { background: rgba(151,115,255,.22); color: #fff; box-shadow: inset 0 0 0 1px rgba(185,168,255,.2); }
+.dr-blk .ed { width: 7px; height: 7px; border-radius: 99px; background: #F2B866; flex: none; }
+.dr-blk .lk { width: 13px; height: 13px; color: #9E98C4; }
+.dr-eye { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; color: #B7AECF; flex: none; cursor: pointer; }
+.dr-eye:hover { background: rgba(255,255,255,.08); color: #fff; }
+.dr-eye .ico { width: 14px; height: 14px; }
+.dr-off { opacity: .45; }
+.dr-off .t { text-decoration: line-through; }
+.dr-stage { display: grid; gap: 10px; min-width: 0; }
+.dr-stage-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: #B7AECF; font-size: 12.5px; flex-wrap: wrap; }
+.dr-frame { position: relative; height: calc(100vh - 262px); min-height: 520px; border-radius: 14px; overflow: hidden; background: #F1EFE9; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.dr-frame iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #F1EFE9; }
+.dr-frame.phone { background: rgba(255,255,255,.04); box-shadow: none; }
+.dr-frame.phone iframe { left: 50%; border-radius: 26px; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.dr-url { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.06); border: 1px solid var(--night-line); border-radius: 99px; padding: 5px 12px; color: #E9E4F4; font-size: 12.5px; min-width: 0; max-width: 100%; }
+.dr-url .ico { width: 13px; height: 13px; color: #7FDDB0; }
+.dr-url span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dr-insp { background: rgba(255,255,255,.04); border: 1px solid var(--night-line); border-radius: 16px; padding: 16px; display: grid; gap: 18px; max-height: calc(100vh - 250px); overflow-y: auto; scrollbar-width: thin; }
+.dr-insp h3 { color: #fff; font-size: 15px; }
+.dr-insp .sub, .dr-panel .sub { color: var(--night-sub); font-size: 13px; margin-top: 4px; }
+.dr-lbl { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #9E98C4; margin-bottom: 8px; display: block; }
+.dr-f { display: grid; gap: 5px; }
+.dr-f label { font-size: 12.5px; font-weight: 600; color: #E9E4F4; }
+.dr-f input, .dr-f textarea, .dr-f select { width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid var(--night-line); border-radius: 10px; padding: 9px 11px; color: #fff; outline: none; resize: vertical; line-height: 1.45; }
+.dr-f select option { background: #221646; }
+.dr-f input:focus, .dr-f textarea:focus, .dr-f select:focus { border-color: #9773FF; box-shadow: var(--ring); }
+.dr-fields { display: grid; gap: 12px; }
+.dr-hint { display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; color: var(--night-sub); background: rgba(255,255,255,.03); border: 1px solid var(--night-line); border-radius: 10px; padding: 9px 11px; }
+.dr-hint .ico { width: 15px; height: 15px; margin-top: 1px; color: #CDC0EA; }
+.dr-items { display: grid; gap: 4px; }
+.dr-items label { display: flex; gap: 9px; align-items: center; font-size: 13px; color: #E9E4F4; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,.03); }
+.dr-pics { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+.dr-pics button { aspect-ratio: 3/4; border-radius: 8px; overflow: hidden; outline: 2px solid transparent; outline-offset: 1px; }
+.dr-pics button.on { outline-color: #9773FF; }
+.dr-pics img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dr-share { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,1fr); gap: 16px; align-items: start; }
+.dr-col { display: grid; gap: 16px; }
+.dr-panel { background: rgba(255,255,255,.04); border: 1px solid var(--night-line); border-radius: 16px; padding: 18px; }
+.dr-panel h3 { color: #fff; font-size: 15px; }
+.dr-link { display: flex; gap: 8px; align-items: center; margin-top: 14px; }
+.dr-link .dr-url { flex: 1; border-radius: 10px; padding: 8px 12px; }
+.dr-radio { display: grid; gap: 8px; margin-top: 14px; }
+.dr-radio label { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #E9E4F4; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--night-line); cursor: pointer; }
+.dr-radio label small { display: block; color: var(--night-sub); font-size: 12.5px; }
+.dr-radio input { margin-top: 3px; }
+.dr-dt { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.dr-dt th { background: transparent; color: #9E98C4; border-bottom: 1px solid var(--night-line); padding: 10px; font-size: 11.5px; }
+.dr-dt td { border-bottom: 1px solid var(--night-line); padding: 11px 10px; color: #E9E4F4; font-size: 13px; }
+.dr-dt tbody tr:hover { background: rgba(255,255,255,.03); }
+.dr-dt td b { color: #fff; }
+.dr-dt td small { display: block; color: var(--night-sub); font-size: 12px; }
+.dr-dt .dr-bar { background: rgba(255,255,255,.1); width: 56px; }
+.dr-dt .acts { display: flex; gap: 6px; justify-content: flex-end; }
+.dr-add { display: grid; grid-template-columns: 1fr 1.3fr 1fr auto; gap: 8px; margin-top: 12px; }
+.dr-add input { background: rgba(255,255,255,.06); border: 1px solid var(--night-line); border-radius: 9px; padding: 8px 10px; color: #fff; outline: none; min-width: 0; }
+.dr-add input::placeholder { color: #8F88AE; }
+.dr-depth { display: grid; gap: 10px; margin-top: 14px; }
+.dr-depth div { display: grid; grid-template-columns: 160px 1fr 92px; gap: 10px; align-items: center; font-size: 13px; color: #E9E4F4; }
+.dr-depth .track { height: 8px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+.dr-depth .track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #9773FF, #CDC0EA); }
+.dr-depth small { color: var(--night-sub); text-align: right; }
+.dr-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.dr-kpis div { background: rgba(255,255,255,.04); border-radius: 12px; padding: 12px; }
+.dr-kpis b { display: block; font-family: var(--display); font-weight: 400; font-size: 28px; color: #fff; line-height: 1; }
+.dr-kpis span { display: block; color: var(--night-sub); font-size: 12.5px; margin-top: 6px; }
+.dr-feed { display: grid; gap: 12px; margin-top: 12px; }
+.dr-feed > div { display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: 13px; color: #E9E4F4; }
+.dr-feed .dot { width: 28px; height: 28px; border-radius: 99px; display: grid; place-items: center; background: rgba(151,115,255,.2); color: #CDC0EA; }
+.dr-feed .dot.hot { background: rgba(242,184,102,.18); color: #F2B866; }
+.dr-feed .dot .ico { width: 14px; height: 14px; }
+.dr-feed small { display: block; color: var(--night-sub); font-size: 12px; }
+.dr-toggles { display: grid; gap: 10px; margin-top: 12px; }
+.dr-toggles label { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: 13px; color: #E9E4F4; }
+.dr-sw { appearance: none; width: 34px; height: 20px; border-radius: 99px; background: rgba(255,255,255,.15); position: relative; cursor: pointer; flex: none; transition: background .15s; }
+.dr-sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 99px; background: #fff; transition: transform .15s var(--ease); }
+.dr-sw:checked { background: #9773FF; }
+.dr-sw:checked::after { transform: translateX(14px); }
+.dr-scrim { position: fixed; inset: 0; background: rgba(14,7,34,.55); display: grid; place-items: center; z-index: 40; padding: 20px; }
+.dr-modal { background: var(--card); border-radius: 20px; box-shadow: var(--shadow-lg); width: min(560px, 100%); padding: 26px; display: grid; gap: 14px; }
+.dr-modal h2 { font-size: 28px; }
+.dr-modal .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dr-modal .note { font-size: 13px; color: var(--muted); background: var(--lav-50); border-radius: 10px; padding: 10px 12px; }
+.dr-modal .end { display: flex; justify-content: flex-end; gap: 8px; }
+.pill.n.sample { background: rgba(242,184,102,.16); color: #F2B866; }
+.pill.n.live { background: rgba(46,178,122,.16); color: #7FDDB0; }
+/* collapsible editor panels: hide the sections list, the fields, or both, so the preview gets the room */
+.dr-body.no-left > .dr-left, .dr-body.no-right > .dr-insp { display: none; }
+.dr-body.no-left { grid-template-columns: minmax(0,1fr) 300px; }
+.dr-body.no-right { grid-template-columns: 224px minmax(0,1fr); }
+.dr-body.no-left.no-right { grid-template-columns: minmax(0,1fr); }
+.dr-tools { display: flex; gap: 6px; align-items: center; flex: none; }
+.dr-stage > .dr-stage-bar:first-child { flex-wrap: nowrap; }
+.dr-stage > .dr-stage-bar:first-child .dr-url { flex: 1 1 auto; }
+.dr-tools .seg.n button { height: 32px; padding: 0 10px; }
+.dr-tools button { height: 32px; padding: 0 10px; border-radius: 8px; display: inline-flex; gap: 6px; align-items: center; color: var(--night-sub); font-size: 12.5px; font-weight: 500; border: 1px solid var(--night-line); background: rgba(255,255,255,.04); }
+.dr-tools button:hover { color: #fff; background: rgba(255,255,255,.08); }
+.dr-tools button[aria-pressed="true"] { color: #fff; background: rgba(151,115,255,.22); border-color: rgba(185,168,255,.3); }
+.dr-tools .ico { width: 15px; height: 15px; }
+@media (max-width: 1280px) { .dr-body { grid-template-columns: 200px minmax(0,1fr); } .dr-insp { grid-column: 1 / -1; max-height: none; } .dr-share { grid-template-columns: 1fr; } .dr-body.no-left, .dr-body.no-left.no-right { grid-template-columns: minmax(0,1fr); } }
+/* collapsible Fyr menu: icons only, labels as tooltips */
+.top-left { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.rail-tg { width: 34px; height: 34px; flex: none; }
+.rail-tg .ico { width: 17px; height: 17px; }
+@media (min-width: 761px) {
+  .app { transition: grid-template-columns .2s var(--ease); }
+  .app.mini { grid-template-columns: 72px minmax(0,1fr); }
+  .app.mini .rail { padding: 22px 10px 18px; align-items: center; }
+  .app.mini .rail .logo { padding: 0; justify-content: center; }
+  .app.mini .rail .logo small { display: none; }
+  .app.mini .nav { margin: 0; padding: 0; width: 100%; }
+  .app.mini .nav-group { gap: 4px; }
+  .app.mini .nav-group + .nav-group { border-top: 1px solid var(--night-line); padding-top: 12px; }
+  .app.mini .nav-label { display: none; }
+  .app.mini .nav button { justify-content: center; padding: 9px 0; position: relative; }
+  .app.mini .nav button > span:not(.badge) { display: none; }
+  .app.mini .nav .badge { position: absolute; top: 2px; right: 6px; min-width: 16px; height: 16px; font-size: 10px; padding: 0 4px; }
+  .app.mini .role { padding: 8px; justify-items: center; }
+  .app.mini .me > div, .app.mini .me-acts { display: none; }
+}
+@media (max-width: 900px) { .dr-body { grid-template-columns: 1fr; } .dr-stats { grid-template-columns: 1fr 1fr; } .dr-add { grid-template-columns: 1fr; } }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1617,6 +1754,15 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
   <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></symbol>
+  <symbol id="i-room" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4.2M6.6 6.6C3.8 8.3 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-panel-left" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></symbol>
+  <symbol id="i-panel-right" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+  <symbol id="i-shrink" viewBox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></symbol>
 </svg>
 
 <div class="app">
@@ -1632,7 +1778,7 @@ h1 em, h2 em { font-style: italic; color: var(--lav); }
   </aside>
   <main class="main">
     <header class="topbar">
-      <div class="crumbs" id="crumbs"></div>
+      <div class="top-left"><button type="button" class="icon-btn rail-tg" id="rail-toggle" aria-label="Collapse the menu" title="Collapse the menu"><svg class="ico" aria-hidden="true"><use href="#i-panel-left"/></svg></button><div class="crumbs" id="crumbs"></div></div>
       <div class="top-actions">
         <div class="seg clang" id="clang" role="group" aria-label="Content language"></div>
         <div class="search"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span>Search truth, assets</span><kbd>⌘K</kbd></div>
@@ -1810,18 +1956,18 @@ function shot(img, type = 'screenshot', label = true, vid) {
   const a = type === 'animation', v = a && vid;
   return `<div class="shot ${a ? 'anim' : ''} ${v ? 'vid' : ''}">${label ? `<span class="type">${a ? '<svg viewBox="0 0 24 24"><use href="#i-play"/></svg>Animation' : 'Screenshot'}</span>` : ''}<div class="win"><div class="bar"><i></i><i></i><i></i><u></u></div><div class="vp"><img src="${IMG[img]}" alt="" loading="lazy">${v ? `<video autoplay muted loop playsinline preload="metadata">${vsrc(vid)}</video>` : ''}<span class="ring"></span>${a ? '<svg class="cur" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cursor"/></svg>' : ''}</div></div></div>`;
 }
-const VIEW_NAMES = { create: 'Create', brief: 'New presentation', gen: 'New presentation', deck: 'Presentation', work: 'My presentations', library: 'Library', truth: 'Product truth', roadmap: 'Roadmap', battle: 'Battlecards' };
+const VIEW_NAMES = { create: 'Create', brief: 'New presentation', gen: 'New presentation', deck: 'Presentation', work: 'My presentations', rooms: 'Deal rooms', room: 'Deal room', library: 'Library', truth: 'Product truth', roadmap: 'Roadmap', battle: 'Battlecards' };
 
 function renderNav() {
   fyrBrand();
   { const c = document.getElementById('clang'); if (c) c.innerHTML = LANGS.map(([k, n]) => `<button data-clang="${k}" aria-pressed="${S.clang === k}" title="Content in ${n}">${k}</button>`).join(''); }
   const pm = S.role === 'pmm';
   const attn = ASSETS.filter(x => x.status !== 'current').length;
-  const cur = ['brief', 'deck'].includes(S.view) ? 'create' : S.view === 'gen' ? (S.prevNav || 'create') : S.view === 'packnew' || S.view === 'pack' ? 'packs' : S.view;
+  const cur = ['brief', 'deck'].includes(S.view) ? 'create' : S.view === 'room' ? 'rooms' : S.view === 'gen' ? (S.prevNav || 'create') : S.view === 'packnew' || S.view === 'pack' ? 'packs' : S.view;
   const gi = g => { const bd = g.badge(); return it(g.tabs[0][0], g.ic, g.t, bd || null, g.hot, g.tabs.some(x => x[0] === cur) || (g.also || []).includes(cur)); };
-  const it = (v, i, t, badge, hot, on) => `<button data-view="${v}" ${(on !== undefined ? on : cur === v) ? 'aria-current="page"' : ''}>${ico(i)}<span>${t}</span>${badge ? `<span class="badge ${hot ? 'hot' : ''}">${badge}</span>` : ''}</button>`;
+  const it = (v, i, t, badge, hot, on) => `<button data-view="${v}" title="${t}" ${(on !== undefined ? on : cur === v) ? 'aria-current="page"' : ''}>${ico(i)}<span>${t}</span>${badge ? `<span class="badge ${hot ? 'hot' : ''}">${badge}</span>` : ''}</button>`;
   $('#nav').innerHTML = `
-    <div class="nav-group"><span class="nav-label">Create</span>${it('create', 'i-deck', 'Presentations')}${it('work', 'i-brief', 'My presentations', DECKS.length)}</div>
+    <div class="nav-group"><span class="nav-label">Create</span>${it('create', 'i-deck', 'Presentations')}${it('work', 'i-brief', 'My presentations', DECKS.length)}${it('rooms', 'i-room', 'Deal rooms', ROOMS.length)}</div>
     <div class="nav-group"><span class="nav-label">Knowledge</span>${it('truth', 'i-book', 'Product truth')}${it('roadmap', 'i-flag', 'Roadmap')}${it('battle', 'i-shield', 'Battlecards')}${it('library', 'i-grid', 'Library', pm && attn ? attn : null, true)}</div>
     ${S.role === 'pm' ? `<div class="nav-group"><span class="nav-label">Release plan</span>${it('product', 'i-branch', 'Releases')}${it('calendar', 'i-cal', 'Release map')}</div>` : ''}
     ${pm ? `<div class="nav-group"><span class="nav-label">PMM workspace</span>${BOG.filter(g => g.tabs[0][0] !== 'people' || (CUR && CUR.admin)).map(g => gi(g)).join('')}</div>` : ''}`;
@@ -1831,6 +1977,7 @@ function renderNav() {
   const nm = { calendar: 'Release map', framework: 'Messaging framework', channels: 'Marketing Remix', office: 'Home', product: 'Releases', packs: 'Launch packs', pack: 'Launch pack', packnew: 'New launch pack', editor: 'Truth editor', bcedit: 'Battlecards', auto: 'Automations', playbooks: 'Tier playbooks', prules: 'Presentation rules', people: 'People & access', usage: 'Usage', rmed: 'Roadmap cards' };
   { const g = BOG.find(g => g.tabs.length > 1 && g.tabs.some(x => x[0] === S.view)); if (g && S.view !== 'office') { $('#crumbs').innerHTML = `<span>${S.role === 'pm' ? 'Release plan' : 'PMM workspace'}</span>${ico('i-arrow')}<span>${g.t}</span>${ico('i-arrow')}<b>${g.tabs.find(x => x[0] === S.view)[1]}</b>`; return; } }
   if (nm[S.view]) { $('#crumbs').innerHTML = S.view === 'office' ? '<b>PMM workspace</b>' : `<span>PMM workspace</span>${ico('i-arrow')}<b>${nm[S.view]}${(S.view === 'pack' && S.pack) ? ' · ' + relById(S.pack).short : S.view === 'packnew' && NEW.rid ? ' · ' + relById(NEW.rid).short : ''}</b>`; return; }
+  if (S.view === 'room') { const rm = roomById(S.room); $('#crumbs').innerHTML = `<span>Create</span>${ico('i-arrow')}<button data-view="rooms" style="color:inherit;font-weight:500">Deal rooms</button>${ico('i-arrow')}<b>${esc(rm ? rm.company : 'Deal room')}</b>`; return; }
   $('#crumbs').innerHTML = sub ? `<span>Create</span>${ico('i-arrow')}<b>${sub}</b>` : `<b>${VIEW_NAMES[S.view]}</b>`;
 }
 document.addEventListener('click', e => {
@@ -2375,10 +2522,457 @@ function vWork() {
   const edits = d => d.slides.filter(x => x.kind === 'custom' || (x.edits && Object.keys(x.edits).length)).length;
   return `<div class="page-title"><div><h1>My presentations</h1><p>Every presentation is saved as you work. Open one to keep editing, present it again, or make a copy for the next meeting.</p></div><button class="btn btn-primary" data-view="create">${ico('i-plus')}New presentation</button></div>
   ${DECKS.length ? `<section class="card tbl"><table><thead><tr><th>Customer</th><th>Presentation</th><th>Language</th><th>Slides</th><th>Last edited</th><th>Presented</th><th></th></tr></thead><tbody>
-  ${DECKS.map(d => `<tr><td><b>${esc(d.company)}</b></td><td>${ruleById(d.rule).name}</td><td>${d.lang}</td><td style="font-variant-numeric:tabular-nums">${d.slides.length}${edits(d) ? ` <small class="muted">· ${edits(d)} with your text</small>` : ''}</td><td style="font-variant-numeric:tabular-nums">${d.updated}</td><td>${d.presented ? '<span class="pill soon"><span class="d"></span>Presented</span>' : '<span class="pill">Not yet</span>'}</td><td><div style="display:flex;gap:6px;justify-content:flex-end;align-items:center"><button class="btn btn-primary btn-sm" data-dopen="${d.id}">Open</button><button class="btn btn-line btn-sm" data-ddup="${d.id}">Copy</button><button class="btn btn-line btn-sm" data-ddel="${d.id}" aria-label="Delete ${esc(d.company)}" title="Delete" style="padding:0 9px">${ico('i-x')}</button></div></td></tr>`).join('')}
+  ${DECKS.map(d => `<tr><td><b>${esc(d.company)}</b></td><td>${ruleById(d.rule).name}</td><td>${d.lang}</td><td style="font-variant-numeric:tabular-nums">${d.slides.length}${edits(d) ? ` <small class="muted">· ${edits(d)} with your text</small>` : ''}</td><td style="font-variant-numeric:tabular-nums">${d.updated}</td><td>${d.presented ? '<span class="pill soon"><span class="d"></span>Presented</span>' : '<span class="pill">Not yet</span>'}</td><td><div style="display:flex;gap:6px;justify-content:flex-end;align-items:center"><button class="btn btn-primary btn-sm" data-dopen="${d.id}">Open</button><button class="btn btn-line btn-sm" data-mkroom="${d.id}" title="Make a deal room from this presentation">${ico('i-room')}Deal room</button><button class="btn btn-line btn-sm" data-ddup="${d.id}">Copy</button><button class="btn btn-line btn-sm" data-ddel="${d.id}" aria-label="Delete ${esc(d.company)}" title="Delete" style="padding:0 9px">${ico('i-x')}</button></div></td></tr>`).join('')}
   </tbody></table></section>` : `<section class="card panel"><h3>No presentations yet</h3><p class="muted">Start one from Presentations. It is saved here as you work.</p></section>`}
   <p class="demo">Prototype: saved in this browser. In Fyr itself, presentations are saved to your account. <i>Example data</i></p>`;
 }
+
+/* ---------- Deal rooms (D-036): one customer page per deal, built from a presentation ---------- */
+// Prototype: rooms, edits and reading events are kept in this browser and shared with deal-room/room.js.
+// In the app they are DealRoom, RoomPerson and RoomEvent records (SPEC §4.12).
+const ROOM_KEY = 'fyr-v03-rooms', ROOM_EV_KEY = 'fyr-v03-room-events';
+let ROOMS = [];
+function roomsStore() { try { localStorage.setItem(ROOM_KEY, JSON.stringify(ROOMS)); } catch (_) { toast('This browser is out of space for deal rooms.'); } }
+function roomsLoad() { try { const v = JSON.parse(localStorage.getItem(ROOM_KEY) || 'null'); return Array.isArray(v) ? v : null; } catch (_) { return null; } }
+function roomsSync() { const v = roomsLoad(); if (v) ROOMS = v; }
+function roomEvents(id) { try { const v = JSON.parse(localStorage.getItem(ROOM_EV_KEY) || '[]'); return Array.isArray(v) ? (id ? v.filter(e => e.room === id) : v) : []; } catch (_) { return []; } }
+const roomById = id => ROOMS.find(r => r.id === id);
+const firstName = n => String(n || '').trim().split(/\s+/)[0];
+const initialsOf = n => String(n || '').trim().split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase();
+const roomTok = n => (firstName(n).toLowerCase().normalize('NFD').replace(/[^a-z]/g, '') || 'guest') + '-' + Math.random().toString(36).slice(2, 5);
+const roomLink = (r, p) => new URL(`deal-room/?room=${encodeURIComponent(r.id)}${p ? '&r=' + p.token : ''}`, location.href).href;
+const roomShown = (r, p) => `rom.simployer.com/${r.slug}${p ? '?r=' + p.token : ''}`;
+const ROOM_SECS = [['s1', '01 Where you are today'], ['s2', '02 Why do anything at all'], ['s3', '03 What becomes possible'], ['s4', '04 What you get'], ['s5', '05 Value and proof'], ['s6', '06 Safe to implement'], ['s7', '07 Your proposal']];
+const roomAgo = ts => { if (!ts) return '–'; const m = Math.round((Date.now() - ts) / 6e4); if (m < 1) return 'Just now'; if (m < 60) return `${m} min ago`; if (m < 24 * 60) return `${Math.round(m / 60)} h ago`; const d = new Date(ts); return m < 48 * 60 ? `Yesterday ${d.toTimeString().slice(0, 5)}` : `${d.getDate()} ${MON3[d.getMonth()]}`; };
+const roomMins = s => !s ? '–' : s < 60 ? `${s} s` : `${Math.round(s / 60)} min`;
+// Save a room, keeping what the customer page wrote meanwhile (people who came by forward, a signature)
+function roomPut(r) {
+  const cur = roomsLoad() || ROOMS, i = cur.findIndex(x => x.id === r.id);
+  if (i >= 0) { const o = cur[i]; (o.people || []).forEach(p => { if (!r.people.some(q => q.token === p.token)) r.people.push(p); }); if (o.status === 'signed') { r.status = 'signed'; r.signed = o.signed; } cur[i] = r; } else cur.unshift(r);
+  ROOMS = cur; roomsStore();
+}
+function seedRooms() {
+  return [{ id: 'room-vantera', slug: 'vantera-group-7k2p9x', company: 'Vantera Group', contact: 'Anna Lindqvist', email: 'anna.lindqvist@vantera.se', lang: 'EN', pkg: 'Complete', from: 'Sales · Discovery meeting', deckId: null, rep: 'Nicole Udd', status: 'live', access: 'email', created: '5 Aug 14:10', updated: '20 Aug 11:06', html: null, init: null, hidden: [], example: true,
+    alerts: { fresh: true, proposal: true, sign: true, quiet: false },
+    people: [{ name: 'Anna Lindqvist', email: 'anna.lindqvist@vantera.se', role: 'HR Manager', token: 'anna-x3f', by: 'rep' }, { name: 'Tomas Berg', email: 'tomas.berg@vantera.se', role: 'IT Manager', token: 'tomas-p8d', by: 'rep' }, { name: 'Erik Sand', email: 'erik.sand@vantera.se', role: 'CFO', token: 'erik-m2q', by: 'forward' }, { name: 'Maria Kvist', email: 'maria.kvist@vantera.se', role: 'COO', token: 'maria-t6v', by: 'rep' }] }];
+}
+// Example reading events for the example room, marked sample so the share tab can say so
+function seedRoomEvents() {
+  if (!roomById('room-vantera') || roomEvents('room-vantera').length) return;
+  const H = 36e5, D = 864e5, t = Date.now(), ev = [];
+  const add = (token, type, ago, x = {}) => ev.push({ room: 'room-vantera', token, type, at: t - ago, sample: true, ...x });
+  [2 * H, D, 2 * D, 3 * D, 4 * D, 5 * D].forEach(a => add('anna-x3f', 'view', a));
+  [['s1', 180], ['s2', 120], ['s3', 240], ['s4', 180], ['s5', 300], ['s6', 60]].forEach(([s, n]) => { add('anna-x3f', 'section', 5 * D, { sec: s }); add('anna-x3f', 'time', 5 * D, { sec: s, secs: n }); });
+  add('anna-x3f', 'click', 5 * D - H, { what: 'video' }); add('anna-x3f', 'click', D - 2 * H, { what: 'sign' });
+  [3 * H, D, 2 * D].forEach(a => add('tomas-p8d', 'view', a));
+  [['s1', 60], ['s2', 30], ['s6', 360], ['s7', 40]].forEach(([s, n]) => { add('tomas-p8d', 'section', 2 * D, { sec: s }); add('tomas-p8d', 'time', 3 * H, { sec: s, secs: n }); });
+  add('tomas-p8d', 'click', 3 * H, { what: 'trust' });
+  add('erik-m2q', 'view', H); [['s1', 40], ['s5', 150]].forEach(([s, n]) => { add('erik-m2q', 'section', H, { sec: s }); add('erik-m2q', 'time', H, { sec: s, secs: n }); });
+  try { localStorage.setItem(ROOM_EV_KEY, JSON.stringify(roomEvents().concat(ev))); } catch (_) {}
+}
+function roomStats(r) {
+  const ev = roomEvents(r.id), hid = r.hidden || [], shown = ROOM_SECS.filter(([s]) => !hid.includes(s)).length || 7;
+  const people = (r.people || []).map(p => {
+    const e = ev.filter(x => x.token === p.token), secs = new Set(e.filter(x => x.type === 'section').map(x => x.sec));
+    return { ...p, views: e.filter(x => x.type === 'view').length, read: Math.round(Math.min(secs.size, shown) / shown * 100), time: e.filter(x => x.type === 'time').reduce((a, x) => a + (x.secs || 0), 0), last: e.length ? Math.max(...e.map(x => x.at)) : 0, secs };
+  });
+  const viewers = people.filter(p => p.views), week = Date.now() - 7 * 864e5;
+  const depth = ROOM_SECS.filter(([s]) => !hid.includes(s)).map(([s, t]) => { const n = viewers.filter(p => p.secs.has(s)).length, tt = ev.filter(x => x.type === 'time' && x.sec === s).reduce((a, x) => a + (x.secs || 0), 0); return [t, viewers.length ? Math.round(n / viewers.length * 100) : 0, n ? Math.round(tt / n) : 0]; });
+  return { ev, people, viewers, depth, views: ev.filter(x => x.type === 'view').length, views7: ev.filter(x => x.type === 'view' && x.at > week).length,
+    avgRead: viewers.length ? Math.round(viewers.reduce((a, p) => a + p.read, 0) / viewers.length) : 0, time: ev.filter(x => x.type === 'time').reduce((a, x) => a + (x.secs || 0), 0),
+    sample: ev.some(x => x.sample), signClick: ev.some(x => x.type === 'click' && x.what === 'sign') };
+}
+function roomFeed(r, st) {
+  const who = tk => (st.people.find(p => p.token === tk) || { name: 'Someone' }).name, seen = new Set(), items = [];
+  st.ev.slice().sort((a, b) => a.at - b.at).forEach(e => {
+    let txt = '', hot = false, ic = 'i-eye';
+    if (e.type === 'view') { const first = !seen.has(e.token); seen.add(e.token); const p = st.people.find(x => x.token === e.token); txt = first ? `${esc(who(e.token))} opened the room for the first time${p && p.by === 'forward' ? ', from a forwarded link' : ''}.` : `${esc(who(e.token))} opened the room.`; hot = first; }
+    else if (e.type === 'click' && e.what === 'sign') { txt = `${esc(who(e.token))} clicked Review and sign.`; hot = true; ic = 'i-edit'; }
+    else if (e.type === 'click' && e.what === 'trust') { txt = `${esc(who(e.token))} opened the Trust Center.`; ic = 'i-shield'; }
+    else if (e.type === 'click' && e.what === 'video') { txt = `${esc(who(e.token))} played your video.`; ic = 'i-play'; }
+    else if (e.type === 'sign') { txt = `${esc(who(e.token))} signed the agreement.`; hot = true; ic = 'i-check-c'; }
+    if (txt) items.push({ txt, hot, ic, at: e.at, sample: e.sample });
+  });
+  return items.reverse().slice(0, 6);
+}
+function roomLatest(r, st) { const f = roomFeed(r, st)[0]; return f ? `${f.txt.replace(/\.$/, '')}<small>${roomAgo(f.at)}</small>` : `Edited by you<small>${esc(r.updated)}</small>`; }
+const roomPill = (r, dark) => r.status === 'signed' ? `<span class="pill ${dark ? 'n live' : ''}" style="${dark ? '' : 'background:var(--green-50);color:var(--green-ink)'}"><span class="d"></span>Signed</span>` : r.status === 'live' ? `<span class="pill ${dark ? 'n live' : 'live'}"><span class="d"></span>Live</span>` : `<span class="pill ${dark ? 'n' : ''}">Draft</span>`;
+
+function vRooms() {
+  roomsSync();
+  const all = ROOMS.map(r => ({ r, s: roomStats(r) })), ev = roomEvents(), week = Date.now() - 7 * 864e5;
+  const fwd = ROOMS.reduce((a, r) => a + (r.people || []).filter(p => p.by === 'forward').length, 0);
+  const deck = DECKS.find(d => d.id === S.roomNew);
+  return `<div class="page-title"><div><h1>Deal rooms</h1><p>One page per deal, built from your presentation and Fyr's approved content. Share a personal link with each person, and see who reads what.</p></div><button class="btn btn-primary" data-dr="new">${ico('i-plus')}New deal room</button></div>
+  <div class="dr-stats"><div><b>${ROOMS.filter(r => r.status === 'live').length}</b><span>Live rooms</span></div><div><b>${ev.filter(e => e.type === 'view' && e.at > week).length}</b><span>Views this week</span></div><div><b>${fwd}</b><span>New people via forwards</span></div><div><b>${all.filter(x => x.r.status === 'live' && x.s.signClick).length}</b><span>Waiting for a signature</span></div></div>
+  ${ROOMS.length ? `<section class="card tbl"><table><thead><tr><th>Customer</th><th>Built from</th><th>Status</th><th>People</th><th>Read</th><th>Latest</th><th></th></tr></thead><tbody>
+  ${all.map(({ r, s }) => `<tr><td><b>${esc(r.company)}</b><small class="muted" style="display:block">${esc(r.contact || 'No contact yet')}</small></td><td>${esc(r.from)}<small class="muted" style="display:block">${r.lang} · ${esc(r.created)}</small></td><td>${roomPill(r)}</td>
+    <td>${(r.people || []).length ? `${r.people.length} ${r.people.length === 1 ? 'person' : 'people'}<small class="muted" style="display:block">${s.views} views</small>` : '<span class="muted">Not shared yet</span>'}</td>
+    <td>${s.viewers.length ? `<span class="dr-bar"><i style="width:${s.avgRead}%"></i></span>${s.avgRead}%` : '<span class="muted">–</span>'}</td>
+    <td style="font-size:13px">${roomLatest(r, s).replace('<small>', '<small class="muted" style="display:block">')}</td>
+    <td><div style="display:flex;gap:6px;justify-content:flex-end;align-items:center"><button class="btn btn-primary btn-sm" data-ropen="${r.id}">Open</button>${r.status !== 'draft' ? `<button class="btn btn-line btn-sm" data-rcopy="${esc(roomLink(r))}">Copy link</button>` : ''}<button class="btn btn-line btn-sm" data-rdel="${r.id}" aria-label="Delete ${esc(r.company)}" title="Delete" style="padding:0 9px">${ico('i-x')}</button></div></td></tr>`).join('')}
+  </tbody></table></section>` : `<section class="card panel"><h3>No deal rooms yet</h3><p class="muted">Make one from a presentation in My presentations, or start a blank one.</p></section>`}
+  <p class="demo">Prototype: rooms and reading are saved in this browser. Open a personal link here to see a view arrive. <i>Example data</i></p>
+  ${S.roomModal ? `<div class="dr-scrim" data-dr="cancel"><form class="dr-modal" id="dr-new">
+    <h2>New deal room</h2>
+    <div class="fld"><label for="drn-from">Start from</label><select id="drn-from">${DECKS.map(d => `<option value="${d.id}" ${S.roomNew === d.id ? 'selected' : ''}>${esc(d.company)} · ${esc(ruleById(d.rule).name)} · ${d.lang}</option>`).join('')}<option value="" ${S.roomNew ? '' : 'selected'}>A blank room</option></select></div>
+    <div class="fld"><label for="drn-co">Company</label><textarea id="drn-co" rows="1" required>${esc(deck ? deck.company : '')}</textarea></div>
+    <div class="row"><div class="fld"><label for="drn-c">Contact</label><textarea id="drn-c" rows="1"></textarea></div><div class="fld"><label for="drn-e">Their work email</label><textarea id="drn-e" rows="1"></textarea></div></div>
+    <div class="fld"><label for="drn-p">Package</label><select id="drn-p"><option>Complete</option><option>Essential</option></select></div>
+    <p class="note">The company, language and challenges come from your presentation's brief. Fyr fills the rest from Product truth and the Messaging Framework. Everything you need to fill in shows in curly brackets.</p>
+    <div class="end"><button type="button" class="btn btn-line" data-dr="cancel">Cancel</button><button class="btn btn-primary" type="submit">Create room</button></div>
+  </form></div>` : ''}`;
+}
+function bindRooms() { const f = $('#drn-co'); if (f) f.focus(); }
+function createRoom(deckId, company, contact, email, pkg) {
+  const d = DECKS.find(x => x.id === deckId), m = d && d.meeting ? d.meeting : {}, rep = CUR ? CUR.name : 'Nicole Udd';
+  const r = { id: 'room-' + Date.now().toString(36), slug: (company.toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'room') + '-' + Math.random().toString(36).slice(2, 8),
+    company, contact, email, lang: d ? d.lang : 'EN', pkg, from: d ? ruleById(d.rule).name : 'Blank room', deckId: d ? d.id : null, rep, repEmail: CUR ? CUR.email : '', status: 'draft', access: 'email',
+    created: deckStamp(), updated: deckStamp(), html: null, hidden: [], alerts: { fresh: true, proposal: true, sign: true, quiet: false },
+    init: { heads: (m.heads || []).slice(0, 3), pains: (m.pains || []).slice(0, 3) },
+    people: contact ? [{ name: contact, email, role: '', token: roomTok(contact), by: 'rep' }] : [] };
+  roomPut(r); return r;
+}
+
+/* The room editor: sections on the left, the live room in the middle, fields and checks on the right */
+const ROOM_OUTLINE = [
+  { id: 'hero', n: '', t: 'Welcome', blocks: [{ id: 'details', t: 'Customer, contact and you', el: '.hero' }] },
+  { id: 's1', n: '01', t: 'Where you are today', blocks: [{ id: 'p11', t: 'What you told us' }, { id: 'p12', t: 'What happens next' }] },
+  { id: 's2', n: '02', t: 'Why do anything at all', blocks: [{ id: 'p21', t: 'The cost of doing nothing' }] },
+  { id: 's3', n: '03', t: 'What becomes possible', blocks: [{ id: 'p31', t: 'What changes for you', lock: true }, { id: 'p32', t: 'Who does the work', lock: true }] },
+  { id: 's4', n: '04', t: 'What you get', blocks: [{ id: 'p41', t: 'Your scope' }, { id: 'p42', t: 'Core HR and Sia' }, { id: 'p43', t: 'In the spotlight' }, { id: 'p44', t: 'Also available' }] },
+  { id: 's5', n: '05', t: 'Value and proof', blocks: [{ id: 'p51', t: 'Return on investment' }, { id: 'p52', t: 'Customer stories' }] },
+  { id: 's6', n: '06', t: 'Safe to implement', blocks: [{ id: 'p61', t: 'How you get live' }, { id: 'p62', t: 'Security and your systems', lock: true }] },
+  { id: 's7', n: '07', t: 'Your proposal', blocks: [{ id: 'p71', t: 'What it costs' }, { id: 'p72', t: 'Questions' }, { id: 'p73', t: 'Review and sign' }] }
+];
+const RT = n => `#${n} table tr:nth-child`;
+const ROOM_FIELDS = {
+  details: [
+    { l: 'Company', s: '.v[data-t="{Company}"], .v[data-t="{Company name}"]', company: true },
+    { l: 'Contact, full name', s: '.nav-for .v[data-t="{Contact}"]' },
+    { l: 'First name in the greeting', s: '.hero .lede .v[data-t="{name}"]' },
+    { l: 'Meeting date', s: '.hero .lede .v[data-t="{date}"]' },
+    { l: 'Your name', s: '.v[data-t="{Your name}"]' },
+    { type: 'video', l: 'Video message' },
+    { type: 'pic', l: 'Hero photo', s: '.hero-photo img' }
+  ],
+  p11: [
+    { l: 'Challenge 1', s: '#p11 .cards:not(.two) .c:nth-child(1) h4' },
+    { l: 'In their words', s: '#p11 .cards:not(.two) .c:nth-child(1) .q', type: 'area' },
+    { l: 'Who said it', s: '#p11 .cards:not(.two) .c:nth-child(1) .who' },
+    { l: 'Challenge 2', s: '#p11 .cards:not(.two) .c:nth-child(2) h4' },
+    { l: 'What it costs them', s: '#p11 .cards:not(.two) .c:nth-child(2) p:not(.k)', type: 'area' },
+    { l: 'Challenge 3', s: '#p11 .cards:not(.two) .c:nth-child(3) h4' },
+    { l: 'What it costs them', s: '#p11 .cards:not(.two) .c:nth-child(3) p:not(.k)', type: 'area' },
+    { l: 'Date that matters, 1', s: '#p11 .cards.two .c:nth-child(1) h4' },
+    { l: 'Date that matters, 2', s: '#p11 .cards.two .c:nth-child(2) h4' }
+  ],
+  p12: [{ type: 'addstep' }],
+  p21: [
+    { l: 'Hours a week on HR admin', s: '#p21 .cards .c:nth-child(1) .big .v' },
+    { l: 'Size of the HR team', s: '#p21 .cards .c:nth-child(1) p:not(.big) .v' },
+    { type: 'pic', l: 'Photo', s: '#p21 .photo-wide img' }
+  ],
+  p31: [
+    { l: 'Leave the admin: their example', s: '#p31 .pillar:nth-child(1) p:not(.eyebrow):not(.d5)', type: 'area' },
+    { l: 'Skip the worry: their example', s: '#p31 .pillar:nth-child(2) p:not(.eyebrow):not(.d5)', type: 'area' },
+    { l: 'Get the signal: their example', s: '#p31 .pillar:nth-child(3) p:not(.eyebrow):not(.d5)', type: 'area' }
+  ],
+  p32: [{ l: 'Site or team in the Sia example', s: '#p32 .v[data-t="{a site or team}"]' }, { type: 'pic', l: 'Photo', s: '#p32 .duo figure:nth-child(2) img' }],
+  p41: [
+    { l: 'Package', s: `${RT('p41')}(1) td:last-child .v` }, { l: 'Users', s: `${RT('p41')}(2) td:last-child .v` }, { l: 'Sites', s: `${RT('p41')}(3) td:last-child .v` },
+    { l: 'Onboarding starts', s: `${RT('p41')}(4) td:last-child .v, #p73 .sr:nth-child(4) > span:last-child .v` }, { l: 'Not in scope now', s: `${RT('p41')}(5) td:last-child .v` }
+  ],
+  p42: [{ type: 'items', s: '#p42 .cards .c', note: 'Module cards come from Product truth. Hide the ones that don\'t matter to this customer.' }],
+  p43: [{ type: 'items', s: '#p43 .cards .c', note: 'From Product truth. Hide what doesn\'t fit.' }],
+  p44: [{ type: 'items', s: '#p44 .cards .c' }, { l: 'Your note on what to add later', s: '#p44 p.small', type: 'area' }],
+  p51: [
+    { l: 'Headcount', s: `${RT('p51')}(1) td:last-child .v` }, { l: 'HR team', s: `${RT('p51')}(2) td:last-child .v` }, { l: 'Hours on HR admin a week', s: `${RT('p51')}(3) td:last-child .v` },
+    { l: 'Hours back each year', s: `${RT('p51')}(4) td:last-child .v` }, { l: 'Tools they can retire', s: `${RT('p51')}(5) td:last-child .v`, type: 'area' },
+    { l: 'Annual investment', s: `${RT('p51')}(6) td:last-child .v` }, { l: 'Payback', s: `${RT('p51')}(8) td:last-child .v` }
+  ],
+  p52: [{ type: 'items', s: '#p52 .story', label: el => (el.querySelector('.k') || el).textContent.split('·')[0].trim(), note: 'Approved customer stories. Pick the ones closest to this customer.' }],
+  p61: [{ l: 'Kick-off date', s: '#p61 tbody tr:nth-child(1) .v' }, { l: 'First process to go live', s: '#p61 tbody tr:nth-child(5) .v, #p61 .cards .c:nth-child(2) .k .v' }, { type: 'pic', l: 'Photo', s: '#p61 .split .photo img' }],
+  p62: [{ l: 'IT contact', s: '#p62 .v[data-t="{IT contact} and your IT team"]' }, { l: 'Their systems', s: '#p62 .v[data-t="{their payroll, chat and identity tools}"]', type: 'area' }],
+  p71: [
+    { l: 'Package', s: `${RT('p71')}(1) td:last-child .v, #p73 .sr:nth-child(1) .v[data-t="{Essential or Complete}"]` },
+    { l: 'Users', s: `${RT('p71')}(2) td:last-child .v, #p73 .sr:nth-child(1) .v[data-t="{X}"]` },
+    { l: 'Term', s: `${RT('p71')}(3) td:last-child .v, #p73 .sr:nth-child(3) .v` },
+    { l: 'Annual investment', s: `${RT('p71')}(4) td:last-child .v, #p73 .sr:nth-child(1) > span:last-child .v` },
+    { l: 'One-off implementation', s: `${RT('p71')}(5) td:last-child .v, #p73 .sr:nth-child(2) > span:last-child .v` },
+    { l: 'Valid until', s: `${RT('p71')}(6) td:last-child .v` }
+  ],
+  p72: [{ type: 'items', s: '#p72 details', label: el => el.querySelector('summary').textContent, note: 'Change a question or answer by clicking it in the preview.' }],
+  p73: [{ type: 'sign' }]
+};
+// Lines the rep can't change: Messaging Framework lines, approved claims and approved customer quotes
+const ROOM_LOCKED = ['#p31 > h3', '#p31 > .lede', '#p31 > .how', '#p32 > h3', '#p32 .callout.tint .d4', '#p32 .callout.tint p', '#p21 > h3', '#p21 > .lede', '.trustline', '.chips span', '#p51 .cards.two .c .d5', '#p52 blockquote p', '.foot b'];
+const ROOM_PICS = ['photo-desk', 'photo-team', 'photo-side-by-side', 'photo-pair', 'photo-laptop', 'photo-floor', 'photo-table'];
+const roomBlock = id => ROOM_OUTLINE.flatMap(x => x.blocks).find(b => b.id === id);
+const roomSec = id => ROOM_OUTLINE.find(x => x.blocks.some(b => b.id === id));
+const roomDoc = () => { const f = $('#dr-frame iframe'); try { return f && f.contentDocument; } catch (_) { return null; } };
+const roomAll = s => { const d = roomDoc(); return d ? [...d.querySelectorAll(s)] : []; };
+const roomCur = () => roomById(S.room);
+
+function vRoom() {
+  const r = roomCur(), tab = S.roomTab || 'edit', st = roomStats(r), p0 = (r.people || []).find(p => p.by === 'rep') || (r.people || [])[0];
+  return `<section class="studio">
+    <div class="studio-bar">
+      <div><h2>Deal room for ${esc(r.company)}</h2><div class="meta">${roomPill(r, true)}<span>Built from ${esc(r.from)}</span><span>·</span><span>${r.lang}</span><span>·</span><span id="dr-saved">Saved ${esc(String(r.updated).split(' ').pop())}</span></div></div>
+      <div class="acts">
+        <button class="btn btn-ghost-n" data-dr="open">${ico('i-ext')}${p0 ? `Open as ${esc(firstName(p0.name))}` : 'Open as customer'}</button>
+        <button class="btn btn-ghost-n" data-dr="publish">${ico('i-check-c')}${r.status === 'draft' ? 'Publish' : 'Publish changes'}</button>
+        <button class="btn btn-primary" style="background:#9773FF" data-dr-tab="share">${ico('i-send')}Share</button>
+      </div>
+    </div>
+    <div class="dr-tabs"><div class="seg n" role="group" aria-label="Room tabs"><button data-dr-tab="edit" aria-pressed="${tab === 'edit'}">${ico('i-edit')} Edit</button><button data-dr-tab="share" aria-pressed="${tab === 'share'}">${ico('i-link')} Share and track</button></div>${st.sample ? '<span class="pill n sample">Includes example data</span>' : ''}</div>
+    <div class="dr-body ${S.roomNoLeft ? 'no-left' : ''} ${S.roomNoRight ? 'no-right' : ''}" ${tab === 'edit' ? '' : 'hidden'}>
+      <div class="dr-left"><span class="dr-lbl">Sections</span><div class="dr-outline" id="dr-outline"></div></div>
+      <div class="dr-stage">
+        <div class="dr-stage-bar">
+          <div class="dr-tools"><button data-dr-panel="left" aria-pressed="${!S.roomNoLeft}" title="Show or hide the sections">${ico('i-panel-left')}Sections</button><button data-dr-panel="focus" aria-pressed="${!!S.roomFocus}" title="Hide the menu and both panels, so the preview gets the whole width">${ico(S.roomFocus ? 'i-shrink' : 'i-expand')}${S.roomFocus ? 'Exit focus' : 'Focus'}</button></div>
+          <div class="dr-url">${ico('i-lock')}<span>${esc(roomShown(r))}</span></div>
+          <div class="dr-tools"><div class="seg n" role="group" aria-label="Preview size"><button data-dr-dev="desktop" aria-pressed="${(S.roomDev || 'desktop') === 'desktop'}" title="Desktop">${ico('i-monitor')}</button><button data-dr-dev="phone" aria-pressed="${S.roomDev === 'phone'}" title="Phone">${ico('i-phone')}</button></div><button data-dr-panel="right" aria-pressed="${!S.roomNoRight}" title="Show or hide the fields">Fields${ico('i-panel-right')}</button></div></div>
+        <div class="dr-frame" id="dr-frame"><iframe src="deal-room/?room=${encodeURIComponent(r.id)}&edit=1" title="Live preview of the deal room"></iframe></div>
+        <div class="dr-stage-bar" style="justify-content:center"><span>${ico('i-cursor')} Click any text in the preview to change it. Lines with a lock come from the Messaging Framework.</span></div>
+      </div>
+      <aside class="dr-insp" id="dr-insp"></aside>
+    </div>
+    <div class="dr-share" id="dr-share" ${tab === 'share' ? '' : 'hidden'}>${roomShareHTML(r)}</div>
+  </section>`;
+}
+function roomOutline() {
+  const r = roomCur(), el = $('#dr-outline'); if (!r || !el) return; const hid = new Set(r.hidden || []), ed = new Set(r.edited || []);
+  el.innerHTML = ROOM_OUTLINE.map(sec => `<div class="dr-sec ${hid.has(sec.id) ? 'dr-off' : ''}">
+    <div class="dr-head"><span class="n">${sec.n}</span><span class="t">${sec.t}</span>${sec.id !== 'hero' ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${sec.id}" title="${hid.has(sec.id) ? 'Show' : 'Hide'} this section">${ico(hid.has(sec.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</div>
+    ${sec.blocks.map(b => `<button class="dr-blk ${S.roomBlock === b.id ? 'sel' : ''} ${hid.has(b.id) ? 'dr-off' : ''}" data-dr-block="${b.id}"><span class="t">${b.t}</span>${ed.has(b.id) ? '<span class="ed" title="Edited"></span>' : ''}${b.lock ? ico('i-lock', 'ico lk') : ''}${sec.blocks.length > 1 ? `<span class="dr-eye" role="button" tabindex="0" data-dr-hide="${b.id}" title="${hid.has(b.id) ? 'Show' : 'Hide'} this block">${ico(hid.has(b.id) ? 'i-eye-off' : 'i-eye')}</span>` : ''}</button>`).join('')}
+  </div>`).join('');
+}
+function roomFieldHTML(f, i) {
+  const sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"');
+  if (f.type === 'pic') { const cur = (roomAll(f.s)[0] || { getAttribute: () => '' }).getAttribute('src') || ''; return `<div class="dr-f"><label>${sm('i-image')}${f.l} <span style="font-weight:400;color:#9E98C4">· Simployer image bank</span></label><div class="dr-pics">${ROOM_PICS.map(p => `<button type="button" data-dr-pic="${i}" data-src="assets/img/${p}.jpg" class="${cur.includes(p) ? 'on' : ''}" title="${p}"><img src="deal-room/assets/img/${p}.jpg" alt=""></button>`).join('')}</div></div>`; }
+  if (f.type === 'video') return `<div class="dr-f"><label>${f.l}</label><div class="dr-hint">${ico('i-play')}<span>Upload a short video for the customer. It plays in the welcome.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-dr="video">Upload a video</button></div>`;
+  if (f.type === 'addstep') return `<div class="dr-hint">${ico('i-cursor')}<span>Change steps, owners and dates straight in the table.</span></div><button type="button" class="btn btn-ghost-n btn-sm" data-dr="addstep">${ico('i-plus')}Add a step</button>`;
+  if (f.type === 'sign') return `<div class="dr-f"><label>How the customer signs</label><select data-dr="signhow"><option>Simple e-signature: name, title and a tick</option><option>BankID (needs a signing provider)</option></select></div><div class="dr-hint">${ico('i-alert')}<span>The agreement is built from 07 Your proposal. When it's signed, the room shows Signed and you get the receipt.</span></div>`;
+  if (f.type === 'items') return `${f.note ? `<div class="dr-hint">${ico('i-eye')}<span>${f.note}</span></div>` : ''}<div class="dr-items">${roomAll(f.s).map((el, j) => `<label><input type="checkbox" data-dr-item="${i}" data-j="${j}" ${el.style.display === 'none' ? '' : 'checked'}>${esc(f.label ? f.label(el) : (el.querySelector('h4') || el).textContent.trim())}</label>`).join('')}</div>`;
+  const el = roomAll(f.s)[0], val = el ? el.textContent.trim() : '';
+  return `<div class="dr-f"><label for="drf-${i}">${f.l}</label>${f.type === 'area' ? `<textarea id="drf-${i}" data-dr-f="${i}" rows="3">${esc(val)}</textarea>` : `<input id="drf-${i}" data-dr-f="${i}" value="${esc(val)}">`}</div>`;
+}
+function roomPlaceholders() { const d = roomDoc(); if (!d || !d.querySelector('.main')) return 0; return ((d.querySelector('.main').innerText + ' ' + (d.querySelector('.nav-for') || {}).innerText).match(/\{[^}]{1,80}\}/g) || []).length; }
+function roomChecksHTML() {
+  const d = roomDoc(), r = roomCur(); if (!d || !d.querySelector('.main') || !r) return '<div id="dr-checks"></div>';
+  const text = d.querySelector('.main').innerText, hits = MF.avoid.filter(a => a.level !== 'warn' && new RegExp(a.pattern, 'i').test(text)).map(a => a.why), ph = roomPlaceholders(), rows = [];
+  rows.push(hits.length ? ['wa', `Off the Messaging Framework: ${hits.join('. ')}`] : ['ok', 'On the Messaging Framework: no avoid-list words or competitor names']);
+  rows.push(ph ? ['wa', `${ph} placeholder${ph === 1 ? '' : 's'} in curly brackets still to fill`] : ['ok', 'No placeholders left']);
+  rows.push(['ok', 'Framework lines, approved claims and quotes are locked']);
+  if (S.roomBlock === 'p51') rows.push(['wa', 'The 4 to 8 month payback and 1,600 hours need finance approval before the room goes out']);
+  if (S.roomBlock === 'p52') rows.push(['wa', 'Customer stories and quotes need the customer\'s written OK']);
+  if (['p42', 'p43', 'p44'].some(b => (r.edited || []).includes(b))) rows.push(['wa', 'You changed Product truth wording in 04. PMM gets a copy to check.']);
+  if (r.lang !== 'EN') rows.push(['wa', `The room text is English in this prototype. ${r.lang} comes from Product truth in the app.`]);
+  return `<div id="dr-checks"><span class="dr-lbl">Message check</span><div class="checks">${rows.map(([c, t]) => `<div class="${c === 'ok' ? 'ok' : 'wa'}">${ico(c === 'ok' ? 'i-check-c' : 'i-alert')}<span>${t}</span></div>`).join('')}</div></div>`;
+}
+function roomInspector() {
+  const el = $('#dr-insp'); if (!el) return; const b = roomBlock(S.roomBlock) || roomBlock('details'), sec = roomSec(b.id), fs = ROOM_FIELDS[b.id] || [];
+  el.innerHTML = `<div><span class="dr-lbl">${sec.n ? 'Section ' + sec.n + ' · ' : ''}${sec.t}</span><h3>${b.t}</h3>${b.lock ? `<p class="sub">${ico('i-lock').replace('class="ico"', 'class="ico" style="width:13px;height:13px;vertical-align:-2px"')} The headline lines come from the Messaging Framework. Fill in the parts about this customer.</p>` : ''}</div>
+    <div class="dr-fields">${fs.map(roomFieldHTML).join('') || `<div class="dr-hint">${ico('i-cursor')}<span>Click any text in the preview to change it.</span></div>`}</div>
+    ${roomChecksHTML()}`;
+}
+function roomRefreshChecks() { const c = $('#dr-checks'); if (c) c.outerHTML = roomChecksHTML(); }
+function roomFit() {
+  const fw = $('#dr-frame'), fr = fw && fw.querySelector('iframe'); if (!fr || fw.closest('[hidden]')) return;
+  const W = fw.clientWidth, H = fw.clientHeight, phone = S.roomDev === 'phone'; fw.classList.toggle('phone', phone);
+  if (phone) Object.assign(fr.style, { width: '390px', height: (H - 24) + 'px', top: '12px', transform: 'translateX(-50%)' });
+  else { const k = W / 1280; Object.assign(fr.style, { width: '1280px', height: (H / k) + 'px', top: '0', transform: `scale(${k})` }); }
+}
+function roomSave(blockId) {
+  const r = roomCur(), d = roomDoc(); if (!r || !d || !d.querySelector('.main')) return;
+  const m = d.querySelector('.main').cloneNode(true);
+  m.querySelectorAll('[contenteditable]').forEach(e => { e.removeAttribute('contenteditable'); e.removeAttribute('spellcheck'); });
+  m.querySelectorAll('.fyr-lock').forEach(e => { e.classList.remove('fyr-lock'); e.removeAttribute('title'); });
+  r.html = { main: m.innerHTML, navFor: (d.querySelector('.nav-for') || {}).innerHTML || '', rep: (d.querySelector('.repcard') || {}).innerHTML || '' };
+  if (blockId) r.edited = [...new Set([...(r.edited || []), blockId])];
+  r.updated = deckStamp(); roomPut(r);
+  const sv = $('#dr-saved'); if (sv) sv.textContent = 'Saved ' + r.updated.split(' ').pop();
+}
+function roomApplyHidden() {
+  const r = roomCur(), d = roomDoc(); if (!r || !d) return; const hid = new Set(r.hidden || []);
+  ROOM_OUTLINE.forEach(sec => {
+    const se = d.getElementById(sec.id); if (se && sec.id !== 'hero') se.style.display = hid.has(sec.id) ? 'none' : '';
+    const nl = d.querySelector(`.nav-sec > a[href="#${sec.id}"]`); if (nl) nl.parentElement.style.display = hid.has(sec.id) ? 'none' : '';
+    sec.blocks.forEach(b => { const be = !b.el && d.getElementById(b.id); if (be) be.style.display = hid.has(b.id) ? 'none' : ''; const bl = d.querySelector(`.nav-pages a[href="#${b.id}"]`); if (bl) bl.parentElement.style.display = hid.has(b.id) ? 'none' : ''; });
+  });
+}
+// A new room starts as the blank template, filled with what Fyr knows from the presentation
+function roomApplyInit(d, r) {
+  const main = d.querySelector('.main');
+  main.querySelectorAll('.of').forEach(e => e.remove());
+  main.querySelectorAll('.ot').forEach(e => e.classList.remove('ot'));
+  d.querySelectorAll('.v').forEach(v => { if (v.dataset.t) v.textContent = v.dataset.t; });
+  const set = (s, v) => { if (v) d.querySelectorAll(s).forEach(e => { e.textContent = v; }); };
+  set('.v[data-t="{Company}"], .v[data-t="{Company name}"]', r.company);
+  set('.nav-for .v[data-t="{Contact}"]', r.contact); set('.hero .lede .v[data-t="{name}"]', firstName(r.contact));
+  set('.v[data-t="{Your name}"]', r.rep); set('.repcard .avatar .v', initialsOf(r.rep));
+  set('.v[data-t="{Essential or Complete}"]', r.pkg);
+  const mail = d.querySelector('.repcard .ot'); if (mail && r.repEmail) mail.textContent = r.repEmail;
+  const mo = new Date(); set('.v[data-t="{month}"]', `${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][mo.getMonth()]} ${mo.getFullYear()}`);
+  (r.init.heads || []).forEach((h, i) => set(`#p11 .cards:not(.two) .c:nth-child(${i + 1}) h4`, h));
+  (r.init.pains || []).forEach((p, i) => set(`#p11 .cards:not(.two) .c:nth-child(${i + 1}) ${i ? 'p:not(.k)' : '.q'}`, p));
+  r.init = null; roomSave();
+}
+function roomPrep() {
+  const d = roomDoc(), r = roomCur(); if (!d || !r || !d.querySelector('.main') || d.documentElement.dataset.fyr) return;
+  d.documentElement.dataset.fyr = '1';
+  if (r.init && !r.html) roomApplyInit(d, r);
+  const st = d.createElement('style');
+  st.textContent = `.modes{display:none!important} html{scroll-behavior:smooth}
+  [contenteditable="true"]{outline:none;border-radius:4px;transition:box-shadow .15s}
+  [contenteditable="true"]:hover{box-shadow:0 0 0 2px rgba(151,115,255,.55);cursor:text}
+  [contenteditable="true"]:focus{box-shadow:0 0 0 2px #9773FF;background:rgba(151,115,255,.06)}
+  .fyr-lock{position:relative} .fyr-lock:hover{box-shadow:0 0 0 2px rgba(242,184,102,.8);border-radius:4px;cursor:not-allowed}
+  .fyr-lock:hover::after{content:"Locked: from the Messaging Framework";position:absolute;left:0;top:-30px;white-space:nowrap;font:600 12px/1 'Hanken Grotesk',sans-serif;letter-spacing:0;text-transform:none;background:#1B1038;color:#F6F2FF;padding:7px 9px;border-radius:7px;z-index:5}`;
+  d.head.appendChild(st);
+  const locked = new Set(ROOM_LOCKED.flatMap(s => [...d.querySelectorAll(s)]));
+  locked.forEach(el => { el.classList.add('fyr-lock'); el.title = 'From the Messaging Framework. PMM owns this line.'; });
+  d.querySelector('.main').querySelectorAll('h1,h3,h4,p,li,td,summary,blockquote span,.k,.big,.d4,.d5,.sr > span').forEach(el => {
+    if (locked.has(el) || el.closest('.fyr-lock') || el.querySelector('.fyr-lock') || el.closest('[contenteditable="true"]') || el.querySelector('p,h4,td,li')) return;
+    el.setAttribute('contenteditable', 'true'); el.spellcheck = false;
+  });
+  d.querySelectorAll('summary[contenteditable]').forEach(s => s.addEventListener('keydown', e => { if (e.key === ' ') e.stopPropagation(); }));
+  d.addEventListener('click', e => { const a = e.target.closest('a'); if (a && !String(a.getAttribute('href') || '').startsWith('#')) e.preventDefault(); if (e.target.closest('summary[contenteditable]')) e.preventDefault(); }, true);
+  const blockFrom = t => { const b = t.closest && t.closest('.blk, .hero'); return b ? (b.classList.contains('hero') ? 'details' : b.id) : null; };
+  d.addEventListener('input', e => { const id = blockFrom(e.target); roomSave(id); roomOutline(); roomRefreshChecks(); });
+  d.addEventListener('focusin', e => { const id = blockFrom(e.target); if (id && id !== S.roomBlock && roomBlock(id)) { S.roomBlock = id; roomOutline(); roomInspector(); } });
+  roomApplyHidden(); roomInspector();
+}
+function roomScrollTo(id) {
+  const b = roomBlock(id), d = roomDoc(); if (!d) return; const el = d.querySelector(b && b.el ? b.el : '#' + id); if (!el) return;
+  const w = d.defaultView; w.scrollTo({ top: el.getBoundingClientRect().top + w.scrollY - 24, behavior: 'smooth' });
+  el.animate([{ boxShadow: '0 0 0 3px rgba(151,115,255,.7)' }, { boxShadow: '0 0 0 3px rgba(151,115,255,0)' }], { duration: 1400 });
+}
+function bindRoom() {
+  if (!S.roomBlock) S.roomBlock = 'details';
+  roomOutline(); roomInspector();
+  const fr = $('#dr-frame iframe'); if (!fr) return;
+  fr.addEventListener('load', () => { roomPrep(); roomFit(); });
+  roomPrep(); setTimeout(() => { roomPrep(); roomFit(); }, 400);
+  requestAnimationFrame(roomFit);
+}
+
+/* Share and track */
+function roomShareHTML(r) {
+  const st = roomStats(r), feed = roomFeed(r, st), sm = id => ico(id).replace('class="ico"', 'class="ico" style="width:14px;height:14px"');
+  const dom = String(r.email || '').split('@')[1];
+  return `<div class="dr-col">
+    <div class="dr-panel"><h3>Room link</h3><p class="sub">One room, one link. Each person also gets a personal link, so you can see who is reading.</p>
+      <div class="dr-link"><div class="dr-url">${ico('i-lock')}<span>https://${esc(roomShown(r))}</span></div><button class="btn btn-ghost-n btn-sm" data-rcopy="${esc(roomLink(r))}">${sm('i-copy')}Copy</button></div>
+      <div class="dr-radio">
+        <label><input type="radio" name="dr-acc" value="email" ${r.access !== 'invited' ? 'checked' : ''}><span>Personal links, and a work email for anyone else<small>People you invite open it straight away. A forwarded link asks for a work email${dom ? ` at @${esc(dom)}` : ''} first, and you see who it was.</small></span></label>
+        <label><input type="radio" name="dr-acc" value="invited" ${r.access === 'invited' ? 'checked' : ''}><span>Only the people you invite<small>Forwarded links don't open. Use this for pricing you don't want passed on.</small></span></label>
+      </div></div>
+    <div class="dr-panel"><h3>People</h3><p class="sub">Who has the room, and how far they've read.${r.status === 'draft' ? ' The room is a draft: publish it before you send links.' : ''}</p>
+      ${st.people.length ? `<table class="dr-dt"><thead><tr><th>Person</th><th>Views</th><th>Read</th><th>Time</th><th>Last seen</th><th></th></tr></thead><tbody>
+      ${st.people.map(p => `<tr><td><b>${esc(p.name)}</b>${p.by === 'forward' ? ' <span class="pill n sample" style="height:20px;font-size:11px">Forwarded</span>' : ''}<small>${esc(p.role || p.email || '')}</small></td><td>${p.views}</td><td>${p.views ? `<span class="dr-bar"><i style="width:${p.read}%"></i></span>${p.read}%` : '<small>–</small>'}</td><td>${roomMins(p.time)}</td><td><small style="color:#E9E4F4">${p.views ? roomAgo(p.last) : 'Not opened'}</small></td>
+        <td><div class="acts"><button class="btn btn-ghost-n btn-sm" data-rcopy="${esc(roomLink(r, p))}" title="Copy ${esc(firstName(p.name))}'s personal link">${sm('i-copy')}Link</button><button class="btn btn-ghost-n btn-sm" data-dr-popen="${esc(p.token)}" title="Open the room as ${esc(firstName(p.name))}">${sm('i-ext')}</button></div></td></tr>`).join('')}
+      </tbody></table>` : '<p class="sub" style="margin-top:12px">Nobody yet. Add the first person below.</p>'}
+      <form class="dr-add" id="dr-add"><input name="n" placeholder="Name" required><input name="e" type="email" placeholder="Work email" required><input name="r" placeholder="Role"><button class="btn btn-primary btn-sm" style="background:#9773FF" type="submit">${sm('i-plus')}Add</button></form></div>
+    <div class="dr-panel"><h3>How far they read</h3><p class="sub">Share of people who reached each section, and their average time there.</p>
+      ${st.viewers.length ? `<div class="dr-depth">${st.depth.map(([t, p, s]) => `<div><span>${t}</span><span class="track"><i style="width:${p}%"></i></span><small>${p}% · ${roomMins(s)}</small></div>`).join('')}</div>` : '<p class="sub" style="margin-top:12px">Nobody has opened the room yet.</p>'}</div>
+  </div>
+  <div class="dr-col">
+    <div class="dr-panel"><h3>So far</h3><div class="dr-kpis"><div><b>${st.views}</b><span>Views</span></div><div><b>${st.viewers.length}</b><span>People reading</span></div><div><b>${st.avgRead}%</b><span>Read on average</span></div><div><b>${roomMins(st.time)}</b><span>Time in the room</span></div></div></div>
+    <div class="dr-panel"><h3>Activity</h3>${feed.length ? `<div class="dr-feed">${feed.map(f => `<div><span class="dot ${f.hot ? 'hot' : ''}">${ico(f.ic)}</span><p>${f.txt}<small>${roomAgo(f.at)}${f.sample ? ' · example' : ''}</small></p></div>`).join('')}</div>` : '<p class="sub" style="margin-top:8px">Nothing yet. Activity shows here when someone opens their link.</p>'}</div>
+    <div class="dr-panel"><h3>Tell me when</h3><div class="dr-toggles">${[['fresh', 'Someone new opens the room'], ['proposal', 'Someone reaches 07 Your proposal'], ['sign', 'Someone clicks Review and sign'], ['quiet', 'Nobody has opened it for 5 days']].map(([k, t]) => `<label>${t}<input type="checkbox" class="dr-sw" data-dr-alert="${k}" ${(r.alerts || {})[k] ? 'checked' : ''}></label>`).join('')}</div></div>
+    <div class="dr-panel"><h3>What viewers are told</h3><p class="sub" style="margin-top:6px">The room asks first: "Simployer sees when this page is opened and which parts are read, so ${esc(firstName(r.rep))} can follow up." Nothing is tracked unless they say OK. Legal and the DPO approve this wording before the first real room.</p></div>
+  </div>`;
+}
+// Collapse the sections, the fields, or everything (focus also collapses Fyr's menu), so the preview gets the room
+function roomPanels(which) {
+  if (which === 'left') S.roomNoLeft = !S.roomNoLeft;
+  if (which === 'right') S.roomNoRight = !S.roomNoRight;
+  if (which === 'focus') { S.roomFocus = !S.roomFocus; S.roomNoLeft = S.roomNoRight = S.roomFocus; if (S.roomFocus) { S.roomRailWas = railMini(); setRailMini(true); } else setRailMini(!!S.roomRailWas); }
+  else S.roomFocus = S.roomNoLeft && S.roomNoRight;
+  const body = $('.dr-body'); if (body) { body.classList.toggle('no-left', !!S.roomNoLeft); body.classList.toggle('no-right', !!S.roomNoRight); }
+  $$('[data-dr-panel]').forEach(b => { const k = b.dataset.drPanel; b.setAttribute('aria-pressed', k === 'left' ? !S.roomNoLeft : k === 'right' ? !S.roomNoRight : !!S.roomFocus); if (k === 'focus') b.innerHTML = ico(S.roomFocus ? 'i-shrink' : 'i-expand') + (S.roomFocus ? 'Exit focus' : 'Focus'); });
+  requestAnimationFrame(roomFit); setTimeout(roomFit, 260);
+}
+function roomRefreshShare() { const el = $('#dr-share'); const r = roomCur(); if (el && r) el.innerHTML = roomShareHTML(r); }
+function roomCopy(url) { try { navigator.clipboard.writeText(url); } catch (_) {} toast('Link copied. In Fyr it reads ' + url.replace(/^.*\/deal-room\/\?room=[^&]+/, (roomCur() ? roomShown(roomCur()) : 'rom.simployer.com/…')).replace('&r=', '?r=') + '.'); }
+
+document.addEventListener('click', e => {
+  const mk = e.target.closest('[data-mkroom]'); if (mk) { S.roomNew = mk.dataset.mkroom; S.roomModal = true; S.view = 'rooms'; render(); window.scrollTo({ top: 0 }); return; }
+  if (!['rooms', 'room'].includes(S.view)) return;
+  const t = e.target.closest('[data-dr],[data-ropen],[data-rcopy],[data-rdel],[data-dr-tab],[data-dr-dev],[data-dr-hide],[data-dr-block],[data-dr-pic],[data-dr-popen],[data-dr-panel]');
+  if (!t) return;
+  const r = roomCur(), a = t.dataset.dr;
+  if (t.dataset.drPanel) { roomPanels(t.dataset.drPanel); return; }
+  if (a === 'new') { S.roomNew = (DECKS[0] || {}).id || ''; S.roomModal = true; render(); return; }
+  if (a === 'cancel') { if (t.classList.contains('dr-scrim') && e.target !== t) return; S.roomModal = false; render(); return; }
+  if (t.dataset.ropen) { S.room = t.dataset.ropen; S.roomTab = 'edit'; S.roomBlock = 'details'; S.view = 'room'; render(); window.scrollTo({ top: 0 }); return; }
+  if (t.dataset.rcopy) { roomCopy(t.dataset.rcopy); return; }
+  if (t.dataset.rdel) {
+    if (t.dataset.armed !== '1') { t.dataset.armed = '1'; t.textContent = 'Delete?'; t.style.color = 'var(--red-ink)'; setTimeout(() => { if (t.isConnected && t.dataset.armed === '1') render(); }, 3000); return; }
+    const x = roomById(t.dataset.rdel); ROOMS = (roomsLoad() || ROOMS).filter(y => y.id !== t.dataset.rdel); roomsStore(); render(); toast(`Deleted the deal room for ${x ? x.company : 'that customer'}. Its links stop working.`); return;
+  }
+  if (t.dataset.drTab) { S.roomTab = t.dataset.drTab; $$('[data-dr-tab][aria-pressed]').forEach(b => b.setAttribute('aria-pressed', b.dataset.drTab === S.roomTab)); const body = $('.dr-body'), sh = $('#dr-share'); if (body) body.hidden = S.roomTab !== 'edit'; if (sh) { sh.hidden = S.roomTab !== 'share'; if (!sh.hidden) roomRefreshShare(); } requestAnimationFrame(roomFit); return; }
+  if (t.dataset.drDev) { S.roomDev = t.dataset.drDev; $$('[data-dr-dev]').forEach(b => b.setAttribute('aria-pressed', b === t)); roomFit(); return; }
+  if (t.dataset.drHide) { e.stopPropagation(); const h = new Set(r.hidden || []); h.has(t.dataset.drHide) ? h.delete(t.dataset.drHide) : h.add(t.dataset.drHide); r.hidden = [...h]; roomApplyHidden(); roomSave(); roomOutline(); roomRefreshChecks(); return; }
+  if (t.dataset.drBlock) { S.roomBlock = t.dataset.drBlock; roomOutline(); roomInspector(); roomScrollTo(S.roomBlock); return; }
+  if (t.dataset.drPic) { const f = ROOM_FIELDS[S.roomBlock][+t.dataset.drPic]; roomAll(f.s).forEach(img => { img.src = t.dataset.src; }); $$('[data-dr-pic]').forEach(b => b.classList.toggle('on', b === t)); roomSave(S.roomBlock); roomOutline(); return; }
+  if (t.dataset.drPopen) { const p = (r.people || []).find(x => x.token === t.dataset.drPopen); if (p) window.open(roomLink(r, p), '_blank', 'noopener'); return; }
+  if (a === 'open') { const p = (r.people || []).find(x => x.by === 'rep') || (r.people || [])[0]; if (!p) { toast('Add a person in Share and track first. Each person gets their own link.'); return; } window.open(roomLink(r, p), '_blank', 'noopener'); return; }
+  if (a === 'publish') {
+    const ph = roomPlaceholders(); if (ph) { toast(`Fill the ${ph} placeholder${ph === 1 ? '' : 's'} in curly brackets first. The message check lists them.`); return; }
+    const first = r.status === 'draft'; if (r.status !== 'signed') r.status = 'live'; roomSave(); render();
+    toast(first ? 'Published. Share the personal links from Share and track.' : 'Published. Everyone with a link sees the new version.'); return;
+  }
+  if (a === 'addstep') { const tb = roomAll('#p12 tbody')[0]; if (!tb) return; const n = tb.children.length + 1, tr = roomDoc().createElement('tr'); tr.innerHTML = `<td>${n}</td><td contenteditable="true">New step</td><td contenteditable="true">Both</td><td contenteditable="true">Date</td><td></td>`; tb.appendChild(tr); roomSave('p12'); roomOutline(); roomScrollTo('p12'); toast('Step added. Type in the table to fill it in.'); return; }
+  if (a === 'video') { toast('Video upload comes with the app (Vercel Blob). The prototype keeps the placeholder.'); return; }
+});
+document.addEventListener('input', e => {
+  if (S.view !== 'room') return; const f = e.target.closest('[data-dr-f]'); if (!f) return;
+  const def = ROOM_FIELDS[S.roomBlock][+f.dataset.drF]; roomAll(def.s).forEach(el => { el.textContent = f.value; });
+  const r = roomCur(); if (def.company) { r.company = f.value; const h = $('.studio-bar h2'); if (h) h.textContent = 'Deal room for ' + f.value; const cb = $('#crumbs b'); if (cb) cb.textContent = f.value; }
+  roomSave(S.roomBlock); roomOutline(); roomRefreshChecks();
+});
+document.addEventListener('change', e => {
+  if (S.view !== 'room') return; const r = roomCur(); if (!r) return;
+  const it = e.target.closest('[data-dr-item]'); if (it) { const def = ROOM_FIELDS[S.roomBlock][+it.dataset.drItem], el = roomAll(def.s)[+it.dataset.j]; if (el) el.style.display = it.checked ? '' : 'none'; roomSave(S.roomBlock); roomOutline(); return; }
+  if (e.target.name === 'dr-acc') { r.access = e.target.value; roomPut(r); toast(r.access === 'invited' ? 'Only invited people can open the room now.' : 'Forwarded links now ask for a work email.'); return; }
+  const al = e.target.closest('[data-dr-alert]'); if (al) { r.alerts = { ...(r.alerts || {}), [al.dataset.drAlert]: al.checked }; roomPut(r); return; }
+  if (e.target.dataset.dr === 'signhow' && e.target.value.startsWith('BankID')) toast('BankID needs a signing provider: a new external dependency, not in D-036.');
+});
+document.addEventListener('submit', e => {
+  if (e.target.id === 'dr-new') {
+    e.preventDefault(); const co = $('#drn-co').value.trim(); if (!co) { $('#drn-co').focus(); return; }
+    const r = createRoom($('#drn-from').value, co, $('#drn-c').value.trim(), $('#drn-e').value.trim(), $('#drn-p').value);
+    S.roomModal = false; S.room = r.id; S.roomTab = 'edit'; S.roomBlock = 'details'; S.view = 'room'; render(); window.scrollTo({ top: 0 });
+    toast(`Room for ${co} made from your presentation. Fill in what's in curly brackets, then publish.`); return;
+  }
+  if (e.target.id === 'dr-add') {
+    e.preventDefault(); const r = roomCur(), fd = new FormData(e.target), n = String(fd.get('n') || '').trim(); if (!r || !n) return;
+    const p = { name: n, email: String(fd.get('e') || '').trim(), role: String(fd.get('r') || '').trim(), token: roomTok(n), by: 'rep' };
+    r.people = [...(r.people || []), p]; roomPut(r); roomRefreshShare(); toast(`${firstName(n)} added. Their personal link: ${roomShown(r, p)}`);
+  }
+});
+document.addEventListener('change', e => { if (e.target.id === 'drn-from') { const d = DECKS.find(x => x.id === e.target.value); const c = $('#drn-co'); if (c) c.value = d ? d.company : ''; } });
+window.addEventListener('resize', () => { if (S.view === 'room') roomFit(); });
+// Collapsible Fyr menu, for every page: icons only, remembered in this browser
+const RAIL_KEY = 'fyr-v03-rail';
+const railMini = () => document.querySelector('.app').classList.contains('mini');
+function setRailMini(on) {
+  document.querySelector('.app').classList.toggle('mini', on);
+  try { localStorage.setItem(RAIL_KEY, on ? 'mini' : ''); } catch (_) {}
+  const b = document.getElementById('rail-toggle'); if (b) { const t = on ? 'Expand the menu' : 'Collapse the menu'; b.title = t; b.setAttribute('aria-label', t); b.setAttribute('aria-pressed', on); }
+  if (S.view === 'room') { requestAnimationFrame(roomFit); setTimeout(roomFit, 260); }
+}
+document.getElementById('rail-toggle').addEventListener('click', () => setRailMini(!railMini()));
+try { if (localStorage.getItem(RAIL_KEY) === 'mini') setRailMini(true); } catch (_) {}
+// The customer page writes views, forwards and signatures; show them as they arrive
+window.addEventListener('storage', e => {
+  if (![ROOM_KEY, ROOM_EV_KEY].includes(e.key)) return; roomsSync();
+  if (S.view === 'rooms' && !S.roomModal) render();
+  if (S.view === 'room') { if (S.roomTab === 'share') roomRefreshShare(); const r = roomCur(), p = $('.studio-bar .meta .pill'); if (r && p) p.outerHTML = roomPill(r, true); }
+});
 
 /* ---------- Library ---------- */
 function vLibrary() {
@@ -4377,16 +4971,17 @@ Object.assign(I18N, { 'Open in new tab': ['Åpne i ny fane', 'Öppna i ny flik']
 function render() {
   if (S.view === 'deck' && !S.deck) S.view = 'create';
   if (S.view === 'brief' && !S.brief) S.view = 'create';
-  const OPEN = ['create', 'brief', 'gen', 'deck', 'work', 'truth', 'roadmap', 'battle', 'library'], PMV = [...OPEN, 'product', 'calendar'];
+  if (S.view === 'room' && !roomById(S.room)) S.view = 'rooms';
+  const OPEN = ['create', 'brief', 'gen', 'deck', 'work', 'rooms', 'room', 'truth', 'roadmap', 'battle', 'library'], PMV = [...OPEN, 'product', 'calendar'];
   if (S.role === 'org' && !OPEN.includes(S.view) || S.role === 'pm' && !PMV.includes(S.view)) S.view = 'create';
   if (['people', 'usage'].includes(S.view) && !(CUR && CUR.admin)) S.view = S.role === 'pmm' ? 'office' : 'create';
   if (['truth', 'roadmap', 'battle', 'library'].includes(S.view) && LAST_VIEW !== S.view) track('view', { area: S.view });
   LAST_VIEW = S.view;
   renderNav();
-  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, library: vLibrary, truth: vTruth, roadmap: vRoadmap, rmed: vRmEd, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
+  const map = { create: vCreate, brief: vBrief, deck: vDeck, work: vWork, rooms: vRooms, room: vRoom, library: vLibrary, truth: vTruth, roadmap: vRoadmap, rmed: vRmEd, battle: vBattle, office: vOffice, product: vReleases, calendar: vCalendar, packs: vPacks, pack: vPack, packnew: vPackNew, playbooks: vPlaybooks, editor: vEditor, framework: vFramework, bcedit: vBcEdit, channels: vChannels, auto: vAuto, prules: vPRules, people: vPeople, usage: vUsage };
   const thumbsEl = $('.thumbs'), thumbsTop = thumbsEl && S.deck && S.__deckId === S.deck.id ? thumbsEl.scrollTop : 0;
   $('#view').innerHTML = (CUR && CUR.status === 'pending' ? `<div class="ro" style="margin-bottom:16px">${ico('i-clock')}<span><b>Your ${ROLE_LABEL[CUR.role]} access is waiting for approval.</b> You can use Presentations, Product truth, Roadmap, Battlecards and Library meanwhile.</span></div>` : '') + boTabs() + (map[S.view] || vCreate)();
-  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, roadmap: bindRoadmap, rmed: bindRmEd, people: bindPeople, usage: bindUsage }[S.view] || (() => {}))();
+  ({ create: bindCreate, brief: bindBrief, deck: bindDeck, rooms: bindRooms, room: bindRoom, library: bindLibrary, battle: bindBattle, pack: bindPack, packnew: bindPackNew, playbooks: bindPlaybooks, editor: bindEditor, framework: bindFramework, bcedit: bindBcEdit, channels: bindChannels, auto: bindAuto, prules: bindPRules, roadmap: bindRoadmap, rmed: bindRmEd, people: bindPeople, usage: bindUsage }[S.view] || (() => {}))();
   if (S.view === 'deck') saveDeck(); // every change in the studio re-renders, so this saves it
   { // keep the slide list where the user scrolled it; only nudge it when the selected slide would be out of view
     const th = $('.thumbs');
@@ -4407,6 +5002,7 @@ DECKS = decksLoad() || seedDecks();
   DECKS = DECKS.map(d => { const f = fresh.find(x => x.id === d.id); if (f && (d.ruleV || 0) < f.ruleV) { changed = true; return { ...f, presented: d.presented }; } return d; });
   if (changed) decksStore();
 }
+ROOMS = roomsLoad() || seedRooms(); seedRoomEvents();
 render();
 renderLogin();
 </script>
