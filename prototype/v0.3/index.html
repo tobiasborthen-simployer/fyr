@@ -2540,7 +2540,7 @@ const roomById = id => ROOMS.find(r => r.id === id);
 const firstName = n => String(n || '').trim().split(/\s+/)[0];
 const initialsOf = n => String(n || '').trim().split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase();
 const roomTok = n => (firstName(n).toLowerCase().normalize('NFD').replace(/[^a-z]/g, '') || 'guest') + '-' + Math.random().toString(36).slice(2, 5);
-const roomLink = (r, p) => new URL(`deal-room/?room=${encodeURIComponent(r.id)}${p ? '&r=' + p.token : ''}`, location.href).href;
+const roomLink = (r, p) => new URL(`deal-room/index.html?room=${encodeURIComponent(r.id)}${p ? '&r=' + p.token : ''}`, location.href).href;
 const roomShown = (r, p) => `rom.simployer.com/${r.slug}${p ? '?r=' + p.token : ''}`;
 const ROOM_SECS = [['s1', '01 Where you are today'], ['s2', '02 Why do anything at all'], ['s3', '03 What becomes possible'], ['s4', '04 What you get'], ['s5', '05 Value and proof'], ['s6', '06 Safe to implement'], ['s7', '07 Your proposal']];
 const roomAgo = ts => { if (!ts) return '–'; const m = Math.round((Date.now() - ts) / 6e4); if (m < 1) return 'Just now'; if (m < 60) return `${m} min ago`; if (m < 24 * 60) return `${Math.round(m / 60)} h ago`; const d = new Date(ts); return m < 48 * 60 ? `Yesterday ${d.toTimeString().slice(0, 5)}` : `${d.getDate()} ${MON3[d.getMonth()]}`; };
@@ -2733,7 +2733,7 @@ function vRoom() {
           <div class="dr-tools"><button data-dr-panel="left" aria-pressed="${!S.roomNoLeft}" title="Show or hide the sections">${ico('i-panel-left')}Sections</button><button data-dr-panel="focus" aria-pressed="${!!S.roomFocus}" title="Hide the menu and both panels, so the preview gets the whole width">${ico(S.roomFocus ? 'i-shrink' : 'i-expand')}${S.roomFocus ? 'Exit focus' : 'Focus'}</button></div>
           <div class="dr-url">${ico('i-lock')}<span>${esc(roomShown(r))}</span></div>
           <div class="dr-tools"><div class="seg n" role="group" aria-label="Preview size"><button data-dr-dev="desktop" aria-pressed="${(S.roomDev || 'desktop') === 'desktop'}" title="Desktop">${ico('i-monitor')}</button><button data-dr-dev="phone" aria-pressed="${S.roomDev === 'phone'}" title="Phone">${ico('i-phone')}</button></div><button data-dr-panel="right" aria-pressed="${!S.roomNoRight}" title="Show or hide the fields">Fields${ico('i-panel-right')}</button></div></div>
-        <div class="dr-frame" id="dr-frame"><iframe src="deal-room/?room=${encodeURIComponent(r.id)}&edit=1" title="Live preview of the deal room"></iframe></div>
+        <div class="dr-frame" id="dr-frame"><iframe src="deal-room/index.html?room=${encodeURIComponent(r.id)}&edit=1" title="Live preview of the deal room"></iframe></div>
         <div class="dr-stage-bar" style="justify-content:center"><span>${ico('i-cursor')} Click any text in the preview to change it. Lines with a lock come from the Messaging Framework.</span></div>
       </div>
       <aside class="dr-insp" id="dr-insp"></aside>
@@ -2896,7 +2896,7 @@ function roomPanels(which) {
   requestAnimationFrame(roomFit); setTimeout(roomFit, 260);
 }
 function roomRefreshShare() { const el = $('#dr-share'); const r = roomCur(); if (el && r) el.innerHTML = roomShareHTML(r); }
-function roomCopy(url) { try { navigator.clipboard.writeText(url); } catch (_) {} toast('Link copied. In Fyr it reads ' + url.replace(/^.*\/deal-room\/\?room=[^&]+/, (roomCur() ? roomShown(roomCur()) : 'rom.simployer.com/…')).replace('&r=', '?r=') + '.'); }
+function roomCopy(url) { try { navigator.clipboard.writeText(url); } catch (_) {} toast('Link copied. In Fyr it reads ' + url.replace(/^.*\/deal-room\/(index\.html)?\?room=[^&]+/, (roomCur() ? roomShown(roomCur()) : 'rom.simployer.com/…')).replace('&r=', '?r=') + '.'); }
 
 document.addEventListener('click', e => {
   const mk = e.target.closest('[data-mkroom]'); if (mk) { S.roomNew = mk.dataset.mkroom; S.roomModal = true; S.view = 'rooms'; render(); window.scrollTo({ top: 0 }); return; }
