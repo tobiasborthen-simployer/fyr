@@ -120,7 +120,22 @@ strong{font-weight:600;color:var(--text-strong)}
 .repcard a:hover{text-decoration:underline}
 
 /* ---------- main ---------- */
-.main{flex:1 1 auto;min-width:0;padding:0 56px 128px;max-width:880px}
+.main{flex:1 1 auto;min-width:0;padding:0 56px 128px;max-width:1240px;margin:0 auto}
+/* Wide screens: the room uses the width (up to the brand's 1240 px container), images keep their height, and the long stacks sit side by side. Body text keeps its reading width. */
+.photo-wide img{max-height:480px}
+@media(min-width:1280px){
+  .photo-wide img{aspect-ratio:21/9}
+  .split > figure.photo img{aspect-ratio:1/1}
+  .view img,.duo img{max-height:560px;width:auto;max-width:100%;margin:0 auto}
+  .duo figure,.pillar .view{display:flex;justify-content:center}
+  .blk:has(> .story){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:start}
+  .blk:has(> .story) > :not(.story){grid-column:1/-1}
+  .blk > .story ~ .story ~ .story{grid-column:1/-1}
+  .pillar .view img{max-height:440px}
+  .faq{columns:2;column-gap:48px}
+  .faq details{break-inside:avoid;border-top:0;border-bottom:1px solid var(--border-warm)}
+  .faq{border-top:1px solid var(--border-warm)}
+}
 
 /* the hero is an ink band, with a photo from the Stockholm shoot */
 .hero{
