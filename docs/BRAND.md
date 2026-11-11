@@ -21,6 +21,7 @@ Fyr never edits the brand system. Its owner is Product Marketing; the last chang
 - **Figures come from Claims, word for word,** in the language of the piece. Where the framework words a figure differently ("12,000+ customers and 1.2 million users"), Fyr uses the Claims wording (D-046).
 - **A claim marked *to confirm* in Swedish or Norwegian is used in English** until the language owner says yes (Swedish: Linda, Norwegian: Thea). Fyr shows a flag on the slide when that happens.
 - **A held figure stays out** of decks, posts, emails and rooms until it has a source and a row in Claims.
+- **Product views and photos are always full size** in rooms and slides. To make space, cut or fold content; never shrink, cap or crop an image (Tobias, 11 Nov).
 - **Sia's wording follows the framework,** not the brand system's own table, where they differ (D-016). Today: framework "Din AI-medarbetare för HR", brand system "Din AI-medarbetare i HR". Raised with PMM.
 
 ## Where Fyr's look still differs (follow-up)
