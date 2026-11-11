@@ -11,6 +11,14 @@
   function read(k, d) { try { var v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; } catch (_) { return d; } }
   function write(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} }
   function $(s) { return document.querySelector(s); }
+  // Inside Fyr's editor the room hides its own menu: the studio's section strip is the one menu (D-038).
+  // The room does this itself, so it holds even where Fyr can't reach into the frame. Preview shows it again, by message.
+  if (edit) {
+    var ed = document.createElement('style');
+    ed.textContent = 'html:not(.fyr-preview) .nav,html:not(.fyr-preview) .navtoggle{display:none!important}html:not(.fyr-preview) .main{margin:0 auto}';
+    document.head.appendChild(ed);
+    window.addEventListener('message', function (e) { if (e.source === window.parent && e.data && e.data.fyr === 'preview') document.documentElement.classList.toggle('fyr-preview', !!e.data.on); });
+  }
   if (!id) return;
 
   var rooms = read(ROOMS, []), room = null;
@@ -34,7 +42,7 @@
     '.fyr-notice .fyr-btn{height:40px;padding:0 16px;font-size:14px;background:#f6f2ff;color:#2d0c69;flex:none}' +
     '.fyr-notice .fyr-btn.line{background:transparent;color:#cfc9da;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}' +
     '.fyr-signed{margin-top:22px;padding:16px 18px;border-radius:14px;background:rgba(246,242,255,.08);color:#f6f2ff;font-size:15px}' +
-    '.fyr-player{background:rgba(15,10,30,.86)}' +
+    '.fyr-player{background:rgba(23,20,31,.86)}' +
     '.fyr-vbox{position:relative;width:min(960px,100%)}' +
     '.fyr-vbox video{display:block;width:100%;max-height:80vh;border-radius:18px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}' +
     '.fyr-x{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;border:0;background:#f6f2ff;color:#2d0c69;font:600 22px/1 "Hanken Grotesk",sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}' +

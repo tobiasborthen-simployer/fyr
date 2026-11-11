@@ -3235,6 +3235,7 @@ function roomLayout() {
   requestAnimationFrame(roomFit); setTimeout(roomFit, 220);
 }
 function roomApplyPreview() {
+  const f = $('#dr-frame iframe'); try { if (f && f.contentWindow) f.contentWindow.postMessage({ fyr: 'preview', on: !!S.roomPreview }, '*'); } catch (_) {}
   const d = roomDoc(); if (!d || !d.documentElement) return; const on = !!S.roomPreview;
   d.documentElement.classList.toggle('fyr-preview', on);
   d.querySelectorAll('[data-fyr-ce]').forEach(el => el.setAttribute('contenteditable', on ? 'false' : 'true'));
@@ -3343,7 +3344,7 @@ function bindRoom() {
   S.roomReady = S.roomMenu = false; S.roomFixN = null;
   roomOutline(); roomInspector();
   const fr = $('#dr-frame iframe'); if (!fr) return;
-  fr.addEventListener('load', () => { roomPrep(); roomFit(); if (S.roomBlock === 'meet') setTimeout(roomDraftShow, 150); });
+  fr.addEventListener('load', () => { roomPrep(); roomApplyPreview(); roomFit(); if (S.roomBlock === 'meet') setTimeout(roomDraftShow, 150); });
   roomPrep(); setTimeout(() => { roomPrep(); roomFit(); }, 400);
   if (window.ResizeObserver) new ResizeObserver(() => roomFit()).observe($('#dr-frame')); // refit whenever the stage changes size: menu, panels, window
   requestAnimationFrame(roomFit);

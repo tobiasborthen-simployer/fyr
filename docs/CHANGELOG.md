@@ -7,6 +7,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
 **Changed (sign-in page, ink and brand fonts, D-048)**
+- **Deal room studio has one menu again (D-038):** the room's own customer menu stays hidden while you edit, also in the published prototype, and shows in *Preview*. The section strip is the only menu.
 - **New sign-in page** on brand ink: the hero with *Sign in* and *Register* on the left, and on the right three Fyr slides stacked like cards beside a lighthouse whose beam sweeps across them. The slides follow the page's language and read their lines from the framework. The email, code, confirm and register steps have the same look. The night sky, sea, stars and coral dot are gone.
 - **Ink is the app's dark colour:** the menu rail, the deck studio, the deal room studio's section strip and side panels, the dark hero panels, dark slides and the presenter are brand ink (#1F1B2E) instead of the night purple, with no glows or grid patterns.
 - **Fonts:** Fraunces and Hanken Grotesk only. Inter and Source Serif 4 are no longer loaded, and "Fyr" in the menu is set in Fraunces without the dot.
