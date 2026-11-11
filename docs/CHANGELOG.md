@@ -6,6 +6,11 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
+**Changed (sign-in page, ink and brand fonts, D-048)**
+- **New sign-in page** on brand ink: the hero with *Sign in* and *Register* on the left, and on the right three Fyr slides stacked like cards beside a lighthouse whose beam sweeps across them. The slides follow the page's language and read their lines from the framework. The email, code, confirm and register steps have the same look. The night sky, sea, stars and coral dot are gone.
+- **Ink is the app's dark colour:** the menu rail, the deck studio, the dark hero panels, dark slides and the presenter are brand ink (#1F1B2E) instead of the night purple, with no glows or grid patterns.
+- **Fonts:** Fraunces and Hanken Grotesk only. Inter and Source Serif 4 are no longer loaded, and "Fyr" in the menu is set in Fraunces without the dot.
+
 **Changed (Messaging Framework synced 2026-11-11, Simployer Brand v30 added)**
 - **Trust line in Norwegian and Swedish** now comes from the framework: "Arbeidsretten ligger i bunn. HR-ekspertene står bak." and "Nordisk arbetsrätt i grunden. Riktiga experter bakom." Every slide footer and Product truth use it, and it no longer shows *needs approval*.
 - **Figures come from the brand system's Claims table, word for word (D-046):** "12,000 companies run their HR on Simployer" and "1.2 million people run their HR on Simployer" instead of "12,000+ customers and 1.2 million users". This covers the "Who we are" slide, "Simployer in short", the onboarding proof and the battlecard objection. A claim not yet approved in Norwegian or Swedish shows in English, with a flag on the slide.

@@ -13,7 +13,7 @@ Fyr never edits the brand system. Its owner is Product Marketing; the last chang
 | **Never** list (ISO certified, ISAE 3402, Sia in Claude or ChatGPT, placeholders) | `avoid` rules `iso-certified`, `isae`, `sia-llm`, `placeholder` | `tools/sync-framework.mjs --check`, the message check |
 | **Content fundamentals** (sentence case, no em dashes, semicolons or exclamation marks, Sia is "she", buttons name an action) | `style` in the JSON | Remix brand rules, review by hand |
 | **Book a demo** links per language | `bookDemo` in the JSON | Close slides, ads, deal rooms |
-| **Colour and type** (paper, ink, plum, lavender, Himmel; Fraunces and Hanken Grotesk) | The prototype's `:root` tokens and slide CSS | Every slide, ad and page Fyr renders |
+| **Colour and type** (paper, ink, plum, lavender, Himmel; Fraunces and Hanken Grotesk) | The prototype's `:root` tokens and slide CSS. Ink (#1F1B2E) is the app's dark colour (D-048) | Every slide, ad and page Fyr renders, the sign-in page and the app |
 | **Logos** (wordmark in four inks, the Sia mark) | `.slogo` in the prototype | Slides, ads, the LinkedIn preview |
 
 ## Rules that matter most in Fyr
@@ -25,7 +25,7 @@ Fyr never edits the brand system. Its owner is Product Marketing; the last chang
 
 ## Where Fyr's look still differs (follow-up)
 
-The palette and the fonts already match the brand tokens. The slide layouts predate the brand system's deck recipe ("Stark, with moments"), and differ in these ways:
+The palette, the ink dark colour and the fonts match the brand tokens (D-048). The slide layouts predate the brand system's deck recipe ("Stark, with moments"), and differ in these ways:
 - The wordmark sits top right; the recipe puts it bottom left with the slide number bottom right.
 - Columns are white cards with shadows and numbered chips; the recipe uses a 2px `text-strong` hairline instead of boxes.
 - Eyebrows are pills on every slide; the recipe has eyebrows only on title and section slides.

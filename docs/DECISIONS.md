@@ -262,7 +262,7 @@ Details are in PARKED.md.
 **Revisit if:** the M1 sign-off or the M2 admin dependencies (Entra, Linear, Claude) slip.
 
 ## D-015 — Keep the Fyr lighthouse login as the sign-in page design
-`2026-10-28` · **Status:** Proposed · **Owner:** Tobias
+`2026-10-28` · **Status:** Superseded by D-048 · **Owner:** Tobias
 
 **Context:**
 - v0.2 had a branded demo login: a lighthouse, the "Fyr" wordmark, and an EN/NO/SV switch.
@@ -1091,3 +1091,22 @@ Details are in PARKED.md.
 **Consequences:** `vBanner` takes the tag from `PILN`, the ad brief's banner field shows the pillar, and the `HR-systemet for [bransje]` strings are gone.
 
 **Revisit if:** paid search shows the category word in the ad itself lifts results, and the framework owner agrees.
+
+## D-048 — A new sign-in page on brand ink, and ink and the brand fonts across the app
+`2026-11-11` · **Status:** Accepted · **Owner:** Tobias · Supersedes D-015
+
+**Context:**
+- The sign-in page was an animated night scene: sky, stars, sea, a drawn lighthouse and a coral dot after "Fyr". It gave Fyr an identity, but its colours and type were close to the brand without being the brand.
+- The app's dark surfaces used a "night" purple (#1B1038 and two lighter steps) with violet glows and faint grid patterns. Its fonts were Inter and Source Serif 4 in the base styles, with Fraunces and Hanken Grotesk layered on top.
+- The Simployer Brand system (D-046) uses ink (`ink-900`, #1F1B2E) for dark bands, Fraunces for display and Hanken Grotesk for everything else, and no decorative shapes.
+- Tobias tried a cream page and a page with a real lighthouse photo, and chose a third version.
+
+**Decision:**
+- **Sign-in:** brand ink, with the Simployer wordmark, "Fyr" in Fraunces and the language switch on top. The hero on the left (label, two-line headline, one line, *Sign in* and *Register*). On the right, three Fyr slides stacked like cards (cover, big number, the how) beside a drawn lighthouse whose beam keeps the old sweep. The slides read their lines from the framework (`MF`) and the number from Claims (C2), in the page's language. The sign-in steps (email, code, confirm, register) keep their logic and get the same look.
+- **Dark colour:** brand ink everywhere in the app (rail, studio, hero panels, dark slides, presenter). Two lighter steps for raised surfaces: #282436 and #312D3F. No violet glows or grid patterns on dark surfaces.
+- **Fonts:** Fraunces and Hanken Grotesk only (Caveat stays for handwritten notes). Inter and Source Serif 4 are no longer loaded, and Fraunces drops its "SOFT" setting.
+- **The lighthouse stays a drawing.** The brand system rules out illustrations on material that goes out; the sign-in is an internal tool's front door, and the lighthouse is what Fyr means.
+
+**Consequences:** the coral dot after "Fyr" is gone, in the sign-in and the rail. Exported and presented decks use ink and the brand fonts. The deal room page is unchanged.
+
+**Revisit if:** the brand owner wants the brand system to cover internal tools, or Fyr gets its own mark.

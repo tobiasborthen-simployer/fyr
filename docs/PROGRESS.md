@@ -60,6 +60,17 @@ Items that need someone else are also issues in the Linear project [Fyr (P-PRO-3
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-11 — New sign-in page; ink and the brand fonts across the app (D-048)
+- **Done:**
+  - Tried three sign-in designs as a preview (cream with a product view, a real lighthouse photo, and ink with a stacked deck and a drawn lighthouse). Tobias picked the ink one.
+  - Built it into the prototype. The deck cards read the line, the how and the trust line from `MF` and the number from Claims (C2), in EN/NO/SV. The sign-in steps keep their logic.
+  - Dark surfaces are brand ink (#1F1B2E, with #282436 and #312D3F for raised surfaces), with no glows or grid patterns. Fonts are Fraunces and Hanken Grotesk only.
+  - **Checked in the browser:** the sign-in at 1440 px and on a phone, the full email → code → confirm → signed-in flow, the rail, Home and the deck studio on ink, a dark quote slide, and that only Fraunces and Hanken Grotesk load. No console errors. Fixed on the way: a dark slide had no edge on the dark studio, and the beam let the phone page scroll sideways.
+  - Not checked: the presenter and the exported deck file (same tokens, not opened).
+- **Next:** walk through the app on ink for anything that looked right only on purple. The slide layouts still differ from the brand deck recipe (BRAND.md).
+- **Blockers:** none.
+- **Decisions:** D-048 (supersedes D-015).
+
 ### 2026-11-11 — Fyr matches the settled Messaging Framework; the Simployer Brand system is the second source (D-046, D-047)
 - **Done:**
   - Re-read the [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o) and synced the snapshot to 2026-11-11. The trust line now exists in SV and NO, so Fyr uses it and drops its own translation.
