@@ -68,6 +68,7 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
   - The copy check now covers battlecards and vertical ads, the brand never list, and framework lines typed by hand. **0 errors, 15 warnings** (all "40 years" in battlecard framing).
   - Checked in the browser: NO/SV footers on a Swedish and a Norwegian deck, Product truth (NO) synced 2026-11-11, the "Who we are" slide in Norwegian with its flag, the ads' pillar tags. No console errors.
   - Republished [Fyr v0.3](https://claude.ai/artifact/LUMhnhkw1hcoGF9jmt9QpE) as version 8 (`index.html` only; the deal room files and media are unchanged).
+  - Fix: Product truth's status pill showed the full English reason ("Updated to the Messaging Framework · waiting for approval") on a Norwegian page and ran out of its 180px column. It now shows the short status in the content language, with the reason on hover. Checked in NO at 1440 px and narrow: no pill overflows. Republished as version 9.
 - **Next:** PMM answers on the NO/SV category row and opener, Sia's Swedish wording ("för" or "i"), and Thea's/Linda's yes on C1 and C3. Battlecard owners rework the "40 years" frames. Restyle the slides to the brand system's deck recipe (BRAND.md, follow-up).
 - **Blockers:** none.
 - **Linear:** PRO-171 for the Sia wording and the NO/SV claims.
