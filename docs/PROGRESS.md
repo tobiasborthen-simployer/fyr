@@ -5,11 +5,11 @@
 | # | Milestone | Target | Status | Done | Owner |
 |---|---|---|---|---|---|
 | M0 | Project setup | 28 Oct | ✅ Done | 100% | Tobias |
-| M1 | Slim v0.3 prototype + sign-off | 4 Nov | 🟢 On track | 90% | Tobias |
-| M2 | App foundation (portal sign-in, DB, Linear, Releases) | 11 Nov | ⬜ Not started | 0% | — |
-| M3 | PMM core (Truth, Packs, Battlecards, Library) | 18 Nov | ⬜ Not started | 0% | — |
-| M4 | Create + Remix + Automations | 25 Nov | ⬜ Not started | 0% | — |
-| M5 | Pilot + go-live | 27 Nov | ⬜ Not started | 0% | — |
+| M1 | Slim v0.3 prototype + sign-off | 13 Nov | 🟡 At risk (sign-off overdue) | 90% | Tobias |
+| M2 | App foundation (portal sign-in, DB, Linear, Releases) | 20 Nov | ⏳ Next | 0% | Tobias |
+| M3 | PMM core (Truth, Packs, Battlecards, Library) | 2 Dec | ⬜ Not started | 0% | — |
+| M4 | Create + Remix + Automations | 9 Dec | ⬜ Not started | 0% | — |
+| M5 | Pilot + go-live of Fyr 1.0 | 15 Dec | ⬜ Not started | 0% | — |
 
 Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next · ⬜ not started
 
@@ -22,39 +22,53 @@ Items that need someone else are also issues in the Linear project [Fyr (P-PRO-3
 | Confirm D-009 (consequential drops) | Decision | Tobias | 30 Oct | Open |
 | Confirm D-010 (SV approver), D-012 (Remix channels), D-013 (PMM Home), D-014 (go-live date) | Decision | Tobias | 4 Nov | Open |
 | ~~Request Entra ID app registration from IT~~ (not needed, D-023) | Admin | Tobias | 30 Oct | Closed |
-| Ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain, e.g. `mail.simployer.com`; set up Resend (PRO-157) | Admin | Tobias | 4 Nov | Open |
+| Ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain, e.g. `mail.simployer.com`; set up Resend (PRO-157) | Admin | Tobias | 2 Dec (ask by 18 Nov) | Open |
 | Roles not on the list: do CSM, PS and Customer Care pick Sales, or do we add a role? | Decision | Tobias | 4 Nov | Open |
-| Raise usage tracking with the employee representatives (drøfting, AML §9-2) and inform staff before go-live (D-025) (PRO-170) | Admin | Tobias | 20 Nov | Open |
-| Linear API key + webhook access; confirm tier/visibility fields (PRO-156) | Admin | Tobias | 30 Oct | Open |
+| Raise usage tracking with the employee representatives (drøfting, AML §9-2) and inform staff before go-live (D-025) (PRO-170) | Admin | Tobias | 27 Nov | Open |
+| Linear API key + webhook access; confirm tier/visibility fields (PRO-156) | Admin | Tobias | 18 Nov | Open |
 | ~~Claude API key + budget + data-policy OK~~ (replaced by OpenAI, D-031) | Admin | Tobias | 30 Oct | Closed |
-| Ask IT about OpenAI for Fyr: Azure OpenAI or the OpenAI API, which model, budget and rate limits, and whether the data policy is already covered (D-031) (PRO-159) | Admin | Tobias | 4 Nov | Open |
-| Confirm with IT that the build tools are fine: Claude Code, claude.ai links for the prototype and framework, and the weekly drift check (D-031) (PRO-159) | Admin | Tobias | 4 Nov | Open |
-| Vercel project (personal or Simployer team) (PRO-158) | Admin | Tobias | 4 Nov | Open |
+| Ask IT about OpenAI for Fyr: Azure OpenAI or the OpenAI API, which model, budget and rate limits, and whether the data policy is already covered (D-031) (PRO-159) | Admin | Tobias | 25 Nov | Open |
+| Confirm with IT that the build tools are fine: Claude Code, claude.ai links for the prototype and framework, and the weekly drift check (D-031) (PRO-159) | Admin | Tobias | 25 Nov | Open |
+| Vercel project (personal or Simployer team) (PRO-158) | Admin | Tobias | 18 Nov | Open |
 | Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
 | Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Tobias | 4 Nov | Open |
 | Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Tobias | 4 Nov | Open |
-| Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow (PRO-163) | Content | Tobias | 4 Nov | Open |
+| Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow (PRO-163) | Content | Tobias | 4 Dec | Open |
 | Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Tobias (Linda for SV) | 4 Nov | Open |
-| Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) (PRO-160) | Admin | Tobias | 11 Nov | Open |
-| Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) (PRO-161) | Decision | Tobias | 4 Nov | Open |
+| Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) (PRO-160) | Admin | Tobias | 2 Dec | Open |
+| Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) (PRO-161) | Decision | Tobias | 2 Dec | Open |
 | Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
-| Walk through the published prototype and give sign-off (M1 exit); decide who to share it with (PRO-155) | Approval | Tobias | 4 Nov | Open |
+| Walk through the published prototype and give sign-off (M1 exit); decide who to share it with (PRO-155) | Approval | Tobias | 13 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
-| Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) (PRO-162) | Decision | Tobias | 11 Nov | Open |
-| Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea (PRO-162) | Content | Tobias | 11 Nov | Open |
-| Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) (PRO-168) | Admin | Tobias | Before the first real room | Open |
+| Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) (PRO-162) | Decision | Tobias | 2 Dec | Open |
+| Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea (PRO-162) | Content | Tobias | 2 Dec | Open |
+| Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) (PRO-168) | Admin | Tobias | 4 Dec, if deal rooms stay in 1.0 | Open |
 | ~~Deal rooms: get GetAccept's licence cost and deals per month for the business case~~ (SEK 360,000 a year; 3 deals a month × 20 sellers) | Content | Tobias | 13 Nov | Closed |
-| Deal rooms: confirm D-042 (link to the GetAccept contract, Fyr doesn't sign), and decide the room domain (`rom.simployer.com`?) (PRO-164) | Decision | Tobias | 13 Nov | Open |
-| Deal rooms vs GetAccept: our plan, seats, renewal date and notice period; price for e-signature + Salesforce without DSR; is it a group agreement? (PRO-165) | Admin | Tobias (Nina, IT) | 13 Nov | Open |
-| Deal rooms vs GetAccept: how CPQ creates GetAccept documents, and which Salesforce flows, Slack bots or reports read its status (PRO-166) | Admin | Tobias (Ole Henrik Leister) | 13 Nov | Open |
-| Deal rooms vs GetAccept: who else sends documents through GetAccept (HR, Sweden admin, CS renewals, partners, AlexisHR); which segments need BankID (PRO-167) | Admin | Tobias | 18 Nov | Open |
-| Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? (PRO-164) | Decision | Tobias | 13 Nov | Open |
-| tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts (PRO-169) | Admin | Tobias | 18 Nov | Open |
-| Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) (PRO-164) | Decision | Tobias | 13 Nov | Open |
+| Deal rooms: confirm D-042 (link to the GetAccept contract, Fyr doesn't sign), and decide the room domain (`rom.simployer.com`?) (PRO-164) | Decision | Tobias | 20 Nov | Open |
+| Deal rooms vs GetAccept: our plan, seats, renewal date and notice period; price for e-signature + Salesforce without DSR; is it a group agreement? (PRO-165) | Admin | Tobias (Nina, IT) | 18 Nov | Open |
+| Deal rooms vs GetAccept: how CPQ creates GetAccept documents, and which Salesforce flows, Slack bots or reports read its status (PRO-166) | Admin | Tobias (Ole Henrik Leister) | 18 Nov | Open |
+| Deal rooms vs GetAccept: who else sends documents through GetAccept (HR, Sweden admin, CS renewals, partners, AlexisHR); which segments need BankID (PRO-167) | Admin | Tobias | 25 Nov | Open |
+| Deal rooms: does the app version fit M4, or move to 1.1 after the 15 Dec go-live? (PRO-164) | Decision | Tobias | 20 Nov | Open |
+| tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts (PRO-169) | Admin | Tobias | 4 Dec, if deal rooms stay in 1.0 | Open |
+| Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) (PRO-164) | Decision | Tobias | 20 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-11 — Go-live moves to 15 Dec; the live release is Fyr 1.0 (D-044, D-045)
+- **Done:**
+  - Re-planned to go-live on Tue 15 Dec: M1 sign-off 13 Nov, M2 20 Nov, M3 2 Dec, M4 9 Dec, early pilot from 3 Dec, full pilot 10 – 14 Dec.
+  - Every Fyr issue in Linear has an ask-by date set by the milestone that needs it, plus a fallback where one exists.
+    - The deal room scope check moves to 20 Nov (PRO-164), after the GetAccept answers are due (18 Nov).
+    - DNS moves to M5 (2 Dec, ask by 18 Nov), since test-domain email covers the build and the pilot.
+    - The employee representatives move to 27 Nov, before the pilot.
+  - Renamed the live release: **Fyr 1.0** (tag `v1.0.0`). v0.2 and v0.3 stay the prototype names, and the v0.4 backlog is now the 1.1 backlog.
+  - Updated PLAN, README, CHANGELOG's version note, CLAUDE.md and the Linear project and milestones.
+  - Removed the 1-day Urgent SLA the team rule had put on PRO-156, PRO-157 and PRO-158, since their dates are now 18 Nov and later. PRO-159 and PRO-170 keep an SLA breaching 18 Nov.
+- **Next:** sign off M1 by 13 Nov. Send the IT, Linear, Vercel and GetAccept asks this week (due 18 Nov). Start M2 on `m2-foundation`.
+- **Blockers:** none new. The dates for IT and legal are still unconfirmed by them.
+- **Decisions:** D-044 (go-live 15 Dec, supersedes D-014) and D-045 (Fyr 1.0) accepted.
 
 ### 2026-11-11 — Fyr is a project in Linear (D-043)
 - **Done:**

@@ -1,23 +1,24 @@
-# Fyr v0.3 — Build plan
+# Fyr — Build plan (v0.3 scope → Fyr 1.0)
 
 | | |
 |---|---|
-| **Window** | Wed 28 Oct → Fri 27 Nov 2026 (go-live target, [D-014](DECISIONS.md)) |
-| **Approach** | Slim HTML prototype first (week 1), then the real app (weeks 2–4) ([D-001](DECISIONS.md)) |
+| **Window** | Wed 28 Oct → Tue 15 Dec 2026 (go-live of Fyr 1.0, [D-044](DECISIONS.md), [D-045](DECISIONS.md)) |
+| **Versions** | v0.2 and v0.3 are prototypes. The first live app is **Fyr 1.0**, built to the v0.3 scope in SPEC.md. What comes after it is 1.1 ([D-045](DECISIONS.md)). |
+| **Approach** | Slim HTML prototype first, then the real app ([D-001](DECISIONS.md)) |
 | **Branching** | One branch per milestone (`m1-prototype`, `m2-foundation`, …), merged to `main` through a PR |
-| **Status** | Tracked in [PROGRESS.md](PROGRESS.md). **10 Nov scope check:** M1 is built and waits for sign-off. M2 isn't started (no `app/` yet) and is due 11 Nov. The admin that blocks M2 is overdue. Deal rooms (D-036, D-037) are new scope, placed in M4 *if* the 13 Nov decision keeps them in v0.3. See Risks. |
+| **Status** | Tracked in [PROGRESS.md](PROGRESS.md) and the Linear project [Fyr (P-PRO-334)](https://linear.app/simployer/project/fyr-e9b34aed51d0) (D-043). **11 Nov re-plan:** go-live moves from 27 Nov to 15 Dec to give the external dependencies room (D-044). **10 Nov scope check:** M1 is built and waits for sign-off. M2 isn't started (no `app/` yet) and is due 11 Nov. The admin that blocks M2 is overdue. Deal rooms (D-036, D-037) are new scope, placed in M4 *if* the 13 Nov decision keeps them in v0.3. See Risks. |
 
 ## Milestones
 
 | # | Milestone | Dates | Exit criteria |
 |---|---|---|---|
 | **M0** | Project setup | 28 Oct | Repo, spec, plan and logs seeded; v0.2 baseline in `reference/v0.2/` |
-| **M1** | Slim v0.3 prototype | 29 Oct – 4 Nov | v0.3 prototype published as an artifact; **UX sign-off by Tobias**, logged as a decision |
-| **M2** | App foundation | 5 – 11 Nov | App deployed on Vercel with the portal (registration, email sign-in, access levels); schema and seed in place; Linear sync live; Releases list and map working on real data |
-| **M3** | PMM core | 12 – 18 Nov | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with AI drafts (OpenAI); Battlecards; Library |
-| **M4** | Create + Remix + Automations | 19 – 25 Nov | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats. Deal rooms only if the 13 Nov decision keeps them in v0.3. |
-| **M5** | Pilot + go-live | 25 – 27 Nov | Content migrated and approved; pilot with 3–5 users; go-live; CHANGELOG `v0.3.0` |
-| **v0.4** | After go-live | From 30 Nov | The backlog below: what doesn't fit by 27 Nov, Deal rooms first if they move |
+| **M1** | Slim v0.3 prototype | 29 Oct – 13 Nov (sign-off) | v0.3 prototype published as an artifact; **UX sign-off by Tobias**, logged as a decision |
+| **M2** | App foundation | 12 – 20 Nov | App deployed on Vercel with the portal (registration, email sign-in, access levels); schema and seed in place; Linear sync live; Releases list and map working on real data. Where admin hasn't landed, on stubs |
+| **M3** | PMM core | 23 Nov – 2 Dec | Truth editor and framework with approvals → Product Truth; Tier playbooks and Launch packs with AI drafts (OpenAI); Battlecards; Library. Content approval starts, in batches |
+| **M4** | Create + Remix + Automations | 3 – 9 Dec | Presentation rules and the rep deck flow with PDF; Marketing Remix and Brand rules; Automations overview with time-saved stats. Deal rooms only if the 20 Nov scope check keeps them in 1.0. |
+| **M5** | Pilot + go-live (Fyr 1.0) | 3 – 15 Dec | Early pilot on the M3 areas from 3 Dec; content approved by 9 Dec; full pilot with 3–5 users 10 – 14 Dec; go-live Tue 15 Dec; CHANGELOG and tag `v1.0.0` |
+| **1.1** | After go-live | From January 2027 | The backlog below: what doesn't fit by 15 Dec, Deal rooms first if they move |
 
 ---
 
@@ -69,7 +70,7 @@
 - [ ] Walk through it, and log sign-off and changes in DECISIONS.
 - [ ] **Parallel admin, started in week 1:** ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain and set up a Resend account, plus a Linear API key/webhook, access to the company's OpenAI setup (Azure OpenAI or the OpenAI API, model, budget; D-031), and a Vercel project.
 
-## M2 — App foundation (5 – 11 Nov)
+## M2 — App foundation (12 – 20 Nov)
 - [ ] Scaffold Next.js (App Router, TS) in `app/`, deploy to Vercel, and set up preview deploys per PR.
 - [ ] **Portal (D-023):**
   - Pages: register, sign-in, code entry and link confirmation.
@@ -88,7 +89,7 @@
 - [ ] Build Releases List and Map on real data.
 - [ ] Add an automation run recorder (`AutomationRun`), used by every automation from here on.
 
-## M3 — PMM core (12 – 18 Nov)
+## M3 — PMM core (23 Nov – 2 Dec)
 - [ ] Truth editor: messaging framework and feature wording per language, the draft → approve flow, version history, and a live message check.
 - [ ] Framework table seeded from `docs/messaging-framework.json`, plus the A6 framework change check on each new version. The copy check runs in CI.
 - [ ] Product Truth (org view), showing approved content only.
@@ -100,7 +101,7 @@
 - [ ] Battlecards: viewer and manual editor with publish and versioning.
 - [ ] Library: upload, the proposed → current flow, and the outdated flag (A5).
 
-## M4 — Create + Remix + Automations (19 – 25 Nov)
+## M4 — Create + Remix + Automations (3 – 9 Dec)
 - [ ] Presentation rules: CRUD and the 6 seeded rules.
 - [ ] Rep photo, title and phone from the signed-in user's Fyr profile on the cover and contact slide (D-030); photo upload to Vercel Blob.
 - [ ] Decks saved to the `Deck` table as the rep works (slides, edits, own slides, brief), listed in My presentations with open / copy / delete, and rendered into the PDF.
@@ -110,7 +111,7 @@
 - [ ] Automations overview: list, stats and time-saved baselines.
 - [ ] Org Roadmap page (D-032, D-033): "Tell customers this month", New | Coming soon lists, 2027 pillars collapsed, copy line, usage events.
 - [ ] PMM Home queue.
-- [ ] **Deal rooms (D-036, D-037). Only if the 13 Nov decision keeps them in v0.3, otherwise first in v0.4:**
+- [ ] **Deal rooms (D-036, D-037). Only if the 20 Nov scope check keeps them in 1.0, otherwise first in 1.1:**
   - [ ] `DealRoom`, `RoomPerson` and `RoomEvent` tables. Rooms are made from a `Deck`, with blocks, hidden parts and photos as JSON.
   - [ ] A public room route on a Simployer subdomain (the domain is to be decided). Unguessable slugs and personal `?r=` tokens. Drafts don't open.
   - [ ] The editor in Create: a live preview, click-to-edit, locked framework lines, the image bank picker, the message check, and publishing blocked by placeholders.
@@ -128,17 +129,20 @@
     - no transcripts stored in the room
   - [ ] Room text in NO and SV, from Product truth and the framework (the prototype is EN only).
 
-## M5 — Pilot + go-live (25 – 27 Nov)
-- [ ] Content migration: Tobias approves the framework and feature truth in EN/NO/SV, plus battlecards and presentation rules.
-- [ ] Pilot with 3–5 users (sales, CSM, PS), using a feedback list in PROGRESS.
-- [ ] Fix blockers only. Anything else goes to the v0.4 backlog.
-- [ ] Go-live, tag `v0.3.0`, update CHANGELOG, and write a short announcement.
+## M5 — Pilot + go-live of Fyr 1.0 (3 – 15 Dec)
+- [ ] Content migration: Tobias approves the framework and feature truth in EN/NO/SV, plus battlecards and presentation rules. Starts in M3, done by 9 Dec.
+- [ ] Early pilot from 3 Dec on the M3 areas (Product Truth, Battlecards, Library), read-only for the pilot users.
+- [ ] Full pilot 10 – 14 Dec with 3–5 users (sales, CSM, PS), using a feedback list in PROGRESS.
+- [ ] Fix blockers only. Anything else goes to the 1.1 backlog.
+- [ ] Go-live on Tue 15 Dec, tag `v1.0.0`, update CHANGELOG, and write a short announcement.
 
 ---
 
-## v0.4 backlog (candidates)
+## 1.1 backlog (candidates)
 
-- Deal rooms in the app, if the 13 Nov decision moves them out of v0.3 (see M4).
+Earlier entries in DECISIONS.md call this "v0.4" (D-045).
+
+- Deal rooms in the app, if the 20 Nov scope check moves them out of 1.0 (see M4).
 - BankID signing, which needs a signing provider and a new decision.
 - tl;dv beyond deal rooms (call coach, objection matching). Still parked.
 - Anything else from the M5 pilot that isn't a blocker.
@@ -156,7 +160,8 @@
 | Approval bandwidth for migrating content (one approver) | Delays M5 | Start content review during M3; approve in batches | Tobias |
 | PDF fidelity of 16:9 slides | Rep trust | The prototype's print CSS is proven: 13.33 × 7.5 in pages, no margins, exact colours. Blurred box shadows turn into grey boxes in PDF viewers, so print uses a 1 px edge instead. Reuse that CSS for server-side Chromium and check the output in Preview as well as Acrobat | Dev |
 | Scope creep (cut modules coming back) | Misses the month | Scope guard in CLAUDE.md: re-adding a cut item needs a DECISIONS entry | Tobias |
-| **Behind plan (10 Nov):** M2 not started, M2–M5 left in 17 days, and the admin for Linear, Vercel, OpenAI and DNS is overdue | Go-live on 27 Nov at risk | Scaffold M2 now with stubs, without waiting for keys. Chase the admin this week. Decide the scope by 13 Nov (Deal rooms, and possibly Remix, to v0.4) | Tobias |
-| Deal rooms and tl;dv add scope (D-036, D-037) | M4 overload | Decide on 13 Nov whether they stay in v0.3 or lead v0.4. The prototype is already built for demos and the pilot conversation | Tobias |
+| **Behind plan (10 Nov):** M2 not started, and the admin for Linear, Vercel, OpenAI and DNS is overdue | Go-live at risk | Re-planned on 11 Nov: go-live 15 Dec (D-044). Each dependency has an ask-by date in Linear and a fallback (stubs, seed data, test-domain email). Scaffold M2 now without waiting for keys. Decide the scope by 20 Nov | Tobias |
+| Deal rooms and tl;dv add scope (D-036, D-037) | M4 overload | Decide on 20 Nov, with the GetAccept answers, whether they stay in 1.0 or lead 1.1. The extra weeks are buffer for the dependencies, not room for deal rooms by default. The prototype is already built for demos and the pilot conversation | Tobias |
+| Go-live a week before Christmas | Little real use until January; pilot feedback lands in the holidays | Go-live 15 Dec as planned, but time the sales announcement and training for the first sales meeting in January. Keep 16 – 18 Dec for fixes | Tobias |
 | Legal and the DPO on tracking named people and processing transcripts | No real rooms until approved | Raise it now with the notice text and the D-037 safeguards. Until then, only example rooms | Tobias |
 | tl;dv API access on our plan, plus a DPA | Blocks *From the meeting* | Check the plan and the DPA this week. The rep can type the personal parts until then | Tobias |

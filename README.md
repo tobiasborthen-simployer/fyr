@@ -2,7 +2,7 @@
 
 Fyr is Simployer's **PMM planning and creation tool**. Product marketing uses it to turn what ships in Linear into approved messaging, launch packs, marketing drafts, battlecards and sales presentations.
 
-**v0.3 is a deliberate downsizing of v0.2** so that it can go live within about a month. The target go-live is 27 Nov 2026.
+**v0.3 is a deliberate downsizing of v0.2.** Its scope is built as the real app, **Fyr 1.0**, which goes live on Tue 15 Dec 2026 after a pilot from 3 Dec (D-044, D-045).
 
 ## v0.3 scope
 

@@ -1,6 +1,6 @@
 # CLAUDE.md — working rules for Fyr
 
-Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3**, a downsized rebuild of the v0.2 prototype. The source of truth for scope is [docs/SPEC.md](docs/SPEC.md); for sequencing, [docs/PLAN.md](docs/PLAN.md).
+Fyr is Simployer's PMM planning and creation tool. The current target is **Fyr 1.0**, the first live app, built to the **v0.3** scope: a downsized rebuild of the v0.2 prototype. Go-live is 15 Dec 2026 (D-044, D-045). The source of truth for scope is [docs/SPEC.md](docs/SPEC.md); for sequencing, [docs/PLAN.md](docs/PLAN.md).
 
 ## Before starting work
 1. Read the top of [docs/PROGRESS.md](docs/PROGRESS.md): the status board, open items and latest log entry.

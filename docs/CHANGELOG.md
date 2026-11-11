@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Fyr. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version numbers are product versions (v0.2 = prototype, v0.3.0 = first live app).
+All notable changes to Fyr. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version numbers are product versions: v0.2 and v0.3 are prototypes, and v1.0.0 is the first live app (D-045).
 
 ## [Unreleased] — v0.3
 

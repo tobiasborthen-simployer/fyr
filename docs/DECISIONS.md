@@ -249,7 +249,7 @@ Details are in PARKED.md.
 **Revisit if:** the queue turns out to duplicate Launch packs. If so, drop it.
 
 ## D-014 — Go-live target: Fri 27 Nov 2026
-`2026-10-28` · **Status:** Proposed · **Owner:** Tobias
+`2026-10-28` · **Status:** Superseded by D-044 · **Owner:** Tobias
 
 **Context:** "Live within a month" from 28 Oct.
 
@@ -1011,3 +1011,48 @@ Details are in PARKED.md.
 - No product change and no CHANGELOG entry.
 
 **Revisit if:** PMM sets up an initiative that groups its projects (Sales adoption, Customer adoption, Fyr, Paid ads, the release calendar), or Linear starts holding decisions that the repo doesn't have.
+
+## D-044 — Go-live moves to Tue 15 Dec 2026
+`2026-11-11` · **Status:** Accepted · **Owner:** Tobias
+**Supersedes:** D-014 (go-live Fri 27 Nov).
+
+**Context:**
+- On 11 Nov, M1 waits for sign-off and M2 hasn't started, with M2–M5 planned into 17 days.
+- Most of what blocks the plan sits with other people: IT (DNS, OpenAI, build tools), the Linear key, legal and the DPO, the employee representatives, Nina and Ole Henrik on GetAccept, and tl;dv's DPA. Their lead times are unknown.
+
+**Decision:**
+- Go-live of the first live app on **Tue 15 Dec 2026**.
+- Milestones:
+  - M1 sign-off: 13 Nov
+  - M2 App foundation: 12 – 20 Nov
+  - M3 PMM core: 23 Nov – 2 Dec
+  - M4 Create + Remix + Automations: 3 – 9 Dec
+  - M5: early pilot on the M3 areas from 3 Dec, content approved by 9 Dec, full pilot 10 – 14 Dec, go-live 15 Dec
+- Each external dependency gets an ask-by date in Linear, set by the milestone that needs it, and a fallback where one exists (stubs, the `LINEAR_RAW` seed, test-domain email to a whitelist).
+- The deal room scope check moves from 13 Nov to 20 Nov, so the GetAccept answers (due 18 Nov) are in hand. The extra weeks are buffer for the dependencies, not room for deal rooms by default.
+- The employee representatives are consulted by 27 Nov, before the pilot starts, because pilot use is tracked too (D-025).
+
+**Consequences:**
+- PLAN.md, PROGRESS.md, README and the Linear project (P-PRO-334) carry the new dates.
+- Going live a week before Christmas means little real use until January. The sales announcement and training are timed for the first sales meeting in January, and 16 – 18 Dec is kept for fixes.
+
+**Revisit if:** M2 isn't deployed by 20 Nov, or a blocker with no fallback (OpenAI access, the employee representatives) is still open on 2 Dec.
+
+## D-045 — The live release is Fyr 1.0
+`2026-11-11` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:**
+- The plan called the first live app `v0.3.0` and the release after it v0.4.
+- For sales and the rest of the org, "0.x" reads as a prototype. The 15 Dec release is the real app: own sign-in, a database, approved content and a pilot.
+
+**Decision:**
+- v0.2 and v0.3 stay the names of the prototypes. "v0.3" also stays the name of the scope in SPEC.md and PARKED.md.
+- The first live app, built to that scope, is **Fyr 1.0**, tagged `v1.0.0` at go-live. Pilot builds before go-live are 1.0 pilot builds, not a separate version.
+- What comes after 1.0 is **1.1**. Earlier entries that say "v0.4" mean 1.1. They are not edited, since the log is append-only.
+
+**Consequences:**
+- PLAN.md: M5 tags `v1.0.0`, and the "v0.4 backlog" becomes the 1.1 backlog. CHANGELOG, README, CLAUDE.md and the Linear project use the new names.
+- The branch names (`m1-prototype`, `m2-foundation`, …) don't change.
+- The published prototype keeps its name, Fyr v0.3.
+
+**Revisit if:** the pilot shows 1.0 isn't ready for the whole org, and it goes live to a limited group first.
