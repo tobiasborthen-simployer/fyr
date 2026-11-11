@@ -32,14 +32,14 @@ Items that need someone else are also issues in the Linear project [Fyr (P-PRO-3
 | Vercel project (personal or Simployer team) (PRO-158) | Admin | Tobias | 18 Nov | Open |
 | Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
 | Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Tobias | 4 Nov | Open |
-| Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Tobias | 4 Nov | Open |
+| Approve Fyr's NO/SV category row and opener (not in the framework; the trust line is now in it) | Approval | Tobias | 4 Nov | Open |
 | Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow (PRO-163) | Content | Tobias | 4 Dec | Open |
 | Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Tobias (Linda for SV) | 4 Nov | Open |
 | Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) (PRO-160) | Admin | Tobias | 2 Dec | Open |
 | Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) (PRO-161) | Decision | Tobias | 2 Dec | Open |
 | Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
 | Walk through the published prototype and give sign-off (M1 exit); decide who to share it with (PRO-155) | Approval | Tobias | 13 Nov | Open |
-| Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
+| ~~Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule?~~ (dropped, the pillar name instead, D-047) | Decision | Tobias | 4 Nov | Closed |
 | Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) (PRO-162) | Decision | Tobias | 2 Dec | Open |
 | Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea (PRO-162) | Content | Tobias | 2 Dec | Open |
 | Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) (PRO-168) | Admin | Tobias | 4 Dec, if deal rooms stay in 1.0 | Open |
@@ -51,10 +51,26 @@ Items that need someone else are also issues in the Linear project [Fyr (P-PRO-3
 | Deal rooms: does the app version fit M4, or move to 1.1 after the 15 Dec go-live? (PRO-164) | Decision | Tobias | 20 Nov | Open |
 | tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts (PRO-169) | Admin | Tobias | 4 Dec, if deal rooms stay in 1.0 | Open |
 | Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) (PRO-164) | Decision | Tobias | 20 Nov | Open |
+| Brand vs framework: Sia in Swedish is "AI-medarbetare för HR" (framework) or "i HR" (brand system)? Fyr uses the framework until PMM aligns them (D-046) (PRO-171) | Decision | PMM (Tobias) | 2 Dec | Open |
+| Claims C1, C3 (and C4, C8–C10) need a yes in Norwegian (Thea) and Swedish (Linda); until then Fyr shows them in English (PRO-171) | Approval | Thea, Linda | 2 Dec | Open |
+| Battlecards lead with "40 years" in their frames (15 copy-check warnings): rework so expertise is the trust line | Content | Battlecard owners (Tobias) | 2 Dec | Open |
+| Restyle the slides to the brand system's deck recipe (wordmark bottom left, hairlines instead of cards, eyebrows only on title and section slides) | Build | Tobias | 9 Dec | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-11 — Fyr matches the settled Messaging Framework; the Simployer Brand system is the second source (D-046, D-047)
+- **Done:**
+  - Re-read the [Messaging Framework](https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o) and synced the snapshot to 2026-11-11. The trust line now exists in SV and NO, so Fyr uses it and drops its own translation.
+  - Added the [Simployer Brand](https://claude.ai/artifact/DdtG6j4zLKkrCZYiUoJyg9) system (v30) as Fyr's source for figures, claims, the look and the never list: [BRAND.md](BRAND.md). Its Claims table (C1 to C10) is now `MF.claims`.
+  - Fixed in the prototype: the scale figures (Claims wording), Sia's NO/SV name in ads, the typed how in the Sia ads, a trust line typed by hand on the Coming soon slide, the "HR-systemet for [bransje]" banner tag, the held CFO figure's flag, and the battlecards' "human expert", "AI assistant" and "trained on 40 years" lines.
+  - The copy check now covers battlecards and vertical ads, the brand never list, and framework lines typed by hand. **0 errors, 15 warnings** (all "40 years" in battlecard framing).
+  - Checked in the browser: NO/SV footers on a Swedish and a Norwegian deck, Product truth (NO) synced 2026-11-11, the "Who we are" slide in Norwegian with its flag, the ads' pillar tags. No console errors.
+- **Next:** PMM answers on the NO/SV category row and opener, Sia's Swedish wording ("för" or "i"), and Thea's/Linda's yes on C1 and C3. Battlecard owners rework the "40 years" frames. Restyle the slides to the brand system's deck recipe (BRAND.md, follow-up).
+- **Blockers:** none.
+- **Linear:** PRO-171 for the Sia wording and the NO/SV claims.
+- **Decisions:** D-046 (brand system as second source; figures from Claims), D-047 (banner tag is a pillar name).
 
 ### 2026-11-11 — Decision docs for Fyr and deal rooms, on the new dates
 - **Done:**

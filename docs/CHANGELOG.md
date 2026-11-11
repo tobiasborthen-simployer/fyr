@@ -6,6 +6,18 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 
 ### v0.3 prototype, in progress (`prototype/v0.3/`, branch `m1-prototype`)
 
+**Changed (Messaging Framework synced 2026-11-11, Simployer Brand v30 added)**
+- **Trust line in Norwegian and Swedish** now comes from the framework: "Arbeidsretten ligger i bunn. HR-ekspertene står bak." and "Nordisk arbetsrätt i grunden. Riktiga experter bakom." Every slide footer and Product truth use it, and it no longer shows *needs approval*.
+- **Figures come from the brand system's Claims table, word for word (D-046):** "12,000 companies run their HR on Simployer" and "1.2 million people run their HR on Simployer" instead of "12,000+ customers and 1.2 million users". This covers the "Who we are" slide, "Simployer in short", the onboarding proof and the battlecard objection. A claim not yet approved in Norwegian or Swedish shows in English, with a flag on the slide.
+- **The 1,600 hours and payback figure** is now flagged *held: no source in Claims yet* instead of *waiting for finance*.
+- **Sia in Norwegian and Swedish ads** is "Sia, din AI-medarbeider for HR" / "Sia, din AI-medarbetare för HR", as in the framework, and the Sia ads' solution line is the framework's how.
+- **Vertical ad banner tag** is the ad's pillar name, not "HR-systemet for [bransje]" (D-047).
+- **Battlecards:** "human expert", "human escalation" and "AI assistant" are gone, and so are the unapproved claims that Sia is "trained on 40 years" of content. Sia answers from your handbook and Simployer's checked Expert content, with the source, and HR experts talk the case through.
+- **Copy check** (`tools/sync-framework.mjs`) now also checks the battlecards and vertical ads, adds the brand system's never list (ISO certified, ISAE 3402, Sia in Claude or ChatGPT, placeholders) and the figure, Sia-wording and "AI assistant" rules, and warns when a framework line is typed by hand.
+
+**Added**
+- [docs/BRAND.md](BRAND.md): how Fyr uses the Simployer Brand system, and where the slide layouts still differ from its deck recipe.
+
 **Added**
 - **Deal room welcome video (D-041):** the rep uploads a video (MP4, WebM or MOV, up to 3 minutes and 200 MB) in the welcome's fields, with a first-frame preview, *Replace* and *Remove*. The customer clicks the card to play it in a player over the page. The card shows the real length, and a room without a video doesn't show the card. The prototype keeps the file in the browser it was uploaded in.
 - **Deal room next steps from the presentation (D-039):** "What happens next" is built from the deck's timeline slide (steps, dates and done ticks, with *Next* on the first open step and *To agree* instead of `{date}`). *Update from the presentation* takes it again.

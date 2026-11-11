@@ -42,3 +42,7 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **Fyr 1
     - Name Sia and HR experts as a pair.
     - Never "replaces", "hard calls", "real people" or competitor names.
     - Present tense only for shipped features.
+- **Figures, claims and the look follow the [Simployer Brand](https://claude.ai/artifact/DdtG6j4zLKkrCZYiUoJyg9) system** (D-046). See [docs/BRAND.md](docs/BRAND.md).
+  - Take every figure from `MF.claims`, word for word. A held figure (1,600 hours, the payback) never goes out.
+  - Never "ISO certified", "ISAE 3402", or that Sia runs in Claude or ChatGPT. No placeholders left in.
+  - Where the brand system and the framework word something differently, the framework wins.

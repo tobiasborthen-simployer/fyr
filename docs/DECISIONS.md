@@ -1056,3 +1056,38 @@ Details are in PARKED.md.
 - The published prototype keeps its name, Fyr v0.3.
 
 **Revisit if:** the pilot shows 1.0 isn't ready for the whole org, and it goes live to a limited group first.
+
+## D-046 — The Simployer Brand system is Fyr's second source; figures come from its Claims table
+`2026-11-11` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:**
+- Fyr took all its wording from the Messaging Framework (D-016), including the figures in its foundation ("12,000+ customers and 1.2 million users across the Nordics").
+- Product Marketing now has a brand system, [Simployer Brand · Decks & content](https://claude.ai/artifact/DdtG6j4zLKkrCZYiUoJyg9). It holds the look (colour, type, logos, deck recipe), a Claims table (C1 to C10, in EN/SV/NO) that every figure must come from word for word, a list of held figures and a "never" list.
+- The two sources word the scale figures differently, and the brand system holds the 1,600 hours figure that the framework reserves for the CFO page.
+
+**Decision:**
+- The brand system is Fyr's source for the look, for figures and claims, and for what never goes out. The Messaging Framework stays the source for the line, the how, the pillars and the rules (D-016).
+- **Figures:** Fyr uses the Claims wording, word for word, in the language of the piece. A claim still marked *to confirm* in SV or NO is used in English, with a flag in Fyr.
+- **Held figures** (1,600 hours, 4 to 8 month payback) stay out until they have a row in Claims.
+- **Where the two disagree on wording** (today: Sia in Swedish, "för HR" vs "i HR"), the framework wins, and the difference goes back to PMM.
+- The Claims table, the never list and the content style rules live in `docs/messaging-framework.json`, so the copy check and the prototype read them from one place. See [BRAND.md](BRAND.md).
+
+**Consequences:**
+- The "Who we are" slide, "Simployer in short", feature proofs and battlecard proofs now read their figures from `MF.claims`.
+- The copy check gains rules for the figures, "ISO certified", "ISAE 3402", Sia in Claude or ChatGPT, placeholders, "AI assistant", "human expert" and the Sia wording in NO/SV. It now also checks the battlecards, and warns when a framework line is typed by hand.
+- The slide layouts still differ from the brand system's deck recipe. Restyling them is a follow-up and changes no copy.
+
+**Revisit if:** the brand system and the framework merge into one source, or PMM moves the Claims table elsewhere.
+
+## D-047 — The ad banner tag is a pillar name, never "HR system"
+`2026-11-11` · **Status:** Accepted · **Owner:** Tobias · Answers the open item on "HR-systemet for [bransje]"
+
+**Context:**
+- Vertical ads showed a tag "HR-systemet for [bransje]" above the headline, and the ad brief template suggested the same.
+- The framework keeps "HR system" in search, the menu and the RFP, never the hero, and its surface guide says a campaign ad leads with the roof or a pillar name.
+
+**Decision:** the banner tag is the ad's pillar name (for example "Slipp det manuelle"). Release ads keep "Nytt i Simployer One". "HR system" stays in the appendix product slide and in battlecards, where buyers think in RFP terms.
+
+**Consequences:** `vBanner` takes the tag from `PILN`, the ad brief's banner field shows the pillar, and the `HR-systemet for [bransje]` strings are gone.
+
+**Revisit if:** paid search shows the category word in the ad itself lifts results, and the framework owner agrees.

@@ -2,12 +2,13 @@
   "source": {
     "title": "Messaging Framework · Simployer One",
     "url": "https://claude.ai/artifact/KqYMhxJawpuctUhcPAZn3o",
-    "retrieved": "2026-10-28",
-    "version": "2026-10-28",
+    "retrieved": "2026-11-11",
+    "version": "2026-11-11",
     "notes": [
       "The source document has no version number; Fyr versions its snapshot by retrieval date.",
-      "Norwegian is marked 'venter på språkvask' (awaiting language review) in the source.",
-      "Category row and trust line exist only in English in the source; Fyr's NO/SV versions are in fyrTranslations and need PMM approval."
+      "Norwegian is marked ‘venter på språkvask’ (awaiting language review) in the source.",
+      "Since 2026-11-11 the source has the trust line in SV and NO. The category row and the deck opener are still only in English; Fyr’s NO/SV versions are in fyrTranslations and need PMM approval.",
+      "Figures and claims come from the Simployer Brand system’s Claims table (claims below, see docs/BRAND.md), word for word. Where the framework words a figure differently (“12,000+ customers and 1.2 million users”), Fyr uses the Claims wording (D-046)."
     ]
   },
   "langs": {
@@ -87,7 +88,8 @@
           "Simployer does it.",
           "Show one real task done, one law question answered with the source, an HR expert who’s seen cases like yours, and one customer who lives it."
         ]
-      ]
+      ],
+      "againstClassic": "A classic HR system stores the work. Simployer does it."
     },
     "SV": {
       "line": "Simployer gör HR-jobbet du helst lämnar över.",
@@ -139,7 +141,8 @@
           "Nordisk expertis",
           "Lagen kontrollerad först, HR-experter bakom."
         ]
-      ]
+      ],
+      "trust": "Nordisk arbetsrätt i grunden. Riktiga experter bakom."
     },
     "NO": {
       "status": "venter på språkvask",
@@ -192,16 +195,15 @@
           "Nordisk ekspertise",
           "Loven sjekket først, HR-eksperter bak."
         ]
-      ]
+      ],
+      "trust": "Arbeidsretten ligger i bunn. HR-ekspertene står bak."
     }
   },
   "fyrTranslations": {
-    "_note": "Lines the source has only in English. Fyr's own NO/SV versions, shown with a 'needs approval' flag until PMM confirms them.",
+    "_note": "Lines the source has only in English (category row, deck opener, story steps 1 and 2). Fyr’s own NO/SV versions, shown with a ‘needs approval’ flag until PMM confirms them.",
     "NO": {
       "category": "Ikke et raskere HR-system. Det som gjør det for deg.",
-      "trust": "Nordisk lov innebygd. Ekte eksperter bak.",
       "opener": "Rollen vokste. Arbeidet ble aldri borte.",
-      "scale": "12 000+ kunder og 1,2 millioner brukere i Norden",
       "story": [
         [
           "Rollen vokste. Arbeidet ble aldri borte.",
@@ -215,9 +217,7 @@
     },
     "SV": {
       "category": "Inte ett snabbare HR-system. Det som gör det åt dig.",
-      "trust": "Nordisk lag inbyggd. Riktiga experter bakom.",
       "opener": "Rollen växte. Arbetet försvann aldrig.",
-      "scale": "12 000+ kunder och 1,2 miljoner användare i Norden",
       "story": [
         [
           "Rollen växte. Arbetet försvann aldrig.",
@@ -233,14 +233,15 @@
   "rules": [
     "Lead with what gets done, not with who knows the most. Expertise is the trust line, never the headline.",
     "Simployer is the actor in the line. Never “AI” on its own, never “a replacement”.",
-    "HR always decides.",
-    "Sia and HR experts are the how: named as a pair wherever the whole offer is told, never the main line.",
+    "HR always decides. In every lane and every message, HR stays in control.",
+    "Sia and HR experts are the how: named as a pair wherever the whole offer is told, never the main line. Rules and tasks go to Sia; input and judgement go to HR experts. “Colleagues” never stands alone.",
     "Introduce Sia once as “Sia, your AI HR employee”, then “Sia”. Always labelled as AI, never a face.",
     "Call them “HR experts”. Never “real people”, “human experts” or “hard calls”.",
+    "“AI HR employee” works for HR. Never “replaces”, never “instead of your HR team”.",
     "Automation Studio is built in: use it as proof, never in the hero and never as a “workflow builder”.",
-    "“HR system” stays out of the hero. No named competitors.",
+    "“HR system” lives in search, the menu and the RFP, not in the hero. No named competitors.",
     "Name the task, not the capability.",
-    "Present tense only for what has shipped. No figure finance hasn’t approved."
+    "Present tense only for what has shipped. Figures only from the Claims table, word for word."
   ],
   "avoid": [
     {
@@ -319,9 +320,12 @@
     {
       "id": "competitors",
       "pattern": "\\b(personio|hibob|sympa|workday|huma|4human|hailey ?hr|catalystone|dottie|visma)\\b",
-      "why": "Never name competitors in customer copy",
+      "why": "Never name competitors in customer copy (battlecards are internal and exempt)",
       "terms": [
         "any competitor name"
+      ],
+      "skip": [
+        "BC"
       ]
     },
     {
@@ -332,19 +336,99 @@
       "terms": [
         "40 years … as a headline"
       ]
+    },
+    {
+      "id": "human-escalation",
+      "pattern": "\\bhuman (escalation|expert)s?\\b|\\b(a )?human you can call\\b",
+      "why": "Call them “HR experts”, never “human experts” or “human escalation”",
+      "terms": [
+        "human escalation",
+        "a human you can call"
+      ]
+    },
+    {
+      "id": "ai-assistant",
+      "pattern": "\\bAI[- ]assistant\\b|\\bAI-assistent(en)?\\b|\\bKI-assistent(en)?\\b",
+      "why": "Sia is “your AI HR employee”, not an assistant",
+      "terms": [
+        "AI assistant",
+        "AI-assistent"
+      ]
+    },
+    {
+      "id": "sia-wording",
+      "pattern": "AI-HR-medarbe(ider|tare)|AI HR-medarbe(ider|tare)",
+      "why": "Sia is “din AI-medarbeider for HR” / “din AI-medarbetare för HR”, as in the framework",
+      "terms": [
+        "AI-HR-medarbeider",
+        "AI-HR-medarbetare"
+      ]
+    },
+    {
+      "id": "figures",
+      "pattern": "12[,  ]?000\\+|1[.,]2 (million|millioner|miljoner) (users|brukere|användare)",
+      "why": "Figures word for word from the Claims table (C1, C2): “12,000 companies run their HR on Simployer”, “1.2 million people run their HR on Simployer”",
+      "terms": [
+        "12,000+",
+        "1.2 million users"
+      ],
+      "skip": [
+        "BC"
+      ]
+    },
+    {
+      "id": "iso-certified",
+      "pattern": "\\bISO(/IEC)? ?27001(:2022)? ?(certified|sertifisert|certifierad)\\b|\\bISO[- ]certified\\b",
+      "why": "Never “ISO certified”: the certification is in progress (C7)",
+      "terms": [
+        "ISO certified",
+        "ISO 27001 certified"
+      ],
+      "skip": [
+        "BC"
+      ]
+    },
+    {
+      "id": "isae",
+      "pattern": "\\bISAE ?3402\\b",
+      "why": "Say “externally audited” (C5), never “ISAE 3402”",
+      "terms": [
+        "ISAE 3402"
+      ]
+    },
+    {
+      "id": "sia-llm",
+      "pattern": "\\bSia\\b[^.\\n]{0,40}\\b(Claude|ChatGPT)\\b",
+      "why": "Never say Sia runs in Claude or ChatGPT: they get data access only",
+      "terms": [
+        "Sia runs in ChatGPT"
+      ]
+    },
+    {
+      "id": "placeholder",
+      "pattern": "\\b(TODO|TBD|XXX)\\b|\\bLorem ipsum\\b",
+      "why": "Nothing unfinished goes out: no TODO, TBD, XXX or Lorem ipsum",
+      "terms": [
+        "TODO",
+        "Lorem ipsum"
+      ]
     }
   ],
   "proofs": [
     {
-      "t": "12,000+ customers and 1.2 million users across the Nordics",
+      "t": "12,000 companies run their HR on Simployer (C1)",
       "ok": true
     },
     {
-      "t": "Built for HR data: GDPR-ready, stored in the EU, covered by a data processing agreement",
+      "t": "1.2 million people run their HR on Simployer (C2)",
       "ok": true
     },
     {
-      "t": "40 years of Nordic HR and employment law expertise",
+      "t": "Built for HR data: GDPR-ready, data kept in the EU (C6), covered by a data processing agreement",
+      "ok": true
+    },
+    {
+      "t": "40 years of Nordic HR and employment law (C3)",
       "ok": true,
       "note": "Trust only, never the headline"
     },
@@ -354,12 +438,13 @@
     },
     {
       "t": "“We use Simployer as a go-to partner when things get tricky.” Customer, Kaffebrenneriet",
-      "ok": true
+      "ok": true,
+      "note": "Needs a named person before it goes on a slide"
     },
     {
       "t": "About 1,600 hours freed per year for a 115-person organisation, 4 to 8 month payback",
       "ok": false,
-      "note": "CFO only, once finance approves"
+      "note": "Held: no source yet. CFO page only, once Product Marketing gives it a row in Claims"
     }
   ],
   "quote": {
@@ -381,6 +466,11 @@
       "headline": "New: Sia now [does X] / Automation Studio now runs [X].",
       "under": "One more thing off your desk.",
       "dont": "Present tense only for what has shipped."
+    },
+    "againstClassic": {
+      "headline": "A classic HR system stores the work. Simployer does it.",
+      "under": "how",
+      "dont": "Never name competitors."
     }
   },
   "use": [
@@ -396,5 +486,145 @@
     "checked Expert content",
     "with the source",
     "where you already work"
-  ]
+  ],
+  "brand": {
+    "title": "Simployer Brand · Decks & content",
+    "url": "https://claude.ai/artifact/DdtG6j4zLKkrCZYiUoJyg9",
+    "retrieved": "2026-11-11",
+    "version": "v30 (2026-11-11)"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "EN": "12,000 companies run their HR on Simployer",
+      "SV": "12 000 företag sköter sin HR i Simployer",
+      "NO": "12 000 bedrifter kjører HR på Simployer",
+      "confirm": [
+        "SV",
+        "NO"
+      ],
+      "n": {
+        "EN": "12,000",
+        "SV": "12 000",
+        "NO": "12 000"
+      }
+    },
+    {
+      "id": "C2",
+      "EN": "1.2 million people run their HR on Simployer",
+      "SV": "1,2 miljoner personer sköter sin HR i Simployer",
+      "NO": "1,2 millioner ansatte kjører HR på Simployer",
+      "confirm": [],
+      "n": {
+        "EN": "1.2 million",
+        "SV": "1,2 miljoner",
+        "NO": "1,2 millioner"
+      }
+    },
+    {
+      "id": "C3",
+      "EN": "40 years of Nordic HR and employment law",
+      "SV": "40 år av nordisk HR och arbetsrätt",
+      "NO": "40 år med nordisk HR og arbeidsrett",
+      "confirm": [
+        "SV",
+        "NO"
+      ],
+      "n": {
+        "EN": "40 years",
+        "SV": "40 år",
+        "NO": "40 år"
+      }
+    },
+    {
+      "id": "C4",
+      "EN": "Our HR experts handle 25,000+ cases a year",
+      "SV": "Våra HR-experter hanterar över 25 000 ärenden om året",
+      "NO": "Våre HR-eksperter håndterer over 25 000 saker i året",
+      "confirm": [
+        "SV",
+        "NO"
+      ]
+    },
+    {
+      "id": "C5",
+      "EN": "Externally audited security",
+      "SV": "Externt granskad säkerhet",
+      "NO": "Eksternt revidert sikkerhet",
+      "confirm": []
+    },
+    {
+      "id": "C6",
+      "EN": "Data kept in the EU",
+      "SV": "Data lagras i EU",
+      "NO": "Data lagret i EU",
+      "confirm": [],
+      "n": {
+        "EN": "EU",
+        "SV": "EU",
+        "NO": "EU"
+      }
+    },
+    {
+      "id": "C7",
+      "EN": "ISO/IEC 27001:2022, certification in progress",
+      "SV": "ISO/IEC 27001:2022, certifiering pågår",
+      "NO": "ISO/IEC 27001:2022, sertifisering pågår",
+      "confirm": []
+    },
+    {
+      "id": "C8",
+      "EN": "Works in Teams, Slack and on the phone",
+      "SV": "Fungerar i Teams, Slack och i mobilen",
+      "NO": "Fungerer i Teams, Slack og på mobilen",
+      "confirm": [
+        "SV",
+        "NO"
+      ]
+    },
+    {
+      "id": "C9",
+      "EN": "284 colleagues in Norway, Sweden and Poland",
+      "SV": "284 kollegor i Norge, Sverige och Polen",
+      "NO": "284 kolleger i Norge, Sverige og Polen",
+      "confirm": [
+        "SV",
+        "NO"
+      ]
+    },
+    {
+      "id": "C10",
+      "EN": "Ferd is our majority owner",
+      "SV": "Ferd är vår huvudägare",
+      "NO": "Ferd er vår majoritetseier",
+      "confirm": [
+        "SV",
+        "NO"
+      ]
+    }
+  ],
+  "style": {
+    "note": "From the Simployer Brand system, Content fundamentals. Applies to customer-facing copy.",
+    "rules": [
+      "Sentence case for every heading and button. Short sentences, plain words.",
+      "No em dashes, no semicolons, no exclamation marks. At most one “X, not Y” per page.",
+      "Sia is “she”, always labelled as AI, never a face.",
+      "A button names an action, never a URL: “Book a demo”.",
+      "End every piece’s notes with “Facts used:” and the claim IDs."
+    ]
+  },
+  "bookDemo": {
+    "EN": [
+      "Book a demo",
+      "simployer.com/book-demo"
+    ],
+    "SV": [
+      "Boka en demo",
+      "simployer.com/sv/boka-demo"
+    ],
+    "NO": [
+      "Book en demo",
+      "simployer.com/no/book-demo"
+    ]
+  }
 }
