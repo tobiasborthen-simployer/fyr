@@ -19,7 +19,41 @@
     document.head.appendChild(ed);
     window.addEventListener('message', function (e) { if (e.source === window.parent && e.data && e.data.fyr === 'preview') document.documentElement.classList.toggle('fyr-preview', !!e.data.on); });
   }
-  if (!id) return;
+  // Condensed reading: a story's long text sits behind "Read the story", and the parts in both packages fold into one row
+  // of the comparison table. Runs on the template and again after a saved room is restored, so rooms saved before this
+  // change get it too. In Fyr's editor everything is open, so the rep can edit every word; Preview and the customer see it closed.
+  function condense() {
+    var m = $('.main'); if (!m) return;
+    [].forEach.call(m.querySelectorAll('.story'), function (st) {
+      if (st.querySelector('details.more')) return;
+      var ps = [].filter.call(st.children, function (c) { return c.tagName === 'P' && !c.classList.contains('k') && !c.classList.contains('d4'); });
+      if (!ps.length) return;
+      var d = document.createElement('details'); d.className = 'more';
+      d.innerHTML = '<summary contenteditable="false">Read the story</summary>';
+      ps.forEach(function (p) { d.appendChild(p); });
+      st.appendChild(d);
+    });
+    [].forEach.call(m.querySelectorAll('.cmp'), function (t) {
+      if (t.querySelector('details.both')) return;
+      var rows = [].slice.call(t.children), start = -1, run = [];
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i], both = r.classList.contains('row') && !r.classList.contains('grp') && !r.classList.contains('hdr') && r.children.length === 3 && r.children[1].classList.contains('yes') && r.children[2].classList.contains('yes');
+        if (both) { if (start < 0) start = i; run.push(r); } else if (run.length) break;
+      }
+      if (run.length < 3) return;
+      var d = document.createElement('details'); d.className = 'both';
+      d.innerHTML = '<summary class="row" contenteditable="false"><div>' + run.length + ' parts, in both packages <span class="tog"></span></div><div class="yes"></div><div class="yes"></div></summary>';
+      t.insertBefore(d, run[0]);
+      run.forEach(function (r) { d.appendChild(r); });
+    });
+    setOpen();
+  }
+  function setOpen() {
+    var on = edit && !document.documentElement.classList.contains('fyr-preview');
+    [].forEach.call(document.querySelectorAll('details.more, details.both'), function (d) { d.open = on; });
+  }
+  if (edit) new MutationObserver(setOpen).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  if (!id) { condense(); return; }
 
   var rooms = read(ROOMS, []), room = null;
   for (var i = 0; i < rooms.length; i++) if (rooms[i].id === id) room = rooms[i];
@@ -58,6 +92,7 @@
     if (room.html.navFor && $('.nav-for')) $('.nav-for').innerHTML = room.html.navFor;
     if (room.html.rep && $('.repcard')) $('.repcard').innerHTML = room.html.rep;
   }
+  condense();
   (room.hidden || []).forEach(function (h) {
     var el = document.getElementById(h); if (el) el.style.display = 'none';
     var a = document.querySelector('.nav a[href="#' + h + '"]'); if (a) a.parentElement.style.display = 'none';
@@ -204,6 +239,8 @@
     document.addEventListener('click', function (e) {
       if (e.target.closest('.video')) log({ type: 'click', what: 'video' });
       var a = e.target.closest('a.textlink'); if (a) log({ type: 'click', what: 'trust' });
+      var sm = e.target.closest('details.more > summary');
+      if (sm && !sm.parentElement.open) { var k = sm.parentElement.parentElement.querySelector('.k'); log({ type: 'click', what: 'story', story: k ? k.textContent.split('·')[0].trim() : '' }); }
     });
   }
 

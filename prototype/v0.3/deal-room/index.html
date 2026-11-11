@@ -122,16 +122,16 @@ strong{font-weight:600;color:var(--text-strong)}
 /* ---------- main ---------- */
 .main{flex:1 1 auto;min-width:0;padding:0 56px 128px;max-width:1240px;margin:0 auto}
 /* Wide screens: the room uses the width (up to the brand's 1240 px container), images keep their height, and the long stacks sit side by side. Body text keeps its reading width. */
-.photo-wide img{max-height:480px}
+.photo-wide img{max-height:400px}
 @media(min-width:1280px){
   .photo-wide img{aspect-ratio:21/9}
   .split > figure.photo img{aspect-ratio:1/1}
-  .view img,.duo img{max-height:560px;width:auto;max-width:100%;margin:0 auto}
+  .view img,.duo img{max-height:480px;width:auto;max-width:100%;margin:0 auto}
   .duo figure,.pillar .view{display:flex;justify-content:center}
   .blk:has(> .story){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:start}
   .blk:has(> .story) > :not(.story){grid-column:1/-1}
   .blk > .story ~ .story ~ .story{grid-column:1/-1}
-  .pillar .view img{max-height:440px}
+  .pillar .view img{max-height:380px}
   .faq{columns:2;column-gap:48px}
   .faq details{break-inside:avoid;border-top:0;border-bottom:1px solid var(--border-warm)}
   .faq{border-top:1px solid var(--border-warm)}
@@ -273,6 +273,20 @@ h4.after{margin-bottom:0}
 .faq details[open] summary::after{content:"\2212"}
 .faq details p{margin:0;padding:0 44px 22px 0}
 .faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+/* Condensed reading: "Read the story" and the folded comparison rows (room.js adds the toggles) */
+details.more{margin:22px 0 0}
+details.more > summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;font-size:15px;color:var(--accent);padding:6px 0}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary::after{content:"+";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--surface-tint);font-weight:500}
+details.more[open] > summary::after{content:"\2212"}
+details.more > summary:focus-visible,.cmp details.both > summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+details.more[open] > summary{margin-bottom:12px}
+.cmp details.both > summary{cursor:pointer;list-style:none}
+.cmp details.both > summary::-webkit-details-marker{display:none}
+.cmp details.both > summary > div:first-child{font-weight:600;color:var(--text-strong)}
+.cmp details.both > summary .tog{margin-left:8px;font-weight:600;color:var(--accent)}
+.cmp details.both > summary .tog::after{content:"Show"}
+.cmp details.both[open] > summary .tog::after{content:"Hide"}
 
 /* tables */
 .card{background:var(--surface-card);border-radius:var(--card-radius);padding:8px 28px}

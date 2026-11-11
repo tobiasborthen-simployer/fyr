@@ -2767,6 +2767,7 @@ function roomFeed(r, st) {
     if (e.type === 'view') { const first = !seen.has(e.token); seen.add(e.token); const p = st.people.find(x => x.token === e.token); txt = first ? `${esc(who(e.token))} opened the room for the first time${p && p.by === 'forward' ? ', from a forwarded link' : ''}.` : `${esc(who(e.token))} opened the room.`; hot = first; }
     else if (e.type === 'click' && e.what === 'sign') { txt = `${esc(who(e.token))} clicked Review and sign.`; hot = true; ic = 'i-edit'; }
     else if (e.type === 'click' && e.what === 'trust') { txt = `${esc(who(e.token))} opened the Trust Center.`; ic = 'i-shield'; }
+    else if (e.type === 'click' && e.what === 'story') { txt = `${esc(who(e.token))} read the ${esc(e.story || 'customer')} story.`; ic = 'i-book'; }
     else if (e.type === 'click' && e.what === 'video') { txt = `${esc(who(e.token))} played your video.`; ic = 'i-play'; }
     else if (e.type === 'sign') { txt = `${esc(who(e.token))} signed the agreement.`; hot = true; ic = 'i-check-c'; }
     if (txt) items.push({ txt, hot, ic, at: e.at, sample: e.sample });
@@ -3317,7 +3318,15 @@ function roomPrep() {
   d.addEventListener('click', e => {
     const a = e.target.closest('a'); if (a && !String(a.getAttribute('href') || '').startsWith('#')) e.preventDefault(); if (e.target.closest('summary[contenteditable]') && !S.roomPreview) e.preventDefault();
     if (S.roomReady || S.roomMenu) { S.roomReady = S.roomMenu = false; roomPopRefresh(); }
-    const act = e.target.closest('[data-fyr-act]'); if (act) { e.preventDefault(); roomDraftAct(act.dataset.fyrAct); }
+    const act = e.target.closest('[data-fyr-act]'); if (act) { e.preventDefault(); roomDraftAct(act.dataset.fyrAct); return; }
+    // A photo can't take focus, so clicking it opens its section and its photo picker, also while the meeting drafts are open
+    const img = !S.roomPreview && e.target.closest('figure img'); const bid = img && blockFrom(img);
+    if (bid && roomBlock(bid) && (ROOM_FIELDS[bid] || []).some(f => f.type === 'pic')) {
+      const fi = ROOM_FIELDS[bid].findIndex(f => f.type === 'pic' && roomAll(f.s).includes(img));
+      S.roomBlock = bid; S.roomNoRight = false; roomLayout(); roomOutline(); roomInspector(); roomDraftBar();
+      const pk = fi >= 0 ? $(`#dr-insp [data-dr-pic="${fi}"]`) : $('#dr-insp [data-dr-pic]');
+      if (pk) { const box = pk.closest('.dr-f') || pk; box.scrollIntoView({ block: 'center', behavior: 'smooth' }); box.animate([{ boxShadow: '0 0 0 3px rgba(151,115,255,.7)' }, { boxShadow: '0 0 0 3px rgba(151,115,255,0)' }], { duration: 1400 }); }
+    }
   }, true);
   d.addEventListener('change', e => { if (e.target.matches('[data-fyr-ok]')) { const dr = roomDraft(S.roomDraftCur); if (dr) { dr.ok = e.target.checked; roomPut(roomCur()); roomMeetRefresh(); } } });
   d.addEventListener('keydown', roomKeys);
