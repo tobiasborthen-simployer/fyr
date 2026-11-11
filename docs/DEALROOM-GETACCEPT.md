@@ -1,6 +1,6 @@
 # Deal rooms: what replacing GetAccept depends on
 
-`2026-11-11` · Investigation for the 13 Nov scope decision and the 18 Nov signing decision. Owner: Tobias. Proposed outcome: [D-042](DECISIONS.md).
+`2026-11-11` · Investigation for the deal room scope check on 20 Nov, which also decides signing (D-044 moved it from 13 Nov). Owner: Tobias. Proposed outcome: [D-042](DECISIONS.md). Dates updated to the 11 Nov re-plan: Fyr 1.0 goes live on 15 Dec, and 1.1 follows from January (D-044, D-045).
 
 ## The short answer
 
@@ -72,7 +72,7 @@ Fyr can get close without owning the contract:
 | Legal and compliance work | Signing evidence, DPIA, ISMS scope, retention | Only the D-036 tracking notice (already open) | Both |
 | New external dependencies | Salesforce (parked), maybe an eID provider | None | None |
 | Licence saving | Up to SEK 360,000, **only if** no other team uses GetAccept | Maybe a lower tier (e-signature with the Salesforce link, without DSR). Ask GetAccept for a price | Same as B |
-| Fits v0.3 / 27 Nov | No | Yes. It removes work (no PDF receipt, no signing build) | No |
+| Fits the plan (Fyr 1.0 on 15 Dec, 1.1 from January) | No | Yes, as the app version in 1.1. It removes work (no PDF receipt, no signing build) | No |
 | Open ends | Many, owned by other teams | Few, all inside Fyr | Confusing for customers. Not recommended |
 
 **Recommendation: B.** Fyr does what GetAccept does badly for us: content that stays approved, in three languages, made personal from the meeting. GetAccept keeps doing what it does well, and what other systems depend on. Revisit A only when the conditions below are true.
@@ -96,16 +96,18 @@ All of these need to be true:
 3. Legal approves Fyr's signing evidence and retention.
 4. Every other GetAccept user (IT's group agreement, Sweden admin, AlexisHR, CS renewals) has somewhere else to go.
 
-## Questions to answer before 13 Nov
+## Questions to answer
 
-| Question | Ask |
-|---|---|
-| Our GetAccept plan, seat count, renewal date and notice period. Is it a group agreement? What would e-signature plus Salesforce, without DSR, cost? | Nina Wellton Sheppard, IT (agreement in *IT Drift/Avtaler/GetAccept*) |
-| Is the CPQ → GetAccept link a managed package or custom Apex? Which flows, fields, Slack bots or commission reports read GetAccept's status? | Ole Henrik Leister (Salesforce) |
-| Who else sends documents through GetAccept: HR, Sweden admin, CS renewals and upsell, partners, AlexisHR? | IT, sales leads |
-| Do any segments need BankID, or sign in their own system (public sector, enterprise)? | Sales leads (Christopher Robin Nordmo, Nicole Udd) |
-| Where do finance and PS look for the signed contract, and for how long must it be kept? | Finance, PS |
-| Is a link out to GetAccept from a Fyr room fine for legal, given the room's own tracking notice? | Legal, DPO (with the D-036 item) |
+The first two feed the 20 Nov scope check. Each is also an issue in the Linear project [Fyr (P-PRO-334)](https://linear.app/simployer/project/fyr-e9b34aed51d0).
+
+| Question | Ask | By |
+|---|---|---|
+| Our GetAccept plan, seat count, renewal date and notice period. Is it a group agreement? What would e-signature plus Salesforce, without DSR, cost? | Nina Wellton Sheppard, IT (agreement in *IT Drift/Avtaler/GetAccept*) | 18 Nov (PRO-165) |
+| Is the CPQ → GetAccept link a managed package or custom Apex? Which flows, fields, Slack bots or commission reports read GetAccept's status? | Ole Henrik Leister (Salesforce) | 18 Nov (PRO-166) |
+| Who else sends documents through GetAccept: HR, Sweden admin, CS renewals and upsell, partners, AlexisHR? | IT, sales leads | 25 Nov (PRO-167) |
+| Do any segments need BankID, or sign in their own system (public sector, enterprise)? | Sales leads (Christopher Robin Nordmo, Nicole Udd) | 25 Nov (PRO-167) |
+| Where do finance and PS look for the signed contract, and for how long must it be kept? | Finance, PS | Not set |
+| Is a link out to GetAccept from a Fyr room fine for legal, given the room's own tracking notice? | Legal, DPO (with the D-036 item) | 4 Dec, if deal rooms stay in 1.0 (PRO-168) |
 
 ## Sources
 

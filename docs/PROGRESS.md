@@ -56,6 +56,17 @@ Items that need someone else are also issues in the Linear project [Fyr (P-PRO-3
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-11 — Decision docs for Fyr and deal rooms, on the new dates
+- **Done:**
+  - Two decision documents for Lisa, written as claude.ai docs, in the same order: background, options, recommendation, what's needed, expected outcome.
+    - [Deal rooms in Fyr: proposal and decision](https://claude.ai/artifact/RKxAY4xHm4E8unkNgpjZSu): option B from D-042 (the Fyr room links to the GetAccept contract), with a diagram of GetAccept's five jobs.
+    - [Fyr: proposal and decision](https://claude.ai/artifact/MqFs8aKcPcqvWhEQ1dG24Y): option B, the core goes live as Fyr 1.0 on 15 Dec and deal rooms lead 1.1. It also covers the ask-by dates, who pays, the pilot users and a backup approver.
+  - Both docs and `DEALROOM-GETACCEPT.md` now follow the re-plan (D-044, D-045): scope check on 20 Nov, go-live 15 Dec, 1.1 from January, and Linear issues PRO-156 to PRO-170.
+  - Both docs are private until Tobias shares them.
+- **Next:** Tobias checks the proposed dates in the docs (who pays by 20 Nov, pilot users by 2 Dec, the review 30 days after the January sales launch), then shares them with Lisa.
+- **Blockers:** none.
+- **Decisions:** none. D-042 stays proposed until the 20 Nov scope check.
+
 ### 2026-11-11 — Go-live moves to 15 Dec; the live release is Fyr 1.0 (D-044, D-045)
 - **Done:**
   - Re-planned to go-live on Tue 15 Dec: M1 sign-off 13 Nov, M2 20 Nov, M3 2 Dec, M4 9 Dec, early pilot from 3 Dec, full pilot 10 – 14 Dec.
