@@ -53,6 +53,23 @@
     [].forEach.call(document.querySelectorAll('details.more, details.both'), function (d) { d.open = on; });
   }
   if (edit) new MutationObserver(setOpen).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  // Card grids balance their rows by the cards that are visible: 4 cards are 2 x 2, never 3 + 1; 9 are 3 x 3, never 4 + 4 + 1.
+  // The most columns that fit (220 px each, 280 px for .two) sets the number of rows; the cards are then spread evenly over them.
+  function balance() {
+    [].forEach.call(document.querySelectorAll('.cards'), function (g) {
+      var n = [].filter.call(g.children, function (c) { return c.style.display !== 'none' && getComputedStyle(c).display !== 'none'; }).length;
+      var gap = parseFloat(getComputedStyle(g).columnGap) || 14, min = g.classList.contains('two') ? 280 : 220, w = g.clientWidth;
+      if (!n || !w) return;
+      var max = Math.max(1, Math.floor((w + gap) / (min + gap))), cols = Math.ceil(n / Math.ceil(n / max));
+      var v = 'repeat(' + cols + ', minmax(0, 1fr))'; if (g.style.gridTemplateColumns !== v) g.style.gridTemplateColumns = v;
+    });
+  }
+  var balTimer = 0; function balanceSoon() { clearTimeout(balTimer); balTimer = setTimeout(balance, 30); } // a timer, not requestAnimationFrame: frames don't run in a hidden tab or frame
+  addEventListener('resize', balanceSoon);
+  addEventListener('load', balanceSoon);
+  new MutationObserver(function (ms) { if (ms.some(function (m) { return m.type === 'childList' || (m.target.parentElement && m.target.parentElement.classList.contains('cards')); })) balanceSoon(); })
+    .observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['style', 'class'] });
+  balanceSoon();
   if (!id) { condense(); return; }
 
   var rooms = read(ROOMS, []), room = null;

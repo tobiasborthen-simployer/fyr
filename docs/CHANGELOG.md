@@ -9,6 +9,7 @@ All notable changes to Fyr. The format follows [Keep a Changelog](https://keepac
 **Changed (sign-in page, ink and brand fonts, D-048)**
 - **Deal room is shorter:** customer stories show their numbers and quote, with the full story behind *Read the story*, and the comparison table folds the parts in both packages into one row. Nothing is removed, and everything stays open while you edit. Opening a story shows in the room's activity.
 - **Deal room editor:** click a photo to open its section and its photo picker, also while the meeting drafts are open.
+- **Deal room card grids balance their rows:** 4 cards show as 2 × 2, never 3 + 1, and the grid adjusts when you hide a card.
 - **Fixed: deal room text couldn't be edited** in some rooms, mostly new ones on the published prototype, and the right panel showed the template's company and names. Fyr now waits until the room has loaded before it makes it editable.
 - **Deal room page uses the screen width:** the content goes up to 1240 px wide instead of stopping at 880 px. On wide screens the customer stories sit side by side and the FAQ is in two columns. Product views and photos always show at full size.
 - **Deal room studio has one menu again (D-038):** the room's own customer menu stays hidden while you edit, also in the published prototype, and shows in *Preview*. The section strip is the only menu.
