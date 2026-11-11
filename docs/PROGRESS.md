@@ -66,6 +66,7 @@ Newest entries go at the top. Each entry covers: done, next, blockers, decisions
   - Built it into the prototype. The deck cards read the line, the how and the trust line from `MF` and the number from Claims (C2), in EN/NO/SV. The sign-in steps keep their logic.
   - Dark surfaces are brand ink (#1F1B2E, with #282436 and #312D3F for raised surfaces), with no glows or grid patterns. Fonts are Fraunces and Hanken Grotesk only.
   - **Checked in the browser:** the sign-in at 1440 px and on a phone, the full email → code → confirm → signed-in flow, the rail, Home and the deck studio on ink, a dark quote slide, and that only Fraunces and Hanken Grotesk load. No console errors. Fixed on the way: a dark slide had no edge on the dark studio, and the beam let the phone page scroll sideways.
+  - Fix: the deal room studio's section strip, its two side panels and two shadows still had hard-coded purples (#1E1342, #24184A). They are ink now. A scan of the app, the deal room page and `room.js` finds no purple left except plum, the brand accent.
   - Not checked: the presenter and the exported deck file (same tokens, not opened).
 - **Next:** walk through the app on ink for anything that looked right only on purple. The slide layouts still differ from the brand deck recipe (BRAND.md).
 - **Blockers:** none.
