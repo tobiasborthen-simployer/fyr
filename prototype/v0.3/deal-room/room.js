@@ -158,7 +158,10 @@
   window.fyrRoomVideo = applyVideo; // Fyr's editor calls this after an upload or removal
   applyVideo();
 
-  if (edit) return;
+  // The room is restored. Fyr's editor waits for this before it makes the text editable: on a slow connection this script
+  // runs late, and setting up the template before the saved room replaces it left the room uneditable.
+  document.documentElement.dataset.roomReady = '1';
+  if (edit) { try { window.parent.postMessage({ fyr: 'room-ready', room: id }, '*'); } catch (_) {} return; }
   if (room.status === 'draft') { gate('<h2>This page isn\'t ready yet</h2><p>Simployer is still preparing it. You\'ll get a link when it\'s ready.</p>'); return; }
 
   var repFirst = String(room.rep || 'your contact').split(' ')[0];

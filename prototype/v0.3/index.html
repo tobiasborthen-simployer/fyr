@@ -3288,7 +3288,7 @@ function roomPrepEditable(root) {
   });
 }
 function roomPrep() {
-  const d = roomDoc(), r = roomCur(); if (!d || !r || !d.querySelector('.main') || d.documentElement.dataset.fyr) return;
+  const d = roomDoc(), r = roomCur(); if (!d || !r || !d.querySelector('.main') || !d.documentElement.dataset.roomReady || d.documentElement.dataset.fyr) return; // wait until room.js has restored the saved room
   d.documentElement.dataset.fyr = '1';
   if (r.init && !r.html) roomApplyInit(d, r);
   const st = d.createElement('style');
@@ -3343,6 +3343,8 @@ function roomPrep() {
   });
   roomApplyHidden(); roomApplyPreview(); roomInspector(); roomRefreshChecks();
 }
+// The room tells Fyr when the saved room is restored (room.js); set it up then, not before.
+addEventListener('message', e => { const f = $('#dr-frame iframe'); if (!f || e.source !== f.contentWindow || !e.data || e.data.fyr !== 'room-ready') return; roomPrep(); roomApplyPreview(); roomFit(); if (S.roomBlock === 'meet') setTimeout(roomDraftShow, 150); });
 function roomScrollTo(id) {
   const b = roomBlock(id), d = roomDoc(); if (!d) return; const el = d.querySelector(b && b.el ? b.el : '#' + id); if (!el) return;
   const w = d.defaultView; w.scrollTo({ top: el.getBoundingClientRect().top + w.scrollY - 24, behavior: 'smooth' });
