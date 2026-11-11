@@ -959,3 +959,33 @@ Details are in PARKED.md.
 - Open: whether legal needs a line about the rep's own image and voice in the video. It is the rep's choice to upload one.
 
 **Revisit if:** reps want to record in the browser, or customers ask for captions.
+
+## D-042 — Deal rooms link to the GetAccept contract; Fyr doesn't sign
+`2026-11-11` · **Status:** Proposed · **Owner:** Tobias
+**Would supersede:** "Signing. Simple e-signature …" in D-036.
+
+**Context:**
+- Investigation, 11 Nov 2026: [DEALROOM-GETACCEPT.md](DEALROOM-GETACCEPT.md).
+- GetAccept does five jobs for us:
+  - the content room
+  - the quote document, created from Salesforce CPQ by a callout
+  - signing with an audit log (email login, hash, trusted timestamp; no BankID)
+  - the Salesforce stages (*Customer Signed*, *Contract Signed* / closed won)
+  - the contract archive, on a group licence other teams have used
+- Fyr's deal room replaces only the content room. If Fyr signs, it takes over CPQ handoff, signing evidence, Salesforce write-back and archiving, which are owned outside PMM, and Salesforce is parked.
+
+**Decision (proposed):**
+- **The room links to the contract.** The proposal block gets a *GetAccept signing link* field. *Review and sign* opens it in a new tab, and Fyr tracks the click as before.
+- **Fyr doesn't sign.** No name-title-tick signature and no PDF receipt. The quote, signing, Salesforce stages and archive stay in GetAccept and Salesforce, unchanged.
+- **Signed status.** The rep marks the room *Signed*. Later, Fyr can read GetAccept's `document.signed` webhook, if our plan includes API access. That would be a new external dependency and needs its own entry.
+- **The business case** counts rep hours saved and content that stays approved. It doesn't count the GetAccept licence until GetAccept prices a tier without the DSR.
+
+**Consequences:**
+- When accepted:
+  - SPEC §4.12: *Review and sign* opens the GetAccept link, and the signing method and PDF receipt go.
+  - `DealRoom` drops `signedBy/At` and gains `signLink`.
+  - PLAN M4 drops the simple e-signature.
+- The open item "decide signing (simple e-signature or BankID)" closes. The room domain question stays.
+- No new legal work beyond the D-036 tracking notice.
+
+**Revisit if:** all four are true: GetAccept's renewal leaves time to build; a sales ops or Salesforce owner agrees to own signing and the CPQ handoff; legal approves Fyr's signing evidence; and every other GetAccept user has somewhere else to go.

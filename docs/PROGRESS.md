@@ -42,7 +42,10 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 | Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea | Content | Tobias | 11 Nov | Open |
 | Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) | Admin | Tobias | Before the first real room | Open |
 | ~~Deal rooms: get GetAccept's licence cost and deals per month for the business case~~ (SEK 360,000 a year; 3 deals a month × 20 sellers) | Content | Tobias | 13 Nov | Closed |
-| Deal rooms: decide signing (simple e-signature only, or a BankID provider) and the room domain (`rom.simployer.com`?) | Decision | Tobias | 18 Nov | Open |
+| Deal rooms: confirm D-042 (link to the GetAccept contract, Fyr doesn't sign), and decide the room domain (`rom.simployer.com`?) | Decision | Tobias | 13 Nov | Open |
+| Deal rooms vs GetAccept: our plan, seats, renewal date and notice period; price for e-signature + Salesforce without DSR; is it a group agreement? | Admin | Tobias (Nina, IT) | 13 Nov | Open |
+| Deal rooms vs GetAccept: how CPQ creates GetAccept documents, and which Salesforce flows, Slack bots or reports read its status | Admin | Tobias (Ole Henrik Leister) | 13 Nov | Open |
+| Deal rooms vs GetAccept: who else sends documents through GetAccept (HR, Sweden admin, CS renewals, partners, AlexisHR); which segments need BankID | Admin | Tobias | 18 Nov | Open |
 | Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? | Decision | Tobias | 13 Nov | Open |
 | tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts | Admin | Tobias | 18 Nov | Open |
 | Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) | Decision | Tobias | 13 Nov | Open |
@@ -50,6 +53,15 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-11 — Deal rooms: what replacing GetAccept depends on (proposes D-042)
+- **Done:**
+  - Investigated what GetAccept does for Simployer beyond the deal room. Write-up: [DEALROOM-GETACCEPT.md](DEALROOM-GETACCEPT.md).
+  - Main finding: GetAccept does five jobs, and Fyr's room replaces one (the content room). The quote comes from Salesforce CPQ by a callout. Signing sets the Salesforce stages (*Customer Signed*, *Contract Signed* / closed won). The signature is email login with a hash, trusted timestamp and audit log, not BankID. The licence is a group agreement other teams have used.
+  - Recommends option B: the Fyr room links to the GetAccept contract, and Fyr doesn't sign. It keeps compliance, CPQ and Salesforce unchanged and removes the signing build from M4. The full SEK 360,000 licence saving in the pitch is at risk.
+- **Next:** Tobias confirms or rejects D-042 by 13 Nov. Ask Nina/IT for the GetAccept plan and renewal, and Ole Henrik for the Salesforce wiring.
+- **Blockers:** none.
+- **Decisions:** D-042 proposed.
 
 ### 2026-11-10 — Deal rooms: upload a welcome video (D-041)
 - **Done:**
