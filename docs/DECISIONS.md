@@ -989,3 +989,25 @@ Details are in PARKED.md.
 - No new legal work beyond the D-036 tracking notice.
 
 **Revisit if:** all four are true: GetAccept's renewal leaves time to build; a sales ops or Salesforce owner agrees to own signing and the CPQ handoff; legal approves Fyr's signing evidence; and every other GetAccept user has somewhere else to go.
+
+## D-043 — Fyr is tracked as its own project in Linear
+`2026-11-11` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:**
+- Fyr's plan, decisions and open items lived only in the repo, so nobody outside the build could see the milestones or what Fyr waits on.
+- The first idea was to put Fyr under Sales adoption (P-PRO-238). In Linear that is a project, not an initiative, so Fyr could only go in as issues there. Fyr also serves more than sales: Product Truth, Roadmap, Remix and the paid ads export. Sales adoption lists the release pack and launch channels as out of scope.
+
+**Decision:**
+- Fyr is its own project in the Product Marketing team: [Fyr (P-PRO-334)](https://linear.app/simployer/project/fyr-e9b34aed51d0), led by Tobias.
+- M1–M5 are project milestones, with the dates from PLAN.md.
+- Open items that need someone else to act are issues (PRO-155 to PRO-170). Not every checkbox in PLAN.md goes to Linear.
+- **Sales adoption links to it.** PRO-137 *Fyr as delivery layer for Sales enablement* stays in Sales adoption and links to the Fyr project.
+- **The split.** Linear holds who does what by when. The repo stays the source of truth for scope, sequencing, decisions and the log. If they disagree on scope or a decision, the repo wins.
+- **Labels.** The project is *Internal*, with no release tier, no pillar and no initiative, so Fyr never shows itself in its own Releases or Roadmap (D-032).
+
+**Consequences:**
+- The end-of-session routine in CLAUDE.md gets one more step: update or close the matching Linear issue.
+- PROGRESS.md's open items stay the full list. Items that are also in Linear name their issue.
+- No product change and no CHANGELOG entry.
+
+**Revisit if:** PMM sets up an initiative that groups its projects (Sales adoption, Customer adoption, Fyr, Paid ads, the release calendar), or Linear starts holding decisions that the repo doesn't have.

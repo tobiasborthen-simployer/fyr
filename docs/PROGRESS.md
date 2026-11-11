@@ -15,44 +15,58 @@ Legend: ✅ done · 🟢 on track · 🟡 at risk · 🔴 blocked · ⏳ next ·
 
 ## Open items
 
+Items that need someone else are also issues in the Linear project [Fyr (P-PRO-334)](https://linear.app/simployer/project/fyr-e9b34aed51d0) (D-043). This table stays the full list.
+
 | Item | Type | Owner | Due | Status |
 |---|---|---|---|---|
 | Confirm D-009 (consequential drops) | Decision | Tobias | 30 Oct | Open |
 | Confirm D-010 (SV approver), D-012 (Remix channels), D-013 (PMM Home), D-014 (go-live date) | Decision | Tobias | 4 Nov | Open |
 | ~~Request Entra ID app registration from IT~~ (not needed, D-023) | Admin | Tobias | 30 Oct | Closed |
-| Ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain, e.g. `mail.simployer.com`; set up Resend | Admin | Tobias | 4 Nov | Open |
+| Ask IT for DNS records (SPF/DKIM) for a Fyr sending subdomain, e.g. `mail.simployer.com`; set up Resend (PRO-157) | Admin | Tobias | 4 Nov | Open |
 | Roles not on the list: do CSM, PS and Customer Care pick Sales, or do we add a role? | Decision | Tobias | 4 Nov | Open |
-| Raise usage tracking with the employee representatives (drøfting, AML §9-2) and inform staff before go-live (D-025) | Admin | Tobias | 20 Nov | Open |
-| Linear API key + webhook access; confirm tier/visibility fields | Admin | Tobias | 30 Oct | Open |
+| Raise usage tracking with the employee representatives (drøfting, AML §9-2) and inform staff before go-live (D-025) (PRO-170) | Admin | Tobias | 20 Nov | Open |
+| Linear API key + webhook access; confirm tier/visibility fields (PRO-156) | Admin | Tobias | 30 Oct | Open |
 | ~~Claude API key + budget + data-policy OK~~ (replaced by OpenAI, D-031) | Admin | Tobias | 30 Oct | Closed |
-| Ask IT about OpenAI for Fyr: Azure OpenAI or the OpenAI API, which model, budget and rate limits, and whether the data policy is already covered (D-031) | Admin | Tobias | 4 Nov | Open |
-| Confirm with IT that the build tools are fine: Claude Code, claude.ai links for the prototype and framework, and the weekly drift check (D-031) | Admin | Tobias | 4 Nov | Open |
-| Vercel project (personal or Simployer team) | Admin | Tobias | 4 Nov | Open |
+| Ask IT about OpenAI for Fyr: Azure OpenAI or the OpenAI API, which model, budget and rate limits, and whether the data policy is already covered (D-031) (PRO-159) | Admin | Tobias | 4 Nov | Open |
+| Confirm with IT that the build tools are fine: Claude Code, claude.ai links for the prototype and framework, and the weekly drift check (D-031) (PRO-159) | Admin | Tobias | 4 Nov | Open |
+| Vercel project (personal or Simployer team) (PRO-158) | Admin | Tobias | 4 Nov | Open |
 | Confirm D-015 (keep the lighthouse login as the sign-in page) | Decision | Tobias | 4 Nov | Open |
 | Approve rewritten wording: Sia and Sick-leave follow-up (EN/NO/SV) | Approval | Tobias | 4 Nov | Open |
 | Approve Fyr's NO/SV category row, trust line and opener (not in the framework) | Approval | Tobias | 4 Nov | Open |
-| Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow | Content | Tobias | 4 Nov | Open |
+| Discovery proof quotes: a named person for the Kaffebrenneriet quote; the approved quote text from Daniel Haavoll, Cflow (PRO-163) | Content | Tobias | 4 Nov | Open |
 | Approve NO/SV Discovery copy (today is about you, insight, five questions, next step, contact, backup, appendix) | Approval | Tobias (Linda for SV) | 4 Nov | Open |
-| Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) | Admin | Tobias | 11 Nov | Open |
-| Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) | Decision | Tobias | 4 Nov | Open |
+| Ask P&T to add a **Pillar** label to Linear projects, so Roadmap cards get their pillar without PMM picking it (D-032) (PRO-160) | Admin | Tobias | 11 Nov | Open |
+| Confirm with Nima that the pillar promises and 2027 goals may be shown to all staff (D-032) (PRO-161) | Decision | Tobias | 4 Nov | Open |
 | Approve the NO/SV wording of the Roadmap cards, and pick November's three "worth knowing" (D-032) | Approval | Tobias | 4 Nov | Open |
-| Walk through the published prototype and give sign-off (M1 exit); decide who to share it with | Approval | Tobias | 4 Nov | Open |
+| Walk through the published prototype and give sign-off (M1 exit); decide who to share it with (PRO-155) | Approval | Tobias | 4 Nov | Open |
 | Ad banner tag "HR-systemet for [bransje]": keep or drop under the framework's "HR system" rule? | Decision | Tobias | 4 Nov | Open |
-| Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) | Decision | Tobias | 11 Nov | Open |
-| Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea | Content | Tobias | 11 Nov | Open |
-| Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) | Admin | Tobias | Before the first real room | Open |
+| Agree with Thea who owns paid ads day to day, and that her engine takes approved ad sets from Fyr's export (D-035, accepted) (PRO-162) | Decision | Tobias | 11 Nov | Open |
+| Raise the framework mismatches in the engine's Linear copy (PRO-92 to PRO-94 headlines, "hard calls" in PRO-93, the Trust ad headline) with Thea (PRO-162) | Content | Tobias | 11 Nov | Open |
+| Deal rooms: legal and the DPO approve the viewer notice and tracking of named people (D-036) (PRO-168) | Admin | Tobias | Before the first real room | Open |
 | ~~Deal rooms: get GetAccept's licence cost and deals per month for the business case~~ (SEK 360,000 a year; 3 deals a month × 20 sellers) | Content | Tobias | 13 Nov | Closed |
-| Deal rooms: confirm D-042 (link to the GetAccept contract, Fyr doesn't sign), and decide the room domain (`rom.simployer.com`?) | Decision | Tobias | 13 Nov | Open |
-| Deal rooms vs GetAccept: our plan, seats, renewal date and notice period; price for e-signature + Salesforce without DSR; is it a group agreement? | Admin | Tobias (Nina, IT) | 13 Nov | Open |
-| Deal rooms vs GetAccept: how CPQ creates GetAccept documents, and which Salesforce flows, Slack bots or reports read its status | Admin | Tobias (Ole Henrik Leister) | 13 Nov | Open |
-| Deal rooms vs GetAccept: who else sends documents through GetAccept (HR, Sweden admin, CS renewals, partners, AlexisHR); which segments need BankID | Admin | Tobias | 18 Nov | Open |
-| Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? | Decision | Tobias | 13 Nov | Open |
-| tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts | Admin | Tobias | 18 Nov | Open |
-| Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) | Decision | Tobias | 13 Nov | Open |
+| Deal rooms: confirm D-042 (link to the GetAccept contract, Fyr doesn't sign), and decide the room domain (`rom.simployer.com`?) (PRO-164) | Decision | Tobias | 13 Nov | Open |
+| Deal rooms vs GetAccept: our plan, seats, renewal date and notice period; price for e-signature + Salesforce without DSR; is it a group agreement? (PRO-165) | Admin | Tobias (Nina, IT) | 13 Nov | Open |
+| Deal rooms vs GetAccept: how CPQ creates GetAccept documents, and which Salesforce flows, Slack bots or reports read its status (PRO-166) | Admin | Tobias (Ole Henrik Leister) | 13 Nov | Open |
+| Deal rooms vs GetAccept: who else sends documents through GetAccept (HR, Sweden admin, CS renewals, partners, AlexisHR); which segments need BankID (PRO-167) | Admin | Tobias | 18 Nov | Open |
+| Deal rooms: does the app version fit M4, or move to v0.4 after the 27 Nov go-live? (PRO-164) | Decision | Tobias | 13 Nov | Open |
+| tl;dv for deal rooms (D-037): API access on our plan (tl;dv says Pro or Business, and the meeting organiser's plan is what counts), which reps organise on a paid plan, a DPA, and legal/DPO on processing transcripts (PRO-169) | Admin | Tobias | 18 Nov | Open |
+| Confirm D-040 (how a tl;dv meeting becomes room drafts: notes first, private-talk filter, only the rep's own meetings) (PRO-164) | Decision | Tobias | 13 Nov | Open |
 
 ## Log
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
+
+### 2026-11-11 — Fyr is a project in Linear (D-043)
+- **Done:**
+  - Created [Fyr (P-PRO-334)](https://linear.app/simployer/project/fyr-e9b34aed51d0) in the Product Marketing team: lead Tobias, In Progress, 28 Oct – 27 Nov, label *Internal*, links to the repo and the prototype.
+  - M1–M5 are project milestones with the PLAN.md dates.
+  - 16 issues (PRO-155 to PRO-170) for the open items that need someone else, each under its milestone with the due date from this file. The deal room decisions due 13 Nov are one issue (PRO-164).
+  - PRO-137 in Sales adoption links to the Fyr project.
+  - Open items above now name their Linear issue.
+- **Next:** keep Linear current at the end of each session (CLAUDE.md). Chase the overdue M2 admin: PRO-156, PRO-157, PRO-158.
+- **Blockers:** none.
+- **Decisions:** D-043 accepted (its own project, not under Sales adoption; the repo stays the source of truth).
+- **Note:** the team's SLA rule put an SLA on the two High-priority issues (PRO-159, PRO-170; breach 18 Nov). PRO-137's description still lists Salesforce, Slack and Claude as integrations, which v0.3 has parked (PARKED.md, D-031).
 
 ### 2026-11-11 — Deal rooms: what replacing GetAccept depends on (proposes D-042)
 - **Done:**

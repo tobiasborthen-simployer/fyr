@@ -21,7 +21,8 @@ Fyr is Simployer's PMM planning and creation tool. The current target is **v0.3*
 1. **PROGRESS.md:** add a dated entry at the top of the Log (done / next / blockers / decisions), and update the status board and open items.
 2. **DECISIONS.md:** add a `D-NNN` entry for every decision made. Entries are append-only; to change a past decision, add a new entry and mark the old one `Superseded by D-xxx`.
 3. **CHANGELOG.md:** add the user-visible changes under `[Unreleased]` (Added / Changed / Removed).
-4. Commit with a clear message, and push to the milestone branch.
+4. **Linear:** update or close the matching issue in the [Fyr project](https://linear.app/simployer/project/fyr-e9b34aed51d0) (P-PRO-334), and add an issue for a new open item that needs someone else (D-043). The repo stays the source of truth; keep the project *Internal*, with no tier or pillar.
+5. Commit with a clear message, and push to the milestone branch.
 
 ## Files and folders
 - `reference/v0.2/`: the v0.2 prototype, **read-only**. Never edit it; copy from it. SPEC.md cites line numbers into its `index.html`.
