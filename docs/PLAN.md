@@ -5,7 +5,7 @@
 | **Window** | Wed 28 Oct → Tue 15 Dec 2026 (go-live of Fyr 1.0, [D-044](DECISIONS.md), [D-045](DECISIONS.md)) |
 | **Versions** | v0.2 and v0.3 are prototypes. The first live app is **Fyr 1.0**, built to the v0.3 scope in SPEC.md. What comes after it is 1.1 ([D-045](DECISIONS.md)). |
 | **Approach** | Slim HTML prototype first, then the real app ([D-001](DECISIONS.md)) |
-| **Branching** | One branch per milestone (`m1-prototype`, `m2-foundation`, …), merged to `main` through a PR |
+| **Branching** | One branch per milestone (`m1-prototype`, `m2-foundation`, …), merged to `main` through a PR, also mid-milestone before the repo link is shared (D-049) |
 | **Status** | Tracked in [PROGRESS.md](PROGRESS.md) and the Linear project [Fyr (P-PRO-334)](https://linear.app/simployer/project/fyr-e9b34aed51d0) (D-043). **11 Nov re-plan:** go-live moves from 27 Nov to 15 Dec to give the external dependencies room (D-044). **10 Nov scope check:** M1 is built and waits for sign-off. M2 isn't started (no `app/` yet) and is due 11 Nov. The admin that blocks M2 is overdue. Deal rooms (D-036, D-037) are new scope, placed in M4 *if* the 13 Nov decision keeps them in v0.3. See Risks. |
 
 ## Milestones

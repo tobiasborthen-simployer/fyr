@@ -60,6 +60,15 @@ Items that need someone else are also issues in the Linear project [Fyr (P-PRO-3
 
 Newest entries go at the top. Each entry covers: done, next, blockers, decisions.
 
+### 2026-11-13 — `main` brought up to date with `m1-prototype` (D-049)
+- **Done:**
+  - Found why another chat called the repo docs out of date: GitHub shows the default branch, `main`, and `main` was still at the first commit from 28 Oct (the D-005 stack with Entra and the Claude API). Every change since then was committed and pushed, but only to `m1-prototype` (63 commits ahead).
+  - Opened a PR from `m1-prototype` to `main` and merged it as a fast-forward, so the plain repo link shows the current spec, plan, log and decisions (up to D-049). `m1-prototype` stays the working branch.
+  - Logged from 13 Nov: the Magelungen sales deck changes slides on click, tap and swipe, keeps its arrow buttons visible on touch screens, and *Done* returns to present mode.
+- **Next:** merge `m1-prototype` into `main` again before the repo link is shared, and at M1 sign-off.
+- **Blockers:** none.
+- **Decisions:** D-049.
+
 ### 2026-11-11 — New sign-in page; ink and the brand fonts across the app (D-048)
 - **Done:**
   - Tried three sign-in designs as a preview (cream with a product view, a real lighthouse photo, and ink with a stacked deck and a drawn lighthouse). Tobias picked the ink one.

@@ -1110,3 +1110,18 @@ Details are in PARKED.md.
 **Consequences:** the coral dot after "Fyr" is gone, in the sign-in and the rail. Exported and presented decks use ink and the brand fonts. The deal room page is unchanged.
 
 **Revisit if:** the brand owner wants the brand system to cover internal tools, or Fyr gets its own mark.
+
+## D-049 — `main` is kept current; milestone branches merge into it before the repo is shared
+`2026-11-13` · **Status:** Accepted · **Owner:** Tobias
+
+**Context:**
+- The plan merges each milestone branch into `main` through a PR (PLAN.md, Branching), which read as "at the end of the milestone".
+- `main` is GitHub's default branch, so the repo link shows it. It stayed at the 28 Oct commit while all the work went to `m1-prototype`. A reader of the link saw D-005 with Entra and the Claude API, and docs two weeks old.
+
+**Decision:**
+- Work still happens on the milestone branch.
+- The milestone branch is merged into `main` through a PR whenever the repo link is about to be shared, and at the end of the milestone. The first such merge is 13 Nov.
+
+**Consequences:** the repo link shows the current docs. Old decisions such as D-005 still show their original heading (the log is append-only); their status line names the decision that replaced them.
+
+**Revisit if:** someone other than Tobias starts committing, and `main` needs review rules or protection.
