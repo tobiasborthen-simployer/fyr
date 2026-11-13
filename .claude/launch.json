@@ -50,6 +50,16 @@
         "8769"
       ],
       "port": 8769
+    },
+    {
+      "name": "magelungen-deck",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/tobiasborthen/Documents/Simployer/Fyr/tools/serve.mjs",
+        "presentation/magelungen",
+        "8770"
+      ],
+      "port": 8770
     }
   ]
 }

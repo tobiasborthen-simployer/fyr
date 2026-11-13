@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="deck-rev" content="r2">
+<meta name="robots" content="noindex">
+<title>Simployer × Magelungen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,0..100,0..1;1,9..144,300..600,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1EFE9;--paper-card:#FBFAF7;--line:#E2DDD2;--line-2:#D3CDC0;
+  --ink:#1F1B2E;--sub:#4A4458;--muted:#6A6377;--faint:#8F889C;
+  --plum:#2D0C69;--plum-950:#1F0850;--lav:#6B45C9;--lav-500:#9773FF;--lav-300:#CDC0EA;--lav-100:#E9E4F4;--lav-50:#F6F2FF;
+  --night:#1B1038;--night-text:#F6F2FF;--night-sub:#B7AECF;--night-line:rgba(233,228,244,.12);
+  --coral:#FF9573;--coral-ink:#8A3A1E;--coral-50:#FFEDE7;
+  --green:#2EB27A;--green-ink:#10563A;--green-50:#DDEFE3;
+  --amber-ink:#9A5A00;--amber-50:#FFF2DE;
+  --sky:linear-gradient(160deg,#FFD8BA 0%,#F7D5E4 34%,#E3D5F3 68%,#CDC0EA 100%);
+  --nightg:linear-gradient(170deg,#2A1A55 0%,#221646 36%,#1B1038 70%,#0E0722 100%);
+  --display:"Fraunces",Georgia,serif;--sans:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;--hand:"Caveat","Segoe Print",cursive;
+  --ease:cubic-bezier(.16,1,.3,1);--pop:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0E0722;overflow:hidden}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ---------- stage: one 16:9 frame, fitted to the window ---------- */
+.stage{position:fixed;inset:0;display:grid;place-items:center}
+.deck{position:relative;width:min(100vw,177.78vh);aspect-ratio:16/9}
+.slide{position:absolute;inset:0;overflow:hidden;background:var(--paper);color:var(--ink);container-type:inline-size;
+  line-height:1.5;isolation:isolate;opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s .45s}
+.slide.on{opacity:1;visibility:visible;transition:opacity .45s var(--ease)}
+.slide.sky{background:var(--sky)}
+.slide.night{background:var(--nightg);color:var(--night-text)}
+
+.in{position:absolute;inset:0;padding:6cqw 6cqw 7.5cqw;display:flex;flex-direction:column;gap:1.6cqw}
+.logo{position:absolute;top:3.2cqw;right:6cqw;height:1.5cqw;z-index:5}
+.foot{position:absolute;left:6cqw;right:6cqw;bottom:2.6cqw;display:flex;justify-content:space-between;font-size:1.05cqw;color:var(--muted);z-index:5}
+.night .foot{color:var(--night-sub)}
+
+/* type */
+h1,h2,h3{font-family:var(--display);font-weight:400;font-variation-settings:"SOFT" 30,"WONK" 0;letter-spacing:-.024em;line-height:1.04;color:var(--plum);margin:0;text-wrap:balance}
+h1{font-size:6.2cqw;max-width:15ch}
+h2{font-size:4cqw;max-width:28ch}
+h2.f{font-size:3.5cqw}
+h1 em,h2 em,h3 em{font-style:italic;color:var(--lav)}
+.night h1,.night h2,.night h3{color:#fff}
+.night h1 em,.night h2 em,.night h3 em{color:var(--lav-300)}
+p{margin:0}
+.lead{font-size:1.55cqw;color:var(--sub);max-width:52ch;line-height:1.45}
+.night .lead{color:var(--night-sub)}
+.eb{align-self:flex-start;display:inline-flex;align-items:center;height:2.4cqw;padding:0 1.1cqw;border-radius:99px;background:var(--lav-100);color:var(--lav);font-size:1.15cqw;font-weight:600;white-space:nowrap}
+.sky .eb{background:rgba(255,255,255,.55);color:var(--plum)}
+.night .eb{background:rgba(255,255,255,.08);color:var(--lav-300);box-shadow:inset 0 0 0 .08cqw var(--night-line)}
+
+/* cards */
+.grid{display:grid;gap:1.6cqw;margin-top:auto}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--paper-card);border:.08cqw solid var(--line);border-radius:1.4cqw;padding:2cqw;box-shadow:0 .3cqw 1.4cqw rgba(31,27,46,.07);display:flex;flex-direction:column;gap:.8cqw}
+.card h3{font-family:var(--sans);font-weight:600;font-size:1.75cqw;letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
+.card p{font-size:1.3cqw;color:var(--sub);line-height:1.45}
+.card .lbl{font-size:1cqw;font-weight:650;letter-spacing:.07em;text-transform:uppercase;color:var(--lav)}
+.key{width:3.4cqw;height:3.4cqw;border-radius:.9cqw;background:var(--plum);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.35cqw;margin-bottom:.4cqw}
+.card.dark{background:var(--plum);border-color:var(--plum);box-shadow:0 1.2cqw 3cqw rgba(45,12,105,.25)}
+.card.dark h3{color:#fff}.card.dark p{color:var(--lav-300)}.card.dark .lbl{color:var(--lav-300)}
+
+/* small cards for the module grid */
+.mods{grid-template-columns:repeat(3,1fr);gap:1.1cqw}
+.mods .card{padding:1.35cqw 1.6cqw;gap:.35cqw;border-radius:1.1cqw}
+.mods .card h3{font-size:1.4cqw}
+.mods .card p{font-size:1.08cqw;line-height:1.4}
+.tag{display:inline-flex;align-items:center;height:1.7cqw;padding:0 .8cqw;border-radius:99px;background:var(--lav-100);color:var(--plum);font-size:.9cqw;font-weight:650;vertical-align:.2cqw;margin-left:.5cqw;letter-spacing:0}
+.note{font-size:1.2cqw;color:var(--muted)}
+
+/* feature: text left, product on a Sky stage right */
+.feat{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1.25fr;grid-template-rows:minmax(0,1fr)}
+.feat .txt{padding:6cqw 3cqw 7.5cqw 6cqw;display:flex;flex-direction:column;gap:1.4cqw}
+.pain{background:var(--paper-card);border:.08cqw solid var(--line);border-radius:1.2cqw;padding:1.4cqw 1.6cqw;display:grid;gap:.4cqw}
+.pain .lbl{font-size:.95cqw;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--lav);display:flex;align-items:center;gap:.6cqw}
+.pain .lbl::before{content:"";width:.6cqw;height:.6cqw;border-radius:50%;background:var(--lav)}
+.pain p{font-size:1.3cqw;color:var(--ink);line-height:1.45}
+.does{font-size:1.4cqw;color:var(--sub);line-height:1.5}
+.proof{align-self:flex-start;display:inline-flex;align-items:center;gap:.8cqw;padding:.7cqw 1.3cqw .7cqw .7cqw;border-radius:99px;background:var(--lav-100);color:var(--plum);font-size:1.15cqw;font-weight:600}
+.proof i{width:2cqw;height:2cqw;border-radius:50%;background:var(--plum);color:#fff;display:grid;place-items:center;font-style:normal;font-size:1cqw}
+.stagebox{position:relative;background:var(--sky);margin:5.6cqw 4cqw 5.4cqw 0;min-height:0;border-radius:1.8cqw;display:grid;place-items:center;overflow:hidden}
+.stagebox img.shot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.stagebox img.browser{width:94%;border-radius:1cqw;box-shadow:0 2cqw 5cqw rgba(45,12,105,.3);transform:rotate(-2deg)}
+
+/* chip */
+.chip{position:absolute;display:flex;align-items:center;gap:1.1cqw;padding:1cqw 1.6cqw 1cqw 1cqw;border-radius:1.3cqw;background:var(--plum);color:#fff;box-shadow:0 1.2cqw 3cqw rgba(45,12,105,.35);z-index:4}
+.chip .ic{width:3cqw;height:3cqw;border-radius:.8cqw;background:var(--lav-500);display:grid;place-items:center;font-size:1.4cqw;font-weight:700}
+.chip .cl{font-size:.95cqw;color:var(--lav-300)}
+.chip .co{font-size:1.25cqw;font-weight:650;line-height:1.25}
+
+/* panel (Automation Studio routine) */
+.pnl{width:84%;background:#fff;border-radius:1.6cqw;overflow:hidden;box-shadow:0 1.4cqw 4cqw rgba(45,12,105,.25);transform:rotate(1.2deg)}
+.pnl .ph{background:var(--plum);color:#fff;padding:1.4cqw 2cqw;display:flex;justify-content:space-between;align-items:center}
+.pnl .ph b{font-size:1.4cqw;font-weight:650}
+.pnl .ph span{font-size:1cqw;color:var(--lav-300)}
+.pnl .row{display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw 2cqw;border-top:.1cqw solid #EFEAFF}
+.pnl .row .n{width:2.4cqw;height:2.4cqw;border-radius:.7cqw;background:var(--lav-100);color:var(--plum);display:grid;place-items:center;font-size:1cqw;font-weight:700;flex:none}
+.pnl .row .w{flex:1;display:grid}
+.pnl .row .w b{font-size:1.3cqw;font-weight:600;color:var(--ink)}
+.pnl .row .w small{font-size:1cqw;color:var(--muted)}
+.st{height:2cqw;padding:0 .9cqw;border-radius:99px;font-size:.95cqw;font-weight:650;display:inline-flex;align-items:center;white-space:nowrap}
+.st.done{background:var(--green-50);color:var(--green-ink)}
+.st.now{background:var(--lav-100);color:var(--plum)}
+.st.next{background:var(--paper);color:var(--muted)}
+.scr{position:absolute;font-family:var(--hand);font-size:2.6cqw;color:var(--plum);transform:rotate(-6deg);white-space:nowrap;z-index:4;font-weight:600}
+
+/* cover */
+.cover .in{justify-content:flex-end}
+.cover .sub{font-size:1.9cqw;color:var(--plum);max-width:30ch;line-height:1.3}
+.cover .shotwrap{position:absolute;right:-6cqw;top:7cqw;width:52cqw;transform:rotate(-2deg);z-index:1}
+.cover .shotwrap img{width:100%;border-radius:1cqw;box-shadow:0 2cqw 5cqw rgba(45,12,105,.3);display:block}
+
+/* video */
+.vid .in{padding-top:4.6cqw;gap:1.2cqw}
+.vbox{position:relative;margin:0 auto;width:68cqw;aspect-ratio:16/9;border-radius:1.4cqw;overflow:hidden;box-shadow:0 2cqw 5cqw rgba(0,0,0,.45);background:#000}
+.vbox video{width:100%;height:100%;display:block;object-fit:contain}
+.vhead{display:flex;justify-content:space-between;align-items:flex-end;gap:2cqw}
+
+/* quote / story */
+.story .in{justify-content:center;align-items:center;text-align:center}
+.story blockquote{margin:0;font-family:var(--display);font-weight:400;font-size:3.2cqw;line-height:1.15;letter-spacing:-.02em;max-width:30ch;color:#fff;font-variation-settings:"SOFT" 30}
+.story .who{font-size:1.3cqw;color:var(--night-sub)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6cqw;width:100%;margin-top:2cqw}
+.kpi{border-top:.1cqw solid var(--night-line);padding-top:1.4cqw;text-align:left}
+.kpi .num{font-family:var(--display);font-size:3.6cqw;line-height:1;color:var(--lav-300);letter-spacing:-.02em}
+.kpi p{font-size:1.2cqw;color:var(--night-sub);margin-top:.6cqw}
+.storytext{font-size:1.35cqw;color:var(--night-sub);max-width:64ch;line-height:1.5}
+
+/* paper KPI row */
+.kp .card .num{font-family:var(--display);font-size:3.4cqw;line-height:1.05;color:var(--plum);letter-spacing:-.02em}
+.kp .card .num.s{font-size:2.3cqw;line-height:1.15}
+
+/* timeline */
+.tl{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:1.2cqw;margin-top:auto;padding-top:3cqw}
+.tl::before{content:"";position:absolute;left:1cqw;right:1cqw;top:3.9cqw;height:.3cqw;border-radius:9px;background:linear-gradient(90deg,var(--lav-300),var(--lav) 60%,var(--coral))}
+.tl .step{position:relative;display:grid;gap:.6cqw;align-content:start}
+.tl .dot{width:2cqw;height:2cqw;border-radius:50%;background:var(--paper);border:.35cqw solid var(--lav);position:relative;z-index:1}
+.tl .step.first .dot{background:var(--lav);box-shadow:0 0 0 .9cqw rgba(107,69,201,.16)}
+.tl .step.end .dot{background:var(--coral);border-color:var(--coral)}
+.tl .when{font-size:1cqw;font-weight:650;letter-spacing:.07em;text-transform:uppercase;color:var(--lav);margin-top:.6cqw}
+.tl .step.end .when{color:var(--coral-ink)}
+.tl h3{font-family:var(--sans);font-size:1.45cqw;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.25}
+.tl p{font-size:1.1cqw;color:var(--sub);line-height:1.4}
+.cta{align-self:flex-start;display:inline-flex;align-items:center;height:4cqw;padding:0 2.2cqw;border-radius:99px;background:var(--plum);color:#fff;font-size:1.4cqw;font-weight:600}
+
+/* contact */
+.contact .in{justify-content:center}
+.person{display:flex;align-items:center;gap:3cqw;margin-top:2cqw}
+.avatar{width:15cqw;height:15cqw;border-radius:50%;background:var(--lav-100);color:var(--plum);display:grid;place-items:center;font-family:var(--display);font-size:5cqw;flex:none;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.person .name{font-size:2.6cqw;font-weight:600;color:#fff;line-height:1.2}
+.person p{font-size:1.5cqw;color:var(--night-sub)}
+
+/* ---------- presenter chrome ---------- */
+.nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:50;opacity:.75;transition:opacity .3s}
+.nav:hover,body.editing .nav{opacity:1}
+body.idle .nav{opacity:0}
+.toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:rgba(27,16,56,.92);color:#fff;font:600 13px var(--sans);padding:10px 14px;border-radius:10px;z-index:70;opacity:0;transition:opacity .3s;pointer-events:none;text-align:center;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1}
+.nav button,.bar button{font:600 13px var(--sans);border:0;border-radius:9px;height:32px;padding:0 12px;cursor:pointer;background:rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(8px)}
+.nav button:hover{background:rgba(255,255,255,.26)}
+.nav .count{color:#fff;font:600 12px var(--sans);opacity:.7;padding:0 6px;min-width:44px;text-align:center}
+.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--lav-500);z-index:50;transition:width .4s var(--ease)}
+
+/* ---------- edit mode (for the seller) ---------- */
+.bar{position:fixed;left:50%;top:10px;transform:translateX(-50%);display:none;gap:6px;align-items:center;z-index:60;background:rgba(27,16,56,.92);padding:6px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);flex-wrap:wrap;justify-content:center;max-width:calc(100vw - 20px)}
+body.editing .bar{display:flex}
+.bar .mode{color:#FFF1A8;font:700 12px var(--sans);padding:0 8px;white-space:nowrap}
+.bar button{background:rgba(255,255,255,.1)}
+.bar button:hover{background:rgba(255,255,255,.22)}
+.bar button.pri{background:#9773FF}
+.bar .saved{color:#B7AECF;font:500 12px var(--sans);padding:0 6px;min-width:84px}
+body.editing [contenteditable="true"]{outline:1px dashed rgba(107,69,201,.45);outline-offset:.25cqw;border-radius:.3cqw;cursor:text}
+body.editing .night [contenteditable="true"]{outline-color:rgba(205,192,234,.5)}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--lav-500);background:rgba(151,115,255,.08)}
+body.editing img[data-swap]{cursor:pointer}
+body.editing img[data-swap]:hover{outline:3px solid var(--lav-500)}
+.slide.hid::after{content:"Skjult i presentasjonen";position:absolute;left:50%;top:1.2cqw;transform:translateX(-50%);background:var(--amber-50);color:var(--amber-ink);font:700 1.1cqw var(--sans);padding:.5cqw 1.2cqw;border-radius:99px;z-index:9;display:none}
+body.editing .slide.hid::after{display:block}
+.help{position:fixed;left:14px;bottom:56px;color:rgba(255,255,255,.7);font:500 12px/1.5 var(--sans);z-index:50;display:none;max-width:420px;background:rgba(27,16,56,.85);padding:10px 12px;border-radius:10px}
+body.editing .help{display:block;cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none}}
+@media print{
+  html,body{overflow:visible;background:none;height:auto}
+  .stage{position:static;display:block}
+  .deck{width:100%;aspect-ratio:auto}
+  .slide{position:relative;opacity:1;visibility:visible;aspect-ratio:16/9;page-break-after:always;break-after:page}
+  .slide.hid{display:none}
+  .nav,.bar,.progress,.help,.toast{display:none!important}
+}
+@page{size:1920px 1080px;margin:0}
+</style>
+</head>
+<body>
+<div class="stage"><div class="deck" id="deck">
+
+<!-- 01 · Cover -->
+<section class="slide sky cover" data-title="Omslag">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="shotwrap"><img data-swap src="assets/img/screen-home.jpg" alt="Simployer startsida"></div>
+  <div class="chip" style="right:30cqw;top:30cqw"><div class="ic">✓</div><div><div class="cl">Onboarding</div><div class="co">Onboarding för Ingrid har startat</div></div></div>
+  <div class="in">
+    <span class="eb">Magelungen · november 2026 · Christopher Robin Nordmo</span>
+    <h1>Simployer × <em>Magelungen</em></h1>
+    <p class="sub">Simployer gör HR-jobbet du helst lämnar över.</p>
+  </div>
+</section>
+
+<!-- 02 · Intro video -->
+<section class="slide night vid" data-title="Video">
+  <img class="logo" src="assets/img/logo-white.svg" alt="Simployer">
+  <div class="in">
+    <div class="vhead">
+      <div style="display:grid;gap:1cqw">
+        <span class="eb">Simployer på under två minuter</span>
+        <h2 class="f">Se hur jobbet blir <em>gjort</em>.</h2>
+      </div>
+    </div>
+    <div class="vbox"><video id="intro" src="assets/video/simployer-intro.mp4" poster="assets/video/poster.jpg" controls preload="metadata" playsinline></video></div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 03 · Everyday at Magelungen -->
+<section class="slide" data-title="Vardagen">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Vardagen hos Magelungen</span>
+    <h2>Arbetet sker ute hos barn, unga och <em>familjer</em>.</h2>
+    <p class="lead">Inte vid ett skrivbord. Därför måste HR-jobbet gå att lösa där cheferna faktiskt är.</p>
+    <div class="grid g3">
+      <div class="card"><div class="key">01</div><h3>Chefer på golvet, inte vid skrivbordet</h3><p>Enhetschefer som är med verksamheten hela dagen. Godkännanden och frågor ska gå att lösa i mobilen, mellan två möten.</p></div>
+      <div class="card"><div class="key">02</div><h3>Nya kollegor och vikarier, hela året</h3><p>Varje ny medarbetare behöver avtal, introduktion och rätt behörigheter innan första passet. Inget får falla mellan stolarna.</p></div>
+      <div class="card"><div class="key">03</div><h3>Sjukfrånvaro som kräver uppföljning</h3><p>Rehabiliteringen har tidsgränser. Chefen ska veta vem som behöver uppföljning, och när, utan att räkna dagar själv.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 04 · The how -->
+<section class="slide" data-title="Så fungerar det">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Så fungerar det</span>
+    <h2>Sia löser uppgiften.<br>HR-experter <em>stöttar</em> dig.</h2>
+    <p class="lead">Två kollegor för HR, och rutiner som flyter på av sig själva. HR bestämmer alltid.</p>
+    <div class="grid g3">
+      <div class="card dark"><span class="lbl">Sia</span><h3>Sia, din AI-medarbetare för HR</h3><p>Gör jobbet och svarar på frågor om reglerna, med källan, där du redan jobbar.</p></div>
+      <div class="card"><span class="lbl">HR-experterna</span><h3>HR-experterna</h3><p>En HR-expert vid din sida. Någon som har sett fall som ditt.</p></div>
+      <div class="card"><span class="lbl">Automation Studio</span><h3>Inbyggt i Simployer One</h3><p>Dina rutiner flyter på av sig själva, så att du inte bär processen ensam.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 05 · Three pillars -->
+<section class="slide" data-title="Det här får ni">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Det här får Magelungen</span>
+    <h2>Mindre administration, färre <em>överraskningar</em>.</h2>
+    <div class="grid g3">
+      <div class="card"><div class="key">01</div><span class="lbl">Slipp det manuella.</span><h3>Avtal, ledighet och onboarding blir klara, där du redan jobbar.</h3><p>Onboarding som startar när avtalet är signerat, ledighet som godkänns i Teams, ett avtal som skickas för e-signering från en experts mall.</p></div>
+      <div class="card"><div class="key">02</div><span class="lbl">Lita på att det stämmer.</span><h3>Få svaret, med källan, innan du bestämmer dig.</h3><p>En fråga om arbetsrätt som besvaras med källan, en HR-expert att gå igenom ett ärende med och som delar beprövade arbetssätt, ett offboardingflöde som påminner rätt personer.</p></div>
+      <div class="card"><div class="key">03</div><span class="lbl">Ligg steget före.</span><h3>Ha koll på vad som förändras, medan du kan påverka det.</h3><p>En påminnelse innan en provanställning löper ut, sjukfrånvarotrenden när du frågar Sia, en lönekartläggning och en juridisk uppdatering innan reglerna ändras.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 06 · Automation Studio feature -->
+<section class="slide" data-title="Automation Studio">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="feat">
+    <div class="txt">
+      <span class="eb">Automation Studio · ingår i Simployer One</span>
+      <h2 class="f">Rutinerna sköter sig <em>själva</em>.</h2>
+      <div class="pain"><span class="lbl">Utmaning</span><p>Varje nyanställning, provanställning och avslut hänger på att någon kommer ihåg nästa steg, och jagar rätt person.</p></div>
+      <p class="does">Bestäm rutinen en gång, så körs den varje gång. Godkännanden, signeringar och påminnelser når rätt person, så att ingen behöver jaga. Börja från färdiga automationer skapade av HR-experter, eller bygg era egna.</p>
+      <span class="proof"><i>✓</i>Finns i Simployer One i dag</span>
+    </div>
+    <div class="stagebox">
+      <div class="pnl">
+        <div class="ph"><b>Ny medarbetare</b><span>Automation Studio</span></div>
+        <div class="row"><div class="n">01</div><div class="w"><b>Anställningsavtal signerat</b><small>Startar rutinen</small></div><span class="st done">Klart</span></div>
+        <div class="row"><div class="n">02</div><div class="w"><b>Konto och behörigheter</b><small>Uppgift till IT, före första passet</small></div><span class="st done">Klart</span></div>
+        <div class="row"><div class="n">03</div><div class="w"><b>Introduktionsplan till enhetschefen</b><small>Med uppgifter och datum</small></div><span class="st now">Pågår</span></div>
+        <div class="row"><div class="n">04</div><div class="w"><b>Uppföljning efter 30 dagar</b><small>Påminnelse till chefen</small></div><span class="st next">Planerad</span></div>
+      </div>
+      <div class="chip" style="left:4cqw;bottom:4cqw"><div class="ic">✓</div><div><div class="cl">Onboarding</div><div class="co">Onboarding för Amir har startat</div></div></div>
+      <div class="scr" style="right:4cqw;top:2.6cqw">ingen behöver jaga</div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 07 · Automation Studio for Magelungen -->
+<section class="slide" data-title="Rutiner för Magelungen">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Automation Studio för Magelungen</span>
+    <h2>Rutiner som kan rulla från <em>dag ett</em>.</h2>
+    <div class="grid g4" style="margin-top:auto">
+      <div class="card"><div class="key">01</div><h3>Ny medarbetare eller vikarie</h3><p>När avtalet är signerat startar introduktionen. Chef, IT och den nya kollegan får sina uppgifter med datum.</p></div>
+      <div class="card"><div class="key">02</div><h3>Provanställning</h3><p>En påminnelse till chefen innan provanställningen löper ut, med vad som ska göras och när.</p></div>
+      <div class="card"><div class="key">03</div><h3>Avslut</h3><p>När någon slutar påminns rätt personer om behörigheter, utrustning, intyg och avslutningssamtal.</p></div>
+      <div class="card dark"><div class="key" style="background:var(--lav-500)">04</div><h3>Magelungens egna rutiner</h3><p>Rutiner som är unika för hur Magelungen arbetar, utan att vänta på att vi ska bygga dem.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 08 · Everything in Simployer One -->
+<section class="slide" data-title="Allt som ingår">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in" style="gap:1.3cqw">
+    <span class="eb">Allt som ingår i Simployer One</span>
+    <h2>Ett personalregister. Från anställning till <em>avslut</em>.</h2>
+    <p class="lead">Registrera en gång. Dina rutiner bygger på det.</p>
+    <div class="grid mods">
+      <div class="card"><h3>Personalregister</h3><p>Medarbetardata, dokument, processer och rapporter på ett ställe. Varje ändring loggas.</p></div>
+      <div class="card"><h3>Sia</h3><p>Svarar medarbetare och chefer med källan, och gör rutinjobbet. Du bekräftar.</p></div>
+      <div class="card"><h3>Dokument och e-signering</h3><p>Avtal och tillägg från en HR-experts mall, skickade för e-signering. Ingen utskrift, ingen skanning.</p></div>
+      <div class="card"><h3>Tid och frånvaro</h3><p>Ansökningar, godkännanden och saldon. Chefer godkänner i mobilen eller i Teams.</p></div>
+      <div class="card"><h3>On- och offboarding</h3><p>Introduktionen startar när avtalet är signerat, och rätt steg körs när någon slutar.</p></div>
+      <div class="card"><h3>Medarbetarsamtal och kompetenser</h3><p>Samtal enligt plan. Certifikat registrerade, med påminnelse innan de går ut.</p></div>
+      <div class="card"><h3>HR-analys</h3><p>Frånvaro, personalstyrka och avgångar, klart när ledningen frågar.</p></div>
+      <div class="card"><h3>Automation Studio <span class="tag">Inbyggt</span></h3><p>Bestäm rutinen en gång. Den körs varje gång.</p></div>
+      <div class="card"><h3>Visselblåsning</h3><p>En trygg kanal för att rapportera missförhållanden, med en dokumenterad process.</p></div>
+    </div>
+    <p class="note">Allt fungerar i mobilappen, och i Teams och Slack, så att enhetschefer löser uppgifterna där de redan är.</p>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 09 · Complete -->
+<section class="slide" data-title="Complete">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">I Complete · med HR-experter bakom er</span>
+    <h2>Fyra saker de flesta<br>HR-system lämnar åt <em>er</em>.</h2>
+    <p class="lead">Essential är personalregister och Sia. Complete är allt, med HR-experter bakom er.</p>
+    <div class="grid g4">
+      <div class="card"><span class="lbl">Expert</span><h3>HR-experter på telefon</h3><p>HR, arbetsrätt och lön, på telefon eller skriftligt. En lång sjukskrivning eller en uppsägning: gå igenom den med någon som har sett fall som ditt.</p></div>
+      <div class="card"><span class="lbl">Handböcker</span><h3>Alltid uppdaterade</h3><p>Medarbetar-, chefs- och arbetsmiljöhandböcker som uppdateras när lagen ändras. Fråga Sia och få svaret från er egen.</p></div>
+      <div class="card"><span class="lbl">Medarbetarundersökningar</span><h3>Se vilket team som behöver stöd</h3><p>Korta, regelbundna pulsmätningar som visar vilken enhet som har förändrats, så att varje chef vet var hen ska börja.</p></div>
+      <div class="card"><span class="lbl">Lönekartläggning</span><h3>Redo för lönetransparens</h3><p>Jämför arbetet rättvist, visar vad som ligger bakom varje löneskillnad och samlar resonemanget i en rapport.</p></div>
+    </div>
+    <p class="note">Rekrytering ingår i Complete. Learn, med kurser och utbildningar, säljs separat.</p>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 10 · Sia in practice -->
+<section class="slide" data-title="Sia">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="feat">
+    <div class="txt">
+      <span class="eb">Sia · i chefens vardag</span>
+      <h2 class="f">Vem behöver <em>uppföljning</em>?</h2>
+      <div class="pain"><span class="lbl">Utmaning</span><p>Rehabiliteringen har tidsgränser, och enhetschefen har många medarbetare att hålla koll på samtidigt.</p></div>
+      <p class="does">Chefen frågar Sia. Sia visar vem som behöver uppföljning, vad som ska göras och när, med källan från er egen handbok. Chefen bekräftar och tar samtalet.</p>
+      <span class="proof"><i>✓</i>Sia visar alltid källan</span>
+    </div>
+    <div class="stagebox" style="background:none"><img class="shot" data-swap src="assets/img/siafollowup-mat.png" alt="Sia visar vem som behöver uppföljning efter sjukfrånvaro"></div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 11 · Time and absence -->
+<section class="slide" data-title="Tid och frånvaro">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="feat">
+    <div class="txt">
+      <span class="eb">Tid och frånvaro</span>
+      <h2 class="f">Chefen har koll, även ute i <em>verksamheten</em>.</h2>
+      <div class="pain"><span class="lbl">Utmaning</span><p>Vem är borta i dag, och vem täcker passet? Svaret ska inte ligga i ett kalkylark på kontoret.</p></div>
+      <p class="does">Medarbetare anmäler frånvaro i appen. Chefen ser vem som är borta och godkänner från mobilen eller i Teams. Saldon och lönedata följer med automatiskt.</p>
+      <span class="proof"><i>✓</i>Mobilapp, Teams och Slack</span>
+    </div>
+    <div class="stagebox" style="background:none"><img class="shot" data-swap src="assets/img/teamaway-mat.png" alt="Chefens översikt över vem som är borta"></div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 12 · Customer story -->
+<section class="slide night story" data-title="Kundcase">
+  <img class="logo" src="assets/img/logo-white.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Kundcase · Betao, Stockholm</span>
+    <blockquote>“With Simployer, I spend less time putting out fires and more time with my people.”</blockquote>
+    <p class="who">Julia Amin · HR, Betao</p>
+    <p class="storytext">En HR-ansvarig, åtta chefer och processer i kalkylark. I dag följer alla chefer samma process för onboarding, dokument, medarbetarsamtal och undersökningar.</p>
+    <div class="kpis" style="max-width:70cqw">
+      <div class="kpi"><div class="num">20 min</div><p>för en rapport, ner från tre dagar</p></div>
+      <div class="kpi"><div class="num">6 tim</div><p>i veckan tillbaka för Julia</p></div>
+      <div class="kpi"><div class="num">75 %</div><p>svarsfrekvens, varje undersökning med en handlingsplan</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 13 · Trust -->
+<section class="slide kp" data-title="Trygghet">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Tryggt för HR-data</span>
+    <h2>Byggt för HR-data, och för systemen ni redan <em>har</em>.</h2>
+    <p class="lead">Sia är alltid märkt som AI och visar källan i varje svar. Sia förbereder jobbet, HR bekräftar och bestämmer.</p>
+    <div class="grid g4">
+      <div class="card"><div class="num s">1,2 miljoner</div><p>1,2 miljoner personer sköter sin HR i Simployer</p></div>
+      <div class="card"><div class="num">EU</div><p>Data lagras i EU</p></div>
+      <div class="card"><div class="num s">Externt granskad</div><p>Externt granskad säkerhet</p></div>
+      <div class="card"><div class="num s">ISO/IEC 27001:2022</div><p>ISO/IEC 27001:2022, certifiering pågår</p></div>
+    </div>
+    <p class="note">Färdiga kopplingar till lön, rekrytering, chatt och kalender, plus ett öppet API. Allt ni delar med Sia eller HR-experterna omfattas av ett personuppgiftsbiträdesavtal.</p>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 14 · Next steps -->
+<section class="slide" data-title="Nästa steg">
+  <img class="logo" src="assets/img/logo-plum.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Nästa steg</span>
+    <h2>Från avtal till första rutinen <em>live</em>.</h2>
+    <p class="lead">En namngiven onboardingspecialist tar er från kick-off till live. Sedan tar er Customer Success Manager över.</p>
+    <div class="tl">
+      <div class="step first"><div class="dot"></div><span class="when">Steg 1</span><h3>Avtal signerat</h3><p>Vi bokar kick-off direkt.</p></div>
+      <div class="step"><div class="dot"></div><span class="when">Vecka 1</span><h3>Kick-off</h3><p>Omfattning, data och i vilken ordning vi sätter upp det.</p></div>
+      <div class="step"><div class="dot"></div><span class="when">Vecka 2–3</span><h3>Uppsättning</h3><p>Simployer formas efter hur Magelungen arbetar, med alla enheter.</p></div>
+      <div class="step"><div class="dot"></div><span class="when">Vecka 4–5</span><h3>Data och integrationer</h3><p>Data flyttas över och lönesystemet kopplas på.</p></div>
+      <div class="step"><div class="dot"></div><span class="when">Vecka 6</span><h3>Utbildning</h3><p>HR först, sedan en kort session för chefer i mobilappen.</p></div>
+      <div class="step end"><div class="dot"></div><span class="when">Live</span><h3>Första rutinen live</h3><p>Därefter fler rutiner i Automation Studio.</p></div>
+    </div>
+    <p class="note">Datum efter kick-off sätter vi tillsammans, utifrån hur snabbt data och godkännanden kommer på plats.</p>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+<!-- 15 · Thank you -->
+<section class="slide night contact" data-title="Tack">
+  <img class="logo" src="assets/img/logo-white.svg" alt="Simployer">
+  <div class="in">
+    <span class="eb">Kontakt</span>
+    <h2>Tack, <em>Magelungen</em>.</h2>
+    <div class="person">
+      <div class="avatar"><img data-swap src="assets/img/christopher-robin.jpg" alt="Christopher Robin Nordmo"></div>
+      <div style="display:grid;gap:.4cqw">
+        <p class="name">Christopher Robin Nordmo</p>
+        <p>Simployer</p>
+        <p>christopher.nordmo@simployer.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Nordisk arbetsrätt i grunden. Riktiga experter bakom.</span><span class="pg"></span></div>
+</section>
+
+</div></div>
+
+<div class="progress" id="progress"></div>
+<div class="toast" id="toast"></div>
+<div class="nav" id="nav">
+  <button id="prev" aria-label="Föregående">←</button>
+  <span class="count" id="count"></span>
+  <button id="next" aria-label="Nästa">→</button>
+  <button id="fs" aria-label="Fullskärm">⛶</button>
+</div>
+
+<!-- Edit bar: open with ?edit in the URL, or press E -->
+<div class="bar" id="bar">
+  <span class="mode">✎ Redigering</span>
+  <button data-a="left" title="Flytt lysbildet til venstre">← Flytt</button>
+  <button data-a="right" title="Flytt lysbildet til høyre">Flytt →</button>
+  <button data-a="dup">Dupliser</button>
+  <button data-a="hide" id="hideBtn">Skjul</button>
+  <button data-a="del">Slett</button>
+  <button data-a="reset" title="Fjern alle endringer i denne nettleseren">Tilbakestill</button>
+  <button data-a="save" class="pri" title="Last ned decket med endringene">Last ned HTML</button>
+  <button data-a="done">Ferdig</button>
+  <span class="saved" id="saved"></span>
+</div>
+<div class="help" title="Klikk for å skjule" onclick="this.remove()">Klikk på en tekst for å skrive. Klikk på et bilde for å bytte det. Endringer lagres i denne nettleseren. Trykk «Last ned HTML» og legg filen inn som <b>index.html</b> i mappen for å dele endringene. Esc avslutter redigering. <i>(Klikk her for å skjule.)</i></div>
+<input type="file" id="pick" accept="image/*" hidden>
+
+<script>
+(() => {
+  const deck = document.getElementById('deck');
+  const REV = document.querySelector('meta[name="deck-rev"]').content;
+  const KEY = 'simployer-deck:' + location.pathname + ':' + REV;
+  const EDITABLE = 'h1,h2,h3,p,blockquote,.eb,.lbl,.key,.num,.co,.cl,.when,.st,.tag,.proof,.scr,.cta,.avatar:not(:has(img)),.pnl .ph b,.pnl .ph span,.pnl .w b,.pnl .w small,.pnl .n,.foot span:first-child';
+  let editing = false, i = 0, saveT;
+
+  // restore saved edits (only for this version of the file)
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (s && s.html) deck.innerHTML = s.html;
+  } catch (e) {}
+
+  const all = () => [...deck.querySelectorAll('.slide')];
+  const shown = () => all().filter(s => editing || !s.classList.contains('hid'));
+
+  function render() {
+    const list = shown(), sl = all();
+    i = Math.max(0, Math.min(i, list.length - 1));
+    sl.forEach(s => s.classList.remove('on'));
+    const cur = list[i]; if (cur) cur.classList.add('on');
+    // numbering counts the slides that are presented
+    const vis = sl.filter(s => !s.classList.contains('hid'));
+    sl.forEach(s => { const pg = s.querySelector('.pg'); if (pg) pg.textContent = 'Simployer × Magelungen · ' + (vis.indexOf(s) + 1) + '/' + vis.length; });
+    document.getElementById('count').textContent = (i + 1) + ' / ' + list.length;
+    document.getElementById('progress').style.width = ((i + 1) / list.length * 100) + '%';
+    document.getElementById('hideBtn').textContent = cur && cur.classList.contains('hid') ? 'Vis igjen' : 'Skjul';
+    deck.querySelectorAll('video').forEach(v => { if (!cur || !cur.contains(v)) v.pause(); });
+    history.replaceState(null, '', location.pathname + location.search + '#' + (i + 1));
+  }
+  function go(d) { i += d; render(); }
+
+  // ---- edit mode ----
+  function setEditable(on) {
+    deck.querySelectorAll(EDITABLE).forEach(el => {
+      if (el.closest('.pg')) return;
+      if (on) { el.setAttribute('contenteditable', 'true'); el.spellcheck = false; }
+      else el.removeAttribute('contenteditable');
+    });
+  }
+  function setEdit(on) {
+    editing = on; document.body.classList.toggle('editing', on); setEditable(on);
+    if (!on && document.activeElement) document.activeElement.blur();
+    render();
+  }
+  function cleanHTML() {
+    const c = deck.cloneNode(true);
+    c.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+    c.querySelectorAll('[spellcheck]').forEach(el => el.removeAttribute('spellcheck'));
+    c.querySelectorAll('.slide').forEach(s => s.classList.remove('on'));
+    return c.innerHTML;
+  }
+  function save() {
+    clearTimeout(saveT);
+    saveT = setTimeout(() => {
+      try { localStorage.setItem(KEY, JSON.stringify({ html: cleanHTML(), at: Date.now() })); flash('Lagret ✓'); }
+      catch (e) { flash('Ikke lagret: last ned HTML'); }
+    }, 300);
+  }
+  function flash(t) { const el = document.getElementById('saved'); el.textContent = t; }
+  deck.addEventListener('input', () => editing && save());
+
+  // paste as plain text, so formatting from Word or mail doesn't break the look
+  deck.addEventListener('paste', e => {
+    if (!editing) return; e.preventDefault();
+    document.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text'));
+  });
+
+  // swap images
+  let target = null; const pick = document.getElementById('pick');
+  deck.addEventListener('click', e => {
+    if (!editing) return; const img = e.target.closest('img[data-swap]');
+    if (img) { target = img; pick.click(); }
+  });
+  pick.addEventListener('change', () => {
+    const f = pick.files[0]; if (!f || !target) return;
+    const r = new FileReader();
+    r.onload = () => { target.src = r.result; save(); pick.value = ''; };
+    r.readAsDataURL(f);
+  });
+
+  document.getElementById('bar').addEventListener('click', e => {
+    const a = e.target.closest('button')?.dataset.a; if (!a) return;
+    const cur = shown()[i];
+    if (a === 'left' && cur.previousElementSibling) { deck.insertBefore(cur, cur.previousElementSibling); i--; }
+    if (a === 'right' && cur.nextElementSibling) { deck.insertBefore(cur.nextElementSibling, cur); i++; }
+    if (a === 'dup') { const c = cur.cloneNode(true); c.classList.remove('on'); cur.after(c); i++; }
+    if (a === 'hide') cur.classList.toggle('hid');
+    if (a === 'del' && confirm('Slette dette lysbildet? (Tilbakestill henter det tilbake)')) { cur.remove(); }
+    if (a === 'reset' && confirm('Fjerne alle endringer gjort i denne nettleseren?')) { try { localStorage.removeItem(KEY); } catch (e) {} location.reload(); return; }
+    if (a === 'save') return download();
+    if (a === 'done') {
+      setEdit(false);
+      history.replaceState(null, '', location.pathname + '#' + (i + 1));
+      toast('Presentasjonsmodus. Bla med piltastene, klikk på lysbildet eller sveip. Trykk E for å redigere igjen.');
+      return;
+    }
+    setEditable(true); save(); render();
+  });
+
+  function download() {
+    const doc = document.documentElement.cloneNode(true);
+    doc.querySelector('#deck').innerHTML = cleanHTML();
+    doc.querySelector('body').classList.remove('editing');
+    const rev = 'r' + Date.now().toString(36);
+    doc.querySelector('meta[name="deck-rev"]').setAttribute('content', rev);
+    const blob = new Blob(['<!doctype html>\n' + doc.outerHTML], { type: 'text/html' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
+  // ---- keys ----
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'VIDEO' && e.key === ' ') return; // space plays and pauses the video
+    const typing = e.target.isContentEditable || /INPUT|TEXTAREA/.test(e.target.tagName);
+    if (typing) { if (e.key === 'Escape') e.target.blur(); return; }
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(-1); }
+    else if (e.key === 'Home') { i = 0; render(); }
+    else if (e.key === 'End') { i = 1e9; render(); }
+    else if (e.key === 'f' || e.key === 'F') toggleFs();
+    else if (e.key === 'e' || e.key === 'E') setEdit(!editing);
+    else if (e.key === 'Escape' && editing) setEdit(false);
+  });
+  function toggleFs() { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); }
+  document.getElementById('prev').onclick = () => go(-1);
+  document.getElementById('next').onclick = () => go(1);
+  const fsBtn = document.getElementById('fs');
+  if (!document.documentElement.requestFullscreen) fsBtn.style.display = 'none'; else fsBtn.onclick = toggleFs;
+
+  // click or tap the slide: left third goes back, the rest goes forward
+  const INTERACTIVE = 'video,a,button,input,textarea,select,[contenteditable="true"]';
+  let swiped = false;
+  deck.addEventListener('click', e => {
+    if (editing || swiped || e.target.closest(INTERACTIVE)) return;
+    if (String(window.getSelection())) return;
+    const r = deck.getBoundingClientRect();
+    go(e.clientX - r.left < r.width / 3 ? -1 : 1);
+  });
+  // swipe on touch screens
+  let tx = 0, ty = 0;
+  deck.addEventListener('touchstart', e => { swiped = false; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+  deck.addEventListener('touchend', e => {
+    if (editing) return;
+    const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) && !e.target.closest('video')) { swiped = true; go(dx < 0 ? 1 : -1); setTimeout(() => swiped = false, 400); }
+  }, { passive: true });
+  // in full screen, hide the buttons until the mouse moves
+  let idleT;
+  document.addEventListener('mousemove', () => { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { if (document.fullscreenElement && !editing) document.body.classList.add('idle'); }, 2500); });
+  let toastT;
+  function toast(t) { const el = document.getElementById('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 4500); }
+
+  addEventListener('hashchange', () => { const n = parseInt(location.hash.slice(1), 10); if (n > 0 && n - 1 !== i) { i = n - 1; render(); } });
+  // start
+  const h = parseInt(location.hash.slice(1), 10); if (h > 0) i = h - 1;
+  if (/[?&]edit\b/.test(location.search)) setEdit(true); else render();
+})();
+</script>
+</body>
+</html>
